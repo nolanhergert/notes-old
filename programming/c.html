@@ -1,0 +1,220 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:c</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#size_of_stuff_at_compile_time">Size of stuff at compile time</a></div></li>
+<li class="level2"><div class="li"><a href="#find_the_bugs">Find the bugs</a></div></li>
+<li class="level2"><div class="li"><a href="#things_missing">Things missing</a></div></li>
+<li class="level2"><div class="li"><a href="#struct_alignment">Struct alignment</a></div></li>
+<li class="level2"><div class="li"><a href="#ixp_library">IXP Library</a></div></li>
+<li class="level2"><div class="li"><a href="#debugging">Debugging</a></div></li>
+<li class="level2"><div class="li"><a href="#setup">Setup</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h2 class="sectionedit1" id="size_of_stuff_at_compile_time">Size of stuff at compile time</h2>
+<div class="level2">
+<pre class="code c"><span class="co1">// Size of array of structs</span>
+<span class="kw4">struct</span> TargetsCombination InvalidSequences<span class="br0">&#91;</span><span class="br0">&#93;</span> <span class="sy0">=</span> <span class="br0">&#123;</span> InvalidSocketDimmSquence<span class="sy0">,</span> InvalidSocketDimmSquence2 <span class="br0">&#125;</span><span class="sy0">;</span>
+<span class="kw4">int</span> foo <span class="sy0">=</span> <span class="kw4">sizeof</span><span class="br0">&#40;</span>InvalidSequences<span class="br0">&#41;</span><span class="sy0">/</span><span class="kw4">sizeof</span><span class="br0">&#40;</span>InvalidSequences<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// Variable sized string array</span>
+<span class="kw4">char</span><span class="sy0">*</span> names4<span class="br0">&#91;</span><span class="br0">&#93;</span><span class="sy0">=</span><span class="br0">&#123;</span><span class="st0">&quot;John&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Paul&quot;</span><span class="sy0">,</span> <span class="st0">&quot;George&quot;</span><span class="sy0">,</span> <span class="st0">&quot;Ringo&quot;</span><span class="br0">&#125;</span><span class="sy0">;</span> <span class="co1">// Four elements</span>
+LEN <span class="sy0">=</span> <span class="br0">&#40;</span><span class="kw4">sizeof</span><span class="br0">&#40;</span>names4<span class="br0">&#41;</span><span class="sy0">/</span><span class="kw4">sizeof</span><span class="br0">&#40;</span>names4<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// However if above string array is inside of a struct, then need to define array length as some max length possible, then go until strings == NULL</span>
+<span class="kw4">typedef</span>
+<span class="kw4">struct</span> TargetsCombination
+<span class="br0">&#123;</span>
+  <span class="kw4">char</span> <span class="sy0">*</span>pTargets<span class="br0">&#91;</span>MAX_ELEMENTS<span class="br0">&#93;</span><span class="sy0">;</span>
+  <span class="kw4">unsigned</span> <span class="kw4">int</span> NumTargets<span class="sy0">;</span>
+  <span class="kw4">char</span> <span class="sy0">*</span>pErrString<span class="sy0">;</span>
+<span class="br0">&#125;</span> TARGETS_COMBINATION<span class="sy0">;</span>
+&nbsp;
+<span class="kw1">while</span><span class="br0">&#40;</span>pTarget <span class="sy0">!=</span> NULL<span class="br0">&#41;</span> <span class="br0">&#123;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Size of stuff at compile time&quot;,&quot;hid&quot;:&quot;size_of_stuff_at_compile_time&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-713&quot;} -->
+<h2 class="sectionedit2" id="find_the_bugs">Find the bugs</h2>
+<div class="level2">
+
+<p>
+Not that I found them right away, but this is an example of <strong>real</strong> code with real bugs.
+</p>
+
+<p>
+The <abbr title="specification">spec</abbr> describes it as alternating between two flog entries, updating them one at a time so as to never corrupt the known good state. Answers afterwards:
+</p>
+
+<p>
+Reference code: <a href="https://github.com/pmem/pmdk/blob/cc2f2ba1ae578fb17ee18fe9b049ecde77bd2060/src/libpmemblk/btt.c#L590" class="urlextern" title="https://github.com/pmem/pmdk/blob/cc2f2ba1ae578fb17ee18fe9b049ecde77bd2060/src/libpmemblk/btt.c#L590" rel="ugc nofollow">https://github.com/pmem/pmdk/blob/cc2f2ba1ae578fb17ee18fe9b049ecde77bd2060/src/libpmemblk/btt.c#L590</a>
+</p>
+<pre class="code c">STATIC
+EFI_STATUS
+BttFlogUpdate<span class="br0">&#40;</span>
+  IN     BTT <span class="sy0">*</span>pBtt<span class="sy0">,</span>
+  IN     ARENAS <span class="sy0">*</span>pArena<span class="sy0">,</span>
+  IN     UINT32 Lba<span class="sy0">,</span>
+  IN     UINT32 OldMap<span class="sy0">,</span>
+  IN     UINT32 NewMap
+  <span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  UINT8 CurrentFlog <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+  BTT_FLOG_PAIR FlogPair<span class="sy0">;</span>
+  UINT64 NewFlogOffset <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+&nbsp;
+  SetMem<span class="br0">&#40;</span><span class="sy0">&amp;</span>FlogPair<span class="sy0">,</span> <span class="kw4">sizeof</span><span class="br0">&#40;</span>FlogPair<span class="br0">&#41;</span><span class="sy0">,</span> <span class="nu12">0x0</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  NVDIMM_VERB<span class="br0">&#40;</span><span class="st0">&quot;pBttp=%p pArena=%p LBA=%x OldMap=%d NewMap=%d&quot;</span><span class="sy0">,</span>
+    pBtt<span class="sy0">,</span> pArena<span class="sy0">,</span> Lba<span class="sy0">,</span> OldMap<span class="sy0">,</span> NewMap<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  <span class="kw1">if</span><span class="br0">&#40;</span><span class="sy0">!</span>pBtt <span class="sy0">||</span> <span class="sy0">!</span>pArena<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> EFI_INVALID_PARAMETER<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+  <span class="co1">// Curent flog(0 or 1) is calculated from the stored value of Next flog as !Next</span>
+  CurrentFlog <span class="sy0">=</span> <span class="sy0">!</span><span class="br0">&#40;</span>pArena<span class="sy0">-&gt;</span>pFlogs<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>.<span class="me1">Next</span> <span class="sy0">|</span> <span class="nu12">0xFE</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  FlogPair <span class="sy0">=</span> pArena<span class="sy0">-&gt;</span>pFlogs<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>.<span class="me1">FlogPair</span><span class="sy0">;</span>
+&nbsp;
+  FlogPair.<span class="me1">Flog</span><span class="br0">&#91;</span>CurrentFlog<span class="br0">&#93;</span>.<span class="me1">Lba</span> <span class="sy0">=</span> Lba<span class="sy0">;</span>
+  FlogPair.<span class="me1">Flog</span><span class="br0">&#91;</span>CurrentFlog<span class="br0">&#93;</span>.<span class="me1">OldMap</span> <span class="sy0">=</span> OldMap<span class="sy0">;</span>
+  FlogPair.<span class="me1">Flog</span><span class="br0">&#91;</span>CurrentFlog<span class="br0">&#93;</span>.<span class="me1">NewMap</span> <span class="sy0">=</span> NewMap<span class="sy0">;</span>
+  FlogPair.<span class="me1">Flog</span><span class="br0">&#91;</span>CurrentFlog<span class="br0">&#93;</span>.<span class="me1">Seq</span> <span class="sy0">=</span> NSEQ<span class="br0">&#40;</span>FlogPair.<span class="me1">Flog</span><span class="br0">&#91;</span>CurrentFlog<span class="br0">&#93;</span>.<span class="me1">Seq</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  NewFlogOffset <span class="sy0">=</span> pArena<span class="sy0">-&gt;</span>pFlogs<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>.<span class="me1">Entry</span><span class="sy0">;</span>
+&nbsp;
+  EFI_STATUS WriteResult <span class="sy0">=</span> WriteNamespaceBytes
+    <span class="br0">&#40;</span>pBtt<span class="sy0">-&gt;</span>pNamespace<span class="sy0">,</span> NewFlogOffset<span class="sy0">,</span> <span class="sy0">&amp;</span>FlogPair<span class="sy0">,</span> <span class="kw4">sizeof</span><span class="br0">&#40;</span>BTT_FLOG_PAIR<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+  <span class="kw1">if</span><span class="br0">&#40;</span>EFI_ERROR<span class="br0">&#40;</span>WriteResult<span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">return</span> WriteResult<span class="sy0">;</span>
+  <span class="br0">&#125;</span>
+&nbsp;
+  <span class="coMULTI">/* Flog Entry written successfully, update run-time state */</span>
+  pArena<span class="sy0">-&gt;</span>pFlogs<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>.<span class="me1">Next</span> <span class="sy0">=</span> <span class="nu0">1</span> <span class="sy0">-</span> pArena<span class="sy0">-&gt;</span>pFlogs<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>.<span class="me1">Next</span><span class="sy0">;</span>
+  pArena<span class="sy0">-&gt;</span>pFlogs<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>.<span class="me1">FlogPair</span>.<span class="me1">Flog</span><span class="br0">&#91;</span>CurrentFlog<span class="br0">&#93;</span>.<span class="me1">Lba</span> <span class="sy0">=</span> Lba<span class="sy0">;</span>
+  pArena<span class="sy0">-&gt;</span>pFlogs<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>.<span class="me1">FlogPair</span>.<span class="me1">Flog</span><span class="br0">&#91;</span>CurrentFlog<span class="br0">&#93;</span>.<span class="me1">OldMap</span> <span class="sy0">=</span> OldMap<span class="sy0">;</span>
+  pArena<span class="sy0">-&gt;</span>pFlogs<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>.<span class="me1">FlogPair</span>.<span class="me1">Flog</span><span class="br0">&#91;</span>CurrentFlog<span class="br0">&#93;</span>.<span class="me1">NewMap</span> <span class="sy0">=</span> NewMap<span class="sy0">;</span>
+  pArena<span class="sy0">-&gt;</span>pFlogs<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>.<span class="me1">FlogPair</span>.<span class="me1">Flog</span><span class="br0">&#91;</span>CurrentFlog<span class="br0">&#93;</span>.<span class="me1">Seq</span> <span class="sy0">=</span> NSEQ<span class="br0">&#40;</span>pArena<span class="sy0">-&gt;</span>pFlogs<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>.<span class="me1">FlogPair</span>.<span class="me1">Flog</span><span class="br0">&#91;</span>CurrentFlog<span class="br0">&#93;</span>.<span class="me1">Seq</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  NVDIMM_VERB<span class="br0">&#40;</span><span class="st0">&quot;update Flog[0]: Lba=%d old=%d%s%s new %d%s%s&quot;</span><span class="sy0">,</span> Lba<span class="sy0">,</span>
+    OldMap <span class="sy0">&amp;</span> BTT_MAP_ENTRY_LBA_MASK<span class="sy0">,</span><span class="br0">&#40;</span>OldMap <span class="sy0">&amp;</span> BTT_MAP_ENTRY_ERROR<span class="br0">&#41;</span> <span class="sy0">?</span> <span class="st0">&quot; ERROR&quot;</span> <span class="sy0">:</span> <span class="st0">&quot;&quot;</span><span class="sy0">,</span>
+     <span class="br0">&#40;</span>OldMap <span class="sy0">&amp;</span> BTT_MAP_ENTRY_ZERO<span class="br0">&#41;</span> <span class="sy0">?</span> <span class="st0">&quot; ZERO&quot;</span> <span class="sy0">:</span> <span class="st0">&quot;&quot;</span><span class="sy0">,</span> NewMap <span class="sy0">&amp;</span> BTT_MAP_ENTRY_LBA_MASK<span class="sy0">,</span>
+     <span class="br0">&#40;</span>NewMap <span class="sy0">&amp;</span> BTT_MAP_ENTRY_ERROR<span class="br0">&#41;</span> <span class="sy0">?</span> <span class="st0">&quot; ERROR&quot;</span> <span class="sy0">:</span> <span class="st0">&quot;&quot;</span><span class="sy0">,</span><span class="br0">&#40;</span>NewMap <span class="sy0">&amp;</span> BTT_MAP_ENTRY_ZERO<span class="br0">&#41;</span> <span class="sy0">?</span> <span class="st0">&quot; ZERO&quot;</span> <span class="sy0">:</span> <span class="st0">&quot;&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  <span class="kw1">return</span> EFI_SUCCESS<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+I found at least 4:
+</p>
+<ul>
+<li class="level1"><div class="li"> Flogpair is meant to point to different struct, but is used as a local struct. So “=” does a deep copy in this case, and further modification doesn&#039;t change the referenced struct. You want to do a pointer.</div>
+</li>
+<li class="level1"><div class="li"> CurrentFlog = !(pArena→pFlogs[0].Next | 0xFE)    should be CurrentFlog = 1 - pArena→pFlogs[0].Next;</div>
+</li>
+<li class="level1"><div class="li"> Write namespace bytes doesn&#039;t go in separate order.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Find the bugs&quot;,&quot;hid&quot;:&quot;find_the_bugs&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:2,&quot;range&quot;:&quot;714-3338&quot;} -->
+<h2 class="sectionedit3" id="things_missing">Things missing</h2>
+<div class="level2">
+
+<p>
+Classes, so you can write generic sort algorithms like Python/C++.
+</p>
+
+<p>
+Exceptions, so you don&#039;t have to check for failure codes at every execution.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Things missing&quot;,&quot;hid&quot;:&quot;things_missing&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:3,&quot;range&quot;:&quot;3339-3511&quot;} -->
+<h2 class="sectionedit4" id="struct_alignment">Struct alignment</h2>
+<div class="level2">
+
+<p>
+Compilers align structs front and back to the largest scalar member, adding padding as necessary.
+<a href="http://www.catb.org/esr/structure-packing/" class="urlextern" title="http://www.catb.org/esr/structure-packing/" rel="ugc nofollow">http://www.catb.org/esr/structure-packing/</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Struct alignment&quot;,&quot;hid&quot;:&quot;struct_alignment&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:4,&quot;range&quot;:&quot;3512-3683&quot;} -->
+<h2 class="sectionedit5" id="ixp_library">IXP Library</h2>
+<div class="level2">
+
+<p>
+#include “../../bar/foo.h” = Provide the relative path to this directory
+</p>
+
+<p>
+#include &lt;foo.h&gt; = Let the compiler find the path to foo.h from among the include directories.
+</p>
+<pre class="code c"><span class="co1">// What external libraries (implementation, *.c) do we want to link with</span>
+<span class="co1">// Also, a string library should be separate from COMMON library. We only need strings, not a whole bunch of stuff!</span>
+target_link_libraries<span class="br0">&#40;</span>firmware_interface driver_interface $<span class="br0">&#123;</span>COMMON_LIB_NAME<span class="br0">&#125;</span><span class="br0">&#41;</span>
+<span class="co1">// What external includes (headers, definitions, *.h) do we want to include</span>
+target_include_directories<span class="br0">&#40;</span>firmware_interface PUBLIC
+        ..<span class="sy0">/</span>
+        .<span class="sy0">/</span>
+        src<span class="sy0">/</span>common
+        <span class="br0">&#41;</span></pre>
+
+</div>
+
+<h4 id="static_const_function_pointer_array">Static const function pointer array</h4>
+<div class="level4">
+<pre class="code c"><span class="kw4">static</span> <span class="kw4">int</span> <span class="br0">&#40;</span><span class="sy0">*</span> <span class="kw4">const</span> g_ixp_lookup<span class="br0">&#91;</span>IXP_PROP_KEY_MAX<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#40;</span><span class="kw4">unsigned</span> <span class="kw4">int</span> handle<span class="sy0">,</span>
+<span class="kw4">struct</span> ixp_prop_info props<span class="br0">&#91;</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="kw4">int</span> num_props<span class="br0">&#41;</span> <span class="sy0">=</span> <span class="br0">&#123;</span>
+function1<span class="sy0">,</span>
+function2<span class="sy0">,</span>
+<span class="br0">&#125;</span><span class="sy0">;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;IXP Library&quot;,&quot;hid&quot;:&quot;ixp_library&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;3684-4552&quot;} -->
+<h2 class="sectionedit6" id="debugging">Debugging</h2>
+<div class="level2">
+
+<p>
+Need to Clean/Rebuild project sometimes if breakpoints are hollow and say “code is out of date”. Things seem to work better then. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Debugging&quot;,&quot;hid&quot;:&quot;debugging&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:6,&quot;range&quot;:&quot;4553-4705&quot;} -->
+<h2 class="sectionedit7" id="setup">Setup</h2>
+<div class="level2">
+
+<p>
+To get Visual Studio loading libraries, you go to Project→Add Reference. Automation is UIAutomation
+<a href="../_media/programming/import.gif" class="media" title="programming:import.gif"><img src="../_media/programming/import.gif" class="media" alt="" /></a>
+</p>
+
+<p>
+To run something inside the project, right click on an executable looking thing then do “Set as Startup Project” or “Debug”.
+</p>
+
+<p>
+System.Diagnostics.Debug.WriteLine will display in the output window. (Ctrl+Alt+O)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Setup&quot;,&quot;hid&quot;:&quot;setup&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:7,&quot;range&quot;:&quot;4706-&quot;} --></div></body>
+</html>

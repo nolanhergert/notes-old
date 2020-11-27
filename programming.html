@@ -1,0 +1,310 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming</title>
+  <link rel="stylesheet" media="all" type="text/css" href="all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#programming">Programming</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#why_johnny_won_t_upgrade">Why Johnny Won&#039;t Upgrade</a></div></li>
+<li class="level2"><div class="li"><a href="#duplicate_code">Duplicate code</a></div></li>
+<li class="level2"><div class="li"><a href="#whole_project">Whole project</a></div></li>
+<li class="level2"><div class="li"><a href="#visual_studio">Visual Studio</a></div></li>
+<li class="level2"><div class="li"><a href="#whitespace">Whitespace</a></div></li>
+<li class="level2"><div class="li"><a href="#offline">Offline</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#bugs">Bugs</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="programming">Programming</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> “Defect driven development” – Kelly C. (as opposed to Test-Driven Development)</div>
+</li>
+</ul>
+
+<p>
+&gt; “If you find a bug &lt;especially when you aren&#039;t working hard at it&gt;, it means your bug-finding process is broken &lt;and there&#039;s probably a bunch more you haven&#039;t found yet&gt;.” –Philip Koopman
+</p>
+<ul>
+<li class="level1"><div class="li"> It&#039;s good to separate code into logical chunks of files (and functions too). Much easier to find later on…</div>
+</li>
+<li class="level1"><div class="li"> Better graph layout software is GraphViz, as it&#039;s command line and figures out most things for you. Good diagram software, <a href="http://www.yworks.com/en/products_yed_about.htm" class="urlextern" title="http://www.yworks.com/en/products_yed_about.htm" rel="ugc nofollow">yEd</a></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> I learned programming by taking baby steps. This is a great article on that and project euler. <a href="http://www.theatlantic.com/technology/archive/2011/06/how-i-failed-failed-and-finally-succeeded-at-learning-how-to-code/239855/" class="urlextern" title="http://www.theatlantic.com/technology/archive/2011/06/how-i-failed-failed-and-finally-succeeded-at-learning-how-to-code/239855/" rel="ugc nofollow">http://www.theatlantic.com/technology/archive/2011/06/how-i-failed-failed-and-finally-succeeded-at-learning-how-to-code/239855/</a></div>
+</li>
+<li class="level1"><div class="li"> I want to learn how to organize my code well, particularly for recursion and stopping while recursing. Use it for finding the median in a binary search tree for RunningSorted and RunningMax/Min (can&#039;t I just do heap?) algorithms. </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.quora.com/Carnegie-Mellon-University/How-does-the-difficulty-of-15-251-at-CMU-compare-to-intro-math-for-CS-courses-at-other-strong-CS-theory-schools" class="urlextern" title="http://www.quora.com/Carnegie-Mellon-University/How-does-the-difficulty-of-15-251-at-CMU-compare-to-intro-math-for-CS-courses-at-other-strong-CS-theory-schools" rel="ugc nofollow">15-251 at CMU is similar to 6.042 at MIT</a>. It&#039;d be nice to do it someday… and cache <a href="http://www.andrew.cmu.edu/course/15-251/schedule.html" class="urlextern" title="http://www.andrew.cmu.edu/course/15-251/schedule.html" rel="ugc nofollow">the site</a>.</div>
+</li>
+<li class="level1"><div class="li"> Use iMac at home for compute power, but if you want more, Google Compute Engine and Amazon&#039;s EC2 are pretty reasonable for temporary compute spurts too!</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Programming&quot;,&quot;hid&quot;:&quot;programming&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-1547&quot;} -->
+<h2 class="sectionedit2" id="why_johnny_won_t_upgrade">Why Johnny Won&#039;t Upgrade</h2>
+<div class="level2">
+
+<p>
+Nice article on all the reasons users don&#039;t understandably want to upgrade.
+<a href="https://jacquesmattheij.com/why-johnny-wont-upgrade/" class="urlextern" title="https://jacquesmattheij.com/why-johnny-wont-upgrade/" rel="ugc nofollow">https://jacquesmattheij.com/why-johnny-wont-upgrade/</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Why Johnny Won&#039;t Upgrade&quot;,&quot;hid&quot;:&quot;why_johnny_won_t_upgrade&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;1548-1715&quot;} -->
+<h2 class="sectionedit3" id="duplicate_code">Duplicate code</h2>
+<div class="level2">
+
+<p>
+PMD Duplicate code detector (run the gui executable)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Duplicate code&quot;,&quot;hid&quot;:&quot;duplicate_code&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1716-1795&quot;} -->
+<h2 class="sectionedit4" id="whole_project">Whole project</h2>
+<div class="level2">
+
+<p>
+Really great set of guidelines from USDS: <a href="https://playbook.cio.gov/" class="urlextern" title="https://playbook.cio.gov/" rel="ugc nofollow">https://playbook.cio.gov/</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Whole project&quot;,&quot;hid&quot;:&quot;whole_project&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1796-1890&quot;} -->
+<h2 class="sectionedit5" id="visual_studio">Visual Studio</h2>
+<div class="level2">
+
+<p>
+To launch a VS console, type in “native”? Or “vs”
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Visual Studio&quot;,&quot;hid&quot;:&quot;visual_studio&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1891-1967&quot;} -->
+<h2 class="sectionedit6" id="whitespace">Whitespace</h2>
+<div class="level2">
+
+<p>
+We used uncrustify in ME team.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Whitespace&quot;,&quot;hid&quot;:&quot;whitespace&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1968-2021&quot;} -->
+<h2 class="sectionedit7" id="offline">Offline</h2>
+<div class="level2">
+
+<p>
+Offline documentation, Zeal: <a href="https://zealdocs.org/" class="urlextern" title="https://zealdocs.org/" rel="ugc nofollow">https://zealdocs.org/</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Offline&quot;,&quot;hid&quot;:&quot;offline&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2022-2092&quot;} -->
+<h3 class="sectionedit8" id="bugs">Bugs</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="polling_vs_interrupt">Polling vs Interrupt</h4>
+<div class="level4">
+
+<p>
+Had an interesting conversation with Maciej today about whether to use polling or interrupts. I remember in 18-649 he said to use polling to guarantee handling of all message. However, when you want to guarantee a super-high priority thing but can&#039;t afford to poll it every 1ms, it should be good enough to do a joint thing. Do interrupt for small set of high priority commands, but make sure they can&#039;t be repeatedly sent over each other.
+</p>
+<ul>
+<li class="level1"><div class="li"> Maciej had case in poland where a jumper asserted a “processor hot” signal, but there wasn&#039;t bounce protection on it so that it interrupted thousands of times per second, preventing the original interrupt from finishing because they forgot to turn off interrupts in the interrupt handling routine!</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="concurrency">Concurrency</h4>
+<div class="level4">
+
+</div>
+
+<h5 id="tla">TLA+</h5>
+<div class="level5">
+
+<p>
+Another TLA+ introduction (2018): <a href="https://learntla.com/introduction/" class="urlextern" title="https://learntla.com/introduction/" rel="ugc nofollow">https://learntla.com/introduction/</a>, <a href="https://news.ycombinator.com/item?id=19661329" class="urlextern" title="https://news.ycombinator.com/item?id=19661329" rel="ugc nofollow">https://news.ycombinator.com/item?id=19661329</a>
+</p>
+
+<p>
+(from Hacker News comments) <a href="https://news.ycombinator.com/item?id=9601770" class="urlextern" title="https://news.ycombinator.com/item?id=9601770" rel="ugc nofollow">1</a>, <a href="https://news.ycombinator.com/item?id=10220264" class="urlextern" title="https://news.ycombinator.com/item?id=10220264" rel="ugc nofollow">2</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://cacm.acm.org/magazines/2015/4/184701-how-amazon-web-services-uses-formal-methods/fulltext#R18" class="urlextern" title="http://cacm.acm.org/magazines/2015/4/184701-how-amazon-web-services-uses-formal-methods/fulltext#R18" rel="ugc nofollow">Amazon seems to have a lot of TLA+</a>. </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://muratbuffalo.blogspot.com/2015/01/my-experience-with-using-tla-in.html" class="urlextern" title="http://muratbuffalo.blogspot.com/2015/01/my-experience-with-using-tla-in.html" rel="ugc nofollow">SUNY professor</a>. </div>
+</li>
+<li class="level1"><div class="li"> Intel uses HOL Light but one guy / team for cache coherency used TLA+ <a href="http://research.microsoft.com/en-us/um/people/lamport/pubs/high-level.pdf" class="urlextern" title="http://research.microsoft.com/en-us/um/people/lamport/pubs/high-level.pdf" rel="ugc nofollow">http://research.microsoft.com/en-us/um/people/lamport/pubs/high-level.pdf</a></div>
+</li>
+<li class="level1"><div class="li"> Lamports&#039; website has all the details, </div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Has ability to check liveness and fairness and reliability properties and enforce them through the model checking</div>
+</li>
+<li class="level1"><div class="li"> Apparently lacks ability to spawn threads.</div>
+</li>
+<li class="level1"><div class="li"> Does all verification by brute force (probably with some smarts), but for best performance write declaratively and not procedural.</div>
+</li>
+<li class="level1"><div class="li"> “Classic” paper <a href="http://www.google.com/search?q=Time%2C%20Clocks%2C%20and%20the%20Ordering%20of%20Events%20in%20a%20Distributed%20System" class="interwiki iw_g" title="http://www.google.com/search?q=Time%2C%20Clocks%2C%20and%20the%20Ordering%20of%20Events%20in%20a%20Distributed%20System">Time, Clocks, and the Ordering of Events in a Distributed System</a>, but doesn&#039;t contain any TLA+ code. Just math <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" /></div>
+</li>
+</ul>
+
+<p>
+= Getting it running =
+One guy on Ubuntu just used the tla2tools jar only. Didn&#039;t really use the IDE. <a href="http://www.aloshbennett.in/weblog/2014/tla/tla-on-ubuntu/" class="urlextern" title="http://www.aloshbennett.in/weblog/2014/tla/tla-on-ubuntu/" rel="ugc nofollow">http://www.aloshbennett.in/weblog/2014/tla/tla-on-ubuntu/</a>
+</p>
+
+</div>
+
+<h5 id="elevator_project">18-649 Elevator Project</h5>
+<div class="level5">
+<pre class="code">    // CAN bus timings
+    HallButtonControl:  100ms
+    CarButtonControl:  100ms
+    LanternControl:  200ms
+    CarPositionControl: 50ms
+    Dispatcher: 50ms
+    DoorControl: 10ms
+    DriveControl: 10ms</pre>
+
+<p>
+ (from 18-649 lab 7 <a href="http://www.ece.cmu.edu/~ece649/project/proj7/index.html" class="urlextern" title="http://www.ece.cmu.edu/~ece649/project/proj7/index.html" rel="ugc nofollow">http://www.ece.cmu.edu/~ece649/project/proj7/index.html</a>)
+</p>
+<ul>
+<li class="level1"><div class="li"> We had a race condition where DoorControl was checked before DriveControl and the Drive ignored the intention of the Door and just looked at the position of the door. So the HallButtonControl, if pressed at the exact right time, would cause the Door to start opening while the Drive was starting to move. I&#039;m wondering if TLA+ will catch that… “yes”.</div>
+</li>
+</ul>
+
+<p>
+= People at Intel =
+Chi M Cheung, and Asif Haswarey
+</p>
+
+</div>
+
+<h4 id="signedness">Signedness</h4>
+<div class="level4">
+
+</div>
+
+<h5 id="circular_buffer_and_mod_operator">Circular Buffer and Mod operator</h5>
+<div class="level5">
+
+<p>
+Did for project with Mr. Domes. 
+</p>
+
+<p>
+(-1) % 8 <em> comes out as -1, and not 7
+
+The bug was with overlap of circular buffer pointers when they crossed the end and needed to wrap over. Thankfully  I caught that one…
+
+== Timeout timer ==
+My assumption was that unsigned values would never get mapped to negative numbers when cast to signed. However, the math wouldn&#039;t work out if they didn&#039;t. 
+
+
+==== Hex Editor ====
+hxd editor, 010 (but costs money) for windows is pretty good!
+==== Testing ====
+Automatic-ish white box testing is shipped in KLEE, which is part of the LLVM project at UIUC.
+==== Programming is Terrible ====
+<a href="https://www.youtube.com/watch?v=csyL9EC0S0c" class="urlextern" title="https://www.youtube.com/watch?v=csyL9EC0S0c" rel="ugc nofollow">Youtube</a> and <a href="http://www.reddit.com/r/programming/comments/1a2mf7/programming_is_terriblelessons_learned_from_a/" class="urlextern" title="http://www.reddit.com/r/programming/comments/1a2mf7/programming_is_terriblelessons_learned_from_a/" rel="ugc nofollow">reddit</a>. 
+  * “10 years experience” can sometimes mean “I&#039;ve done 1 year, 10 times”.
+  * (On students who didn&#039;t have ideas for what they wanted to learn…): Education got to them &lt;students&gt; before you could help them to learn! 
+==== Jenkins Config ====
+  * <a href="http://bhfsteve.blogspot.com/2012/04/automated-python-unit-testing-code_27.html" class="urlextern" title="http://bhfsteve.blogspot.com/2012/04/automated-python-unit-testing-code_27.html" rel="ugc nofollow">Automated Python Unit Testing and Code Coverage in Jenkins</a>
+  * <a href="http://localhost:8080" class="urlextern" title="http://localhost:8080" rel="ugc nofollow">http://localhost:8080</a>
+
+==== App Stack Stuff ====
+<a href="http://www.wired.com/2014/10/meteor/" class="urlextern" title="http://www.wired.com/2014/10/meteor/" rel="ugc nofollow">Meteor</a> seems good/best free option. They have a simple and fast TODO app experience. <a href="https://www.meteor.com/" class="urlextern" title="https://www.meteor.com/" rel="ugc nofollow">https://www.meteor.com/</a>. <a href="https://meteorhacks.com/pro-meteor/" class="urlextern" title="https://meteorhacks.com/pro-meteor/" rel="ugc nofollow">Blog for scaling Meteor</a>. <a href="https://www.youtube.com/watch?v=SYqyWff6iMQ" class="urlextern" title="https://www.youtube.com/watch?v=SYqyWff6iMQ" rel="ugc nofollow">okay demo on YouTube</a>
+
+And maybe <a href="http://www.google.com/search?q=Famo.us" class="interwiki iw_g" title="http://www.google.com/search?q=Famo.us">Famo.us</a>
+
+=== Redis ===
+In-memory data storage. A lot of websites seem to use it.
+===== Really Cool Algorithms =====
+  * <a href="https://en.wikipedia.org/wiki/PageRank" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/PageRank">PageRank</a> and <a href="https://en.wikipedia.org/wiki/Bloom_Filter" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Bloom_Filter">Bloom_Filter</a>, explained really well by <a href="http://michaelnielsen.org/blog/writing/" class="urlextern" title="http://michaelnielsen.org/blog/writing/" rel="ugc nofollow">Michael Nielsen</a>, (and maybe <a href="http://www.michaelnielsen.org/ddi/lisp-as-the-maxwells-equations-of-software/" class="urlextern" title="http://www.michaelnielsen.org/ddi/lisp-as-the-maxwells-equations-of-software/" rel="ugc nofollow">Lisp article</a> too, and need to read still. Still want to figure it out. Applied at Twitter for similar people and at Google for similar image search.
+    * </em>I would like Michael to use images more. A bloom filter ORs k independent hash output values into a single array. When a lookup happens, it computes the k values and sees if they <strong>all</strong> exist. Still not sure how that is better than keeping the k 2^m-sized arrays separate.<em>
+      * </em>Where does <strong>probably</strong> come into play then?<em>
+  * It&#039;d be really nice to get Natural Language Processing to do: “Initialize a box in a world with gravity, add 50 balls at random locations inside the box, and make collisions elastic. Now run the algorithm” and get <a href="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/" class="urlextern" title="http://jakevdp.github.io/blog/2012/08/18/matplotlib-animation-tutorial/" rel="ugc nofollow">this</a>. Wolfram says they are close with their <a href="http://www.wolfram.com/natural-language-understanding/" class="urlextern" title="http://www.wolfram.com/natural-language-understanding/" rel="ugc nofollow">Natural Language Understanding</a> in Mathematica, but there still seems to be a lot of code parameters that could be expressed naturally.
+    * It&#039;s called <a href="https://en.wikipedia.org/wiki/Natural_language_programming" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Natural_language_programming">Natural_language_programming</a>
+
+  * Women entrepreneur and algorithms designer Yael Karov, used algorithms from gene matching to apply to learning English and helping people with English. Namely, Ginger software. <a href="https://www.youtube.com/watch?v=z80J45jj4mg" class="urlextern" title="https://www.youtube.com/watch?v=z80J45jj4mg" rel="ugc nofollow">Interview with Google Women Israel</a> that I&#039;d like to watch about it.
+  * <a href="http://stackoverflow.com/questions/2530449/how-does-content-aware-fill-work" class="urlextern" title="http://stackoverflow.com/questions/2530449/how-does-content-aware-fill-work" rel="ugc nofollow">PatchMatch</a> and Seam Carving, both used in Photoshop now.
+  * Interview question for <a href="http://priceonomics.com" class="urlextern" title="http://priceonomics.com" rel="ugc nofollow">http://priceonomics.com</a> on arbitrage pricing. Start your python script on logging it again. Figure out how to cheat the pricing exchange market. <a href="http://priceonomics.com/jobs/puzzle/" class="urlextern" title="http://priceonomics.com/jobs/puzzle/" rel="ugc nofollow">http://priceonomics.com/jobs/puzzle/</a>
+    * <a href="https://en.wikipedia.org/wiki/Arbitrage Pricing Model" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Arbitrage Pricing Model">Arbitrage Pricing Model</a> for help…
+  * Great Former Google Interview question on finding substrings. <a href="http://thenoisychannel.com/2011/08/08/retiring-a-great-interview-problem" class="urlextern" title="http://thenoisychannel.com/2011/08/08/retiring-a-great-interview-problem" rel="ugc nofollow">here</a>
+  * Deep Learning company that Google bought developed an algorithm that learned how to play Atari games. (<a href="http://arxiv.org/pdf/1312.5602.pdf" class="urlextern" title="http://arxiv.org/pdf/1312.5602.pdf" rel="ugc nofollow">paper</a>)
+
+===== Python =====
+  * To do internet download-y stuff in Python, use the <a href="http://docs.python-requests.org/en/latest/" class="urlextern" title="http://docs.python-requests.org/en/latest/" rel="ugc nofollow">Requests</a> library and call Rentaro for advice.
+  * Strings are immutable. Just <abbr title="For your information">FYI</abbr> <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />
+
+^  Scientific  ^  Artistic  ^  Algorithms^
+|  <a href="programming/scientific.html" class="media" title="programming:scientific"><img src="_media/hand.jpg" class="mediacenter" alt="" width="200" /></a>  | <a href="programming/artistic.html" class="media" title="programming:artistic"><img src="_media/nodegarden.png" class="mediacenter" alt="" width="200" /></a> | <a href="programming/algorithms.html" class="media" title="programming:algorithms"><img src="_media/tco-2011-logo.jpg" class="media" alt="" width="200" /></a> |
+
+^  Scripts  ^  Spirolab  ^ 
+|  <a href="programming/scripts.html" class="media" title="programming:scripts"><img src="_media/terminal-colors.png" class="medialeft" align="left" alt="" width="200" /></a>  | <a href="programming/spirolab.html" class="media" title="programming:spirolab"><img src="_media/screen_shot_2011-12-23_at_1.48.17_am.png" class="medialeft" align="left" alt="" width="200" /></a>  |
+
+
+
+===== Windows bat scripts =====
+I don&#039;t like them. When you use parentheses (to make a multi line if statement, for example), it seems that errorlevel gets propagated and the “set” variable commands don&#039;t work?! 
+
+&lt;code&gt;
+if “FALSE” equ “FALSE” (
+
+REM Powershell always returns 0 and cmd returns 1 on not found
+REM One option is to redirect to test file but struggling with counting lines in that file
+REM So skip powershell for now
+findstr “bullseye” “Conf\tools_def.txt”
+echo %errorlevel%
+findstr /C:“BullseyeCoverage” “Conf\tools_def.txt”
+echo %errorlevel%
+START cmd /C findstr “BullseyeCsdfsdoverage” “Conf\tools_def.txt”
+echo %errorlevel%
+findstr “Datacenter” “README”
+echo %errorlevel%
+
+REM HUH WHAAA?
+goto End
+&lt;/code&gt;
+  * can be fixed by using <a href="https://stackoverflow.com/questions/9102422/windows-batch-set-inside-if-not-working" class="urlextern" title="https://stackoverflow.com/questions/9102422/windows-batch-set-inside-if-not-working" rel="ugc nofollow">https://stackoverflow.com/questions/9102422/windows-batch-set-inside-if-not-working</a>
+
+
+
+  * Please excuse the language, but I found this really funny <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />
+<a href="http://imgur.com/VBsyN" class="media" title="http://imgur.com/VBsyN" rel="ugc nofollow"><img src="_media/vbsyn.png" class="media" alt="" width="400" /></a> 
+  * Another one
+<a href="http://xkcd.com/505/" class="media" title="http://xkcd.com/505/" rel="ugc nofollow"><img src="_media/a_bunch_of_rocks.png" class="media" alt="" width="400" /></a>
+
+<a href="https://xkcd.com/228/" class="media" title="https://xkcd.com/228/" rel="ugc nofollow"><img src="_media/resonance.png" class="media" alt="" width="400" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Bugs&quot;,&quot;hid&quot;:&quot;bugs&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;2093-&quot;} --></div></body>
+</html>

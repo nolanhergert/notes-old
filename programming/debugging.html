@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:debugging</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#debugging">Debugging</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#linux">Linux</a></div></li>
+<li class="level2"><div class="li"><a href="#simics">Simics</a></div></li>
+<li class="level2"><div class="li"><a href="#system_tracing_and_profiling">System Tracing and Profiling</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#intel">Intel</a></div></li>
+<li class="level3"><div class="li"><a href="#windows">Windows</a></div></li>
+<li class="level3"><div class="li"><a href="#unix">Unix</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#common_code_bugs_with_suggested_fixes">Common Code Bugs (with suggested fixes)</a></div></li>
+<li class="level2"><div class="li"><a href="#slow_file_io">Slow File I/O</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#tldr">tldr</a></div></li>
+<li class="level3"><div class="li"><a href="#windows_performance_analysis_toolkit">Windows Performance Analysis Toolkit</a></div></li>
+<li class="level3"><div class="li"><a href="#conclusion">Conclusion</a></div></li>
+<li class="level3"><div class="li"><a href="#sources">Sources</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="debugging">Debugging</h1>
+<div class="level1">
+
+<p>
+List of pretty funny debugging sessions from Hacker News, includes real-life tron <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" /> <a href="http://beza1e1.tuxen.de/lore/" class="urlextern" title="http://beza1e1.tuxen.de/lore/" rel="ugc nofollow">http://beza1e1.tuxen.de/lore/</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Debugging&quot;,&quot;hid&quot;:&quot;debugging&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-141&quot;} -->
+<h2 class="sectionedit2" id="linux">Linux</h2>
+<div class="level2">
+
+<p>
+Ryan recommended <a href="https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468/ref=as_li_ss_tl?ie=UTF8&amp;tag=roblov-20" class="urlextern" title="https://www.amazon.com/Linux-Kernel-Development-Robert-Love/dp/0672329468/ref=as_li_ss_tl?ie=UTF8&amp;tag=roblov-20" rel="ugc nofollow">Linux Kernel Development</a> by Robert Love as a good intro to the kernel.
+</p>
+<ul>
+<li class="level1"><div class="li"> LWN author says it&#039;s not perfect and gives some good additional things to study. But really good still. <a href="https://lwn.net/Articles/419855/" class="urlextern" title="https://lwn.net/Articles/419855/" rel="ugc nofollow">https://lwn.net/Articles/419855/</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Linux&quot;,&quot;hid&quot;:&quot;linux&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;142-504&quot;} -->
+<h2 class="sectionedit3" id="simics">Simics</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Landslide: CMU Master&#039;s student making testing <abbr title="Operating System">OS</abbr>&#039;s a lot easier with Simics. <a href="http://blogs.windriver.com/tools/2012/09/systematically-exposing-os-kernel-races-an-interview-with-ben-blum.html" class="urlextern" title="http://blogs.windriver.com/tools/2012/09/systematically-exposing-os-kernel-races-an-interview-with-ben-blum.html" rel="ugc nofollow">Overview from Simics interview</a>. <a href="https://github.com/bblum/landslide" class="urlextern" title="https://github.com/bblum/landslide" rel="ugc nofollow">Github</a>, which provides links to papers and other stuff.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://blogs.windriver.com/wind_river_blog/2014/09/software-and-system-development-using-virtual-platforms-published-enjoy-chapter-1-now.html" class="urlextern" title="http://blogs.windriver.com/wind_river_blog/2014/09/software-and-system-development-using-virtual-platforms-published-enjoy-chapter-1-now.html" rel="ugc nofollow">Simics book</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Simics&quot;,&quot;hid&quot;:&quot;simics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;505-1011&quot;} -->
+<h2 class="sectionedit4" id="system_tracing_and_profiling">System Tracing and Profiling</h2>
+<div class="level2">
+
+<p>
+Dan Luu article, references Dick Sites, who wrote XRay, which is getting integrated into LLVM. <a href="https://danluu.com/perf-tracing/" class="urlextern" title="https://danluu.com/perf-tracing/" rel="ugc nofollow">https://danluu.com/perf-tracing/</a>, <a href="https://llvm.org/docs/XRay.html" class="urlextern" title="https://llvm.org/docs/XRay.html" rel="ugc nofollow">https://llvm.org/docs/XRay.html</a>, by Dean Berris.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;System Tracing and Profiling&quot;,&quot;hid&quot;:&quot;system_tracing_and_profiling&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1012-1231&quot;} -->
+<h3 class="sectionedit5" id="intel">Intel</h3>
+<div class="level3">
+
+<p>
+Don&#039;t settle for anything less than <strong>Pin</strong>. <a href="https://software.intel.com/en-us/articles/pintool/" class="urlextern" title="https://software.intel.com/en-us/articles/pintool/" rel="ugc nofollow">https://software.intel.com/en-us/articles/pintool/</a> (instruction level pretty low overhead tracing). There are several extensions that enable reverse debugging and other cool stuff too, documented on the top bar of Pin website.
+</p>
+
+<p>
+Has 2 tools, <a href="https://software.intel.com/en-us/articles/intel-performance-counter-monitor" class="urlextern" title="https://software.intel.com/en-us/articles/intel-performance-counter-monitor" rel="ugc nofollow">performance counters</a> that are set by hardware (but aren&#039;t program specific), and <a href="http://www.google.com/search?q=VTune" class="interwiki iw_g" title="http://www.google.com/search?q=VTune">VTune</a> which is another profiler. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Intel&quot;,&quot;hid&quot;:&quot;intel&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1232-1734&quot;} -->
+<h3 class="sectionedit6" id="windows">Windows</h3>
+<div class="level3">
+
+<p>
+Xperf is helped by <a href="http://www.google.com/search?q=UIForETW" class="interwiki iw_g" title="http://www.google.com/search?q=UIForETW">UIForETW</a> apparently. 
+</p>
+
+<p>
+Very Sleepy looks like a nice non-intrusive option to for program-level profiling. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Windows&quot;,&quot;hid&quot;:&quot;windows&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1735-1885&quot;} -->
+<h3 class="sectionedit7" id="unix">Unix</h3>
+<div class="level3">
+
+<p>
+<a href="http://www.google.com/search?q=OS%20X%20Instruments" class="interwiki iw_g" title="http://www.google.com/search?q=OS%20X%20Instruments">OS X Instruments</a> <del>supposedly works well</del> crashes. <a href="http://dtrace.org/blogs/brendan/2011/10/10/top-10-dtrace-scripts-for-mac-os-x/" class="urlextern" title="http://dtrace.org/blogs/brendan/2011/10/10/top-10-dtrace-scripts-for-mac-os-x/" rel="ugc nofollow">DTrace</a> works much better. I am currently messing with iosnoop to figure out slow bootup. Restarting <abbr title="Operating System">OS</abbr> X seems to help a lot! 
+</p>
+<ul>
+<li class="level1 node"><div class="li"> No dice on Linux yet. But it runs fast enough for me to not worry about it that much.  </div>
+<ul>
+<li class="level2"><div class="li"> <a href="https://superuser.com/questions/262732/what-is-an-xperf-alternative-for-linux-and-mac-os-x" class="urlextern" title="https://superuser.com/questions/262732/what-is-an-xperf-alternative-for-linux-and-mac-os-x" rel="ugc nofollow">Some options</a></div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Record nondeterministic execution and then play it back deterministically (reverse debugging)! <a href="http://rr-project.org/" class="urlextern" title="http://rr-project.org/" rel="ugc nofollow">Firefox RR project</a> and <a href="http://www.google.com/search?q=UndoDB" class="interwiki iw_g" title="http://www.google.com/search?q=UndoDB">UndoDB</a>, <a href="http://www.roguewave.com/products-services/totalview/features/reverse-debugging" class="urlextern" title="http://www.roguewave.com/products-services/totalview/features/reverse-debugging" rel="ugc nofollow">TotalView</a>.</div>
+<ul>
+<li class="level2"><div class="li"> Or use a virtualized environment??? <a href="http://stackoverflow.com/a/1596765/931280" class="urlextern" title="http://stackoverflow.com/a/1596765/931280" rel="ugc nofollow">SO post</a></div>
+</li>
+<li class="level2"><div class="li"> Other tools like valgrind and flame graph (for profiling) stuff <a href="http://blog.jwhitham.org/2015/05/review-undodb-reversible-debugger.html" class="urlextern" title="http://blog.jwhitham.org/2015/05/review-undodb-reversible-debugger.html" rel="ugc nofollow">recommended</a></div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Helpful profiling tools. Note: <a href="http://yosefk.com/blog/how-profilers-lie-the-cases-of-gprof-and-kcachegrind.html" class="urlextern" title="http://yosefk.com/blog/how-profilers-lie-the-cases-of-gprof-and-kcachegrind.html" rel="ugc nofollow">HOW PROFILERS LIE</a>. (Intel VTune looks easiest (<a href="https://software.intel.com/en-us/qualify-for-free-software/opensourcecontributor" class="urlextern" title="https://software.intel.com/en-us/qualify-for-free-software/opensourcecontributor" rel="ugc nofollow">free for Open Source contributor</a>), then gprof. </div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://stackoverflow.com/questions/375913/what-can-i-use-to-profile-c-code-in-linux?lq=1" class="urlextern" title="http://stackoverflow.com/questions/375913/what-can-i-use-to-profile-c-code-in-linux?lq=1" rel="ugc nofollow">StackOverflow</a> comparison</div>
+</li>
+<li class="level2"><div class="li"> Android has some built in profiling using <a href="http://developer.android.com/tools/debugging/ddms.html" class="urlextern" title="http://developer.android.com/tools/debugging/ddms.html" rel="ugc nofollow">DDMS</a>, <a href="http://developer.android.com/tools/debugging/debugging-tracing.html" class="urlextern" title="http://developer.android.com/tools/debugging/debugging-tracing.html" rel="ugc nofollow">Traceview</a>, but I probably want it of C-level stuff and not android calls.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Unix&quot;,&quot;hid&quot;:&quot;unix&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;1886-3579&quot;} -->
+<h2 class="sectionedit8" id="common_code_bugs_with_suggested_fixes">Common Code Bugs (with suggested fixes)</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> UNITS! Are arrays typed, or are they working with bytes? NASA misses one (or several) conversions from US to metric and botches $X00 million mission!</div>
+<ul>
+<li class="level2"><div class="li"> <em>Why is this “overhead” (for embedded / C guys) not enforced in code or code-hover things?</em></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Return 0 for success or return 1 for success? I think it all comes down to a few extra characters: <code>if func()</code> vs. <code>if func() == 0</code>. <em>The best might be catching a thrown and named exception, but there&#039;s no space for exceptions in embedded???</em></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Common Code Bugs (with suggested fixes)&quot;,&quot;hid&quot;:&quot;common_code_bugs_with_suggested_fixes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;3580-4141&quot;} -->
+<h2 class="sectionedit9" id="slow_file_io">Slow File I/O</h2>
+<div class="level2">
+
+<p>
+(use glances in Linux)
+<a href="../_media/programming/debugging.jpg" class="media" title="programming:debugging.jpg"><img src="../_media/programming/debugging.jpg" class="mediaright" align="right" alt="" width="150" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Slow File I\/O&quot;,&quot;hid&quot;:&quot;slow_file_io&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;4142-4228&quot;} -->
+<h3 class="sectionedit10" id="tldr">tldr</h3>
+<div class="level3">
+
+<p>
+In my case, it turned out to be a 3rd party (Viewfinity) IT-managed file driver that is causing massive IO overheads and causing file accesses to slow down over time. Windows Performance Toolkit is <strong>awesome</strong>. Here&#039;s how I figured it out:
+</p>
+<ul>
+<li class="level1"><div class="li"> Wrote a test script to reproduce the issue: <span class="curid"><a href="../programming/debugging.html#iotestpl" class="wikilink1" title="programming:debugging">IOTest.pl</a></span></div>
+</li>
+<li class="level1"><div class="li"> Observed and plotted effects with <a href="http://technet.microsoft.com/en-us/sysinternals/bb896653.aspx" class="urlextern" title="http://technet.microsoft.com/en-us/sysinternals/bb896653.aspx" rel="ugc nofollow">Process Explorer</a>. IO Read speed decreases with time and stays low over time, even if accessing cached files in RAM (the second part of the plot where I re-run the script). Plotted with System Information pane (Ctrl+I). <em>Be sure to start with Administrator privileges to get Disk I/O as well as RAM I/O (not shown)</em>. </div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/programming/subset.png" class="media" title="programming:subset.png"><img src="../_media/programming/subset.png" class="media" alt="" width="600" /></a>
+</p>
+
+<p>
+At this point, it&#039;s time to pull out the big guns.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;tldr&quot;,&quot;hid&quot;:&quot;tldr&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;4229-5077&quot;} -->
+<h3 class="sectionedit11" id="windows_performance_analysis_toolkit">Windows Performance Analysis Toolkit</h3>
+<div class="level3">
+
+<p>
+Install the <a href="http://blogs.technet.com/b/yongrhee/archive/2012/11/23/installing-the-windows-performance-toolkit-v5-0-wprui-wpr-xperf.aspx" class="urlextern" title="http://blogs.technet.com/b/yongrhee/archive/2012/11/23/installing-the-windows-performance-toolkit-v5-0-wprui-wpr-xperf.aspx" rel="ugc nofollow">Windows Performance Toolkit</a>. Also install the <a href="http://hotfixv4.microsoft.com/Windows%207/Windows%20Server2008%20R2%20SP1/sp2/Fix387415/7600/free/443462_intl_x64_zip.exe" class="urlextern" title="http://hotfixv4.microsoft.com/Windows%207/Windows%20Server2008%20R2%20SP1/sp2/Fix387415/7600/free/443462_intl_x64_zip.exe" rel="ugc nofollow">Mini-Filter Hotfix</a> to allow you to analyze <a href="http://msdn.microsoft.com/en-us/library/windows/hardware/hh825519.aspx" class="urlextern" title="http://msdn.microsoft.com/en-us/library/windows/hardware/hh825519.aspx" rel="ugc nofollow">mini-filters</a> (scripts like anti-virus or encryption tools that have hooks into low-level IO calls in Windows that happen to be <strong>invisible</strong> to Task Manager / Process Explorer).
+</p>
+
+</div>
+
+<h4 id="run_wpruiexe">Run WPRUI.exe</h4>
+<div class="level4">
+
+<p>
+This is the ideal method. If it&#039;s file IO stuff, be sure to enable minifilter analysis underneath Scenario Analysis. It can take up to a minute to get started recording.
+</p>
+
+<p>
+<strong>However, it wasn&#039;t recording minifilter analysis even though I had checked the box… Use xperf below for now <img src="/lib/images/smileys/icon_sad.gif" class="icon" alt=":-(" /></strong>
+</p>
+
+</div>
+
+<h4 id="run_xperfexe_command_line">Run Xperf.exe (command line)</h4>
+<div class="level4">
+
+<p>
+The old way to do it, where you had to know all the flags yourself. This one worked when I ran it to collect minifilter data. (from <a href="http://blogs.msdn.com/b/sql_pfe_blog/archive/2013/04/23/identifying-cause-of-sql-server-io-bottleneck-using-xperf.aspx" class="urlextern" title="http://blogs.msdn.com/b/sql_pfe_blog/archive/2013/04/23/identifying-cause-of-sql-server-io-bottleneck-using-xperf.aspx" rel="ugc nofollow">here</a>)
+</p>
+<pre class="code">XPERF -on PROC_THREAD+LOADER+FLT_IO_INIT+FLT_IO+FLT_FASTIO+FLT_IO_FAILURE+FILENAME+FILE_IO+FILE_IO_INIT+DISK_IO+HARD_FAULTS+DPC+INTERRUPT+CSWITCH+PROFILE+DRIVERS+DISPATCHER -stackwalk MiniFilterPreOpInit+MiniFilterPostOpInit+CSWITCH+PROFILE+ThreadCreate+ReadyThread+DiskReadInit+DiskWriteInit+DiskFlushInit+FileCreate+FileCleanup+FileClose+FileRead+FileWrite -BufferSize 1024 -MaxBuffers 1024 -MaxFile 1024 -FileMode Circular </pre>
+
+<p>
+Then run the following to stop collecting data and write it out to a file:
+</p>
+<pre class="code">xperf -d mytrace.etl</pre>
+
+<p>
+Then load up wpa.exe to look at your trace file! In my case, I needed to analyze why my file I/O counts was decreasing over time (the graph in the bottom left). I suspected it was something even lower-level, and it sounded like mini-filters were the issue. After opening the mini-filter delays tab and clicking on Show Table and Graph in the top right (1 in the picture), I was able to see that over a 70-second test (perl, python), vfdrv.sys was taking up 800 seconds of time (~50 seconds per core) leaving the remaining 20 seconds for computation or the actual file reading (at least I think this is the case, I could be wrong). vfdrv.sys was the Viewfinity IT administration toolkit, which didn&#039;t seem that important. 
+</p>
+
+<p>
+<a href="../_media/programming/wpa.png" class="media" title="programming:wpa.png"><img src="../_media/programming/wpa.png" class="media" alt="" width="600" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Windows Performance Analysis Toolkit&quot;,&quot;hid&quot;:&quot;windows_performance_analysis_toolkit&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:11,&quot;range&quot;:&quot;5078-7652&quot;} -->
+<h3 class="sectionedit12" id="conclusion">Conclusion</h3>
+<div class="level3">
+
+<p>
+Once I disabled vfdrv.sys from loading on boot (by renaming the file), THE COMPUTER WAS AMAZING. I&#039;m waiting to hear back from IT on the bug, I&#039;ll post more info here.
+</p>
+
+<p>
+The Windows Performance Toolkit is awesome, and I didn&#039;t even know it existed until a few days ago. I&#039;m looking forward to using it again in the future.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Conclusion&quot;,&quot;hid&quot;:&quot;conclusion&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:12,&quot;range&quot;:&quot;7653-7996&quot;} -->
+<h3 class="sectionedit13" id="sources">Sources</h3>
+<div class="level3">
+
+<p>
+An optimization/debugging engineer working at Valve. <a href="http://randomascii.wordpress.com/" class="urlextern" title="http://randomascii.wordpress.com/" rel="ugc nofollow">His blog</a> has excellent posts on this sort of intense Xperf stuff, including a <a href="http://randomascii.wordpress.com/2012/12/05/windows-slowdown-investigated-identified-and-now-fixed/" class="urlextern" title="http://randomascii.wordpress.com/2012/12/05/windows-slowdown-investigated-identified-and-now-fixed/" rel="ugc nofollow">bug with a Western Digital external drive</a> and <a href="http://randomascii.wordpress.com/2013/08/06/defective-heat-sinks-causing-garbage-gaming/" class="urlextern" title="http://randomascii.wordpress.com/2013/08/06/defective-heat-sinks-causing-garbage-gaming/" rel="ugc nofollow">behind-the-scenes CPU throttling due to heat</a>
+</p>
+
+</div>
+
+<h4 id="iotestpl">IOTest.pl</h4>
+<div class="level4">
+
+<p>
+Set cores to number of cores on your machine. 
+</p>
+<pre class="code perl"><span class="kw2">use</span> POSIX<span class="sy0">;</span>
+&nbsp;
+<span class="co1"># Turn on autoflush</span>
+<span class="co5">$|</span><span class="sy0">++;</span>
+&nbsp;
+<span class="re0">$cores</span> <span class="sy0">=</span> <span class="nu0">7</span><span class="sy0">;</span> <span class="co1">#Number of cores on your machine - 1</span>
+&nbsp;
+<span class="re0">$numbersPerFile</span> <span class="sy0">=</span> <span class="nu0">25000</span><span class="sy0">;</span>
+<span class="re0">$filesPerFolder</span> <span class="sy0">=</span> <span class="nu0">1000</span><span class="sy0">;</span>
+<span class="re0">$totalFolders</span> <span class="sy0">=</span> <span class="nu0">60</span><span class="sy0">;</span>
+&nbsp;
+<span class="re0">$directory</span> <span class="sy0">=</span> <span class="st_h">'C:\IOTest_perl'</span><span class="sy0">;</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">-</span>d <span class="re0">$directory</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="re0">$writing</span> <span class="sy0">=</span> <span class="st_h">'F'</span><span class="sy0">;</span>
+<span class="br0">&#125;</span> <span class="kw1">else</span> <span class="br0">&#123;</span>
+	<a href="http://perldoc.perl.org/functions/mkdir.html"><span class="kw3">mkdir</span></a><span class="br0">&#40;</span><span class="re0">$directory</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="re0">$writing</span> <span class="sy0">=</span> <span class="st_h">'T'</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw2">sub</span> function <span class="br0">&#123;</span>
+	<span class="kw1">foreach</span> <span class="re0">$folder</span> <span class="br0">&#40;</span><span class="co5">@_</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+		<span class="re0">$subfolder</span> <span class="sy0">=</span> <span class="re0">$directory</span> <span class="sy0">.</span> <span class="st0">&quot;<span class="es0">\\</span>&quot;</span> <span class="sy0">.</span> <span class="re0">$folder</span><span class="sy0">;</span>
+		<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$writing</span> <span class="kw1">eq</span> <span class="st_h">'T'</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			<a href="http://perldoc.perl.org/functions/mkdir.html"><span class="kw3">mkdir</span></a><span class="br0">&#40;</span><span class="re0">$subfolder</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+		<a href="http://perldoc.perl.org/functions/print.html"><span class="kw3">print</span></a> <span class="re0">$folder</span> <span class="sy0">.</span> <span class="st_h">' '</span><span class="sy0">;</span>
+		<span class="kw1">for</span><span class="br0">&#40;</span><span class="re0">$file</span> <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span> <span class="re0">$file</span> <span class="sy0">&lt;</span> <span class="re0">$filesPerFolder</span><span class="sy0">;</span> <span class="re0">$file</span><span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			<span class="re0">$filepath</span> <span class="sy0">=</span> <span class="re0">$subfolder</span> <span class="sy0">.</span> <span class="st_h">'<span class="es_h">\\</span>'</span> <span class="sy0">.</span> <span class="re0">$file</span> <span class="sy0">.</span> <span class="st_h">'.txt'</span><span class="sy0">;</span>
+			<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$writing</span> <span class="kw1">eq</span> <span class="st_h">'T'</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+				<a href="http://perldoc.perl.org/functions/open.html"><span class="kw3">open</span></a> FILE<span class="sy0">,</span> <span class="st0">&quot;&gt;$filepath&quot;</span> <span class="kw1">or</span> <a href="http://perldoc.perl.org/functions/die.html"><span class="kw3">die</span></a> <span class="co5">$!</span><span class="sy0">;</span> 
+				<span class="re0">$x</span> <span class="sy0">=</span> <span class="re0">$folder</span><span class="re0">*$file</span><span class="sy0">;</span>
+				<span class="re0">$csv</span> <span class="sy0">=</span> <a href="http://perldoc.perl.org/functions/join.html"><span class="kw3">join</span></a><span class="br0">&#40;</span><span class="st_h">','</span><span class="sy0">,</span><span class="br0">&#40;</span><span class="re0">$x</span> <span class="sy0">..</span> <span class="re0">$x</span> <span class="sy0">+</span> <span class="re0">$numbersPerFile</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+				<a href="http://perldoc.perl.org/functions/print.html"><span class="kw3">print</span></a> FILE <span class="re0">$csv</span><span class="sy0">;</span> 
+			<span class="br0">&#125;</span>
+			<span class="kw1">if</span> <span class="br0">&#40;</span><span class="re0">$writing</span> <span class="kw1">eq</span> <span class="st_h">'F'</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+				<a href="http://perldoc.perl.org/functions/open.html"><span class="kw3">open</span></a> <span class="br0">&#40;</span>FILE<span class="sy0">,</span> <span class="st0">&quot;&lt;&quot;</span><span class="sy0">,</span> <span class="re0">$filepath</span><span class="br0">&#41;</span> <span class="kw1">or</span> <a href="http://perldoc.perl.org/functions/die.html"><span class="kw3">die</span></a> <span class="co5">$!</span><span class="sy0">;</span>
+				<span class="kw1">while</span> <span class="br0">&#40;</span><span class="re0">$line</span> <span class="sy0">=</span> <span class="re4">&lt;FILE&gt;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+					<a href="http://perldoc.perl.org/functions/chomp.html"><span class="kw3">chomp</span></a> <span class="re0">$line</span><span class="sy0">;</span>
+					<span class="re0">$sum</span> <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+					<span class="kw1">foreach</span> <span class="re0">$val</span> <span class="br0">&#40;</span><a href="http://perldoc.perl.org/functions/split.html"><span class="kw3">split</span></a><span class="br0">&#40;</span><span class="st_h">','</span><span class="sy0">,</span> <span class="re0">$line</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+						<span class="re0">$sum</span> <span class="sy0">+=</span> <span class="re0">$val</span><span class="sy0">;</span>
+					<span class="br0">&#125;</span>
+					<span class="co1"># print $sum</span>
+				<span class="br0">&#125;</span>
+			<span class="br0">&#125;</span>
+			<a href="http://perldoc.perl.org/functions/close.html"><span class="kw3">close</span></a> FILE<span class="sy0">;</span>
+		<span class="br0">&#125;</span>
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="re0">@processes</span> <span class="sy0">=</span> <span class="br0">&#40;</span><span class="nu0">1</span> <span class="sy0">..</span> <span class="re0">$cores</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">foreach</span> <span class="kw1">my</span> <span class="re0">$core</span> <span class="br0">&#40;</span><span class="re0">@processes</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">my</span> <span class="re0">$pid</span><span class="sy0">;</span>
+	<span class="kw1">next</span> <span class="kw1">if</span> <span class="re0">$pid</span> <span class="sy0">=</span> <a href="http://perldoc.perl.org/functions/fork.html"><span class="kw3">fork</span></a><span class="sy0">;</span> <span class="co1"># Parent goes to next core</span>
+	<a href="http://perldoc.perl.org/functions/die.html"><span class="kw3">die</span></a> <span class="st0">&quot;fork failed: $!&quot;</span> <span class="kw1">unless</span> <a href="http://perldoc.perl.org/functions/defined.html"><span class="kw3">defined</span></a> <span class="re0">$pid</span><span class="sy0">;</span>
+&nbsp;
+	<span class="co1"># Do child stuff</span>
+	<span class="re0">@folders</span> <span class="sy0">=</span> <span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="kw1">for</span> <span class="br0">&#40;</span><span class="kw1">my</span> <span class="re0">$i</span> <span class="sy0">=</span> <span class="re0">$core</span><span class="sy0">-</span><span class="nu0">1</span><span class="sy0">;</span> <span class="re0">$i</span> <span class="sy0">&lt;=</span> <span class="re0">$totalFolders</span><span class="sy0">;</span> <span class="re0">$i</span> <span class="sy0">+=</span> <span class="re0">$cores</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<a href="http://perldoc.perl.org/functions/push.html"><span class="kw3">push</span></a><span class="br0">&#40;</span><span class="re0">@folders</span><span class="sy0">,</span><span class="re0">$i</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+	function<span class="br0">&#40;</span><span class="re0">@folders</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+	<a href="http://perldoc.perl.org/functions/exit.html"><span class="kw3">exit</span></a><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+<span class="kw1">while</span> <span class="br0">&#40;</span><a href="http://perldoc.perl.org/functions/wait.html"><span class="kw3">wait</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">!=</span> <span class="sy0">-</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<a href="http://perldoc.perl.org/functions/print.html"><span class="kw3">print</span></a> <span class="st_h">'All done!'</span><span class="sy0">;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sources&quot;,&quot;hid&quot;:&quot;sources&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:13,&quot;range&quot;:&quot;7997-&quot;} --></div></body>
+</html>

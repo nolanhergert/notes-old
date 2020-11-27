@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>robotics:lab2imageproc</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#lab_3line_following_and_ded_reckoning">Lab 3: Line Following and Ded Reckoning</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#increasing_accuracy">Increasing Accuracy</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#hardware">Hardware</a></div></li>
+<li class="level3"><div class="li"><a href="#pid_control_loop_software">PID Control Loop (software)</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="lab_2_image_processing">Lab 2 Image Processing</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> AFS Link to Executable: /afs/andrew.cmu.edu/usr23/nhergert/gitrepo/16-311GeneralRobotics/lab2ImageProcessing/lab2</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Source Code: <a href="https://github.com/nolanhergert/nhergert_git/blob/master/16-311GeneralRobotics/lab2ImageProcessing/lab2.c" class="urlextern" title="https://github.com/nolanhergert/nhergert_git/blob/master/16-311GeneralRobotics/lab2ImageProcessing/lab2.c" rel="ugc nofollow">lab2.c</a></div>
+</li>
+</ul>
+<div class="table sectionedit2"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 centeralign">  Original Image  </th><th class="col1 centeralign">  Threshold @ 125  </th><th class="col2 centeralign">  Contrasting  </th><th class="col3 rightalign">  Histogram Before Contrasting </th><th class="col4 centeralign">  Histogram After Contrasting  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 centeralign">  <a href="../_media/robotics/mona.jpg" class="media" title="robotics:mona.jpg"><img src="../_media/robotics/mona.jpg" class="media" alt="" width="150" /></a>  </td><td class="col1 centeralign">  <a href="../_media/robotics/mona_threshed.jpg" class="media" title="robotics:mona_threshed.jpg"><img src="../_media/robotics/mona_threshed.jpg" class="media" alt="" width="150" /></a>  </td><td class="col2 centeralign">  <a href="../_media/robotics/mona_contrasted.jpg" class="media" title="robotics:mona_contrasted.jpg"><img src="../_media/robotics/mona_contrasted.jpg" class="media" alt="" width="150" /></a>  </td><td class="col3 centeralign">  <a href="../_media/robotics/mona_hist.jpg" class="media" title="robotics:mona_hist.jpg"><img src="../_media/robotics/mona_hist.jpg" class="media" alt="" width="150" /></a>  </td><td class="col4 centeralign">  <a href="../_media/robotics/mona_hist_contrasted.jpg" class="media" title="robotics:mona_hist_contrasted.jpg"><img src="../_media/robotics/mona_hist_contrasted.jpg" class="media" alt="" width="150" /></a>  </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 centeralign">  <a href="../_media/robotics/letter_e.jpg" class="media" title="robotics:letter_e.jpg"><img src="../_media/robotics/letter_e.jpg" class="media" alt="" /></a>  </td><td class="col1 centeralign">  <a href="../_media/robotics/letter_e_threshed.jpg" class="media" title="robotics:letter_e_threshed.jpg"><img src="../_media/robotics/letter_e_threshed.jpg" class="media" alt="" /></a>  </td><td class="col2 centeralign">  <a href="../_media/robotics/letter_e_contrasted.jpg" class="media" title="robotics:letter_e_contrasted.jpg"><img src="../_media/robotics/letter_e_contrasted.jpg" class="media" alt="" /></a>  </td><td class="col3 centeralign">  <a href="../_media/robotics/letter_e_hist.jpg" class="media" title="robotics:letter_e_hist.jpg"><img src="../_media/robotics/letter_e_hist.jpg" class="media" alt="" width="150" /></a>  </td><td class="col4 centeralign">  <a href="../_media/robotics/letter_e_hist_contrasted.jpg" class="media" title="robotics:letter_e_hist_contrasted.jpg"><img src="../_media/robotics/letter_e_hist_contrasted.jpg" class="media" alt="" width="150" /></a>  </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 centeralign">  <a href="../_media/robotics/profilepic.jpg" class="media" title="robotics:profilepic.jpg"><img src="../_media/robotics/profilepic.jpg" class="media" alt="" width="150" /></a>  </td><td class="col1 centeralign">  <a href="../_media/robotics/profilepic_threshed.jpg" class="media" title="robotics:profilepic_threshed.jpg"><img src="../_media/robotics/profilepic_threshed.jpg" class="media" alt="" width="150" /></a>  </td><td class="col2 centeralign">  <a href="../_media/robotics/profilepic_contrasted.jpg" class="media" title="robotics:profilepic_contrasted.jpg"><img src="../_media/robotics/profilepic_contrasted.jpg" class="media" alt="" width="150" /></a>  </td><td class="col3 centeralign">  <a href="../_media/robotics/profilepic_hist.jpg" class="media" title="robotics:profilepic_hist.jpg"><img src="../_media/robotics/profilepic_hist.jpg" class="media" alt="" width="150" /></a>  </td><td class="col4 centeralign">  <a href="../_media/robotics/profilepic_hist_contrasted.jpg" class="media" title="robotics:profilepic_hist_contrasted.jpg"><img src="../_media/robotics/profilepic_hist_contrasted.jpg" class="media" alt="" width="150" /></a>  </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:2,&quot;range&quot;:&quot;293-1062&quot;} -->
+<p>
+<strong>Why are there lines in the histogram?</strong> <br/>
+
+The more scaling up you do from the original data, the more blank bars show up in the histogram because of rounding. Because we&#039;re only scaling up from narrower-bandwidth 8-bit images, some bars will always appear.
+</p>
+
+</div>
+</div></body>
+</html>

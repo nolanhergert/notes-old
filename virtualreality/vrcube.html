@@ -1,0 +1,317 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>virtualreality:vrcube</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#virtual_reality">Virtual Reality</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#tutorial_notes">Tutorial Notes</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#components_needed">Components Needed</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#setting_up_the_software">Setting up the Software</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#compile_cube_and_libhid">Compile Cube and LibHID</a></div></li>
+<li class="level3"><div class="li"><a href="#modifying_cube_source_code">Modifying Cube Source Code</a></div></li>
+<li class="level3"><div class="li"><a href="#set_udev_rules">Set udev rules</a></div></li>
+<li class="level3"><div class="li"><a href="#set_up_wii_remote">Set up Wii Remote</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#faq_s">FAQ&#039;s</a></div></li>
+<li class="level2"><div class="li"><a href="#extensions">Extensions</a></div></li>
+<li class="level2"><div class="li"><a href="#future_ideas">Future Ideas</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#ar_markers">AR Markers</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="virtual_reality">Virtual Reality</h1>
+<div class="level1">
+
+<p>
+So, for my <a href="http://www.build18.org/" class="urlextern" title="http://www.build18.org/" rel="ugc nofollow">Build 18</a> project this year, my partner Alex and I wanted to do something cool and awesome. I had a few ideas floating around, and I had seen <a href="http://eclecti.cc/videogames/projecting-virtual-reality-with-a-microvision-showwx" class="urlextern" title="http://eclecti.cc/videogames/projecting-virtual-reality-with-a-microvision-showwx" rel="ugc nofollow">Nirav Patel&#039;s post</a> on the subject of virtual reality gaming with the PNI SpacePoint Fusion. Alex thought it was a good idea, and so we ran with it. As it turns out, PNI has a nice student sponsorship program if you get in touch with the right people, and they were willing to send me their USB version of the SpacePoint Fusion (a discontinued product?!) as long as I did a writeup about it! So, here goes <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />
+</p>
+<ul>
+<li class="level1"><div class="li"> YouTube Link! <a href="https://www.youtube.com/watch?v=XrXH4Cp5O3I" class="urlextern" title="https://www.youtube.com/watch?v=XrXH4Cp5O3I" rel="ugc nofollow">https://www.youtube.com/watch?v=XrXH4Cp5O3I</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Virtual Reality&quot;,&quot;hid&quot;:&quot;virtual_reality&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-771&quot;} -->
+<h2 class="sectionedit2" id="tutorial_notes">Tutorial Notes</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Tutorial Notes&quot;,&quot;hid&quot;:&quot;tutorial_notes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;772-799&quot;} -->
+<h3 class="sectionedit3" id="components_needed">Components Needed</h3>
+<div class="level3">
+
+<p>
+Nirav&#039;s original design only called for one SpacePoint Fusion and a nifty portable projector that went on top of his Wii Zapper. I personally wanted to see if we could get away with both head and gun inputs and couple that with a head-mounted display. 
+</p>
+<ul>
+<li class="level1 node"><div class="li"> SpacePoint Fusion by PNI Corporation: Apparently has best 1:1 orientation information out there! They recently discontinued the USB version, but you might be able to get an old one if you ask nicely enough. </div>
+<ul>
+<li class="level2"><div class="li"> <a href="../_media/home/spacepoint_fusion_user_manual_r1.pdf" class="media mediafile mf_pdf" title="home:spacepoint_fusion_user_manual_r1.pdf">PNI SpacePoint User Manual</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../_media/home/spacepoint_fusion_game_pad_application_note_r1.pdf" class="media mediafile mf_pdf" title="home:spacepoint_fusion_game_pad_application_note_r1.pdf">SpacePoint Fusion Game Pad Application Note</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="/lib/exe/fetch.php?tok=9af1da&amp;media=https%3A%2F%2Fwww.dropbox.com%2Fs%2F4hbqx7170wwbfer%2Fspacepoint_demo_kit_cd_r01.zip" class="media mediafile mf_zip" title="https://www.dropbox.com/s/4hbqx7170wwbfer/spacepoint_demo_kit_cd_r01.zip">Plug-n-Play Unity Seagull Island Demo and Windows-Only Visualization Demo</a> (great for testing!)</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Wii Remote (Wiimote)</div>
+<ul>
+<li class="level2"><div class="li"> Don&#039;t skimp on quality! I bought a Chinese knockoff on eBay (that included a nunchunk and sheath for $18) that seemed to work fine on a Wii, but <strong>NEVER WORKED VIA BLUETOOTH ON A COMPUTER!</strong>. When it&#039;s only a buck or two more, just go for the real one! (this applies to more than just gaming products)</div>
+</li>
+<li class="level2"><div class="li"> I got one “used” on Amazon (for $12 plus shipping), and it looks/feels better than the “new” one that I got from China…</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Display (HMD, or projector)</div>
+<ul>
+<li class="level2 node"><div class="li"> Video quality is not great on a budget (640&times;480 for ~$250). But, it&#039;s a ton cooler to have your screen stay with you as you move around <img src="/lib/images/smileys/icon_cool.gif" class="icon" alt="8-)" /> </div>
+<ul>
+<li class="level3"><div class="li"> I bought a Vuzix 920 as they seemed to have the best support.</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Components Needed&quot;,&quot;hid&quot;:&quot;components_needed&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;800-2378&quot;} -->
+<h2 class="sectionedit4" id="setting_up_the_software">Setting up the Software</h2>
+<div class="level2">
+
+<p>
+Nirav used Ubuntu, but I took the long and frustrated route of seeing if it worked in <abbr title="Operating System">OS</abbr> X as well (see the <span class="curid"><a href="../virtualreality/vrcube.html#faq_s" class="wikilink1" title="virtualreality:vrcube">FAQ&#039;s</a></span> for more info). Long story short, it didn&#039;t work, and developing in Ubuntu ended up being a much faster process!
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Setting up the Software&quot;,&quot;hid&quot;:&quot;setting_up_the_software&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;2379-2668&quot;} -->
+<h3 class="sectionedit5" id="compile_cube_and_libhid">Compile Cube and LibHID</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Install Ubuntu and apt-get the dependency packages below.</div>
+</li>
+</ul>
+<pre class="code bash"><span class="co0">#Allow all dependencies to be installed as well. Installs SDL &amp; dependencies, OpenGL, Zlib, libpng</span>
+<span class="kw2">sudo</span> <span class="kw2">apt-get install</span> <span class="kw2">g++</span> libusb-dev libsdl1.2-dev libsdl-sound1.2-dev libsdl-mixer1.2-dev libsdl-image1.2-dev libenet-dev</pre>
+<ul>
+<li class="level1"><div class="li"> Also, you need to install libhid from source (the Ubuntu package didn&#039;t work for me). Download from <a href="http://alioth.debian.org/frs/?group_id=30451" class="urlextern" title="http://alioth.debian.org/frs/?group_id=30451" rel="ugc nofollow">here</a></div>
+</li>
+</ul>
+<pre class="code">cd ~/Downloads
+tar .zxvf libhid-0.2.--.tar.gz
+cd libhid-0.2.--
+./configure
+make
+sudo make install</pre>
+<ul>
+<li class="level1"><div class="li"> From the <a href="http://sourceforge.net/projects/cube/files/cube/2005_08_29/" class="urlextern" title="http://sourceforge.net/projects/cube/files/cube/2005_08_29/" rel="ugc nofollow">Cube SourceForge page</a>, download both the unix version and the source code.</div>
+</li>
+<li class="level1"><div class="li"> Copy the packages and data directories from the unix folder (cube) to the source code folder (cube_source). </div>
+</li>
+<li class="level1"><div class="li"> Modify the g++ flags in the Makefile in cube_source/src </div>
+</li>
+</ul>
+<pre class="code">#Add -fpermissive to the end 
+CXXOPTFLAGS=-Wall -O3 -fsigned-char -fomit-frame-pointer -fpermissive</pre>
+<ul>
+<li class="level1"><div class="li"> At this point, everything should compile out of the box, and you can run the cube_client program from the cube_source directory (./src/cube_client) and get mouse and keyboard input.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Compile Cube and LibHID&quot;,&quot;hid&quot;:&quot;compile_cube_and_libhid&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;2669-3908&quot;} -->
+<h3 class="sectionedit6" id="modifying_cube_source_code">Modifying Cube Source Code</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> There are a good deal of modifications that you need to do to the Cube source code in order for it to work. (Y/P/R = yaw/pitch/roll)</div>
+</li>
+<li class="level1 node"><div class="li"> <strong><em>But, feel free to skip the details and just download what I did: <a href="../_media/home/src_new.zip" class="media mediafile mf_zip" title="home:src_new.zip">Zip of my src directory</a>, <a href="../_media/home/diffs.txt" class="media mediafile mf_" title="home:diffs.txt">diff of new/old src</a></em></strong></div>
+<ul>
+<li class="level2"><div class="li"> clientgame.cpp: Added SpacePoint init and reading functions. The head is controlled by player1→y/p/r directly, and gun y/p/r is saved in handRelY/P/R. <strong>BE SURE TO CHANGE THE SERIAL NUMBERS</strong> (which can be found with some platform-specific usb device probing). Also, the player is made invincible around line 479</div>
+</li>
+<li class="level2"><div class="li"> cube.h: Added definitions for handRelY/P/R</div>
+</li>
+<li class="level2"><div class="li"> main.cpp: Disable mouse functionality</div>
+</li>
+<li class="level2"><div class="li"> protos.h: Added libhid function prototypes</div>
+</li>
+<li class="level2"><div class="li"> renderextras.cpp: Mapped the relative y/p/r of the gun to a crosshair x/y coordinate on the screen. Turns out it&#039;s a simple right triangle with distance d ~ 300. Tweak as needed.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+<a href="../_media/home/scan_22.jpg" class="media" title="home:scan_22.jpg"><img src="../_media/home/scan_22.jpg" class="media" alt="" width="200" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> rendergl.cpp: Adjust on-screen gun orientation to match actual gun</div>
+</li>
+<li class="level2"><div class="li"> weapon.cpp: Enable infinite ammo</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Modifying Cube Source Code&quot;,&quot;hid&quot;:&quot;modifying_cube_source_code&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:6,&quot;range&quot;:&quot;3909-5038&quot;} -->
+<h3 class="sectionedit7" id="set_udev_rules">Set udev rules</h3>
+<div class="level3">
+
+<p>
+On first start, I got a bunch of errors from libhid about not seeing the SpacePoint unless I ran the process using sudo. After reading Nirav&#039;s tutorial again, I saw his note on the end about setting the udev rules correctly. 
+</p>
+
+<p>
+<em>On most modern Linux distros, you can fix this by setting a udev rule for the device. In Ubuntu Karmic Koala, saving the following as /etc/udev/rules.d/45-spacepoint.rules , running sudo service udev restart , and then unplugging and replugging in the device should fix it:</em>
+</p>
+<pre class="code c"><span class="co2"># PNI SpacePoint Fusion</span>
+SYSFS<span class="br0">&#123;</span>idVendor<span class="br0">&#125;</span><span class="sy0">==</span><span class="st0">&quot;20ff&quot;</span><span class="sy0">,</span> SYSFS<span class="br0">&#123;</span>idProduct<span class="br0">&#125;</span><span class="sy0">==</span><span class="st0">&quot;0100&quot;</span><span class="sy0">,</span> MODE<span class="sy0">=</span><span class="st0">&quot;0664&quot;</span><span class="sy0">,</span> GROUP<span class="sy0">=</span><span class="st0">&quot;admin&quot;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Set udev rules&quot;,&quot;hid&quot;:&quot;set_udev_rules&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:7,&quot;range&quot;:&quot;5039-5690&quot;} -->
+<h3 class="sectionedit8" id="set_up_wii_remote">Set up Wii Remote</h3>
+<div class="level3">
+
+<p>
+All this does is map buttons on the Wii Remote to buttons on the keyboard <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />
+</p>
+<ol>
+<li class="level1 node"><div class="li"> <a href="https://help.ubuntu.com/community/CWiiD" class="urlextern" title="https://help.ubuntu.com/community/CWiiD" rel="ugc nofollow">Install CWiid</a></div>
+<ol>
+<li class="level2"><div class="li"> <a href="http://abstrakraft.org/cwiid/wiki/wminput" class="urlextern" title="http://abstrakraft.org/cwiid/wiki/wminput" rel="ugc nofollow">Additional Documentation</a>, <a href="http://abstrakraft.org/cwiid/browser/doc/wminput.list" class="urlextern" title="http://abstrakraft.org/cwiid/browser/doc/wminput.list" rel="ugc nofollow">Wiimote Inputs</a>, <a href="http://abstrakraft.org/cwiid/browser/wminput/action_enum.txt" class="urlextern" title="http://abstrakraft.org/cwiid/browser/wminput/action_enum.txt" rel="ugc nofollow">Linux Outputs</a></div>
+</li>
+<li class="level2"><div class="li"> Create a config file located in /etc/cwiid/wminput </div>
+</li>
+<li class="level2"><div class="li"> To run this file below:</div>
+</li>
+</ol>
+</li>
+</ol>
+<pre class="code">sudo wminput -c fps_config2</pre>
+<dl class="code">
+<dt><a href="/doku.php/virtualreality/vrcube?do=export_code&amp;codeblock=5" title="Download Snippet" class="mediafile mf_">fps_config2</a></dt>
+<dd><pre class="code c"><span class="co2"># Fps config for wminput by kyrlian</span>
+<span class="co2"># needs plugin nunchuk_kb</span>
+&nbsp;
+<span class="co2">#File is located </span>
+&nbsp;
+<span class="co2">#custom buttons</span>
+Wiimote.<span class="me1">A</span>               <span class="sy0">=</span> KEY_ENTER
+Wiimote.<span class="me1">B</span>               <span class="sy0">=</span> BTN_LEFT
+Wiimote.<span class="me1">Up</span>              <span class="sy0">=</span> KEY_UP
+Wiimote.<span class="me1">Down</span>    	<span class="sy0">=</span> KEY_DOWN
+Wiimote.<span class="me1">Left</span>    	<span class="sy0">=</span> KEY_LEFT
+Wiimote.<span class="me1">Right</span>   	<span class="sy0">=</span> KEY_RIGHT
+Wiimote.<span class="me1">Minus</span>  		<span class="sy0">=</span> KEY_PAGEDOWN
+Wiimote.<span class="me1">Plus</span>   		<span class="sy0">=</span> KEY_PAGEUP
+Wiimote.<span class="me1">Home</span>  		<span class="sy0">=</span> KEY_ESC
+&nbsp;
+Wiimote.1       	<span class="sy0">=</span> KEY_TAB
+Wiimote.2       	<span class="sy0">=</span> KEY_ESC
+&nbsp;
+Nunchuk.<span class="me1">C</span>               <span class="sy0">=</span> KEY_SEMICOLON
+Nunchuk.<span class="me1">Z</span>               <span class="sy0">=</span> KEY_SPACE
+&nbsp;
+<span class="co2">#plugin for nunchuk stick</span>
+Plugin.<span class="me1">nunchuk_kb</span>.<span class="me1">Up</span>	<span class="sy0">=</span> KEY_UP
+Plugin.<span class="me1">nunchuk_kb</span>.<span class="me1">Down</span>	<span class="sy0">=</span> KEY_DOWN
+Plugin.<span class="me1">nunchuk_kb</span>.<span class="me1">Left</span>	<span class="sy0">=</span> KEY_LEFT
+Plugin.<span class="me1">nunchuk_kb</span>.<span class="me1">Right</span>	<span class="sy0">=</span> KEY_RIGHT</pre>
+</dd></dl>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Set up Wii Remote&quot;,&quot;hid&quot;:&quot;set_up_wii_remote&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:8,&quot;range&quot;:&quot;5691-6920&quot;} -->
+<h2 class="sectionedit9" id="faq_s">FAQ&#039;s</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> <strong>Can&#039;t you get this working with more modern games?</strong></div>
+<ul>
+<li class="level2"><div class="li"> Your game needs to have direct inputs for yaw, pitch, and ideally roll for both the camera and the gun in order to get this working right! Trust me, mapping YPR to relative knob/mouse/WASD inputs is not the way you want to go. I suspect that most games have this sort of functionality available, it&#039;s just not as well documented because people don&#039;t want to mod the camera view that often.</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> <strong>Strafing using a knob is so 20th century! Why can&#039;t I walk around my room and have the SpacePoint figure out where I&#039;ve moved?</strong></div>
+<ul>
+<li class="level2"><div class="li"> Oh, it&#039;ll happen someday. In the meantime, a good buzzword is “dead reckoning” <a href="http://en.wikipedia.org/wiki/Dead_reckoning" class="urlextern" title="http://en.wikipedia.org/wiki/Dead_reckoning" rel="ugc nofollow">Wikipedia</a>, <a href="http://www.ikalogic.com/wfr.php" class="urlextern" title="http://www.ikalogic.com/wfr.php" rel="ugc nofollow">robotics tutorial</a> and “Kalman filters”, both of which are very difficult mathematical problems. In this case, the SpacePoint Fusion allows you to acquire the raw accelerometer, gyroscope, and magnemometer data for doing your own tinkering, but their Kalman filters for deriving orientation data is likely very patented or kept a trade secret…and that&#039;s just for orientation! Deriving relative motion is much more complex using just motion data, which is why a lot of robotics platforms use encoders and they still aren&#039;t that accurate. :) </div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> <strong>Won&#039;t this work on multiple platforms?</strong></div>
+<ul>
+<li class="level2"><div class="li"> Yes, but library support varies. Libraries in Linux tend to be the most simplest to interface with and often free to use. I couldn&#039;t get libhid to compile on <abbr title="Operating System">OS</abbr> X in the limited time that I had, but it&#039;d probably work if I tried hard enough. You could also make this work using libusb, but you&#039;ll have to write your own code for that. Also, Wiimote plugins for <abbr title="Operating System">OS</abbr> X were feature-limited (&gt;.&lt;) and never seemed to let me tweak it as I wanted to. In Ubuntu it&#039;s as simple as a text file with CWiid.  If you do want to port this to other platforms, it can be done, and I wish you the best of luck! Write me a comment on the blog post and let me know how it went! </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;FAQ&#039;s&quot;,&quot;hid&quot;:&quot;faq_s&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:9,&quot;range&quot;:&quot;6921-8965&quot;} -->
+<h2 class="sectionedit10" id="extensions">Extensions</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Finally found a tutorial for using this with Source (Valve&#039;s engine for games like TF2, Portal, etc)! <a href="http://developer.valvesoftware.com/wiki/Head_Tracking" class="urlextern" title="http://developer.valvesoftware.com/wiki/Head_Tracking" rel="ugc nofollow">Head Tracking</a></div>
+<ul>
+<li class="level2"><div class="li"> Here&#039;s another guy that developed his own thing <a href="http://torbensko.com/software/head_tracking/#Download" class="urlextern" title="http://torbensko.com/software/head_tracking/#Download" rel="ugc nofollow">Torben Sko Paintball</a>. Uses just a webcam…</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Extensions&quot;,&quot;hid&quot;:&quot;extensions&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:10,&quot;range&quot;:&quot;8966-9323&quot;} -->
+<h2 class="sectionedit11" id="future_ideas">Future Ideas</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> YouTube Link! <a href="https://www.youtube.com/watch?v=eg8Bh5iI2WY" class="urlextern" title="https://www.youtube.com/watch?v=eg8Bh5iI2WY" rel="ugc nofollow">https://www.youtube.com/watch?v=eg8Bh5iI2WY</a></div>
+</li>
+<li class="level1"><div class="li"> YouTube Link! <a href="https://www.youtube.com/watch?v=wJItdmumxYY" class="urlextern" title="https://www.youtube.com/watch?v=wJItdmumxYY" rel="ugc nofollow">https://www.youtube.com/watch?v=wJItdmumxYY</a> (Virtual Reality First Person Shooter)…a fake??</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://procrastineering.blogspot.com/2011/08/handheld-computer-vision-hci.html" class="urlextern" title="http://procrastineering.blogspot.com/2011/08/handheld-computer-vision-hci.html" rel="ugc nofollow">Notes from Johnny Chung Lee on Webcam Tracking</a></div>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://ewokrampage.wordpress.com/about/" class="urlextern" title="http://ewokrampage.wordpress.com/about/" rel="ugc nofollow">PTAM Developer Page</a> w/ source code for PTAMM!</div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://www.robots.ox.ac.uk/~bob/software/" class="urlextern" title="http://www.robots.ox.ac.uk/~bob/software/" rel="ugc nofollow">Software Page</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../_media/home/ptamm.zip" class="media mediafile mf_zip" title="home:ptamm.zip">ZIP File</a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Future Ideas&quot;,&quot;hid&quot;:&quot;future_ideas&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:11,&quot;range&quot;:&quot;9324-9852&quot;} -->
+<h3 class="sectionedit12" id="ar_markers">AR Markers</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Worked on this for Build18 2012, but struggled to get all of the marker stuff compiled. Here&#039;s one that uses OpenCV 2.1+ exclusively: <a href="http://www.uco.es/investiga/grupos/ava/node/26" class="urlextern" title="http://www.uco.es/investiga/grupos/ava/node/26" rel="ugc nofollow">http://www.uco.es/investiga/grupos/ava/node/26</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;AR Markers&quot;,&quot;hid&quot;:&quot;ar_markers&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:12,&quot;range&quot;:&quot;9853-&quot;} --></div></body>
+</html>

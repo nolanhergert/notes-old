@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:gdb</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#fast_clone">Fast clone</a></div></li>
+<li class="level2"><div class="li"><a href="#commitpush_checklist">Commit/push checklist</a></div></li>
+<li class="level2"><div class="li"><a href="#common_git_commands">Common git commands</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#git_graph_drawing_demo">Git graph drawing demo</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#installing_git_on_windows">Installing Git on Windows</a></div></li>
+<li class="level2"><div class="li"><a href="#cloning_a_git_repository">Cloning a git repository</a></div></li>
+<li class="level2"><div class="li"><a href="#gitting_it_working">Gitting it working</a></div></li>
+<li class="level2"><div class="li"><a href="#links">Links</a></div></li>
+<li class="level1"><div class="li"><a href="#perforce">Perforce</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+<div class="table sectionedit1"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Command </th><th class="col1"> Does: </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> <strong>s</strong>tep </td><td class="col1"> Step to next <strong>executed</strong> line (regardless of function) </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> <strong>n</strong>ext </td><td class="col1"> Continue until next line <strong>in current function</strong> </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> finish </td><td class="col1"> Finish this function and return to next function up in stack </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> <strong>bt</strong> (backtrace) </td><td class="col1"> Print stack trace </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> list </td><td class="col1"> Print surrounding code of current line </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> <strong>p</strong>rint x</td><td class="col1"> Print value of variable x </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> delete </td><td class="col1"> Delete all breakpoints </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> start </td><td class="col1"> Starts all threads, but breaks at first line or something. Useful for VectorCast </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0"> break &lt;function name, file name:line number, etc.&gt; </td><td class="col1"> <a href="http://www.delorie.com/gnu/docs/gdb/gdb_29.html" class="urlextern" title="http://www.delorie.com/gnu/docs/gdb/gdb_29.html" rel="ugc nofollow">Lots of options</a>, really useful for VectorCast </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0"> x /20xb 0xfeed </td><td class="col1"> Print 20 bytes around location 0xfeed </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-708&quot;} -->
+<p>
+Pressing &lt;ENTER&gt; with blank line repeats previous command.
+</p>
+
+<p>
+Run GDB in TUI mode: <code>gdb -tui</code>, then <code>&lt;Ctrl&gt;+x 2</code> which enables assembly and code view mode. <code>&lt;Ctrl&gt;+x o</code> switches the views. <a href="http://stackoverflow.com/a/1354762/931280" class="urlextern" title="http://stackoverflow.com/a/1354762/931280" rel="ugc nofollow">More info here</a>
+</p>
+</div></body>
+</html>

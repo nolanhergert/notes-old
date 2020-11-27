@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>home:dokuwiki</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#plugins_i_use">Plugins I Use</a></div></li>
+<li class="level2"><div class="li"><a href="#federated_wiki">Federated Wiki</a></div></li>
+<li class="level2"><div class="li"><a href="#faster_wiki">Faster Wiki</a></div></li>
+<li class="level2"><div class="li"><a href="#keyboard_shortcuts_access_keys">Keyboard Shortcuts (&quot;Access Keys&quot;)</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#general_keys">General Keys</a></div></li>
+<li class="level3"><div class="li"><a href="#edit_mode">Edit Mode</a></div></li>
+<li class="level3"><div class="li"><a href="#search">Search</a></div></li>
+<li class="level3"><div class="li"><a href="#cool_additions_to_dokuwiki">Cool Additions to Dokuwiki</a></div></li>
+<li class="level3"><div class="li"><a href="#images_in_dokuwiki">Images in Dokuwiki</a></div></li>
+<li class="level3"><div class="li"><a href="#minimize_edit_links">Minimize Edit Links</a></div></li>
+<li class="level3"><div class="li"><a href="#dealing_with_spam">Dealing with Spam</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<p>
+“Touch” doku.php to get rid of update messages.
+</p>
+
+<p>
+Convert mediawiki to dokuwiki syntax. This one is decent, but doesn&#039;t do special links well yet. <a href="http://nhergert.ozeo.org/convert.php" class="interwiki iw_this" title="http://nhergert.ozeo.org/convert.php">convert.php</a>
+</p>
+
+<h2 class="sectionedit1" id="plugins_i_use">Plugins I Use</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <!-- EDIT{&quot;target&quot;:&quot;plugin_wrap_start&quot;,&quot;secid&quot;:2,&quot;range&quot;:&quot;0-&quot;} --><div class="wrap_tip plugin_wrap">
+<p>
+<a href="http://www.dokuwiki.org/plugin:wrap" class="urlextern" title="http://www.dokuwiki.org/plugin:wrap" rel="ugc nofollow">Wrap Plugin</a>, also includes pretty boxes around stuff!
+</p>
+</div><!-- EDIT{&quot;target&quot;:&quot;plugin_wrap_end&quot;,&quot;secid&quot;:3,&quot;range&quot;:&quot;0-&quot;} --></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.dokuwiki.org/accesskeys" class="urlextern" title="http://www.dokuwiki.org/accesskeys" rel="ugc nofollow">Keyboard Shortcuts</a>. You can use ALT + SHIFT on Google Chrome on windows instead of just ALT</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Plugins I Use&quot;,&quot;hid&quot;:&quot;plugins_i_use&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;169-444&quot;} -->
+<h2 class="sectionedit4" id="federated_wiki">Federated Wiki</h2>
+<div class="level2">
+
+<p>
+Mentioned by Bret Victor. Intro <a href="http://hapgood.us/2014/11/06/federated-education-new-directions-in-digital-collaboration/" class="urlextern" title="http://hapgood.us/2014/11/06/federated-education-new-directions-in-digital-collaboration/" rel="ugc nofollow">here</a>. You can write plugins easily, but the main point is that you get your own wiki and easily collaborate with others until you feel the need to publish. 
+</p>
+<ul>
+<li class="level1"><div class="li"> Still don&#039;t know how to get a fed.wiki.org subdomain. Probably will never happen, link externally.</div>
+</li>
+<li class="level1"><div class="li"> It&#039;d be nice to open this wiki to other edits. I <strong>want</strong> collaborators and contributors!</div>
+</li>
+<li class="level1"><div class="li"> Might be changing to permanent peer-to-peer web. <a href="https://ipfs.io/" class="urlextern" title="https://ipfs.io/" rel="ugc nofollow">IPFS</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Federated Wiki&quot;,&quot;hid&quot;:&quot;federated_wiki&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;445-1031&quot;} -->
+<h2 class="sectionedit5" id="faster_wiki">Faster Wiki</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Saving is still really slow…must be something with pinging an outside server apparently. Tried disabling notifications, but that didn&#039;t seem to help. Virgin install was quite fast…</div>
+<ul>
+<li class="level2"><div class="li"> Try out the <a href="http://particletree.com/features/php-quick-profiler/" class="urlextern" title="http://particletree.com/features/php-quick-profiler/" rel="ugc nofollow">PHP Quick Profiler</a>?</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Enable gzip output support in admin page. Browsers recognize it and “unzip” the file on the fly. Speeds up page loads 2X!</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.dokuwiki.org/faq:backup" class="urlextern" title="http://www.dokuwiki.org/faq:backup" rel="ugc nofollow">How to backup Dokuwiki</a> (does it include themes?)</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.dokuwiki.org/install:ubuntu" class="urlextern" title="http://www.dokuwiki.org/install:ubuntu" rel="ugc nofollow">How to install dokuwiki</a></div>
+</li>
+</ul>
+<pre class="code c"><span class="co1">//Install Dokuwiki and get those dang permissions right...</span>
+cd <span class="sy0">/</span>var<span class="sy0">/</span>www
+sudo wget http<span class="sy0">:</span><span class="co1">//www.splitbrain.org/_media/projects/dokuwiki/dokuwiki-2010-11-07.tgz</span>
+sudo tar xvf dokuwiki<span class="sy0">-</span><span class="nu0">2010</span><span class="sy0">-</span><span class="nu0">11</span><span class="sy0">-</span><span class="nu8">07</span>.<span class="me1">tgz</span>
+sudo mv dokuwiki<span class="sy0">-</span><span class="nu0">2010</span><span class="sy0">-</span><span class="nu0">11</span><span class="sy0">-</span><span class="nu8">07</span> dokuwiki
+sudo chown <span class="sy0">-</span>R www<span class="sy0">-</span>data<span class="sy0">:</span>www<span class="sy0">-</span>data <span class="sy0">/</span>var<span class="sy0">/</span>www<span class="sy0">/</span>dokuwiki</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Faster Wiki&quot;,&quot;hid&quot;:&quot;faster_wiki&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1032-1926&quot;} -->
+<h2 class="sectionedit6" id="keyboard_shortcuts_access_keys">Keyboard Shortcuts (&quot;Access Keys&quot;)</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> From <a href="http://www.dokuwiki.org/accesskeys" class="urlextern" title="http://www.dokuwiki.org/accesskeys" rel="ugc nofollow">http://www.dokuwiki.org/accesskeys</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Keyboard Shortcuts (\&quot;Access Keys\&quot;)&quot;,&quot;hid&quot;:&quot;keyboard_shortcuts_access_keys&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;1927-2017&quot;} -->
+<h3 class="sectionedit7" id="general_keys">General Keys</h3>
+<div class="level3">
+
+<p>
+These keys are always available in DokuWiki.
+</p>
+<div class="table sectionedit8"><table class="inline">
+	<tr class="row0">
+		<td class="col0"> <code>E</code> </td><td class="col1 leftalign"> opens the current page in edit mode          </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> <code>V</code> </td><td class="col1"> opens the current page in view mode (if Button “View Pagesource” is displayed)</td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> <code>O</code> </td><td class="col1 leftalign"> shows the old revisions of the current page  </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> <code>R</code> </td><td class="col1 leftalign"> shows the recent changes                     </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> <code>F</code> </td><td class="col1 leftalign"> sets the cursor to the search field          </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> <code>H</code> </td><td class="col1 leftalign"> opens the startpage                          </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> <code>X</code> </td><td class="col1 leftalign"> opens the index page                         </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:8,&quot;range&quot;:&quot;2088-2519&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;General Keys&quot;,&quot;hid&quot;:&quot;general_keys&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;2018-2522&quot;} -->
+<h3 class="sectionedit9" id="edit_mode">Edit Mode</h3>
+<div class="level3">
+
+<p>
+These additional keys are available in edit mode:
+</p>
+<div class="table sectionedit10"><table class="inline">
+	<tr class="row0">
+		<td class="col0"> <code>B</code> </td><td class="col1 leftalign"> bold                  </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> <code>I</code> </td><td class="col1 leftalign"> italic                </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> <code>U</code> </td><td class="col1 leftalign"> underlined            </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> <code>C</code> </td><td class="col1 leftalign"> monospaced            </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> <code>D</code> </td><td class="col1 leftalign"> strike-through        </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> <code>1</code> </td><td class="col1 leftalign"> headline level 1      </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> <code>2</code> </td><td class="col1 leftalign"> headline level 2      </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> <code>3</code> </td><td class="col1 leftalign"> headline level 3      </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> <code>4</code> </td><td class="col1 leftalign"> headline level 4      </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0"> <code>5</code> </td><td class="col1 leftalign"> headline level 5      </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0"> <code>L</code> </td><td class="col1 leftalign"> create internal Link  </td>
+	</tr>
+	<tr class="row11">
+		<td class="col0"> <code>S</code> </td><td class="col1 leftalign"> saves your changes    </td>
+	</tr>
+	<tr class="row12">
+		<td class="col0"> <code>P</code> </td><td class="col1 leftalign"> preview text          </td>
+	</tr>
+	<tr class="row13">
+		<td class="col0"> <code>Y</code> </td><td class="col1"> insert signature (logged in users only) </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:10,&quot;range&quot;:&quot;2595-3088&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Edit Mode&quot;,&quot;hid&quot;:&quot;edit_mode&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:9,&quot;range&quot;:&quot;2523-3089&quot;} -->
+<h3 class="sectionedit11" id="search">Search</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Really annoyed that partial search isn&#039;t enabled by default in dokuwiki! Apparently I&#039;m <a href="http://forum.dokuwiki.org/thread/4888" class="urlextern" title="http://forum.dokuwiki.org/thread/4888" rel="ugc nofollow">not the only one</a>…</div>
+</li>
+</ul>
+<pre class="code c"><span class="br0">&#40;</span>php<span class="br0">&#41;</span> error_log<span class="br0">&#40;</span><span class="st0">&quot;string&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="co1">//PHP Error Log Location</span>
+<span class="br0">&#40;</span>cmd line<span class="br0">&#41;</span> tail <span class="sy0">-</span>f ~<span class="sy0">/</span>public_html<span class="sy0">/</span>dokuwiki<span class="sy0">/</span>error_log </pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Search&quot;,&quot;hid&quot;:&quot;search&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:11,&quot;range&quot;:&quot;3090-3384&quot;} -->
+<h3 class="sectionedit12" id="cool_additions_to_dokuwiki">Cool Additions to Dokuwiki</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.organizingcreativity.com/2009/09/dokuwiki-adjustments/" class="urlextern" title="http://www.organizingcreativity.com/2009/09/dokuwiki-adjustments/" rel="ugc nofollow">http://www.organizingcreativity.com/2009/09/dokuwiki-adjustments/</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="convert_old_html_brain_documents_over_to_wiki_format">Convert old html brain documents over to wiki format</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <del>Best to use PERL?</del> <a href="http://www.dokuwiki.org/tips:htmltowiki" class="urlextern" title="http://www.dokuwiki.org/tips:htmltowiki" rel="ugc nofollow">Dokuwiki page</a></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="http://toolserver.org/~diberri/cgi-bin/html2wiki/index.cgi" class="urlextern" title="http://toolserver.org/~diberri/cgi-bin/html2wiki/index.cgi" rel="ugc nofollow">Online Converter</a>. It&#039;s a slow process, as you still have to do some minor editing afterwards. Update them as you want/need them.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Cool Additions to Dokuwiki&quot;,&quot;hid&quot;:&quot;cool_additions_to_dokuwiki&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:12,&quot;range&quot;:&quot;3385-3842&quot;} -->
+<h3 class="sectionedit13" id="images_in_dokuwiki">Images in Dokuwiki</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> It&#039;s a beast basically</div>
+</li>
+<li class="level1"><div class="li"> Inserts a generated preview image 200px wide with a direct link to original image!</div>
+</li>
+</ul>
+<pre class="code">{{programming:pyramid5.jpg?direct&amp;200|Final Result}}</pre>
+<ul>
+<li class="level1"><div class="li"> Alignment is just one space on either (or both) sides of the brackets.</div>
+</li>
+</ul>
+<pre class="code">Left Align:&lt;imgcaption image1|This is the caption that I added to this image&gt;{{ programming:pyramid5.jpg?200}}&lt;/imgcaption&gt;
+Right Align:{{programming:pyramid5.jpg?200 }}
+Center Align:{{ programming:pyramid5.jpg?200 }}</pre>
+
+<p>
+&lt;imgcaption image1|This is the caption that I added to this image&gt;<a href="../_media/programming/pyramid5.jpg" class="media" title="programming:pyramid5.jpg"><img src="../_media/programming/pyramid5.jpg" class="mediaright" align="right" title="pyramid5.jpg" alt="pyramid5.jpg" width="200" /></a>&lt;/imgcaption&gt;
+<a href="../_media/programming/pyramid5.jpg" class="media" title="programming:pyramid5.jpg"><img src="../_media/programming/pyramid5.jpg" class="mediacenter" title="pyramid5.jpg" alt="pyramid5.jpg" width="200" /></a>
+<a href="../_media/programming/pyramid5.jpg" class="media" title="programming:pyramid5.jpg"><img src="../_media/programming/pyramid5.jpg" class="medialeft" align="left" title="pyramid5.jpg" alt="pyramid5.jpg" width="200" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Images in Dokuwiki&quot;,&quot;hid&quot;:&quot;images_in_dokuwiki&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:13,&quot;range&quot;:&quot;3843-4543&quot;} -->
+<h3 class="sectionedit14" id="minimize_edit_links">Minimize Edit Links</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Set “maxseclevel” in Config page to 0 or 1 <a href="http://www.dokuwiki.org/section_editing" class="urlextern" title="http://www.dokuwiki.org/section_editing" rel="ugc nofollow">more here</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Minimize Edit Links&quot;,&quot;hid&quot;:&quot;minimize_edit_links&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:14,&quot;range&quot;:&quot;4544-4675&quot;} -->
+<h3 class="sectionedit15" id="dealing_with_spam">Dealing with Spam</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> I got some spam on the wiki recently that had eluded my grasp! Noo… Going to see what I can do about it…in the meantime, check out the <a href="http://www.dokuwiki.org/blacklist" class="urlextern" title="http://www.dokuwiki.org/blacklist" rel="ugc nofollow">Dokuwiki blacklist feature</a>. </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Dealing with Spam&quot;,&quot;hid&quot;:&quot;dealing_with_spam&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:15,&quot;range&quot;:&quot;4676-&quot;} --></div></body>
+</html>

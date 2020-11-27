@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:optimization</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#optimization">Optimization</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#neural_networks">Neural Networks</a></div></li>
+<li class="level2"><div class="li"><a href="#dynamic_optimization">Dynamic Optimization</a></div></li>
+<li class="level2"><div class="li"><a href="#autonomous_car_driving">Autonomous Car Driving</a></div></li>
+<li class="level2"><div class="li"><a href="#optimization_algorithm_research">Optimization Algorithm Research</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#truss_design">Truss Design</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="optimization">Optimization</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Optimization&quot;,&quot;hid&quot;:&quot;optimization&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-27&quot;} -->
+<h2 class="sectionedit2" id="neural_networks">Neural Networks</h2>
+<div class="level2">
+
+<p>
+Atkeson said the original neural networks were just doing <a href="http://www.google.com/search?q=automatic%20differentiation" class="interwiki iw_g" title="http://www.google.com/search?q=automatic%20differentiation">automatic differentiation</a>, which I still don&#039;t understand…
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Neural Networks&quot;,&quot;hid&quot;:&quot;neural_networks&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;28-180&quot;} -->
+<h2 class="sectionedit3" id="dynamic_optimization">Dynamic Optimization</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.nr.com/oldverswitcher.html" class="urlextern" title="http://www.nr.com/oldverswitcher.html" rel="ugc nofollow">The Art of Scientific Computing, Numerical Recipes</a></div>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://www.sce.carleton.ca/faculty/chinneck/po.html" class="urlextern" title="http://www.sce.carleton.ca/faculty/chinneck/po.html" rel="ugc nofollow">Practical Optimization, A Gentle Introduction</a></div>
+<ul>
+<li class="level2"><div class="li"> Another good one after/in addition to this would be <a href="http://www.princeton.edu/~rvdb/LPbook/" class="urlextern" title="http://www.princeton.edu/~rvdb/LPbook/" rel="ugc nofollow">Vanderbei&#039;s book</a></div>
+</li>
+<li class="level2"><div class="li"> CMU GSIA class with good examples: <a href="http://mat.gsia.cmu.edu/classes/QUANT/" class="urlextern" title="http://mat.gsia.cmu.edu/classes/QUANT/" rel="ugc nofollow">http://mat.gsia.cmu.edu/classes/QUANT/</a></div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://archimedes.cheme.cmu.edu/" class="urlextern" title="http://archimedes.cheme.cmu.edu/" rel="ugc nofollow">Pfr. Sahanides</a> (Chem Engr) would be an interesting additional professor to talk to. He seems to be trying to spin out their Baron project under Olympus. He also teaches 06-462: Optimization Modeling and Algorithms </div>
+<ul>
+<li class="level2"><div class="li"> His software, called BARON, does branch-and-bound analysis</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/programming/photo.jpg" class="media" title="programming:photo.jpg"><img src="../_media/programming/photo.jpg" class="media" alt="" width="100" /></a><a href="../_media/programming/photo_2.jpg" class="media" title="programming:photo_2.jpg"><img src="../_media/programming/photo_2.jpg" class="media" alt="" width="100" /></a><a href="../_media/programming/photo_3.jpg" class="media" title="programming:photo_3.jpg"><img src="../_media/programming/photo_3.jpg" class="media" alt="" width="100" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Dynamic Optimization&quot;,&quot;hid&quot;:&quot;dynamic_optimization&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;181-1039&quot;} -->
+<h2 class="sectionedit4" id="autonomous_car_driving">Autonomous Car Driving</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://julian.togelius.com/Loiacono2010The.pdf" class="urlextern" title="http://julian.togelius.com/Loiacono2010The.pdf" rel="ugc nofollow">Technical overview of previous algorithms</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://link.springer.com/content/pdf/10.1007%2F978-3-642-20525-5_15.pdf" class="urlextern" title="http://link.springer.com/content/pdf/10.1007%2F978-3-642-20525-5_15.pdf" rel="ugc nofollow">Driving Faster than a Human Player</a> (another team&#039;s detailed submission)</div>
+</li>
+<li class="level1"><div class="li"> Some undergrad mech e&#039;s doing it…</div>
+</li>
+</ul>
+<iframe src="//www.youtube-nocookie.com/embed/LYGwaI-haOM" height="143" width="255" class="vshare__none" allowfullscreen="" frameborder="0" scrolling="no"></iframe><ul>
+<li class="level1"><div class="li"> The same professor, deriving the mathematics for an inverted pendulum controller. <a href="http://www.spumone.org/courses/control-notes/inverted-pendulum/" class="urlextern" title="http://www.spumone.org/courses/control-notes/inverted-pendulum/" rel="ugc nofollow">http://www.spumone.org/courses/control-notes/inverted-pendulum/</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.berniw.org/tutorials/robot/tutorial.html" class="urlextern" title="http://www.berniw.org/tutorials/robot/tutorial.html" rel="ugc nofollow">VERY GOOD WALKTHROUGH TUTORIAL / TORCS IMPLEMENTATION</a></div>
+</li>
+<li class="level2"><div class="li"> Advanced version of walkthrough bot: <a href="http://www.berniw.org/trb/" class="urlextern" title="http://www.berniw.org/trb/" rel="ugc nofollow">http://www.berniw.org/trb/</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="https://sites.google.com/site/universityofbrighton/torcs/" class="urlextern" title="https://sites.google.com/site/universityofbrighton/torcs/" rel="ugc nofollow">https://sites.google.com/site/universityofbrighton/torcs/</a>, also good set of walkthrough.</div>
+</li>
+<li class="level2"><div class="li"> You can download previous implementations of the bots from here: <a href="http://cig.ws.dei.polimi.it/" class="urlextern" title="http://cig.ws.dei.polimi.it/" rel="ugc nofollow">http://cig.ws.dei.polimi.it/</a></div>
+</li>
+<li class="level2"><div class="li"> Can&#039;t you just do DDP and try all the states? He he he… good for small constrained problems but hard for big ones.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Autonomous Car Driving&quot;,&quot;hid&quot;:&quot;autonomous_car_driving&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1040-2044&quot;} -->
+<h2 class="sectionedit5" id="optimization_algorithm_research">Optimization Algorithm Research</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Great article! <a href="../_media/programming/trajopt2.pdf" class="media mediafile mf_pdf" title="programming:trajopt2.pdf">Case Studies In Trajectory Optimization: Trains, Planes, And Other Pastimes, Robert J. Vanderbei</a></div>
+<ul>
+<li class="level2"><div class="li"> Talks about doing gliders in AMPL. Needed to correct the characters, but a corrected version is below, and can be run at <a href="http://ampl.com/cgi-bin/ampl/amplcgi" class="urlextern" title="http://ampl.com/cgi-bin/ampl/amplcgi" rel="ugc nofollow">here</a></div>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="code glidermod">param N;
+param x_0; param y_0;
+param vx_0; param vy_0;
+param x_n; param y_n;
+param vx_n; param vy_n;
+param cL_0;
+param cL_n;
+&nbsp;
+&nbsp;
+param cL_min; param cL_max;
+param c0; param k;
+param S; param rho;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+param m; param g; param W := m*g;
+var T &gt;= 0;
+# State Variables
+var x {i in 0..N};
+var y {i in 0..N};
+# Control variables
+var cL {i in 1..N-1} &gt;= cL_min, &lt;= cL_max;
+# Abbreviations
+var vx {i in 0..N-1} = N*(x[i+1]-x[i])/T;
+var vy {i in 0..N-1} = N*(y[i+1]-y[i])/T;
+var ax {i in 1..N-1} = N*(vx[i]-vx[i-1])/T;
+var ay {i in 1..N-1} = N*(vy[i]-vy[i-1])/T;
+var cD {i in 1..N-1} = c0+k*cL[i]^2;
+var Vx {i in 1..N-1} = (vx[i]+vx[i-1])/2;
+var Vy {i in 1..N-1} = (vy[i]+vy[i-1])/2;
+var vr {i in 1..N-1} = sqrt(((vx[i]+vx[i-1])/2)^2 + Vy[i]^2);
+var D {i in 1..N-1} = .5*cD[i]*rho*S*vr[i]^2;
+var L {i in 1..N-1} = .5*cL[i]*rho*S*vr[i]^2;
+var sin_eta {i in 1..N-1} = Vy[i]/vr[i];
+var cos_eta {i in 1..N-1} = Vx[i]/vr[i];
+&nbsp;
+&nbsp;
+maximize final_x: x[N];
+&nbsp;
+s.t. newt_x{i in 1..N-1}: ax[i] = (-L[i]*sin_eta[i] - D[i]*cos_eta[i])/m;
+s.t. newt_y{i in 1..N-1}: ay[i] = (L[i]*cos_eta[i] - D[i]*sin_eta[i] - W)/m;
+&nbsp;
+s.t. novomit_x {i in 1..N-1}: -3 &lt;= ax[i] &lt;= 3;
+s.t. novomit_y {i in 1..N-1}: -3 &lt;= ay[i] &lt;= 3;
+&nbsp;
+# Boundary Conditions
+s.t. x_ic : x[0] = x_0;
+s.t. y_ic : y[0] = y_0;
+s.t. vx_ic: vx[0] = vx_0;
+s.t. vy_ic: vy[0] = vy_0;
+s.t. y_fc : y[N] = y_n;
+s.t. vx_fc: vx[N-1] = vx_n;
+s.t. vy_fc: vy[N-1] = vy_n;
+&nbsp;
+# Data which needs to be reinitialized
+data;
+param N := 70;
+param x_0 := 0;
+param y_0 := 1000;
+param vx_0 := 13.23; param vy_0 := -1.29;
+param y_n := 900;
+param vx_n := 13.23; param vy_n := -1.29;
+param cL_min := 0; param cL_max := 1.4;
+param c0 := 0.034; param k := 0.069662;
+param S := 14; param rho := 1.13;
+param m := 100; param g := 9.80665;
+# initial guess
+let {j in 0..N} x[j] := 5000*j/N;
+let {j in 0..N} y[j] := -100*j/N+1000;
+let {j in 1..N-1} cL[j] := .7;
+let T := 30;
+solve;</pre>
+<ul>
+<li class="level1 node"><div class="li"> <a href="http://en.wikipedia.org/wiki/Multidisciplinary_design_optimization" class="urlextern" title="http://en.wikipedia.org/wiki/Multidisciplinary_design_optimization" rel="ugc nofollow">Multi-Criteria Design Optimization (Wikipedia)</a>, <a href="http://ocw.mit.edu/courses/engineering-systems-division/esd-77-multidisciplinary-system-design-optimization-spring-2010/index.htm" class="urlextern" title="http://ocw.mit.edu/courses/engineering-systems-division/esd-77-multidisciplinary-system-design-optimization-spring-2010/index.htm" rel="ugc nofollow">great MIT class</a></div>
+<ul>
+<li class="level2"><div class="li"> Maybe use <a href="http://ab-initio.mit.edu/wiki/index.php/NLopt#Download_and_installation" class="urlextern" title="http://ab-initio.mit.edu/wiki/index.php/NLopt#Download_and_installation" rel="ugc nofollow">NLOpt</a>?</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Bhiksha recommended against genetic algorithms vs nonlinear optimization methods. <a href="http://code.google.com/p/ceres-solver/" class="urlextern" title="http://code.google.com/p/ceres-solver/" rel="ugc nofollow">Google Ceres</a>, <a href="http://hammertechengineering.com/google-ceres-solver-for-windows-64-bit-instructions-and-binaries/#more-75" class="urlextern" title="http://hammertechengineering.com/google-ceres-solver-for-windows-64-bit-instructions-and-binaries/#more-75" rel="ugc nofollow">Windows Install</a> would be a good way to go forward and contrast the two on convergence time. <a href="http://news.ycombinator.com/item?id=3914951" class="urlextern" title="http://news.ycombinator.com/item?id=3914951" rel="ugc nofollow">Hacker News comments</a></div>
+</li>
+<li class="level1 node"><div class="li"> Jason Lohn and Gregory Hornby &#039;s  Nasa Space Antenna paper…Andrew knows them :) <a href="../_media/home/space2006antenna.pdf" class="media mediafile mf_pdf" title="home:space2006antenna.pdf">space2006antenna.pdf</a>. Also his <a href="http://www.cmu.edu/silicon-valley/dmi/workshop2011/presentations/lohn-jason.pdf" class="urlextern" title="http://www.cmu.edu/silicon-valley/dmi/workshop2011/presentations/lohn-jason.pdf" rel="ugc nofollow">presentation on antennas</a>: </div>
+<ul>
+<li class="level2"><div class="li"> Gregory Hornby had to pull a few tricks to get GA&#039;s working well, <a href="http://idesign.ucsc.edu/projects/alps.html" class="urlextern" title="http://idesign.ucsc.edu/projects/alps.html" rel="ugc nofollow">preventing premature non-optimal behavior</a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Optimization Algorithm Research&quot;,&quot;hid&quot;:&quot;optimization_algorithm_research&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;2045-5495&quot;} -->
+<h3 class="sectionedit6" id="truss_design">Truss Design</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Seems to be well researched, but still might be interested in playing around with it.</div>
+</li>
+<li class="level1"><div class="li"> Nice 50-page paper on it, finds a quadratic solver too! <a href="http://ocw.mit.edu/courses/sloan-school-of-management/15-094j-systems-optimization-models-and-computation-sma-5223-spring-2004/lecture-notes/truss_design_art.pdf" class="urlextern" title="http://ocw.mit.edu/courses/sloan-school-of-management/15-094j-systems-optimization-models-and-computation-sma-5223-spring-2004/lecture-notes/truss_design_art.pdf" rel="ugc nofollow">here</a></div>
+</li>
+<li class="level1 node"><div class="li"> CMU grad student (associated with Jessica Hodgins) doing automated design of bridges / trusses with only a few overall design goals set. <a href="../_media/programming/295-301-smithf.pdf" class="media mediafile mf_pdf" title="programming:295-301-smithf.pdf">295-301-smithf.pdf</a></div>
+<ul>
+<li class="level2"><div class="li"> Uses a few formulas and quadratic programming.</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> I like NLOpt the best <a href="http://neos.mcs.anl.gov/neos/solvers/go:BARON/GAMS.html" class="urlextern" title="http://neos.mcs.anl.gov/neos/solvers/go:BARON/GAMS.html" rel="ugc nofollow">BARON</a> is one solver.</div>
+</li>
+<li class="level1 node"><div class="li"> Thesis by Idaho State student on using Genetic Algorithms to do better bridge truss design <a href="../_media/programming/thesis.pdf" class="media mediafile mf_pdf" title="programming:thesis.pdf">thesis.pdf</a></div>
+<ul>
+<li class="level2"><div class="li"> Uses existing toolbox GENESIS to compare against and does decently. GENESIS uses some eigensolver thing</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> It would be fun to implement it on something, say, the <a href="http://bridgecontest.usma.edu/index.htm" class="urlextern" title="http://bridgecontest.usma.edu/index.htm" rel="ugc nofollow">West Point Bridge Designer</a> contest? </div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://kenai.com/projects/wpbdc/pages/Home" class="urlextern" title="http://kenai.com/projects/wpbdc/pages/Home" rel="ugc nofollow">Their Source Code</a></div>
+</li>
+<li class="level2"><div class="li"> Also on sourceforge. Not much help though</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://stackoverflow.com/questions/10882118/eclipse-does-not-recognize-org-jdesktop" class="urlextern" title="http://stackoverflow.com/questions/10882118/eclipse-does-not-recognize-org-jdesktop" rel="ugc nofollow">http://stackoverflow.com/questions/10882118/eclipse-does-not-recognize-org-jdesktop</a></div>
+</li>
+<li class="level2"><div class="li"> (download the new files though) <a href="http://stackoverflow.com/questions/7210194/where-can-i-find-the-package-javax-media-opengl" class="urlextern" title="http://stackoverflow.com/questions/7210194/where-can-i-find-the-package-javax-media-opengl" rel="ugc nofollow">http://stackoverflow.com/questions/7210194/where-can-i-find-the-package-javax-media-opengl</a></div>
+</li>
+<li class="level2 node"><div class="li"> <a href="http://sourceforge.net/p/wpbdc/wpbd/ci/master/tree/" class="urlextern" title="http://sourceforge.net/p/wpbdc/wpbd/ci/master/tree/" rel="ugc nofollow">SourceForge project</a>. </div>
+<ul>
+<li class="level3"><div class="li"> Needed to download jdesktop jar: <a href="http://stackoverflow.com/questions/10882118/eclipse-does-not-recognize-org-jdesktop" class="urlextern" title="http://stackoverflow.com/questions/10882118/eclipse-does-not-recognize-org-jdesktop" rel="ugc nofollow">http://stackoverflow.com/questions/10882118/eclipse-does-not-recognize-org-jdesktop</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="http://sourceforge.net/projects/launch4j/files/launch4j-3/3.0.2/" class="urlextern" title="http://sourceforge.net/projects/launch4j/files/launch4j-3/3.0.2/" rel="ugc nofollow">Launch4J</a>, <a href="http://nsis.sourceforge.net/Download" class="urlextern" title="http://nsis.sourceforge.net/Download" rel="ugc nofollow">NSIS</a>, <a href="http://kenai.com/projects/bsaf/pages/GettingStartedNetBeans" class="urlextern" title="http://kenai.com/projects/bsaf/pages/GettingStartedNetBeans" rel="ugc nofollow">BSAF</a> (didn&#039;t need to do lower netbeans though, just download)</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="http://docs.oracle.com/javase/1.4.2/docs/api/java/awt/Robot.html" class="urlextern" title="http://docs.oracle.com/javase/1.4.2/docs/api/java/awt/Robot.html" rel="ugc nofollow">One guy used the Robot class in Java</a>, not sure how though…</div>
+</li>
+<li class="level1"><div class="li"> It seems like this would be very useful for optimizing bridges and stuff</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://inspyred.github.com/" class="urlextern" title="http://inspyred.github.com/" rel="ugc nofollow">Try out Inspyred</a> + their examples.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Truss Design&quot;,&quot;hid&quot;:&quot;truss_design&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;5496-&quot;} --></div></body>
+</html>

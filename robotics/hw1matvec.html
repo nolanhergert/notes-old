@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>robotics:hw1matvec</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#hw_2waldo_lab">HW 2: Waldo Lab</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#orthogonal_matrix">Orthogonal Matrix</a></div></li>
+<li class="level2"><div class="li"><a href="#where_s_waldo">Where&#039;s Waldo</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h2 class="sectionedit1" id="famous_robotswarmbot">Famous Robot: Swarmbot</h2>
+<div class="level2">
+
+<p>
+<a href="../_media/robotics/swarmbot.jpg" class="media" title="robotics:swarmbot.jpg"><img src="../_media/robotics/swarmbot.jpg" class="mediaright" align="right" alt="" width="300" /></a>
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+Swarmbot is a very complex robot dreamed up and created by James McLurkin while he was working at iRobot and at the Computer Science Artificial Intelligence Lab at MIT as a graduate student. His robots specialize in sensing the environment around them using distance and other sensors, planning what the action should be using a distributed algorithm (each robot does some computation), and act by moving, bleeping, or blinking their cool LED lights in unison, which is a ton of fun to watch. Definitely among the most complex out there! More information is on his website <a href="http://people.csail.mit.edu/jamesm/projects.php" class="urlextern" title="http://people.csail.mit.edu/jamesm/projects.php" rel="ugc nofollow">here</a>. 
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+<br/>
+
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Famous Robot: Swarmbot&quot;,&quot;hid&quot;:&quot;famous_robotswarmbot&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;3-747&quot;} -->
+<h2 class="sectionedit2" id="matrix_and_vector_operations">Matrix and Vector Operations</h2>
+<div class="level2">
+
+<p>
+AFS Path: /afs/andrew.cmu.edu/usr23/nhergert/gitrepo/16-311GeneralRobotics/hw1Matvec/matvec
+</p>
+<dl class="code">
+<dt><a href="/doku.php/robotics/hw1matvec?do=export_code&amp;codeblock=0" title="Download Snippet" class="mediafile mf_c">matvec.c</a></dt>
+<dd><pre class="code c"><span class="co1">// Welcome to the Homework 1 Skeleton file.</span>
+<span class="co1">// Written by your industrious TA Cuban</span>
+<span class="co1">// Solution written by Nolan Hergert</span>
+&nbsp;
+<span class="co2">#include &lt;stdio.h&gt;</span>
+<span class="co2">#include &lt;stdlib.h&gt;</span>
+<span class="co2">#include &lt;string.h&gt;</span>
+&nbsp;
+<span class="coMULTI">/* STEP 1: UNDERSTAND THE ENUMERATED VARIABLES (STRUCTURES) */</span>
+&nbsp;
+<span class="kw4">typedef</span> <span class="kw4">struct</span> vector 
+<span class="br0">&#123;</span>
+    <span class="kw4">float</span> v<span class="br0">&#91;</span><span class="nu0">3</span><span class="br0">&#93;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span> vector<span class="sy0">;</span>
+&nbsp;
+vector g_vecs<span class="br0">&#91;</span><span class="nu0">26</span><span class="br0">&#93;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw4">typedef</span> <span class="kw4">struct</span> matrix
+<span class="br0">&#123;</span>
+    <span class="kw4">float</span> v<span class="br0">&#91;</span><span class="nu0">3</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">3</span><span class="br0">&#93;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span> matrix<span class="sy0">;</span>
+&nbsp;
+matrix g_mats<span class="br0">&#91;</span><span class="nu0">26</span><span class="br0">&#93;</span><span class="sy0">;</span>
+&nbsp;
+<span class="coMULTI">/* STEP 2: UNDERSTAND THE PRINT VECTOR COMMAND */</span>
+&nbsp;
+<span class="kw4">void</span> PrintVector<span class="br0">&#40;</span> vector<span class="sy0">*</span> pVec <span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="coMULTI">/* %f prints a float.
+     pVec is a pointer to a vector, so you must dereference using the
+     -&gt; operator, then access the member array v
+  */</span>
+  <a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;%f %f %f<span class="es1">\n</span>&quot;</span><span class="sy0">,</span> 
+	 pVec<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="sy0">,</span>
+	 pVec<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">,</span>
+	 pVec<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span> <span class="br0">&#41;</span><span class="sy0">;</span>                
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="coMULTI">/* STEP 7: Just review step 2 for fun and now look at this function. 
+   Essentially, it is a islower command */</span>
+&nbsp;
+<span class="kw4">int</span> IsVector<span class="br0">&#40;</span> <span class="kw4">char</span><span class="sy0">*</span> c <span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="coMULTI">/* *c is the first character in the string pointed to by the 
+     character pointer c, and thus can be compared with the constants
+     'a' and 'z'.  Note that 'a' is a character, whereas &quot;a&quot; is a string
+     (and is thus null-terminated).  The lower-case letters are contiguous
+     in the ASCII table, so we can just check if we're between the boundaries.
+  */</span>
+  <span class="kw1">if</span><span class="br0">&#40;</span> <span class="br0">&#40;</span><span class="sy0">*</span>c<span class="br0">&#41;</span> <span class="sy0">&gt;=</span> <span class="st0">'a'</span> <span class="sy0">&amp;&amp;</span> <span class="br0">&#40;</span><span class="sy0">*</span>c<span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="st0">'z'</span> <span class="br0">&#41;</span> <span class="kw1">return</span> <span class="nu0">1</span><span class="sy0">;</span>
+  <span class="kw1">return</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="coMULTI">/* STEP 8: This is perhaps the most confusing part of the whole program. Get by this, and
+all is ok. Remember, we want a pointer to an element in the array. Take a short
+break and make sure you understand pointers */</span>
+&nbsp;
+vector<span class="sy0">*</span> GetVector<span class="br0">&#40;</span> <span class="kw4">char</span><span class="sy0">*</span> c <span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="coMULTI">/* Funny-looking, isn't it?  Here's the basic idea:
+     (*c) - 'a' gives you a number in the range [0 25], since char's can
+     be treated as integers in the range [0 255], and subtracting 'a's 
+     value from a lower-case letter shifts *c down to the [0 25] range.
+     the &quot;&amp;&quot; gives you the address of the element of g_vecs we're interested
+     in, since we're returning a pointer.
+  */</span>
+&nbsp;
+  <span class="kw1">return</span> <span class="sy0">&amp;</span>g_vecs<span class="br0">&#91;</span> <span class="br0">&#40;</span><span class="sy0">*</span>c<span class="br0">&#41;</span> <span class="sy0">-</span> <span class="st0">'a'</span> <span class="br0">&#93;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="coMULTI">/* We will give you the following three functions for free */</span>
+&nbsp;
+<span class="coMULTI">/* STEP 9: Adding vectors should be easy */</span>
+&nbsp;
+<span class="kw4">void</span> AddVectors<span class="br0">&#40;</span> vector<span class="sy0">*</span> pA<span class="sy0">,</span> vector<span class="sy0">*</span> pB<span class="sy0">,</span> vector<span class="sy0">*</span> pResult <span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="kw4">int</span> i<span class="sy0">;</span>
+  <span class="coMULTI">/* This is error-checking, and wasn't required */</span>
+  <span class="kw1">if</span><span class="br0">&#40;</span>pA <span class="sy0">==</span> NULL <span class="sy0">||</span> pB <span class="sy0">==</span> NULL <span class="sy0">||</span> pResult <span class="sy0">==</span> NULL<span class="br0">&#41;</span>
+    <span class="kw1">return</span><span class="sy0">;</span>
+  <span class="coMULTI">/* Loop through the 3 elements of the vectors and add them; store in 
+     the vector pointed to by pResult */</span>
+  <span class="kw1">for</span><span class="br0">&#40;</span>i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">&#41;</span>
+    pResult<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span> <span class="sy0">=</span> pA<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span> <span class="sy0">+</span> pB<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="coMULTI">/* Step 10: same as get vector */</span>
+matrix<span class="sy0">*</span> GetMatrix<span class="br0">&#40;</span> <span class="kw4">char</span><span class="sy0">*</span> c <span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="coMULTI">/* Same as GetVector, 'cept with a different constant */</span>
+  <span class="kw1">return</span> <span class="sy0">&amp;</span>g_mats<span class="br0">&#91;</span> <span class="br0">&#40;</span><span class="sy0">*</span>c<span class="br0">&#41;</span> <span class="sy0">-</span> <span class="st0">'A'</span> <span class="br0">&#93;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="coMULTI">/* Step 11: trivial */</span>
+<span class="kw4">int</span> IsMatrix<span class="br0">&#40;</span> <span class="kw4">char</span><span class="sy0">*</span> c <span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="coMULTI">/* Same as IsVector, 'cept with different constants */</span>
+  <span class="kw1">if</span><span class="br0">&#40;</span> <span class="br0">&#40;</span><span class="sy0">*</span>c<span class="br0">&#41;</span> <span class="sy0">&gt;=</span> <span class="st0">'A'</span> <span class="sy0">&amp;&amp;</span> <span class="br0">&#40;</span><span class="sy0">*</span>c<span class="br0">&#41;</span> <span class="sy0">&lt;=</span> <span class="st0">'Z'</span> <span class="br0">&#41;</span> <span class="kw1">return</span> <span class="nu0">1</span><span class="sy0">;</span>
+  <span class="kw1">return</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw4">void</span> PrintMatrix<span class="br0">&#40;</span> matrix<span class="sy0">*</span> mat <span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="coMULTI">/* Put newlines (\n's) in strategic places to make it
+     look pretty.  The 5 in %.5f makes each number take
+     print exactly 5 digits following the &quot;.&quot;
+  */</span>
+  <a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;%.5f %.5f %.5f<span class="es1">\n</span>%.5f %.5f %.5f<span class="es1">\n</span>%.5f %.5f %.5f<span class="es1">\n</span>&quot;</span><span class="sy0">,</span>
+	 mat<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="sy0">,</span> mat<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">,</span> mat<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="sy0">,</span>
+	 mat<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="sy0">,</span> mat<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">,</span> mat<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="sy0">,</span>
+	 mat<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="sy0">,</span> mat<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">,</span> mat<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+<span class="kw4">void</span> DotVectors <span class="br0">&#40;</span> vector<span class="sy0">*</span> a<span class="sy0">,</span> vector<span class="sy0">*</span> b<span class="sy0">,</span> vector<span class="sy0">*</span> result<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw4">int</span> i<span class="sy0">;</span>
+	<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span>a <span class="sy0">||</span> <span class="sy0">!</span>b <span class="sy0">||</span> <span class="sy0">!</span>result<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Uninitialized vector!<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="kw1">return</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>	
+	<span class="kw1">for</span><span class="br0">&#40;</span>i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			result<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span> <span class="sy0">=</span> a<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span> <span class="sy0">*</span> b<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="sy0">;</span>
+  	<span class="br0">&#125;</span>	
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw4">void</span> CrossVectors <span class="br0">&#40;</span> vector<span class="sy0">*</span> a<span class="sy0">,</span> vector<span class="sy0">*</span> b<span class="sy0">,</span> vector<span class="sy0">*</span> result<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw4">int</span> i<span class="sy0">;</span>
+	<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span>a <span class="sy0">||</span> <span class="sy0">!</span>b <span class="sy0">||</span> <span class="sy0">!</span>result<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Uninitialized vector!<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="kw1">return</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>	
+	<span class="kw1">for</span><span class="br0">&#40;</span>i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+			result<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span> <span class="sy0">=</span> a<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="br0">&#40;</span>i<span class="sy0">+</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy0">%</span><span class="nu19">3</span><span class="br0">&#93;</span><span class="sy0">*</span>b<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="br0">&#40;</span>i<span class="sy0">+</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">%</span><span class="nu19">3</span><span class="br0">&#93;</span> <span class="sy0">-</span> a<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="br0">&#40;</span>i<span class="sy0">+</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy0">%</span><span class="nu19">3</span><span class="br0">&#93;</span><span class="sy0">*</span>b<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="br0">&#40;</span>i<span class="sy0">+</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy0">%</span><span class="nu19">3</span><span class="br0">&#93;</span><span class="sy0">;</span>
+  	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw4">void</span> MultMatVec <span class="br0">&#40;</span> matrix<span class="sy0">*</span> m<span class="sy0">,</span> vector <span class="sy0">*</span>v<span class="sy0">,</span> vector<span class="sy0">*</span> result<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw4">int</span> i<span class="sy0">;</span>
+	<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span>m <span class="sy0">||</span> <span class="sy0">!</span>v <span class="sy0">||</span> <span class="sy0">!</span>result<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Uninitialized matrix/vector!<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="kw1">return</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+	<span class="kw1">for</span><span class="br0">&#40;</span>i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  			result<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span> <span class="sy0">=</span> v<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="sy0">*</span>m<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span> <span class="sy0">+</span> v<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">*</span>m<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span> <span class="sy0">+</span> v<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="sy0">*</span>m<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="sy0">;</span>
+  	<span class="br0">&#125;</span>
+&nbsp;
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw4">void</span> AddMatrices <span class="br0">&#40;</span>matrix<span class="sy0">*</span> a<span class="sy0">,</span> matrix<span class="sy0">*</span> b<span class="sy0">,</span> matrix <span class="sy0">*</span>result<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw4">int</span> i<span class="sy0">,</span>j<span class="sy0">;</span>
+	vector <span class="sy0">*</span> v1<span class="sy0">,</span> v2<span class="sy0">;</span>
+	<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span>a <span class="sy0">||</span> <span class="sy0">!</span>b <span class="sy0">||</span> <span class="sy0">!</span>result<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Uninitialized matrix!<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="kw1">return</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+	<span class="kw1">for</span><span class="br0">&#40;</span>i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="kw1">for</span> <span class="br0">&#40;</span>j <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> j <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> j<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+&nbsp;
+  			result<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">=</span> a<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">+</span> b<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span>j<span class="br0">&#93;</span><span class="sy0">;</span>
+  		<span class="br0">&#125;</span>
+  	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw4">void</span> MultMatrices <span class="br0">&#40;</span>matrix<span class="sy0">*</span> a<span class="sy0">,</span> matrix<span class="sy0">*</span> b<span class="sy0">,</span> matrix <span class="sy0">*</span>result<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw4">int</span> i<span class="sy0">,</span>j<span class="sy0">;</span>
+	<span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span>a <span class="sy0">||</span> <span class="sy0">!</span>b <span class="sy0">||</span> <span class="sy0">!</span>result<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Uninitialized matrix!<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+		<span class="kw1">return</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+	<span class="kw1">for</span><span class="br0">&#40;</span>i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		<span class="kw1">for</span> <span class="br0">&#40;</span>j <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> j <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> j<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  			result<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">=</span> a<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="sy0">*</span>b<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">+</span> a<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="sy0">*</span>b<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">+</span> a<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="sy0">*</span>b<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span>j<span class="br0">&#93;</span><span class="sy0">;</span>
+  		<span class="br0">&#125;</span>
+  	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="coMULTI">/* Do all kinds of fun foo */</span>
+&nbsp;
+<span class="coMULTI">/* STEP 4: This is where the action is at. This function is
+the true gift.  We get our intput into ptokens, and then
+start deciding what to do with it. If there is only one
+ptoken, this is easy, print out somehing. If there are 11
+tokens, this is easy too, it is assign a matrix. Everything
+else has five tokens. Note, there is a perhaps confusing
+decision tree later on summarizing this */</span>
+&nbsp;
+<span class="kw4">int</span> Parse<span class="br0">&#40;</span> <span class="kw4">char</span><span class="sy0">*</span> pString <span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw4">char</span><span class="sy0">*</span> pTokens<span class="br0">&#91;</span><span class="nu0">11</span><span class="br0">&#93;</span><span class="sy0">;</span> <span class="co1">// The most tokens we'll get is 11 (matrix assignment).</span>
+    <span class="kw4">char</span><span class="sy0">*</span> pCurrTok<span class="sy0">;</span>
+    <span class="kw4">int</span> nTokens<span class="sy0">;</span>
+    <span class="kw4">int</span> i<span class="sy0">,</span> j<span class="sy0">;</span>
+    matrix<span class="sy0">*</span> mat<span class="sy0">;</span>
+    vector<span class="sy0">*</span> vec<span class="sy0">;</span>
+&nbsp;
+    nTokens <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+&nbsp;
+    <span class="co1">// Early-out.  If the string is equal to END then end.</span>
+    <span class="kw1">if</span><span class="br0">&#40;</span> <span class="nu0">0</span> <span class="sy0">==</span> <a href="http://www.opengroup.org/onlinepubs/009695399/functions/strcmp.html"><span class="kw3">strcmp</span></a><span class="br0">&#40;</span> <span class="st0">&quot;END&quot;</span><span class="sy0">,</span> pString <span class="br0">&#41;</span> <span class="br0">&#41;</span>  <span class="coMULTI">/* strcmp compares two strings */</span>
+    <span class="br0">&#123;</span>
+        <span class="co1">// Time to quit</span>
+        <span class="kw1">return</span> <span class="nu0">1</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="coMULTI">/* STEP 5: SEE HOW pTokens is stuffed */</span>
+    pCurrTok <span class="sy0">=</span> <span class="br0">&#40;</span><span class="kw4">char</span><span class="sy0">*</span><span class="br0">&#41;</span><a href="http://www.opengroup.org/onlinepubs/009695399/functions/strtok.html"><span class="kw3">strtok</span></a><span class="br0">&#40;</span> pString<span class="sy0">,</span> <span class="st0">&quot; <span class="es1">\n</span>&quot;</span> <span class="br0">&#41;</span><span class="sy0">;</span>  
+    <span class="kw1">while</span><span class="br0">&#40;</span> pCurrTok <span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+        <span class="co1">// Assign the current token.</span>
+        pTokens<span class="br0">&#91;</span>nTokens<span class="sy0">++</span><span class="br0">&#93;</span> <span class="sy0">=</span> pCurrTok<span class="sy0">;</span>
+&nbsp;
+        <span class="co1">// Grab the next one.</span>
+        pCurrTok <span class="sy0">=</span> <span class="br0">&#40;</span><span class="kw4">char</span><span class="sy0">*</span><span class="br0">&#41;</span><a href="http://www.opengroup.org/onlinepubs/009695399/functions/strtok.html"><span class="kw3">strtok</span></a><span class="br0">&#40;</span> NULL<span class="sy0">,</span> <span class="st0">&quot; <span class="es1">\n</span>&quot;</span> <span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="coMULTI">/* The following is a decision tree. If you find this confusing, please skit it.
+       After you read the code, come back to it and it will make loads of sense */</span>
+    <span class="coMULTI">/* Decision tree:
+&nbsp;
+       L1: Number of tokens:
+           1:  Print
+	   11: Matrix assignment
+	   5:  L2
+	       3rd token a digit?
+	       Y: vector assignment
+	       N: L3
+	          Is first token a vector?
+		  Y: L4 (a vector op)
+		     Is 4th token a...
+		     &quot;+&quot;: vector addition
+		     &quot;.&quot;: vector dot product
+		     &quot;*&quot;: Is 3rd token a vector?
+		          Y: vector cross product
+			  N: matrix/vector multiplication
+		  N: L4 (a matrix op)
+		     Is 4th token a...
+		     &quot;+&quot;: matrix addition
+		     &quot;*&quot;: matrix multiplication
+    */</span>
+&nbsp;
+&nbsp;
+    <span class="kw1">switch</span><span class="br0">&#40;</span>nTokens<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+      <span class="coMULTI">/* Print case (only one token) */</span>
+&nbsp;
+       <span class="coMULTI">/* STEP 6: UNDERSTAND  VECTOR  assignment. Go look at some previously
+	  defined functions now */</span>
+    <span class="kw1">case</span> <span class="nu0">1</span><span class="sy0">:</span>  <span class="coMULTI">/* Only one thing was inputted, so it is either a vector or a matrix */</span>
+&nbsp;
+      <span class="kw1">if</span><span class="br0">&#40;</span>IsVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="coMULTI">/*  If a lower case letter, then this function 
+                                   returns a 1 which is like &quot;true,&quot; 0 is false 
+                                   Note, we could have used islower and isupper */</span>
+      <span class="br0">&#123;</span>
+	PrintVector<span class="br0">&#40;</span>GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+      <span class="kw1">else</span> <span class="kw1">if</span><span class="br0">&#40;</span>IsMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+	PrintMatrix<span class="br0">&#40;</span>GetMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+      <span class="kw1">else</span>
+	<span class="kw1">return</span> <span class="nu0">0</span><span class="sy0">;</span>  <span class="coMULTI">/* If the character is not a letter, uppoer or lower case, then
+                      return a zero */</span>
+      <span class="kw2">break</span><span class="sy0">;</span>
+&nbsp;
+      <span class="coMULTI">/* Matrix assignment (only operation with 11 tokens) */</span>
+    <span class="kw1">case</span> <span class="nu0">11</span><span class="sy0">:</span>
+      <a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Assigning to matrix<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+      mat <span class="sy0">=</span> GetMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="coMULTI">/* Returns a POINTER to a matrix in g_mats[ ],
+                                      so mat is a pointer to a structure */</span>
+      <span class="kw1">for</span><span class="br0">&#40;</span>i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">&#41;</span>
+	<span class="kw1">for</span><span class="br0">&#40;</span>j <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> j <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> j<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	   mat<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span><span class="br0">&#91;</span>j<span class="br0">&#93;</span> <span class="sy0">=</span> <a href="http://www.opengroup.org/onlinepubs/009695399/functions/atof.html"><span class="kw3">atof</span></a><span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">2</span> <span class="sy0">+</span> <span class="nu0">3</span><span class="sy0">*</span>i <span class="sy0">+</span> j<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="coMULTI">/* one-dim --&gt; two-dim */</span>
+	<span class="br0">&#125;</span>
+      <span class="kw2">break</span><span class="sy0">;</span>
+&nbsp;
+      <span class="coMULTI">/* All kinds of foo (there are many operations with 5 tokens)*/</span>
+    <span class="kw1">case</span> <span class="nu0">5</span><span class="sy0">:</span>
+&nbsp;
+      <span class="coMULTI">/* Check if the third token is a digit or minus sign (=&gt; assignment) */</span>
+      <span class="kw1">if</span><span class="br0">&#40;</span><a href="http://www.opengroup.org/onlinepubs/009695399/functions/isdigit.html"><span class="kw3">isdigit</span></a><span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span> <span class="sy0">||</span> pTokens<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span> <span class="sy0">==</span> <span class="st0">'-'</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Assigning to vector<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="coMULTI">/* Vector assignment */</span>
+	vec <span class="sy0">=</span> GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="kw1">for</span><span class="br0">&#40;</span>i <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> i <span class="sy0">&lt;</span> <span class="nu0">3</span><span class="sy0">;</span> i<span class="sy0">++</span><span class="br0">&#41;</span>
+	  vec<span class="sy0">-&gt;</span>v<span class="br0">&#91;</span>i<span class="br0">&#93;</span> <span class="sy0">=</span> <a href="http://www.opengroup.org/onlinepubs/009695399/functions/atof.html"><span class="kw3">atof</span></a><span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">2</span> <span class="sy0">+</span> i<span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+      <span class="br0">&#125;</span>
+&nbsp;
+      <span class="kw1">else</span> <span class="kw1">if</span><span class="br0">&#40;</span>IsVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">if</span><span class="br0">&#40;</span><span class="nu0">0</span> <span class="sy0">==</span> <a href="http://www.opengroup.org/onlinepubs/009695399/functions/strcmp.html"><span class="kw3">strcmp</span></a><span class="br0">&#40;</span> pTokens<span class="br0">&#91;</span><span class="nu0">3</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st0">&quot;+&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	  <a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Adding vectors<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	  AddVectors<span class="br0">&#40;</span>GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">4</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="kw1">else</span> <span class="kw1">if</span><span class="br0">&#40;</span> <span class="nu0">0</span> <span class="sy0">==</span> <a href="http://www.opengroup.org/onlinepubs/009695399/functions/strcmp.html"><span class="kw3">strcmp</span></a><span class="br0">&#40;</span> pTokens<span class="br0">&#91;</span><span class="nu0">3</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st0">&quot;.&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	  <a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Dotting vectors<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	  DotVectors<span class="br0">&#40;</span>GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">4</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+&nbsp;
+	<span class="kw1">else</span> <span class="kw1">if</span><span class="br0">&#40;</span> <span class="nu0">0</span> <span class="sy0">==</span> <a href="http://www.opengroup.org/onlinepubs/009695399/functions/strcmp.html"><span class="kw3">strcmp</span></a><span class="br0">&#40;</span> pTokens<span class="br0">&#91;</span><span class="nu0">3</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st0">&quot;*&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	  <span class="kw1">if</span><span class="br0">&#40;</span>IsVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	    <a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Crossing vectors (beware the Stay-Puft Marshmallow Man!)<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	  CrossVectors<span class="br0">&#40;</span>GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">4</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	  <span class="br0">&#125;</span>
+	  <span class="kw1">else</span> <span class="br0">&#123;</span>
+	    <a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Doing Matrix-Vector multiplication<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	    MultMatVec<span class="br0">&#40;</span>GetMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">4</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetVector<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	  <span class="br0">&#125;</span>
+	<span class="br0">&#125;</span>
+      <span class="br0">&#125;</span> <span class="coMULTI">/* END OF THE ISVECTORS */</span>
+&nbsp;
+      <span class="kw1">else</span> <span class="kw1">if</span><span class="br0">&#40;</span>IsMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">if</span><span class="br0">&#40;</span><span class="nu0">0</span> <span class="sy0">==</span> <a href="http://www.opengroup.org/onlinepubs/009695399/functions/strcmp.html"><span class="kw3">strcmp</span></a><span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">3</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st0">&quot;+&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	  <a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Adding matrices<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	  AddMatrices<span class="br0">&#40;</span>GetMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">4</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+	<span class="kw1">else</span> <span class="kw1">if</span><span class="br0">&#40;</span><span class="nu0">0</span> <span class="sy0">==</span> <a href="http://www.opengroup.org/onlinepubs/009695399/functions/strcmp.html"><span class="kw3">strcmp</span></a><span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">3</span><span class="br0">&#93;</span><span class="sy0">,</span> <span class="st0">&quot;*&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	  <a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;Multiplying matrices<span class="es1">\n</span>&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	  MultMatrices<span class="br0">&#40;</span>GetMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">2</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">4</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="sy0">,</span> GetMatrix<span class="br0">&#40;</span>pTokens<span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+      <span class="br0">&#125;</span>
+      <span class="kw2">break</span><span class="sy0">;</span>
+    <span class="kw1">default</span><span class="sy0">:</span> <span class="kw1">return</span> <span class="nu0">0</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="co1">// Don't quit</span>
+    <span class="kw1">return</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="coMULTI">/*  Ooooh!  Main!  How important! */</span>
+&nbsp;
+&nbsp;
+<span class="coMULTI">/* STEP 3 Must always look at the main, which pretty much prints a prompt and
+   parses some text */</span>
+&nbsp;
+<span class="kw4">int</span> main<span class="br0">&#40;</span><span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+    <span class="kw4">char</span> buff<span class="br0">&#91;</span><span class="nu0">80</span><span class="br0">&#93;</span><span class="sy0">;</span>
+    <span class="kw4">int</span> done <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+    <span class="kw1">while</span><span class="br0">&#40;</span> <span class="sy0">!</span>done <span class="br0">&#41;</span>
+    <span class="br0">&#123;</span>
+       <a href="http://www.opengroup.org/onlinepubs/009695399/functions/fprintf.html"><span class="kw3">fprintf</span></a><span class="br0">&#40;</span>stdout<span class="sy0">,</span> <span class="st0">&quot;? &quot;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="coMULTI">/* The ? is a prompt. Please use whatever you want */</span>
+        <span class="co1">// Read in a line of text</span>
+        <a href="http://www.opengroup.org/onlinepubs/009695399/functions/gets.html"><span class="kw3">gets</span></a><span class="br0">&#40;</span> buff <span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+        <span class="co1">// Parse it and continue</span>
+        <span class="kw1">if</span><span class="br0">&#40;</span> Parse<span class="br0">&#40;</span> buff <span class="br0">&#41;</span> <span class="br0">&#41;</span>
+        <span class="br0">&#123;</span>
+            <span class="co1">// Parse returns 1 if it's time to exit.</span>
+            done <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+</dd></dl>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Matrix and Vector Operations&quot;,&quot;hid&quot;:&quot;matrix_and_vector_operations&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;748-&quot;} --></div></body>
+</html>

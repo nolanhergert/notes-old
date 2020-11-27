@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:openframeworks</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#optimization">Optimization</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#neural_networks">Neural Networks</a></div></li>
+<li class="level2"><div class="li"><a href="#dynamic_optimization">Dynamic Optimization</a></div></li>
+<li class="level2"><div class="li"><a href="#autonomous_car_driving">Autonomous Car Driving</a></div></li>
+<li class="level2"><div class="li"><a href="#optimization_algorithm_research">Optimization Algorithm Research</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#truss_design">Truss Design</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="openframeworks">OpenFrameworks</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Reza Ali made some good looking UI elements: <a href="http://www.creativeapplications.net/openframeworks/ofxui-new-gui-addon-for-your-openframeworks-projects-openframeworks/" class="urlextern" title="http://www.creativeapplications.net/openframeworks/ofxui-new-gui-addon-for-your-openframeworks-projects-openframeworks/" rel="ugc nofollow">http://www.creativeapplications.net/openframeworks/ofxui-new-gui-addon-for-your-openframeworks-projects-openframeworks/</a></div>
+</li>
+<li class="level1"><div class="li"> There are some other ones under their website too</div>
+</li>
+<li class="level1"><div class="li"> Still trying to decide between OpenFrameworks and Cinder. Pretty similar I think, just both developed separately. </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;OpenFrameworks&quot;,&quot;hid&quot;:&quot;openframeworks&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-373&quot;} -->
+<h2 class="sectionedit2" id="compiling_on_windows">Compiling on Windows</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Other than their <a href="http://www.openframeworks.cc/setup/codeblocks/" class="urlextern" title="http://www.openframeworks.cc/setup/codeblocks/" rel="ugc nofollow">step-by-step</a>, I had some troubles….</div>
+<ul>
+<li class="level2"><div class="li"> ld flags not found, including lstrmbase (needed to restart)</div>
+</li>
+<li class="level2"><div class="li"> openFrameworksLib not being there (needed to compile the project contained at <code>C:\openframeworks\libs\openFrameworksCompiled\project\win_cb</code>) </div>
+</li>
+<li class="level2"><div class="li"> The libraries not finding things like unwind_resume (a c++ call). So (<a href="http://wiki.codeblocks.org/index.php?title=FAQ-Compiling_(errors)#Q:_How_do_I_troubleshoot_a_compiler_problem.3F" class="urlextern" title="http://wiki.codeblocks.org/index.php?title=FAQ-Compiling_(errors)#Q:_How_do_I_troubleshoot_a_compiler_problem.3F" rel="ugc nofollow">following Codeblocks compiler problem tips</a>) I restarted the computer, cleaned and re-built both openFrameworksCompiled and the example project (both as debug, or both as release, not both!), then it worked!</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Compiling on Windows&quot;,&quot;hid&quot;:&quot;compiling_on_windows&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;374-&quot;} --></div></body>
+</html>

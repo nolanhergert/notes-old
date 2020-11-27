@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>bodytrack:grapher</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#bodytrack_grapher_widget">BodyTrack Grapher Widget</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#to_do">To Do</a></div></li>
+<li class="level2"><div class="li"><a href="#general_javascript_notes">General Javascript Notes</a></div></li>
+<li class="level2"><div class="li"><a href="#optimizations">Optimizations</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#nearest_neighbor">Nearest Neighbor</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#processingjs">Processing.js</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="bodytrack_grapher_widget">BodyTrack Grapher Widget</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;BodyTrack Grapher Widget&quot;,&quot;hid&quot;:&quot;bodytrack_grapher_widget&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-40&quot;} -->
+<h2 class="sectionedit2" id="to_do">To Do</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Implement port forwarding for testing out Ray&#039;s grapher in Processing.js</div>
+</li>
+<li class="level1 node"><div class="li"> Get a Hello World working in JQuery? Ask Paul for help if necessary. Drag and drop and graphing…and JSON requests?</div>
+<ul>
+<li class="level2"><div class="li"> Should be faster to work in straight javascript than Processing as you don&#039;t have to redraw. Everything including mouse should be “interrupted” and handled.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;To Do&quot;,&quot;hid&quot;:&quot;to_do&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;41-419&quot;} -->
+<h2 class="sectionedit3" id="general_javascript_notes">General Javascript Notes</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://stackoverflow.com/questions/394601/which-javascript-framework-jquery-vs-dojo-vs" class="urlextern" title="http://stackoverflow.com/questions/394601/which-javascript-framework-jquery-vs-dojo-vs" rel="ugc nofollow">Which Javascript Framework (StackOverflow Thread)</a></div>
+</li>
+<li class="level1"><div class="li"> You can&#039;t access data not stored on the same domain of the page you&#039;re viewing. A trick is to ssh port forward the website to localhost at a specific port. (so your requests are <a href="http://localhost:1234" class="urlextern" title="http://localhost:1234" rel="ugc nofollow">http://localhost:1234</a> instead of <a href="http://bodytrack.org:80" class="urlextern" title="http://bodytrack.org:80" rel="ugc nofollow">http://bodytrack.org:80</a>)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;General Javascript Notes&quot;,&quot;hid&quot;:&quot;general_javascript_notes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;420-851&quot;} -->
+<h2 class="sectionedit4" id="optimizations">Optimizations</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://net.tutsplus.com/tutorials/javascript-ajax/10-ways-to-instantly-increase-your-jquery-performance/" class="urlextern" title="http://net.tutsplus.com/tutorials/javascript-ajax/10-ways-to-instantly-increase-your-jquery-performance/" rel="ugc nofollow">http://net.tutsplus.com/tutorials/javascript-ajax/10-ways-to-instantly-increase-your-jquery-performance/</a>. Compressing js files for faster load, don&#039;t use .each() (use for loop), d </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Optimizations&quot;,&quot;hid&quot;:&quot;optimizations&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;852-1068&quot;} -->
+<h3 class="sectionedit5" id="nearest_neighbor">Nearest Neighbor</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://drdobbs.com/cpp/184401449" class="urlextern" title="http://drdobbs.com/cpp/184401449" rel="ugc nofollow">Nearest neighbor point to point</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://drdobbs.com/cpp/198900559" class="urlextern" title="http://drdobbs.com/cpp/198900559" rel="ugc nofollow">Nearest neighbor point to line(s)</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Nearest Neighbor&quot;,&quot;hid&quot;:&quot;nearest_neighbor&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1069-1245&quot;} -->
+<h2 class="sectionedit6" id="processingjs">Processing.js</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Doesn&#039;t play nice with multiple javascript files. However, if you include all of them them ala below, it works!</div>
+</li>
+</ul>
+<pre class="code html4strict">    <span class="sc2">&lt;canvas data-processing-sources<span class="sy0">=</span><span class="st0">&quot;BT8_7.pde Graph.pde fetchData.pde Mouse.pde Descrip_Indicator.pde&quot;</span>&gt;&lt;<span class="sy0">/</span>canvas&gt;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Processing.js&quot;,&quot;hid&quot;:&quot;processingjs&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1246-&quot;} --></div></body>
+</html>

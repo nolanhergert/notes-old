@@ -1,0 +1,222 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:smartphone</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#remote_control">Remote Control</a></div></li>
+<li class="level2"><div class="li"><a href="#ui_is_very_important">UI is very important</a></div></li>
+<li class="level2"><div class="li"><a href="#google_maps">Google Maps</a></div></li>
+<li class="level2"><div class="li"><a href="#nexus_5_power_button">Nexus 5 Power button</a></div></li>
+<li class="level2"><div class="li"><a href="#nexus_5_usb_connection_issues">Nexus 5 USB Connection Issues</a></div></li>
+<li class="level2"><div class="li"><a href="#iphone_vs_android">iPhone vs Android</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#iphone">iPhone</a></div></li>
+<li class="level3"><div class="li"><a href="#android">Android</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#putting_stock_rom_back_onto_htc_phone">Putting stock ROM back onto HTC phone</a></div></li>
+<li class="level2"><div class="li"><a href="#android_programming">Android Programming</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#installation">Installation</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<p>
+Anne is using <a href="http://www.google.com/search?q=Trigger.io" class="interwiki iw_g" title="http://www.google.com/search?q=Trigger.io">Trigger.io</a>, and apparently that is better than others (PhoneGap, Cordova)
+</p>
+
+<h2 class="sectionedit1" id="remote_control">Remote Control</h2>
+<div class="level2">
+
+<p>
+AirDroid seems ok, except that you can&#039;t adjust settings.
+</p>
+
+<p>
+If need to fall back to something, Vysor allows wireless access for $2/month. Also free version can probably just be plugged into web server via usb.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Remote Control&quot;,&quot;hid&quot;:&quot;remote_control&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;97-332&quot;} -->
+<h2 class="sectionedit2" id="ui_is_very_important">UI is very important</h2>
+<div class="level2">
+
+<p>
+Having no UI is even better. This is the video that you watched that Bret Victor linked to where Google employee redesigned interfaces for interacting with <strong>people</strong> as opposed to selling things. <a href="http://nxhx.org/LivableTech/" class="urlextern" title="http://nxhx.org/LivableTech/" rel="ugc nofollow">http://nxhx.org/LivableTech/</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;UI is very important&quot;,&quot;hid&quot;:&quot;ui_is_very_important&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;333-592&quot;} -->
+<h2 class="sectionedit3" id="google_maps">Google Maps</h2>
+<div class="level2">
+
+<p>
+Super laggy and doesn&#039;t work on my Nexus 5 now for some reason. Worked to run the below, avoided an issue with no global clock thing.
+</p>
+<blockquote  class="blockquote-plugin">
+<p>
+python ./systrace.py -t 5 -o ./trace.html gfx input view webview wm am sm hal app res dalvik rs bionic power idle 
+</p>
+
+</blockquote>
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Google Maps&quot;,&quot;hid&quot;:&quot;google_maps&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;593-892&quot;} -->
+<h2 class="sectionedit4" id="nexus_5_power_button">Nexus 5 Power button</h2>
+<div class="level2">
+
+<p>
+Significant Motion and Proximity sensor are the only ones that are wake sensors (low power and wake up the cpu, don&#039;t require wake lock)
+</p>
+
+<p>
+<a href="https://source.android.com/devices/sensors/sensor-types.html#significant_motion" class="urlextern" title="https://source.android.com/devices/sensors/sensor-types.html#significant_motion" rel="ugc nofollow">https://source.android.com/devices/sensors/sensor-types.html#significant_motion</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Nexus 5 Power button&quot;,&quot;hid&quot;:&quot;nexus_5_power_button&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;893-1145&quot;} -->
+<h2 class="sectionedit5" id="nexus_5_usb_connection_issues">Nexus 5 USB Connection Issues</h2>
+<div class="level2">
+
+<p>
+Some USB cables are charging only &gt;.&lt; <a href="http://android.stackexchange.com/questions/55848/phone-isnt-detected-via-usb-but-still-charges" class="urlextern" title="http://android.stackexchange.com/questions/55848/phone-isnt-detected-via-usb-but-still-charges" rel="ugc nofollow">http://android.stackexchange.com/questions/55848/phone-isnt-detected-via-usb-but-still-charges</a>
+</p>
+
+<p>
+<del>
+When I plug it in, most of the time the usb connections dropdown doesn&#039;t come up…
+
+=== Things I tried that didn&#039;t work===
+  * Enabling USB debugging and swtiching MTP a few times in Developer settings. Nope…
+  * Boot to safe mode
+
+
+Will try next restoring to factory defaults.
+  * Need to sync pictures to dropbox folder…
+  * Already took pictures of apps. Need to sync back down.
+  * 
+
+After that Maybe downgrading to Android 5 or upgrading to 7. <a href="https://github.com/franciscofranco/hammerhead" class="urlextern" title="https://github.com/franciscofranco/hammerhead" rel="ugc nofollow">Or using your own build</a> and debugging when it stops working. But then usb debug won&#039;t work at that point &gt;.&lt;
+</del>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Nexus 5 USB Connection Issues&quot;,&quot;hid&quot;:&quot;nexus_5_usb_connection_issues&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1146-1947&quot;} -->
+<h2 class="sectionedit6" id="iphone_vs_android">iPhone vs Android</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;iPhone vs Android&quot;,&quot;hid&quot;:&quot;iphone_vs_android&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1948-1977&quot;} -->
+<h3 class="sectionedit7" id="iphone">iPhone</h3>
+<div class="level3">
+
+<p>
+According to Anne W., iPhone is more reliable hardware wise, but releasing an app is super annoying. 
+</p>
+
+<p>
+I would add that I <strong>can&#039;t “find my phone” without data</strong> turned on all the time. You can theoretically do it over SMS with jailbreak, but even then the $5 app didn&#039;t work and the developer didn&#039;t email me back! 
+</p>
+
+<p>
+<del>iPhone doesn&#039;t let you load files from work off of USB</del>. <del>For example, playing YouTube videos on bus ride home on 1.5X. Also, work blocks the VLC temp server on your phone. The only option is uploading to Dropbox and hoping your app implements a Dropbox <abbr title="Application Programming Interface">API</abbr> or … wait for it … <strong>waiting</strong> until you get home. <img src="/lib/images/smileys/icon_doubt.gif" class="icon" alt=":-/" /> <em>It&#039;s pretty sad that I can&#039;t wait :P </em></del> Have to install iTunes, but then you can use <a href="https://www.ibrowseapp.com/" class="urlextern" title="https://www.ibrowseapp.com/" rel="ugc nofollow">https://www.ibrowseapp.com/</a> for free.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;iPhone&quot;,&quot;hid&quot;:&quot;iphone&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;1978-2773&quot;} -->
+<h3 class="sectionedit8" id="android">Android</h3>
+<div class="level3">
+
+<p>
+<a href="http://www.google.com/search?q=Android%20Lost" class="interwiki iw_g" title="http://www.google.com/search?q=Android%20Lost">Android Lost</a> looks like a great way to find your Android phone and report back GPS coordinates! Enabling GPS without a user popup isn&#039;t allowed in 4.4+ without rooting your phone. Ok, here we go:
+</p>
+<pre class="code">//In Ubuntu. 
+sudo apt-get install android-tools-adb android-tools-fastboot
+adb devices 
+
+//For nexus 5, hold down power and volume down button for ~15 seconds to go to bootloader environment
+// More at http://www.howtogeek.com/249439/how-to-enter-androids-bootloader-and-recovery-environments/
+
+
+
+...
+
+//Assuming Google Nexus devices. Other manufacturers are trickier
+fastboot oem unlock</pre>
+<ul>
+<li class="level1"><div class="li"> Unfortunately to do the same on iOS requires jailbreaking and finding an app that will do it over SMS, which <a href="http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=icaughtuproDp" class="urlextern" title="http://moreinfo.thebigboss.org/moreinfo/depiction.php?file=icaughtuproDp" rel="ugc nofollow">this one</a> might do. <a href="https://www.google.com/search?q=findmyphone+cydia&amp;oq=findmyphone+cydia&amp;gs_l=serp.3..0i13j0i22i30l7j0i22i10i30l2.5402.6347.0.6476.6.6.0.0.0.0.115.430.1j3.4.0.msedr...0...1c.1.64.serp..2.4.427.pYSyYZ7wKqI" class="urlextern" title="https://www.google.com/search?q=findmyphone+cydia&amp;oq=findmyphone+cydia&amp;gs_l=serp.3..0i13j0i22i30l7j0i22i10i30l2.5402.6347.0.6476.6.6.0.0.0.0.115.430.1j3.4.0.msedr...0...1c.1.64.serp..2.4.427.pYSyYZ7wKqI" rel="ugc nofollow">Another option</a></div>
+</li>
+</ul>
+
+<p>
+Transfer music from someone else&#039;s computer? Done, <strong>everything</strong> is exposed on their machine when you allow it, which makes offloading stuff without completely backing up everything on your phone before downloading something &lt;ahem apple&gt; really nice! 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Android&quot;,&quot;hid&quot;:&quot;android&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;2774-4087&quot;} -->
+<h2 class="sectionedit9" id="putting_stock_rom_back_onto_htc_phone">Putting stock ROM back onto HTC phone</h2>
+<div class="level2">
+
+<p>
+<del><a href="http://htc-one.wonderhowto.com/how-to/uninstall-cyanogenmod-revert-back-stock-sense-htc-one-0150157/" class="urlextern" title="http://htc-one.wonderhowto.com/how-to/uninstall-cyanogenmod-revert-back-stock-sense-htc-one-0150157/" rel="ugc nofollow">http://htc-one.wonderhowto.com/how-to/uninstall-cyanogenmod-revert-back-stock-sense-htc-one-0150157/</a>
+Images: ?? <a href="https://android.cmphys.com/stock-fireball/" class="urlextern" title="https://android.cmphys.com/stock-fireball/" rel="ugc nofollow">https://android.cmphys.com/stock-fireball/</a></del>
+</p>
+<ul>
+<li class="level1"><div class="li"> Better yet, just download it yourself before you start mucking with it! <a href="http://www.howtogeek.com/240582/how-to-back-up-and-restore-your-android-phone-with-twrp/" class="urlextern" title="http://www.howtogeek.com/240582/how-to-back-up-and-restore-your-android-phone-with-twrp/" rel="ugc nofollow">http://www.howtogeek.com/240582/how-to-back-up-and-restore-your-android-phone-with-twrp/</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Putting stock ROM back onto HTC phone&quot;,&quot;hid&quot;:&quot;putting_stock_rom_back_onto_htc_phone&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:9,&quot;range&quot;:&quot;4088-4470&quot;} -->
+<h2 class="sectionedit10" id="android_programming">Android Programming</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Android 3.1 adds support for USB Serial (host). The phone needs to have support for USB On-The-Go as well though (ability to switch between host and slave modes)</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://docs.google.com/document/d/1bTe4gQxi0aqcd2wWZCiXDoTzLiWz54JChK_6URInITc/edit" class="urlextern" title="https://docs.google.com/document/d/1bTe4gQxi0aqcd2wWZCiXDoTzLiWz54JChK_6URInITc/edit" rel="ugc nofollow">18-551 Lab 1 notes</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Android Programming&quot;,&quot;hid&quot;:&quot;android_programming&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:10,&quot;range&quot;:&quot;4471-4780&quot;} -->
+<h3 class="sectionedit11" id="installation">Installation</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Just download the bundle…</div>
+</li>
+<li class="level1"><div class="li"> If you want to integrate it into an existing eclipse installation, you might have have a dependency issue…this should fix it (be sure to have “juno” on the end): <a href="http://stackoverflow.com/questions/4249695/adt-requires-org-eclipse-wst-sse-core-0-0-0-but-it-could-not-be-found" class="urlextern" title="http://stackoverflow.com/questions/4249695/adt-requires-org-eclipse-wst-sse-core-0-0-0-but-it-could-not-be-found" rel="ugc nofollow">http://stackoverflow.com/questions/4249695/adt-requires-org-eclipse-wst-sse-core-0-0-0-but-it-could-not-be-found</a></div>
+</li>
+<li class="level1 node"><div class="li"> Have to run Android SDK Manager as administrator to make a new directory. </div>
+<ul>
+<li class="level2"><div class="li"> Windows: Right click on icon, and select run as administrator</div>
+</li>
+<li class="level2"><div class="li"> Mac &amp; Linux: Navigate to directory as per <a href="http://developer.android.com/sdk/installing/adding-packages.html" class="urlextern" title="http://developer.android.com/sdk/installing/adding-packages.html" rel="ugc nofollow">the directions</a>, then do <code>sudo android sdk</code></div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="http://opencv.willowgarage.com/wiki/Android2.3.0" class="urlextern" title="http://opencv.willowgarage.com/wiki/Android2.3.0" rel="ugc nofollow">Getting OpenCV set up on an Android phone</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Installation&quot;,&quot;hid&quot;:&quot;installation&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:11,&quot;range&quot;:&quot;4781-&quot;} --></div></body>
+</html>

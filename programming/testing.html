@@ -1,0 +1,282 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:testing</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#testing">Testing</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#sandi_metz">Sandi Metz</a></div></li>
+<li class="level2"><div class="li"><a href="#apis">APIs</a></div></li>
+<li class="level2"><div class="li"><a href="#tdd_test_driven_development">TDD (Test Driven Development)</a></div></li>
+<li class="level2"><div class="li"><a href="#fuzzing">Fuzzing</a></div></li>
+<li class="level2"><div class="li"><a href="#good_testing">Good testing</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#testing_and_mocking">Testing and Mocking</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#vectorcast">VectorCast</a></div></li>
+<li class="level2"><div class="li"><a href="#code_coverage">Code Coverage</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="testing">Testing</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Testing&quot;,&quot;hid&quot;:&quot;testing&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-22&quot;} -->
+<h2 class="sectionedit2" id="sandi_metz">Sandi Metz</h2>
+<div class="level2">
+
+<p>
+Very interesting ideas.
+</p>
+<ul>
+<li class="level1"><div class="li"> With command query separation and OO, there are some tests that you shouldn&#039;t write. <a href="https://medium.com/@smeriwether/the-magic-tricks-of-unit-testing-28ce0b300cee" class="urlextern" title="https://medium.com/@smeriwether/the-magic-tricks-of-unit-testing-28ce0b300cee" rel="ugc nofollow">https://medium.com/@smeriwether/the-magic-tricks-of-unit-testing-28ce0b300cee</a></div>
+</li>
+<li class="level1 node"><div class="li"> Don&#039;t do Faux-O. Either do simple or once the project gets large, then do real OO.</div>
+<ul>
+<li class="level2"><div class="li"> “I can&#039;t tell where the implementation actually is, as it&#039;s spread across files and isn&#039;t on one screen! <em>That&#039;s the point!</em>”</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sandi Metz&quot;,&quot;hid&quot;:&quot;sandi_metz&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;23-457&quot;} -->
+<h2 class="sectionedit3" id="apis">APIs</h2>
+<div class="level2">
+
+<p>
+Really helpful. I had notes somewhere, but basically it&#039;s the difference between 3D printing a bicycle once and saying “let&#039;s call this a wheel, this a fork, this a frame, this a handlebar, etc”, and test them all separately. Then integrate them together. Swap parts out easily, etc. All that standard stuff.
+</p>
+
+<p>
+Makes it a lot easier to use the code when it&#039;s not a 500-line long monstrosity <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;APIs&quot;,&quot;hid&quot;:&quot;apis&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;458-869&quot;} -->
+<h2 class="sectionedit4" id="tdd_test_driven_development">TDD (Test Driven Development)</h2>
+<div class="level2">
+
+<p>
+Interesting…
+</p>
+
+<p>
+Doing TDD feels slower because you&#039;re constantly context switching between testing and dev, but you end up getting done faster because you spend less time debugging because you&#039;re always green.
+</p>
+
+<p>
+Don&#039;t want fragile tests.
+</p>
+
+<p>
+<a href="https://wiki.ith.intel.com/display/swpc/SWPC-X%3A+Introduction+to+Test+Driven+Development%3A+A+discussion+and+practical+walk+through" class="urlextern" title="https://wiki.ith.intel.com/display/swpc/SWPC-X%3A+Introduction+to+Test+Driven+Development%3A+A+discussion+and+practical+walk+through" rel="ugc nofollow">https://wiki.ith.intel.com/display/swpc/SWPC-X%3A+Introduction+to+Test+Driven+Development%3A+A+discussion+and+practical+walk+through</a>
+</p>
+
+<p>
+<a href="../_media/programming/pasted/20191121-181235.png" class="media" title="programming:pasted:20191121-181235.png"><img src="../_media/programming/pasted/20191121-181235.png" class="media" alt="" width="500" /></a>
+</p>
+
+<p>
+Also TDD doesn&#039;t miraculously make better code. Somehow mocks in ideal unit tests aren&#039;t necessary because coupling is super separate? Interesting. <a href="https://news.ycombinator.com/item?id=14661285" class="urlextern" title="https://news.ycombinator.com/item?id=14661285" rel="ugc nofollow">https://news.ycombinator.com/item?id=14661285</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;TDD (Test Driven Development)&quot;,&quot;hid&quot;:&quot;tdd_test_driven_development&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;870-1527&quot;} -->
+<h2 class="sectionedit5" id="fuzzing">Fuzzing</h2>
+<div class="level2">
+
+<p>
+AFL with cmake: <a href="https://foxglovesecurity.com/2016/03/15/fuzzing-workflows-a-fuzz-job-from-start-to-finish/" class="urlextern" title="https://foxglovesecurity.com/2016/03/15/fuzzing-workflows-a-fuzz-job-from-start-to-finish/" rel="ugc nofollow">https://foxglovesecurity.com/2016/03/15/fuzzing-workflows-a-fuzz-job-from-start-to-finish/</a>
+</p>
+
+<p>
+<a href="https://nullprogram.com/blog/2019/01/25/" class="urlextern" title="https://nullprogram.com/blog/2019/01/25/" rel="ugc nofollow">https://nullprogram.com/blog/2019/01/25/</a>
+</p>
+
+<p>
+Linux talk recommends <a href="http://lcamtuf.coredump.cx/afl/" class="urlextern" title="http://lcamtuf.coredump.cx/afl/" rel="ugc nofollow">http://lcamtuf.coredump.cx/afl/</a> (google fuzz toolkit) as well as some classes: <a href="http://events.linuxfoundation.org/sites/events/files/slides/ELCdeck-final.pdf#page=78" class="urlextern" title="http://events.linuxfoundation.org/sites/events/files/slides/ELCdeck-final.pdf#page=78" rel="ugc nofollow">http://events.linuxfoundation.org/sites/events/files/slides/ELCdeck-final.pdf#page=78</a>
+</p>
+
+<p>
+Another google toolkit 
+<a href="http://honggfuzz.com/" class="urlextern" title="http://honggfuzz.com/" rel="ugc nofollow">http://honggfuzz.com/</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fuzzing&quot;,&quot;hid&quot;:&quot;fuzzing&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1528-1931&quot;} -->
+<h2 class="sectionedit6" id="good_testing">Good testing</h2>
+<div class="level2">
+<blockquote  class="blockquote-plugin">
+<p>
+Choose item by sku 12345 <br/>
+
+Item price should be $7.00<br/>
+
+Set quantity to 6<br/>
+
+Shopping cart total should be $42.00 –<a href="http://testobsessed.com/2008/04/agile-friendly-test-automation-toolsframeworks/" class="urlextern" title="http://testobsessed.com/2008/04/agile-friendly-test-automation-toolsframeworks/" rel="ugc nofollow">TestObsessed</a>
+</p>
+
+</blockquote>
+<p>
+Should be easy to read for a non-programmer and written early on. <em>Not sure if the code needs to read the text directly or not, but it&#039;d be nice</em>. <a href="http://www.google.com/search?q=Cucumber" class="interwiki iw_g" title="http://www.google.com/search?q=Cucumber">Cucumber</a>, <a href="http://www.google.com/search?q=Fitnesse" class="interwiki iw_g" title="http://www.google.com/search?q=Fitnesse">Fitnesse</a>.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Good testing&quot;,&quot;hid&quot;:&quot;good_testing&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1932-2379&quot;} -->
+<h3 class="sectionedit7" id="testing_and_mocking">Testing and Mocking</h3>
+<div class="level3">
+
+<p>
+In order to test at this level of abstraction for say, ipmctl, you have to think about it.
+</p>
+<ul>
+<li class="level1"><div class="li"> Should let the entire (SW) part run, all the way sideways and down. There&#039;s dependencies all over the place that while you&#039;ll test them individually, it sucks to “expect” them every single time you want to run a different high level test!</div>
+</li>
+<li class="level1"><div class="li"> Will need to stub out the hardware calls, but hopefully at the right level of abstraction for the test you want to run.</div>
+</li>
+<li class="level1"><div class="li"> CMake should probably then compile all the C files that the main ipmctl build does, but then remove from that the files/functions you want to stub.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Testing and Mocking&quot;,&quot;hid&quot;:&quot;testing_and_mocking&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2380-3021&quot;} -->
+<h2 class="sectionedit8" id="vectorcast">VectorCast</h2>
+<div class="level2">
+
+</div>
+
+<h4 id="talk_with_sales_pae">Talk with sales &amp; PAE</h4>
+<div class="level4">
+
+</div>
+
+<h5 id="talk">Talk</h5>
+<div class="level5">
+
+<p>
+Unit tests are 
+</p>
+
+<p>
+100% is a bad metric. Good tests that eventually reach 100% coverage is much better.
+</p>
+
+</div>
+
+<h5 id="coverage">Coverage</h5>
+<div class="level5">
+
+<p>
+Apparently they can instrument the code similar to bullseye to measure coverage.
+</p>
+
+<p>
+Competitor is Simics, which will do coverage measurement, requires tracker for kernel.
+</p>
+<ul>
+<li class="level1"><div class="li"> Not really hardware, but as long as it boots, that&#039;s good enough / better for me.</div>
+</li>
+</ul>
+
+<p>
+Does it handle kernels? (virtual address space)
+</p>
+
+</div>
+
+<h5 id="better_tests">Better tests</h5>
+<div class="level5">
+
+<p>
+The way our VectorCast is set up, we can only write tests for a specific file. No interaction with any other files, so all of our integration tests are worthless. 
+</p>
+
+<p>
+Currently getting VectorCast working, I am saying “the expected output is the length of the message type”. However, if the length of the message changes according to the <abbr title="specification">spec</abbr>, then things down the line will break! 
+</p>
+
+</div>
+
+<h4 id="getting_it_working">Getting it working</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Testing intermediate variables that aren&#039;t passed externally. Need to stub an internal function that uses them and assert a value that&#039;s from it.</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="frustrations">Frustrations</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Doesn&#039;t support <code>TEST.EXPECTED:foo:SOME_VARIABLE<strong>+1</strong></code> ←- only supports one variable at the end</div>
+</li>
+<li class="level1"><div class="li"> So, you put it in expected_user_code block. However, that only says T/F, it doesn&#039;t tell you the actual value of <code>foo</code>, which C asserts <em>can</em> do</div>
+</li>
+<li class="level1"><div class="li"> No code highlighting template, so gets really taxing to read.</div>
+</li>
+<li class="level1"><div class="li"> Requires repeating a lot of the same thing</div>
+</li>
+<li class="level1"><div class="li"> Doesn&#039;t look like C</div>
+</li>
+<li class="level1"><div class="li"> Can&#039;t validate that individual lines are covered as a result of a test.</div>
+</li>
+<li class="level1"><div class="li"> Checking return codes. <strong>Don&#039;t hard-code them</strong></div>
+</li>
+<li class="level1"><div class="li"> We currently need to manually duplicate all the cmake file changes into VectorCast (includes,   <strong>libraries?!? <em>not sure</em></strong> and whatnot). However, because people don&#039;t update VectorCast right away, it&#039;s sometimes hard to know what is needed to fix the build in VectorCast. <em>This would be fixed by using a graph correlated with commits</em></div>
+</li>
+<li class="level1"><div class="li"> The Oregon VectorCast license server is down…probably fixed with a call to VectorCast and another system setup.</div>
+</li>
+</ul>
+
+<p>
+As transition, OR the lines covered from Vc and bullseye
+Still need a testing framework. Validation black box / Glenn&#039;s tool is one good option for quick iteration + custom diag cmds.
+Copy what kernel does for coverage output from Bullseye?
+Currently duplicate cmake includes in VC so that VC can build correctly
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;VectorCast&quot;,&quot;hid&quot;:&quot;vectorcast&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;3022-5410&quot;} -->
+<h2 class="sectionedit9" id="code_coverage">Code Coverage</h2>
+<div class="level2">
+
+<p>
+You can check code coverage from tests on hardware?? But most programmers try and run on emulators…<em><a href="http://programmers.stackexchange.com/questions/104332/best-practice-when-unit-testing-for-embedded-development" class="urlextern" title="http://programmers.stackexchange.com/questions/104332/best-practice-when-unit-testing-for-embedded-development" rel="ugc nofollow">Best practice for unit testing (stackexchange)</a></em>
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://samueldotj.blogspot.com/2012/04/gcov-internal-overview.html" class="urlextern" title="http://samueldotj.blogspot.com/2012/04/gcov-internal-overview.html" rel="ugc nofollow">Excellent gcov structure overview</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.flamingspork.com/blog/2015/06/12/gcov-code-coverage-for-openpower-firmware/" class="urlextern" title="https://www.flamingspork.com/blog/2015/06/12/gcov-code-coverage-for-openpower-firmware/" rel="ugc nofollow">IBM guy</a></div>
+</li>
+<li class="level1"><div class="li"> Intel person made it work with Bullseye (apparently Intel has site license), code at \fw\tools\CodeCov, CSE Code Coverage.docx inside of doc folder</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://sysrun.haifa.il.ibm.com/hrl/greps2007/papers/gcov-on-an-embedded-system.pdf" class="urlextern" title="http://sysrun.haifa.il.ibm.com/hrl/greps2007/papers/gcov-on-an-embedded-system.pdf" rel="ugc nofollow">Less impressive gcov on an embedded system paper</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Code Coverage&quot;,&quot;hid&quot;:&quot;code_coverage&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;5411-&quot;} --></div></body>
+</html>

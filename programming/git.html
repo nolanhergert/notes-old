@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:git</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#fast_clone">Fast clone</a></div></li>
+<li class="level2"><div class="li"><a href="#commitpush_checklist">Commit/push checklist</a></div></li>
+<li class="level2"><div class="li"><a href="#common_git_commands">Common git commands</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#git_graph_drawing_demo">Git graph drawing demo</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#installing_git_on_windows">Installing Git on Windows</a></div></li>
+<li class="level2"><div class="li"><a href="#cloning_a_git_repository">Cloning a git repository</a></div></li>
+<li class="level2"><div class="li"><a href="#gitting_it_working">Gitting it working</a></div></li>
+<li class="level2"><div class="li"><a href="#links">Links</a></div></li>
+<li class="level1"><div class="li"><a href="#perforce">Perforce</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<p>
+<strong>Better than subversion as you can make local commits. Also, apparently like Ferrari compared to Hyundai</strong>
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.sbf5.com/~cduan/technical/git" class="urlextern" title="http://www.sbf5.com/~cduan/technical/git" rel="ugc nofollow">Simple Overview</a> seems good. <a href="http://www.google.com/search?q=%20Git%20book" class="interwiki iw_g" title="http://www.google.com/search?q=%20Git%20book"> Git book</a> seems good </div>
+</li>
+<li class="level1"><div class="li"> It appears that git remote merges all of your commits (and messages) so it keeps a history of everything.</div>
+</li>
+<li class="level1"><div class="li"> Gitk &gt; qgit &gt; Gitg (minimalist, but annoying)</div>
+</li>
+<li class="level1 node"><div class="li"> Don&#039;t let a commit hit trunk/“master” unless it&#039;s gone through Basic Acceptance Testing. It feels “slower”, but I bet it&#039;s a lot faster too.</div>
+<ul>
+<li class="level2"><div class="li"> One way to do this is to have a <strong>read-only</strong> master branch. Every attempt must be on a separate branch which is reviewed separately. Then integrated if passes by the build system.</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Graphical Git <abbr title="Graphical User Interface">GUI</abbr>. Unfortunately not much traction, but useful for intro people. </div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://tonsky.me/blog/reinventing-git-interface/" class="urlextern" title="http://tonsky.me/blog/reinventing-git-interface/" rel="ugc nofollow">http://tonsky.me/blog/reinventing-git-interface/</a>. Other stuff on his blog is helpful too</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong><a href="https://www.cs.cmu.edu/~davide/howto/git_lose.html" class="urlextern" title="https://www.cs.cmu.edu/~davide/howto/git_lose.html" rel="ugc nofollow">How to lose data in Git</a></strong>, by CMU <abbr title="Operating System">OS</abbr> professor Dave Eckhardt. Basically, anything not pushed isn&#039;t going to get saved. Makes sense…</div>
+</li>
+</ul>
+
+<h2 class="sectionedit1" id="fast_clone">Fast clone</h2>
+<div class="level2">
+
+<p>
+<a href="https://medium.com/pinterest-engineering/how-a-one-line-change-decreased-our-build-times-by-99-b98453265370" class="urlextern" title="https://medium.com/pinterest-engineering/how-a-one-line-change-decreased-our-build-times-by-99-b98453265370" rel="ugc nofollow">https://medium.com/pinterest-engineering/how-a-one-line-change-decreased-our-build-times-by-99-b98453265370</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fast clone&quot;,&quot;hid&quot;:&quot;fast_clone&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1083-1213&quot;} -->
+<h2 class="sectionedit2" id="commitpush_checklist">Commit/push checklist</h2>
+<div class="level2">
+<ol>
+<li class="level1"><div class="li"> <code>&#039;git add –all .</code>&#039;</div>
+</li>
+<li class="level1"><div class="li"> <code>&#039;git status</code>&#039;, make files you want to ignore are not included</div>
+</li>
+<li class="level1"><div class="li"> <code>&#039;git diff &lt;master_name&gt;</code>&#039;, make sure no unintended changes</div>
+</li>
+<li class="level1"><div class="li"> <code>&#039;git commit -m “&lt;meaningful description of what you changed&gt;”</code>&#039;, as <code>&#039;git log</code>&#039; only prints the messages, not the diff</div>
+</li>
+<li class="level1"><div class="li"> <code>&#039;git push origin &lt;branch-name&gt;</code>&#039;</div>
+</li>
+<li class="level1 node"><div class="li"> <strong>Revise ReviewBoard title and comments to have meaningful statements like Jonathan</strong></div>
+<ol>
+<li class="level2"><div class="li"> Also, update “Testing Done” section in ReviewBoard?</div>
+</li>
+</ol>
+</li>
+</ol>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Commit\/push checklist&quot;,&quot;hid&quot;:&quot;commitpush_checklist&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;1214-1724&quot;} -->
+<h2 class="sectionedit3" id="common_git_commands">Common git commands</h2>
+<div class="level2">
+<div class="table sectionedit4"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Meaning </th><th class="col1"> Command </th><td class="col2"></td>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> Create git repo in current directory </td><td class="col1"> git init . </td><td class="col2"></td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> Ignore <strong>.pyc</strong> files </td><td class="col1"> <em>Edit &lt;rootdir&gt;/.git/info/exclude and append *.pyc</em> <a href="http://stackoverflow.com/a/640668" class="urlextern" title="http://stackoverflow.com/a/640668" rel="ugc nofollow">1</a> <br/>
+I use *.pyc, *.dropbox, *.o</td><td class="col2"></td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Add/scan for new files </td><td class="col1"> git add . </td><td class="col2"></td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> Commit </td><td class="col1"> git commit -m “&lt;commit message&gt;” </td><td class="col2"></td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> Add a remote repo (<em>TODO: only do a subset?</em>) </td><td class="col1"> git remote add origin <a href="https://github.com/nolanhergert/test.git" class="urlextern" title="https://github.com/nolanhergert/test.git" rel="ugc nofollow">https://github.com/nolanhergert/test.git</a> </td><td class="col2"></td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> Commit to remote repo. <em>Not sure what -u is for</em> </td><td class="col1"> git push -u origin master </td><td class="col2"></td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> Add “upstream” repo </td><td class="col1"> git remote add upstream <a href="https://github.com/spark/firmware.git" class="urlextern" title="https://github.com/spark/firmware.git" rel="ugc nofollow">https://github.com/spark/firmware.git</a> </td><td class="col2"></td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> Pull changes from remote repo </td><td class="col1"> git fetch origin </td><td class="col2"></td>
+	</tr>
+	<tr class="row9">
+		<td class="col0"> Check out and track remote branch </td><td class="col1"> git checkout –track origin/newsletter </td><td class="col2"></td>
+	</tr>
+	<tr class="row10">
+		<td class="col0"> Update local changes with remote changes </td><td class="col1"> git pull <em>that&#039;s it?!?!</em></td><td class="col2"></td>
+	</tr>
+	<tr class="row11">
+		<td class="col0"> Change branches / commits (be sure to cd inside of directory) </td><td class="col1"> <code>git checkout feature/hal</code> or <code>git checkout 01234567</code> </td><td class="col2"></td>
+	</tr>
+	<tr class="row12">
+		<td class="col0"> <a href="https://robots.thoughtbot.com/git-bisect" class="urlextern" title="https://robots.thoughtbot.com/git-bisect" rel="ugc nofollow">Git bisect</a> (find bugs using binary search)! </td><td class="col1"> </td><td class="col2"></td>
+	</tr>
+	<tr class="row13">
+		<td class="col0"> Add all modified files (don&#039;t have to do git rm from cmd line) </td><td class="col1"> git add -A . </td><td class="col2"></td>
+	</tr>
+	<tr class="row14">
+		<td class="col0"> Delete All Branches older than XX weeks </td><td class="col1"> <pre class="code">for k in $(git branch | sed /\*/d); do 
+  if [ -z &quot;$(git log -1 --since=&#039;1 week ago&#039; -s $k)&quot; ]; then
+    git branch -D $k
+  fi
+done</pre>
+
+<p>
+ (<a href="http://stackoverflow.com/questions/10325599/delete-all-branches-that-are-more-than-x-days-weeks-old" class="urlextern" title="http://stackoverflow.com/questions/10325599/delete-all-branches-that-are-more-than-x-days-weeks-old" rel="ugc nofollow">stackoverflow</a> is wrong)
+</p>
+</td><td class="col2"></td>
+	</tr>
+	<tr class="row15">
+		<td class="col0"> Create patch file </td><td class="col1"> <code>git diff 01234567^! --ignore-all-space &gt; diff.patch</code></td><td class="col2"></td>
+	</tr>
+	<tr class="row16">
+		<td class="col0"> Revert local working copy / uncommitted files </td><td class="col1"> git reset --soft HEAD^ </td><td class="col2"></td>
+	</tr>
+	<tr class="row17">
+		<td class="col0"> View git log </td><td class="col1"> git reflog</td><td class="col2"></td>
+	</tr>
+	<tr class="row18">
+		<td class="col0"> UNDO STUFF </td><td class="col1"> git reset --hard HEAD@{<em><strong>X</strong></em>}</td><td class="col2"></td>
+	</tr>
+	<tr class="row19">
+		<td class="col0"> Find by tag </td><td class="col1"> git tag -l “*971*” </td><td class="col2"></td>
+	</tr>
+	<tr class="row20">
+		<td class="col0"> Checkout tag </td><td class="col1"> git checkout tags/SPS_IA_54.00.01.971.0</td><td class="col2"></td>
+	</tr>
+	<tr class="row21">
+		<td class="col0"> Ignore branch merges </td><td class="col1"> git log –no-merges –first-parent  , or just use GitExtensions and view current branch only </td><td class="col2"></td>
+	</tr>
+	<tr class="row22">
+		<td class="col0"> Interactive rebase </td><td class="col1"> git rebase -i &lt;branch name whose commits you want to diff from, usually master&gt; <br/>
+(will rewrite the history of the current branch you&#039;re on, so you might want to make a new branch first)</td><td class="col2"></td>
+	</tr>
+	<tr class="row23">
+		<td class="col0"> Interactive checkout / diff \ Used for reverting changes from master for a selective push </td><td class="col1"> git checkout -p &lt;other branch&gt; </td><td class="col2"></td>
+	</tr>
+	<tr class="row24">
+		<td class="col0"> Revert is not a reset! </td><td class="col1"> If you merge a separate branch but then don&#039;t want to actually do it. Reverting is not good enough. You have to reset –hard HEAD</td><th class="col2"> to delete the merge commit or in the worst case do an interactive rebase. Otherwise the branch commits are in your branch, they&#039;re just undone with a separate commit! </th>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:4,&quot;range&quot;:&quot;1757-4323&quot;} --><ul>
+<li class="level1"><div class="li"> Something with Github…. git@github.com:nolanhergert/foo</div>
+</li>
+<li class="level1"><div class="li"> To setup a server, use <code>git init --bare</code> and not <code>git init .</code>, more info <a href="http://askubuntu.com/questions/12647/setting-up-a-git-server" class="urlextern" title="http://askubuntu.com/questions/12647/setting-up-a-git-server" rel="ugc nofollow">here</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Common git commands&quot;,&quot;hid&quot;:&quot;common_git_commands&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1725-4542&quot;} -->
+<h3 class="sectionedit5" id="git_graph_drawing_demo">Git graph drawing demo</h3>
+<div class="level3">
+
+<p>
+<a href="http://jsfiddle.net/yzj591tu/" class="urlextern" title="http://jsfiddle.net/yzj591tu/" rel="ugc nofollow">http://jsfiddle.net/yzj591tu/</a>. Uses <a href="http://gitgraphjs.com/" class="urlextern" title="http://gitgraphjs.com/" rel="ugc nofollow">http://gitgraphjs.com/</a>, It&#039;s ok…
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Git graph drawing demo&quot;,&quot;hid&quot;:&quot;git_graph_drawing_demo&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;4543-4646&quot;} -->
+<h2 class="sectionedit6" id="installing_git_on_windows">Installing Git on Windows</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.jonathansewell.co.uk/index.php/2011/01/06/setting-up-git-in-windows-7/" class="urlextern" title="http://www.jonathansewell.co.uk/index.php/2011/01/06/setting-up-git-in-windows-7/" rel="ugc nofollow">Windows 7</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Installing Git on Windows&quot;,&quot;hid&quot;:&quot;installing_git_on_windows&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;4647-4787&quot;} -->
+<h2 class="sectionedit7" id="cloning_a_git_repository">Cloning a git repository</h2>
+<div class="level2">
+
+<p>
+I know enough from hacking around on git to get it working for me, but I am by no means an expert!
+</p>
+
+<p>
+To set it up on your computer:
+</p>
+<ul>
+<li class="level1"><div class="li"> Install git (install, set up SSH keys, username, etc.)</div>
+</li>
+<li class="level1"><div class="li"> Navigate to the parent directory of where you want the repository to be stored</div>
+</li>
+<li class="level1"><div class="li"> Run &#039;git clone git@github.com:BodyTrack/Dylos&#039;  <em>Should clone the repository and automagically set up git, etc.</em></div>
+</li>
+</ul>
+
+<p>
+w00t, you now you have a working clone of a repository! To work on the code:
+</p>
+<ul>
+<li class="level1"><div class="li"> Pull down changes by running &#039;git pull origin master&#039;</div>
+</li>
+<li class="level1"><div class="li"> Work on the current copy of the code. </div>
+</li>
+<li class="level1"><div class="li"> When you&#039;re done and ready to push your changes, run &#039;git add .&#039;, then &#039;git commit -m “&lt;update message&gt;” &#039;, and finally &#039;git push origin master&#039;</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Cloning a git repository&quot;,&quot;hid&quot;:&quot;cloning_a_git_repository&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;4788-5547&quot;} -->
+<h2 class="sectionedit8" id="gitting_it_working">Gitting it working</h2>
+<div class="level2">
+
+<p>
+Unable to negotiate with XX.XXX.XX.XX: no matching host key type found. Their offer: ssh-dss
+fatal: Could not read from remote repository.
+</p>
+
+<p>
+For me this worked: (added into ~\.ssh\config)
+</p>
+<pre class="code">Host *
+
+HostkeyAlgorithms +ssh-dss
+
+PubkeyAcceptedKeyTypes +ssh-dss</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Gitting it working&quot;,&quot;hid&quot;:&quot;gitting_it_working&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:8,&quot;range&quot;:&quot;5548-5849&quot;} -->
+<h2 class="sectionedit9" id="links">Links</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.cs.cmu.edu/~410/doc/git-intro.html" class="urlextern" title="http://www.cs.cmu.edu/~410/doc/git-intro.html" rel="ugc nofollow">15-410 (Operating Systems) Git Overview</a> simplest that I&#039;ve seen</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://stackoverflow.com/questions/315911/git-for-beginners-the-definitive-practical-guide" class="urlextern" title="http://stackoverflow.com/questions/315911/git-for-beginners-the-definitive-practical-guide" rel="ugc nofollow">StackOverflow Thread on common Git Commands and uses</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.eecs.harvard.edu/~cduan/technical/git/" class="urlextern" title="http://www.eecs.harvard.edu/~cduan/technical/git/" rel="ugc nofollow">Understanding Git Conceptually</a></div>
+</li>
+<li class="level1"><div class="li"> BetterExplained <a href="http://betterexplained.com/articles/aha-moments-when-learning-git/" class="urlextern" title="http://betterexplained.com/articles/aha-moments-when-learning-git/" rel="ugc nofollow">Aha Moments</a> <a href="http://betterexplained.com/articles/intro-to-distributed-version-control-illustrated/" class="urlextern" title="http://betterexplained.com/articles/intro-to-distributed-version-control-illustrated/" rel="ugc nofollow">Distributed VCS Overview</a> </div>
+</li>
+<li class="level1"><div class="li"> Host your own version of GitHub using <a href="https://git.wiki.kernel.org/index.php/Gitweb" class="urlextern" title="https://git.wiki.kernel.org/index.php/Gitweb" rel="ugc nofollow">GitWeb</a>. </div>
+</li>
+<li class="level1"><div class="li"> Apparently this $12 PDF is good… <a href="http://peepcode.com/products/git-internals-pdf" class="urlextern" title="http://peepcode.com/products/git-internals-pdf" rel="ugc nofollow">PeepCode</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Links&quot;,&quot;hid&quot;:&quot;links&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:9,&quot;range&quot;:&quot;5850-6647&quot;} -->
+<h1 class="sectionedit10" id="perforce">Perforce</h1>
+<div class="level1">
+
+<p>
+Just because. 
+</p>
+
+<p>
+To see changes based on an ID use Search→Go To→123456
+</p>
+
+<p>
+Use find file or find by change set (Ctrl+G) to find what you&#039;re looking for. 
+</p>
+
+<p>
+Too bad there&#039;s not, “within this file find diff containing foo”, but maybe there is!
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Perforce&quot;,&quot;hid&quot;:&quot;perforce&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:10,&quot;range&quot;:&quot;6648-&quot;} --></div></body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:etoys</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#etoys">Etoys</a></div>
+<ul class="toc">
+<li class="clear">
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#todo">TODO</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#demo_video">Demo Video</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#ant_pheremone">Ant Pheremone</a></div></li>
+<li class="level3"><div class="li"><a href="#particle_motion">Particle Motion</a></div></li>
+<li class="level3"><div class="li"><a href="#text_alignment">Text Alignment</a></div></li>
+<li class="level3"><div class="li"><a href="#bridge_simulation">Bridge Simulation</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="etoys">Etoys</h1>
+<div class="level1">
+
+<p>
+I&#039;m really liking this tool….very interactive, although not quite as good as Bret Victor.
+</p>
+
+<p>
+He excels at coming up with <strong>simple heuristics</strong> that give rise to the desired macro behavior with very few lines of code for the heuristics.
+</p>
+
+<p>
+Alan Kay&#039;s Squeak Etoys software is a great virtual environment for playing around with things, although some say is limited? Seems you can work in a <strong>3D interactive environment</strong> too, called <a href="http://www.google.com/search?q=Open%20Cobalt" class="interwiki iw_g" title="http://www.google.com/search?q=Open%20Cobalt">Open Cobalt</a>, and demoed really well by Kay <a href="http://www.lisarein.com/alankay/tour.html" class="urlextern" title="http://www.lisarein.com/alankay/tour.html" rel="ugc nofollow">here</a>. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Etoys&quot;,&quot;hid&quot;:&quot;etoys&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-554&quot;} -->
+<h3 class="sectionedit2" id="todo">TODO</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> How to make a graph/plot? <strong>“Turn on the object&#039;s pen and move it sideways”</strong> <em>??? No clue yet, esp moving sideways</em>.</div>
+<ul>
+<li class="level2"><div class="li"> <a href="../_media/programming/pasted/20141105-212004.png" class="media" title="programming:pasted:20141105-212004.png"><img src="../_media/programming/pasted/20141105-212004.png" class="media" alt="" /></a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;TODO&quot;,&quot;hid&quot;:&quot;todo&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;555-744&quot;} -->
+<h2 class="sectionedit3" id="demo_video">Demo Video</h2>
+<div class="level2">
+
+<p>
+Timestamps from <a href="http://www.heidelberg-laureate-forum.org/blog/video/lecture-friday-september-27-alan-kay/" class="urlextern" title="http://www.heidelberg-laureate-forum.org/blog/video/lecture-friday-september-27-alan-kay/" rel="ugc nofollow">Heidelberg Lecture Video</a>. Most demos are in etoys too and documented in <a href="../_media/programming/rn2007006a_olpc.pdf" class="media mediafile mf_pdf" title="programming:rn2007006a_olpc.pdf">rn2007006a_olpc.pdf</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Demo Video&quot;,&quot;hid&quot;:&quot;demo_video&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;745-987&quot;} -->
+<h3 class="sectionedit4" id="ant_pheremone">Ant Pheremone</h3>
+<div class="level3">
+
+<p>
+37:45. <em>How is it only 5 rules???!?! &gt;.&lt;</em>
+<a href="../_media/programming/pasted/20141105-214512.png" class="media" title="programming:pasted:20141105-214512.png"><img src="../_media/programming/pasted/20141105-214512.png" class="media" alt="" /></a>
+</p>
+<pre class="code">If I have no food and at perfume
+  Then follow perfume
+If I have no food and at food
+  Then pickup food, goto nest
+If I&#039;m going to nest then drop perfume
+If I have food and at nest
+  Then drop food, stop going to nest
+If otherwise then wander</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Ant Pheremone&quot;,&quot;hid&quot;:&quot;ant_pheremone&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;988-1357&quot;} -->
+<h3 class="sectionedit5" id="particle_motion">Particle Motion</h3>
+<div class="level3">
+
+<p>
+“All particles rotate in a random direction and walk one step.” (from code)
+</p>
+<ul>
+<li class="level1"><div class="li"> No collissions </div>
+</li>
+<li class="level1"><div class="li"> It is white, but is it Gaussian?</div>
+</li>
+</ul>
+
+<p>
+Kay: “We are dispensing with the apparatus of mathematics that was used before computers. That&#039;s why children are able to do this. <strong>You don&#039;t need a differential equation</strong>&lt;<a href="http://www.google.com/search?q=Brownian%20Motion" class="interwiki iw_g" title="http://www.google.com/search?q=Brownian%20Motion">Brownian Motion</a> to do this, you can just act it out”
+</p>
+<div class="table sectionedit6"><table class="inline">
+	<tr class="row0">
+		<td class="col0"> Spread of Infection </td><td class="col1"> Diffusion </td><td class="col2"> Gravity </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> 29:30. Touch = Infected. COOL PLOT! AIDS doesn&#039;t act fast (so administrators tend to forget about it), but everyone still dies, just the time constant is longer! <br/>
+<a href="../_media/programming/pasted/20141105-220906.png" class="media" title="programming:pasted:20141105-220906.png"><img src="../_media/programming/pasted/20141105-220906.png" class="media" alt="" width="300" /></a></td><td class="col1"> 38:00 </td><td class="col2"> Add gravity in… </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;1752-2042&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Particle Motion&quot;,&quot;hid&quot;:&quot;particle_motion&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;1358-2043&quot;} -->
+<h3 class="sectionedit7" id="text_alignment">Text Alignment</h3>
+<div class="level3">
+
+<p>
+Source doc is <a href="../_media/programming/m2010002_lobjects.pdf" class="media mediafile mf_pdf" title="programming:m2010002_lobjects.pdf">m2010002_lobjects.pdf</a>, but interactive at 40:08 and rules below:
+</p>
+<pre class="code">If I have no before
+  then goto upper left
+If I have a before
+  then goto before&#039;s right side
+If I am at before&#039;s right side and am right of margin
+  then tell my before
+If I&#039;m told and can move then start newline
+  otherwise tell my before</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Text Alignment&quot;,&quot;hid&quot;:&quot;text_alignment&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;2044-2421&quot;} -->
+<h3 class="sectionedit8" id="bridge_simulation">Bridge Simulation</h3>
+<div class="level3">
+
+<p>
+16:30. Kay says all forces on a joint equal 0. Mmmm, because the joint isn&#039;t moving, right! He even extended it to 3D.
+</p>
+
+<p>
+<a href="../_media/programming/pasted/20141105-211405.png" class="media" title="programming:pasted:20141105-211405.png"><img src="../_media/programming/pasted/20141105-211405.png" class="media" alt="" /></a> <a href="../_media/programming/pasted/20141105-211510.png" class="media" title="programming:pasted:20141105-211510.png"><img src="../_media/programming/pasted/20141105-211510.png" class="media" alt="" /></a> <a href="../_media/programming/pasted/20141105-211517.png" class="media" title="programming:pasted:20141105-211517.png"><img src="../_media/programming/pasted/20141105-211517.png" class="media" alt="" /></a> <a href="../_media/programming/pasted/20141105-211730.png" class="media" title="programming:pasted:20141105-211730.png"><img src="../_media/programming/pasted/20141105-211730.png" class="media" alt="" /></a>
+<a href="../_media/programming/pasted/20141105-211832.png" class="media" title="programming:pasted:20141105-211832.png"><img src="../_media/programming/pasted/20141105-211832.png" class="media" alt="" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Bridge Simulation&quot;,&quot;hid&quot;:&quot;bridge_simulation&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:8,&quot;range&quot;:&quot;2422-&quot;} --></div></body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:functional</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#functionalmeta_programming">Functional / Meta Programming</a></div>
+<ul class="toc">
+<li class="clear">
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#my_cursory_opinion">My Cursory opinion</a></div></li>
+<li class="level3"><div class="li"><a href="#potential_cons">Potential Cons</a></div></li>
+<li class="level3"><div class="li"><a href="#udacity_design_of_computer_programs">Udacity Design of Computer Programs</a></div></li>
+<li class="level3"><div class="li"><a href="#structure_and_interpretation_of_computer_programs">Structure and Interpretation of Computer Programs</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="functionalmeta_programming">Functional / Meta Programming</h1>
+<div class="level1">
+
+<p>
+Good introduction is Functional Programming for the rest of us
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Functional \/ Meta Programming&quot;,&quot;hid&quot;:&quot;functionalmeta_programming&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-115&quot;} -->
+<h3 class="sectionedit2" id="my_cursory_opinion">My Cursory opinion</h3>
+<div class="level3">
+
+<p>
+Functional / metaprogramming seems to try and do a lot of work to make small snippets of code that generate more code. The ultimate version of Don&#039;t Repeat Yourself. However, there are other deficiencies of programming that seem more important right now. It feels like it&#039;s making Bret Victor&#039;s Microwave problem <a href="../_media/programming/pasted/20150310-163546.png" class="media" title="programming:pasted:20150310-163546.png"><img src="../_media/programming/pasted/20150310-163546.png" class="media" alt="" /></a> even worse! Or, like, why can&#039;t a machine take care of the opening and closing of <abbr title="HyperText Markup Language">HTML</abbr> tags for you?
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.paulgraham.com/carl.html" class="urlextern" title="http://www.paulgraham.com/carl.html" rel="ugc nofollow">ITA Software</a> saw a 10 to 1 code reduction over C++ (with STL, I think), and they still use it…hm..</div>
+</li>
+</ul>
+
+<p>
+Functional programming languages are really helpful when you&#039;re faced with writing a lot of code and you want to “write code that writes code for you”.
+</p>
+<ul>
+<li class="level1"><div class="li"> If Lisp is slow, then you can always turn on optimization for the critical sections. From <a href="http://www.gigamonkeys.com/book/conclusion-whats-next.html" class="urlextern" title="http://www.gigamonkeys.com/book/conclusion-whats-next.html" rel="ugc nofollow">Practical Common Lisp</a></div>
+</li>
+</ul>
+
+<p>
+Everybody recommends a combination of <a href="http://www.google.com/search?q=SICP" class="interwiki iw_g" title="http://www.google.com/search?q=SICP">SICP</a> and Paul Graham&#039;s book, ANSI Lisp and On Lisp. As well as Programming Pearls and K&amp;R. 
+</p>
+<ul>
+<li class="level1"><div class="li"> Norvig asserts 16/23 OO design patterns are not needed, good summary <a href="http://c2.com/cgi/wiki?AreDesignPatternsMissingLanguageFeatures" class="urlextern" title="http://c2.com/cgi/wiki?AreDesignPatternsMissingLanguageFeatures" rel="ugc nofollow">here</a>. <a href="http://norvig.com/python-lisp.html" class="urlextern" title="http://norvig.com/python-lisp.html" rel="ugc nofollow">Norvig&#039;s great Rosetta Stone comparison between Python and Lisp</a>, The important parts that python hasn&#039;t adopted yet are macros, which are apparently really important for good coders.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.paulgraham.com/avg.html" class="urlextern" title="http://www.paulgraham.com/avg.html" rel="ugc nofollow">Paul Graham on Lisp</a>, talking about the “blub paradox” and how programming languages are slowly incorporating features done in Lisp in the 1960&#039;s. </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://norvig.com/java-lisp.html" class="urlextern" title="http://norvig.com/java-lisp.html" rel="ugc nofollow">Norvig reduced coding time 10X</a></div>
+</li>
+<li class="level1"><div class="li"> In the real world (with generally simpler problems), <strong>business concerns</strong> are way more important than what language you use apparently. <a href="https://news.ycombinator.com/item?id=1803815" class="urlextern" title="https://news.ycombinator.com/item?id=1803815" rel="ugc nofollow">Source</a> </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/1a-overview-and-introduction-to-lisp/" class="urlextern" title="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-001-structure-and-interpretation-of-computer-programs-spring-2005/video-lectures/1a-overview-and-introduction-to-lisp/" rel="ugc nofollow">SICP lectures seem helpful too</a></div>
+</li>
+<li class="level1"><div class="li"> +1 for <a href="http://www.google.com/search?q=Haskell%20for%20a%20great%20good" class="interwiki iw_g" title="http://www.google.com/search?q=Haskell%20for%20a%20great%20good">Haskell for a great good</a> and <a href="https://www.youtube.com/watch?v=jLj1QV11o9g" class="urlextern" title="https://www.youtube.com/watch?v=jLj1QV11o9g" rel="ugc nofollow">Haskell founder intro video at OSCON</a>. Also, Swift is also highly recommended by <a href="http://www.sunsetlakesoftware.com/2014/12/02/why-were-rewriting-our-robotics-software-swift" class="urlextern" title="http://www.sunsetlakesoftware.com/2014/12/02/why-were-rewriting-our-robotics-software-swift" rel="ugc nofollow">this guy</a> for debugging ability and functional programming.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;My Cursory opinion&quot;,&quot;hid&quot;:&quot;my_cursory_opinion&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;116-2610&quot;} -->
+<h3 class="sectionedit3" id="potential_cons">Potential Cons</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Is it easy to maintain large projects with custom-designed meta programming? </div>
+</li>
+<li class="level1"><div class="li"> I hear it is hard to generalize code and make a library (maybe just for Forth) and collaborate on a large scale. <a href="http://www.reddit.com/r/programming/comments/644k1/forths_dilemma_when_great_firms_cause_new/" class="urlextern" title="http://www.reddit.com/r/programming/comments/644k1/forths_dilemma_when_great_firms_cause_new/" rel="ugc nofollow">reddit</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Potential Cons&quot;,&quot;hid&quot;:&quot;potential_cons&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2611-2941&quot;} -->
+<h3 class="sectionedit4" id="udacity_design_of_computer_programs">Udacity Design of Computer Programs</h3>
+<div class="level3">
+
+<p>
+<a href="https://www.udacity.com/course/viewer#!/c-cs212" class="urlextern" title="https://www.udacity.com/course/viewer#!/c-cs212" rel="ugc nofollow">https://www.udacity.com/course/viewer#!/c-cs212</a>
+</p>
+
+<p>
+Doing this one first, as Norvig seems more approachable. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Udacity Design of Computer Programs&quot;,&quot;hid&quot;:&quot;udacity_design_of_computer_programs&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;2942-3096&quot;} -->
+<h3 class="sectionedit5" id="structure_and_interpretation_of_computer_programs">Structure and Interpretation of Computer Programs</h3>
+<div class="level3">
+
+<p>
+So far excellent class.
+</p>
+
+</div>
+
+<h4 id="todo">TODO</h4>
+<div class="level4">
+
+<p>
+Still stuck on Square Roots by Newton&#039;s Method, and how averaging works out okay…
+</p>
+<ul>
+<li class="level1"><div class="li"> Special case of newton&#039;s method, invented by Heron of Alexandria. More at <a href="https://mitpress.mit.edu/sicp/chapter1/node9.html" class="urlextern" title="https://mitpress.mit.edu/sicp/chapter1/node9.html" rel="ugc nofollow">book website</a> and <a href="http://www.google.com/search?q=Heron%20Alexandria%20square%20root" class="interwiki iw_g" title="http://www.google.com/search?q=Heron%20Alexandria%20square%20root">Heron Alexandria square root</a></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="http://adv-r.had.co.nz/" class="urlextern" title="http://adv-r.had.co.nz/" rel="ugc nofollow">Advanced (Functional + Metaprogramming) Tips/Book in R</a>. </div>
+</li>
+<li class="level1"><div class="li"> Apparently <a href="http://www.google.com/search?q=scikit-learn" class="interwiki iw_g" title="http://www.google.com/search?q=scikit-learn">scikit-learn</a> is a well-implemented package too?</div>
+</li>
+</ul>
+
+<p>
+Nice summary of different programming styles at <a href="http://www.leptonica.com/design-principles.html" class="urlextern" title="http://www.leptonica.com/design-principles.html" rel="ugc nofollow">Leptonica Design Principles</a>
+Paul Graham says live in the future and learn about it.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Structure and Interpretation of Computer Programs&quot;,&quot;hid&quot;:&quot;structure_and_interpretation_of_computer_programs&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;3097-&quot;} --></div></body>
+</html>

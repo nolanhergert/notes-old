@@ -1,0 +1,474 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>home:webserver</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#github">Github</a></div></li>
+<li class="level2"><div class="li"><a href="#dynamic_dns">Dynamic DNS</a></div></li>
+<li class="level2"><div class="li"><a href="#https">https</a></div></li>
+<li class="level2"><div class="li"><a href="#hardening">Hardening</a></div></li>
+<li class="level2"><div class="li"><a href="#domain_stuff">Domain stuff</a></div></li>
+<li class="level2"><div class="li"><a href="#hardware">Hardware</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#power">Power</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#setup_linux">Setup Linux</a></div></li>
+<li class="level1"><div class="li"><a href="#creating_a_web_server">Creating a Web Server</a></div></li>
+<li class="level2"><div class="li"><a href="#ssh">SSH</a></div></li>
+<li class="level2"><div class="li"><a href="#nginx">Nginx</a></div></li>
+<li class="level2"><div class="li"><a href="#nginx1">nginx</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#section1018">10/18</a></div></li>
+<li class="level3"><div class="li"><a href="#section929">9/29</a></div></li>
+<li class="level3"><div class="li"><a href="#older">Older</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#dokuwiki_permissions">Dokuwiki Permissions</a></div></li>
+<li class="level2"><div class="li"><a href="#use_rsync_effectively">Use Rsync Effectively</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<p>
+Link to create a sitemap for Dokuwiki: <a href="https://www.dokuwiki.org/sitemap" class="urlextern" title="https://www.dokuwiki.org/sitemap" rel="ugc nofollow">https://www.dokuwiki.org/sitemap</a>. (enable sitemap option in config and submit <code><a href="http://nhergert.homenet.org/doku.php?do=sitemap" class="urlextern" title="http://nhergert.homenet.org/doku.php?do=sitemap" rel="ugc nofollow">http://nhergert.homenet.org/doku.php?do=sitemap</a></code>
+</p>
+
+<h2 class="sectionedit1" id="github">Github</h2>
+<div class="level2">
+
+<p>
+Use Github for hosting with Octopress or similar?
+</p>
+<ul>
+<li class="level1"><div class="li"> Github now (should) support online editing of files. Probably with markdown. Photo uploading should be simple too.</div>
+</li>
+<li class="level1 node"><div class="li"> Search website with Google website search bar on top. Octopress theme probably supports it</div>
+<ul>
+<li class="level2"><div class="li"> <a href="https://blog.webjeda.com/jekyll-search/#google-cse-free" class="urlextern" title="https://blog.webjeda.com/jekyll-search/#google-cse-free" rel="ugc nofollow">https://blog.webjeda.com/jekyll-search/#google-cse-free</a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+Free hosting, linked via CDN, easy HTTPS, etc. <a href="https://www.toptal.com/github/unlimited-scale-web-hosting-github-pages-cloudflare" class="urlextern" title="https://www.toptal.com/github/unlimited-scale-web-hosting-github-pages-cloudflare" rel="ugc nofollow">https://www.toptal.com/github/unlimited-scale-web-hosting-github-pages-cloudflare</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Github&quot;,&quot;hid&quot;:&quot;github&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;171-645&quot;} -->
+<h2 class="sectionedit2" id="dynamic_dns">Dynamic DNS</h2>
+<div class="level2">
+
+<p>
+For namecheap. 
+</p>
+<pre class="code">crontab -e
+# Append for every 1 minute check
+* * * * * /home/nhergert/update_ip.sh &gt; /home/nhergert/update_ip.log
+
+# Run cron on boot
+update-rc.d cron defaults</pre>
+<dl class="code">
+<dt><a href="/doku.php/home/webserver?do=export_code&amp;codeblock=1" title="Download Snippet" class="mediafile mf_sh">update_ip.sh</a></dt>
+<dd><pre class="code c"><span class="co2"># Only writes to server if ip address changes</span>
+<span class="co2"># Keeps log of old ip to below txt file</span>
+old_ip_file<span class="sy0">=</span><span class="st0">&quot;update_ip.txt&quot;</span>
+&nbsp;
+&nbsp;
+myip<span class="sy0">=</span><span class="st0">&quot;$(dig +short myip.opendns.com @resolver1.opendns.com)&quot;</span>
+<span class="co2"># Create file if it doesn't exist</span>
+<span class="kw1">if</span> <span class="br0">&#91;</span> <span class="sy0">!</span> <span class="sy0">-</span>e <span class="st0">&quot;$old_ip_file&quot;</span> <span class="br0">&#93;</span><span class="sy0">;</span> then
+	echo <span class="st0">&quot;${myip}&quot;</span> <span class="sy0">&gt;</span> <span class="st0">&quot;$old_ip_file&quot;</span>
+fi
+&nbsp;
+<span class="co2"># Read in file</span>
+oldip<span class="sy0">=</span>`cat $old_ip_file`
+echo <span class="st0">&quot;$oldip&quot;</span>
+<span class="co2"># Why not &quot;==&quot; ??? Different behavior in cron vs interactive shell &gt;.&lt;</span>
+<span class="co2"># https://serverfault.com/questions/734202/bash-if-statment-unexpected-behavior-in-crontab-job</span>
+<span class="kw1">if</span> <span class="br0">&#91;</span> <span class="st0">&quot;${myip}&quot;</span> <span class="sy0">=</span> <span class="st0">&quot;${oldip}&quot;</span> <span class="br0">&#93;</span>
+then
+	echo <span class="st0">&quot;They match!&quot;</span>
+	<a href="http://www.opengroup.org/onlinepubs/009695399/functions/exit.html"><span class="kw3">exit</span></a>
+fi
+&nbsp;
+<span class="co2"># New value found</span>
+echo <span class="st0">&quot;${myip}&quot;</span> <span class="sy0">&gt;</span> <span class="st0">&quot;${old_ip_file}&quot;</span>
+&nbsp;
+echo <span class="st0">&quot;Updating WAN/Public IP address from ${oldip} to ${myip}&quot;</span>
+&nbsp;
+wget <span class="sy0">-</span>q <span class="sy0">-</span>O <span class="sy0">-</span> <span class="st0">&quot;https://dynamicdns.park-your-domain.com/update?host=nhergert&amp;domain=ozeo.org&amp;password=&lt;dynamic dns password here, diff than normal password&gt;&amp;ip=${myip}&quot;</span>
+wget <span class="sy0">-</span>q <span class="sy0">-</span>O <span class="sy0">-</span> <span class="st0">&quot;https://dynamicdns.park-your-domain.com/update?host=@&amp;domain=ozeo.org&amp;password=&lt;dynamic dns password here, diff than normal password&gt;&amp;ip=${myip}&quot;</span></pre>
+</dd></dl>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Dynamic DNS&quot;,&quot;hid&quot;:&quot;dynamic_dns&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;646-1904&quot;} -->
+<h2 class="sectionedit3" id="https">https</h2>
+<div class="level2">
+
+<p>
+Can use let&#039;s encrypt for free certificate. Cool.
+</p>
+
+<p>
+<del>Super easy to do</del>, requires no account: <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-16-04" class="urlextern" title="https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-16-04" rel="ugc nofollow">https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-16-04</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> dokuwiki wouldn&#039;t load, seems you need to change some addresses to use https not http? (use whynopadlock.com, <a href="https://community.letsencrypt.org/t/my-web-is-shown-as-not-secure-but-have-a-ssl-lets-encrypt-certificate/35100" class="urlextern" title="https://community.letsencrypt.org/t/my-web-is-shown-as-not-secure-but-have-a-ssl-lets-encrypt-certificate/35100" rel="ugc nofollow">https://community.letsencrypt.org/t/my-web-is-shown-as-not-secure-but-have-a-ssl-lets-encrypt-certificate/35100</a>)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;https&quot;,&quot;hid&quot;:&quot;https&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:3,&quot;range&quot;:&quot;1905-2357&quot;} -->
+<h2 class="sectionedit4" id="hardening">Hardening</h2>
+<div class="level2">
+
+<p>
+Probably more frustrating than useful both for me and attacker, but here&#039;s something. <a href="https://www.raspberrypi.org/documentation/configuration/security.md" class="urlextern" title="https://www.raspberrypi.org/documentation/configuration/security.md" rel="ugc nofollow">https://www.raspberrypi.org/documentation/configuration/security.md</a>, <a href="https://www.pluralsight.com/blog/it-ops/linux-hardening-secure-server-checklist" class="urlextern" title="https://www.pluralsight.com/blog/it-ops/linux-hardening-secure-server-checklist" rel="ugc nofollow">https://www.pluralsight.com/blog/it-ops/linux-hardening-secure-server-checklist</a>.
+</p>
+
+<p>
+Like I like to tell people, “if you have enough money to attack with, anything is possible. However, if their target doesn&#039;t have money, it&#039;s probably not a big deal”
+</p>
+
+<p>
+Also, using a container might give some peace of mind, but hardening and not being stupid is generally good enough. <a href="https://security.stackexchange.com/questions/100389/can-i-make-my-online-server-more-secure-using-docker" class="urlextern" title="https://security.stackexchange.com/questions/100389/can-i-make-my-online-server-more-secure-using-docker" rel="ugc nofollow">https://security.stackexchange.com/questions/100389/can-i-make-my-online-server-more-secure-using-docker</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Hardening&quot;,&quot;hid&quot;:&quot;hardening&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:4,&quot;range&quot;:&quot;2358-3006&quot;} -->
+<h2 class="sectionedit5" id="domain_stuff">Domain stuff</h2>
+<div class="level2">
+
+<p>
+Probably want to use “A record”. However, it&#039;s not working for some reason…
+</p>
+
+<p>
+<a href="https://www.namecheap.com/support/knowledgebase/article.aspx?type=article&amp;contentid=434&amp;categoryid=&amp;articletitle=how-do-i-set-up-host-records-for-a-domain" class="urlextern" title="https://www.namecheap.com/support/knowledgebase/article.aspx?type=article&amp;contentid=434&amp;categoryid=&amp;articletitle=how-do-i-set-up-host-records-for-a-domain" rel="ugc nofollow">https://www.namecheap.com/support/knowledgebase/article.aspx?type=article&amp;contentid=434&amp;categoryid=&amp;articletitle=how-do-i-set-up-host-records-for-a-domain</a>
+</p>
+
+<p>
+Need to contact their support for main domain and potential subdomains.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Domain stuff&quot;,&quot;hid&quot;:&quot;domain_stuff&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;3007-3339&quot;} -->
+<h2 class="sectionedit6" id="hardware">Hardware</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Raspberry pi 1, unsupported SD card socket breaks sd cards, tried clothespin and gluing a support on top, now it&#039;s not booting on top of it.</div>
+</li>
+<li class="level1"><div class="li"> Android smartphone. Works quite well with Palapa web server for intentionally obsoleted phones (Android 4). However, I couldn&#039;t figure out how to get adb working. After 2-3 hours, it was worth it to run a full server.</div>
+</li>
+<li class="level1 node"><div class="li"> Running on a <strong>used Macbook for $20</strong> now, should be low power as the fan doesn&#039;t spin up.</div>
+<ul>
+<li class="level2"><div class="li"> Don&#039;t need to make image backup, you have a Snow Leopard disc still. Make a copy of the iso that&#039;s on Dad&#039;s <abbr title="Operating System">OS</abbr> X though, store it in Dropbox_archive. </div>
+</li>
+<li class="level2"><div class="li"> Maybe older versions of apache/php are secure enough? Dokuwiki bombs on XAMPP PHP 7.1. Trying to get dokuwiki files to share to VM. It will be more clear later. Back to Windows, just want to do other stuff.</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> EC2 is another option for $8/month</div>
+<ul>
+<li class="level2"><div class="li"> Apache log locations at … <code>/etc/httpd/logs2</code> </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Hardware&quot;,&quot;hid&quot;:&quot;hardware&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:6,&quot;range&quot;:&quot;3340-4288&quot;} -->
+<h3 class="sectionedit7" id="power">Power</h3>
+<div class="level3">
+
+<p>
+Macbook is 15 W idle ($1.50 per month). Chromebook (Intel celeron) is 2.5 watts idle ($.25 per month). 
+</p>
+
+<p>
+Maybe I want to migrate to the chromebook??? Interesting.
+</p>
+
+</div>
+
+<h4 id="chromebook_lid">Chromebook Lid</h4>
+<div class="level4">
+
+<p>
+Unfortunately is not done through power options in menu. 
+</p>
+<pre class="code">sudo vim /etc/systemd/logind.conf
+
+find line &quot;#HandleLidSwitch=suspend&quot;
+Replace line with &quot;HandleLidSwitch=ignore&quot; (no hash in front)
+
+finaly, restart service:
+sudo systemctl restart systemd-logind.service</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Power&quot;,&quot;hid&quot;:&quot;power&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;4289-4771&quot;} -->
+<h2 class="sectionedit8" id="setup_linux">Setup Linux</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Send daily updates of backups to email? Screenshot of Dropbox “recents” page by controlling Chrome through Python: <a href="https://sites.google.com/a/chromium.org/chromedriver/getting-started" class="urlextern" title="https://sites.google.com/a/chromium.org/chromedriver/getting-started" rel="ugc nofollow">https://sites.google.com/a/chromium.org/chromedriver/getting-started</a></div>
+</li>
+<li class="level1 node"><div class="li"> <code>sudo apt-get install apache2 php libapache2-mod-php php-common php-xml php-mbstring</code></div>
+<ul>
+<li class="level2"><div class="li"> Uhhh, do I really need <code>libapache2-mod-php7.2</code>? Bummer…</div>
+</li>
+<li class="level2"><div class="li"> php-common or php7.0-xml needed for utf8_encode in one page (virtual reality). Apparently mainlined in php 7.2?</div>
+</li>
+<li class="level2"><div class="li"> gnome-session-flashback for low graphics gnome</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <strong>Currently is returning “500” on 1st load</strong>. <a href="http://serverfault.com/questions/219922/fastcgi-and-apache-500-error-intermittently" class="urlextern" title="http://serverfault.com/questions/219922/fastcgi-and-apache-500-error-intermittently" rel="ugc nofollow">fix here?</a></div>
+</li>
+<li class="level2"><div class="li"> Add PHP operation caching for fast loading (php5-xcache / php5-apc above) or OpCache is built in with PHP 5.5 (but not currently in Ubuntu repo)</div>
+</li>
+<li class="level2"><div class="li"> <code>sudo service apache2 restart</code></div>
+</li>
+<li class="level2"><div class="li"> Use <a href="https://freedns.afraid.org/dynamic/index.php?action=script&amp;data_id=14554383&amp;method=curl" class="urlextern" title="https://freedns.afraid.org/dynamic/index.php?action=script&amp;data_id=14554383&amp;method=curl" rel="ugc nofollow">Curl script</a> for FreeDNS updating and run it once every 5 minutes or on reboot too. <code>@reboot</code> in crontab</div>
+</li>
+<li class="level2"><div class="li"> <strong>Not</strong> inadyn, as it takes too long and is confusing.</div>
+</li>
+</ul>
+<pre class="code"># Done :-)
+curl -k https://freedns.afraid.org/dynamic/update.php?&lt;YOUR HASH HERE&gt;</pre>
+<ul>
+<li class="level1"><div class="li"> Install Jenkins and Git server: <code>sudo apt-get install git-core; wget -q -O - <a href="http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key" class="urlextern" title="http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key" rel="ugc nofollow">http://pkg.jenkins-ci.org/debian/jenkins-ci.org.key</a> | sudo apt-key add -;</code>. Add to /etc/apt/sources.list: <code>deb <a href="http://pkg.jenkins-ci.org/debian" class="urlextern" title="http://pkg.jenkins-ci.org/debian" rel="ugc nofollow">http://pkg.jenkins-ci.org/debian</a> binary/</code>. Then <code>sudo apt-get update; sudo apt-get install jenkins</code></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Not using gitolite as I don&#039;t have a bunch of users and repos right now, but might be useful in future.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Setup Linux&quot;,&quot;hid&quot;:&quot;setup_linux&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:8,&quot;range&quot;:&quot;4772-6424&quot;} -->
+<h1 class="sectionedit9" id="creating_a_web_server">Creating a Web Server</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Apache files are located at <code>/etc/apache2/sites-enabled</code></div>
+</li>
+</ul>
+<pre class="code c"><span class="sy0">&lt;</span>VirtualHost <span class="sy0">*:</span><span class="nu0">80</span><span class="sy0">&gt;</span>
+	<span class="co2"># The ServerName directive sets the request scheme, hostname and port that</span>
+	<span class="co2"># the server uses to identify itself. This is used when creating</span>
+	<span class="co2"># redirection URLs. In the context of virtual hosts, the ServerName</span>
+	<span class="co2"># specifies what hostname must appear in the request's Host: header to</span>
+	<span class="co2"># match this virtual host. For the default virtual host (this file) this</span>
+	<span class="co2"># value is not decisive as it is used as a last resort host regardless.</span>
+	<span class="co2"># However, you must set it for any further virtual host explicitly.</span>
+	<span class="co2">#ServerName www.example.com</span>
+&nbsp;
+	ServerAdmin webmaster@localhost
+	DocumentRoot <span class="sy0">/</span>var<span class="sy0">/</span>www<span class="sy0">/</span>html
+&nbsp;
+	DirectoryIndex index.<span class="me1">php</span> index.<span class="me1">html</span>
+&nbsp;
+        <span class="sy0">&lt;</span>Directory <span class="sy0">/</span>var<span class="sy0">/</span>www<span class="sy0">/</span>html<span class="sy0">&gt;</span>
+                Options Indexes FollowSymLinks MultiViews
+                AllowOverride none
+                Order allow<span class="sy0">,</span>deny
+                allow from all
+        <span class="sy0">&lt;/</span>Directory<span class="sy0">&gt;</span>
+&nbsp;
+&nbsp;
+	<span class="sy0">&lt;</span>LocationMatch <span class="st0">&quot;/(data|conf|bin|inc)/&quot;</span><span class="sy0">&gt;</span>
+	    Order allow<span class="sy0">,</span>deny
+	    Deny from all
+	    Satisfy All
+	<span class="sy0">&lt;/</span>LocationMatch<span class="sy0">&gt;</span>
+&nbsp;
+&nbsp;
+	<span class="co2"># Available loglevels: trace8, ..., trace1, debug, info, notice, warn,</span>
+	<span class="co2"># error, crit, alert, emerg.</span>
+	<span class="co2"># It is also possible to configure the loglevel for particular</span>
+	<span class="co2"># modules, e.g.</span>
+	<span class="co2">#LogLevel info ssl:warn</span>
+&nbsp;
+	ErrorLog $<span class="br0">&#123;</span>APACHE_LOG_DIR<span class="br0">&#125;</span><span class="sy0">/</span>error.<a href="http://www.opengroup.org/onlinepubs/009695399/functions/log.html"><span class="kw3">log</span></a>
+	CustomLog $<span class="br0">&#123;</span>APACHE_LOG_DIR<span class="br0">&#125;</span><span class="sy0">/</span>access.<a href="http://www.opengroup.org/onlinepubs/009695399/functions/log.html"><span class="kw3">log</span></a> combined
+&nbsp;
+	<span class="co2"># For most configuration files from conf-available/, which are</span>
+	<span class="co2"># enabled or disabled at a global level, it is possible to</span>
+	<span class="co2"># include a line for only one particular virtual host. For example the</span>
+	<span class="co2"># following line enables the CGI configuration for this host only</span>
+	<span class="co2"># after it has been globally disabled with &quot;a2disconf&quot;.</span>
+	<span class="co2">#Include conf-available/serve-cgi-bin.conf</span>
+<span class="sy0">&lt;/</span>VirtualHost<span class="sy0">&gt;</span>
+&nbsp;
+<span class="co2"># vim: syntax=apache ts=4 sw=4 sts=4 sr noet</span></pre>
+<ul>
+<li class="level1 node"><div class="li"> php.ini is located at <code>/etc/php5/apache2/php.ini</code></div>
+<ul>
+<li class="level2"><div class="li"> To adjust upload size, change <code>upload_max_filesize = 2M</code> and <code>post_max_size = 8M</code> to whatever you want, then restart apache using <code>sudo /etc/init.d/apache2 restart</code></div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Permissions:</div>
+</li>
+</ul>
+<pre class="code c"><span class="co2"># Not very secure, but given a sandbox computer it's probably okay.</span>
+<span class="co2"># sudo vi /env/apache2/envvars</span>
+<span class="co2"># Edit APACHE_RUN_USER/GROUP from www-data to your username</span>
+<span class="co2"># Then restart apache</span>
+<span class="co2"># Done!</span>
+&nbsp;
+&nbsp;
+<span class="co2">#Make user www-data in charge of /var/www</span>
+sudo chown <span class="sy0">-</span>R www<span class="sy0">-</span>data<span class="sy0">:</span>www<span class="sy0">-</span>data <span class="sy0">/</span>var<span class="sy0">/</span>www
+<span class="co2"># Allow user and group read/write/execute permissions on /var/www</span>
+sudo chmod <span class="sy0">-</span>R <span class="nu0">770</span> <span class="sy0">/</span>var<span class="sy0">/</span>www
+<span class="co2"># Add to group www-data user nhergert</span>
+<span class="co2">#sudo usermod -a -G www-data nhergert</span>
+<span class="co2"># Tsk tsk, but maybe needed for Dropbox?</span>
+sudo usermod <span class="sy0">-</span>a <span class="sy0">-</span>G nhergert www<span class="sy0">-</span>data
+<span class="co2"># List groups of nhergert</span>
+id nhergert
+<span class="co2"># List users of www-data</span>
+getent group www<span class="sy0">-</span>data
+<span class="co2"># Remove user from www-data</span>
+<span class="co2">#gpasswd -d &lt;user&gt; www-data</span>
+&nbsp;
+<span class="co2"># For some reason apache doesn't want to follow symlinks even with setting?</span>
+<span class="co2"># So need to move files from Dropbox to /var/www/html and then make a symlink in Dropbox directory</span>
+<span class="co2">#mv ~/Dropbox/dokuwiki2/* /var/www/html</span>
+<span class="co2">#rmdir ~/Dropbox/dokuwiki2</span>
+<span class="co2">#ln -s /var/www/html ~/Dropbox/dokuwiki2</span>
+&nbsp;
+<span class="co2"># Then restart computer (but maybe just log off) to apply changes</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Creating a Web Server&quot;,&quot;hid&quot;:&quot;creating_a_web_server&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:9,&quot;range&quot;:&quot;6425-9527&quot;} -->
+<h2 class="sectionedit10" id="ssh">SSH</h2>
+<div class="level2">
+<pre class="code">//Client
+ssh-keygen -t rsa
+ssh-copy-id user@my.host</pre>
+<pre class="code">//Host
+sudo apt-get install fail2ban</pre>
+<ul>
+<li class="level1"><div class="li"> More at <a href="https://thepcspy.com/read/making-ssh-secure/" class="urlextern" title="https://thepcspy.com/read/making-ssh-secure/" rel="ugc nofollow">https://thepcspy.com/read/making-ssh-secure/</a> including restricting IP addresses</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;SSH&quot;,&quot;hid&quot;:&quot;ssh&quot;,&quot;codeblockOffset&quot;:6,&quot;secid&quot;:10,&quot;range&quot;:&quot;9528-9755&quot;} -->
+<h2 class="sectionedit11" id="nginx">Nginx</h2>
+<div class="level2">
+
+<p>
+<em>Not using right now</em>
+</p>
+<ul>
+<li class="level1"><div class="li"> Follow this tutorial to install <a href="https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04" class="urlextern" title="https://www.digitalocean.com/community/articles/how-to-install-linux-nginx-mysql-php-lemp-stack-on-ubuntu-12-04" rel="ugc nofollow">LEMP installation in Ubuntu</a></div>
+</li>
+<li class="level1 node"><div class="li"> Some important directories: </div>
+<ul>
+<li class="level2"><div class="li"> <code>/var/log/nginx/error.log</code> (for some reason nginx is silent on cmd line and you have to check here for errors</div>
+</li>
+<li class="level2"><div class="li"> <code>/etc/nginx/nginx.conf</code></div>
+</li>
+<li class="level2"><div class="li"> <code>/etc/nginx/sites-available</code>, virtual sites you set up. <code>sites-enabled</code> is linked to this folder</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Nginx&quot;,&quot;hid&quot;:&quot;nginx&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:11,&quot;range&quot;:&quot;9756-10268&quot;} -->
+<h2 class="sectionedit12" id="nginx1">nginx</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;nginx&quot;,&quot;hid&quot;:&quot;nginx1&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:12,&quot;range&quot;:&quot;10269-10286&quot;} -->
+<h3 class="sectionedit13" id="section1018">10/18</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Running on router… :) </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://wiki.nginx.org/PHPFcgiExample" class="urlextern" title="http://wiki.nginx.org/PHPFcgiExample" rel="ugc nofollow">http://wiki.nginx.org/PHPFcgiExample</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;10\/18&quot;,&quot;hid&quot;:&quot;section1018&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:13,&quot;range&quot;:&quot;10287-10372&quot;} -->
+<h3 class="sectionedit14" id="section929">9/29</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Current Setup: (<a href="http://stackoverflow.com/questions/4539670/php-fpm-for-windows" class="urlextern" title="http://stackoverflow.com/questions/4539670/php-fpm-for-windows" rel="ugc nofollow">1</a>,<a href="http://nginxlibrary.com/resolving-no-input-file-specified-error/" class="urlextern" title="http://nginxlibrary.com/resolving-no-input-file-specified-error/" rel="ugc nofollow">2</a>,<a href="http://nginxlibrary.com/403-forbidden-error" class="urlextern" title="http://nginxlibrary.com/403-forbidden-error" rel="ugc nofollow">3</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://blog.meltingice.net/server-management/setting-up-a-full-web-server-with-nginx-from-start-to-finish/" class="urlextern" title="http://blog.meltingice.net/server-management/setting-up-a-full-web-server-with-nginx-from-start-to-finish/" rel="ugc nofollow">Good Explanation Setup</a>. Might want to investigate using php-fpm instead of php-cgi</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;9\/29&quot;,&quot;hid&quot;:&quot;section929&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:14,&quot;range&quot;:&quot;10373-10795&quot;} -->
+<h3 class="sectionedit15" id="older">Older</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <code>Might still need to fix permissions using these</code></div>
+</li>
+<li class="level1"><div class="li"> Configuration with PHP: <a href="https://nealpoole.com/blog/2011/04/setting-up-php-fastcgi-and-nginx-dont-trust-the-tutorials-check-your-configuration/" class="urlextern" title="https://nealpoole.com/blog/2011/04/setting-up-php-fastcgi-and-nginx-dont-trust-the-tutorials-check-your-configuration/" rel="ugc nofollow">https://nealpoole.com/blog/2011/04/setting-up-php-fastcgi-and-nginx-dont-trust-the-tutorials-check-your-configuration/</a></div>
+</li>
+<li class="level1"><div class="li"> No start-stop-daemon <a href="http://tomasz.sterna.tv/2009/04/php-fastcgi-with-nginx-on-ubuntu/" class="urlextern" title="http://tomasz.sterna.tv/2009/04/php-fastcgi-with-nginx-on-ubuntu/" rel="ugc nofollow">http://tomasz.sterna.tv/2009/04/php-fastcgi-with-nginx-on-ubuntu/</a></div>
+</li>
+<li class="level1"><div class="li"> “Engine X”. <a href="http://wiki.nginx.org/Install" class="urlextern" title="http://wiki.nginx.org/Install" rel="ugc nofollow">Install</a> and <a href="http://wiki.nginx.org/Pitfalls" class="urlextern" title="http://wiki.nginx.org/Pitfalls" rel="ugc nofollow">Pitfalls</a>. Uses predictable things instead of threads. Looking forward to using it for hosting instead of Apache, maybe it&#039;ll speed Dokuwiki up some…</div>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://arstechnica.com/business/2011/11/a-faster-web-server-ripping-out-apache-for-nginx/" class="urlextern" title="http://arstechnica.com/business/2011/11/a-faster-web-server-ripping-out-apache-for-nginx/" rel="ugc nofollow">Installing nginx</a> and getting <a href="http://www.dokuwiki.org/install:nginx" class="urlextern" title="http://www.dokuwiki.org/install:nginx" rel="ugc nofollow">nginx working with Dokuwiki</a>, <a href="http://www.dokuwiki.org/rewrite#nginx" class="urlextern" title="http://www.dokuwiki.org/rewrite#nginx" rel="ugc nofollow">something about rewrites too</a> </div>
+<ul>
+<li class="level2"><div class="li"> Also update dokuwiki, the new theme looks really good!</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Older&quot;,&quot;hid&quot;:&quot;older&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:15,&quot;range&quot;:&quot;10796-11685&quot;} -->
+<h2 class="sectionedit16" id="dokuwiki_permissions">Dokuwiki Permissions</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Need to allow .htaccess files and turn off directory listing in httpd.conf</div>
+</li>
+</ul>
+<pre class="code">//In httpd.conf
+Options (Indexes FollowSymLinks MultiViews) -&gt; (FollowSymLinks MultiViews)
+AllowOverride None -&gt; All</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Dokuwiki Permissions&quot;,&quot;hid&quot;:&quot;dokuwiki_permissions&quot;,&quot;codeblockOffset&quot;:8,&quot;secid&quot;:16,&quot;range&quot;:&quot;11686-11931&quot;} -->
+<h2 class="sectionedit17" id="use_rsync_effectively">Use Rsync Effectively</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://articles.slicehost.com/2007/10/10/rsync-exclude-files-and-folders" class="urlextern" title="http://articles.slicehost.com/2007/10/10/rsync-exclude-files-and-folders" rel="ugc nofollow">Excluding certain directories</a> (using a text file!)</div>
+</li>
+</ul>
+<pre class="code c">rsync <span class="sy0">--</span>verbose <span class="sy0">--</span>progress <span class="sy0">--</span>stats <span class="sy0">--</span>compress <span class="sy0">--</span>recursive <span class="sy0">--</span>times  <span class="sy0">--</span>links <span class="sy0">--</span>delete <span class="sy0">-</span>az <span class="sy0">-</span>e <span class="st0">&quot;ssh -i ~/.ssh/id_rsa&quot;</span> <span class="sy0">/</span>Users<span class="sy0">/</span>Nolan<span class="sy0">/</span>DropboxArchive nolanher@nolanhergert.<span class="me1">com</span><span class="sy0">:</span>~<span class="sy0">/</span>public_html<span class="sy0">/</span>dropbox<span class="sy0">/</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Use Rsync Effectively&quot;,&quot;hid&quot;:&quot;use_rsync_effectively&quot;,&quot;codeblockOffset&quot;:9,&quot;secid&quot;:17,&quot;range&quot;:&quot;11932-&quot;} --></div></body>
+</html>

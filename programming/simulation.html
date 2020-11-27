@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:simulation</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#simulating_stuff">Simulating Stuff</a></div>
+<ul class="toc">
+<li class="clear">
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#equations">Equations</a></div></li>
+<li class="level3"><div class="li"><a href="#d_engines">2D Engines</a></div></li>
+<li class="level3"><div class="li"><a href="#interactiontweaking_knobs_intelligently">Interaction / Tweaking Knobs Intelligently</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="simulating_stuff">Simulating Stuff</h1>
+<div class="level1">
+
+<p>
+Main Required Features:
+</p>
+<ul>
+<li class="level1"><div class="li"> Constraints</div>
+</li>
+<li class="level1"><div class="li"> Fast (probably requires good guessing using <a href="https://en.wikipedia.org/wiki/Verlet_integration" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Verlet_integration">Verlet_integration</a>) </div>
+</li>
+<li class="level1"><div class="li"> Collision detection and stuff</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Simulating Stuff&quot;,&quot;hid&quot;:&quot;simulating_stuff&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-183&quot;} -->
+<h3 class="sectionedit2" id="equations">Equations</h3>
+<div class="level3">
+
+<p>
+Modelica is a great option, because it does all of the integrating and equation solving for you. Evidenced in this pendulum harmonic motion <a href="http://blog.xogeny.com/blog/harmonic-motion/" class="urlextern" title="http://blog.xogeny.com/blog/harmonic-motion/" rel="ugc nofollow">blog post</a>. <a href="http://book.xogeny.com/" class="urlextern" title="http://book.xogeny.com/" rel="ugc nofollow">Great free book</a>, with interactive javascript examples.
+</p>
+<ul>
+<li class="level1"><div class="li"> You can easily change the details of the problem, and Modelica will compile <strong>the equations</strong> quickly and reduce them to the minimum necessary. </div>
+</li>
+</ul>
+
+<p>
+Not sure what state space is all about. However, <a href="http://ctms.engin.umich.edu/CTMS/index.php?example=Introduction&amp;section=ControlStateSpace" class="urlextern" title="http://ctms.engin.umich.edu/CTMS/index.php?example=Introduction&amp;section=ControlStateSpace" rel="ugc nofollow">CMU docs</a> and <a href="http://book.xogeny.com/behavior/arrays/state_space/" class="urlextern" title="http://book.xogeny.com/behavior/arrays/state_space/" rel="ugc nofollow">Xogeny book</a> to the rescue. 
+</p>
+
+<p>
+<a href="https://www.youtube.com/watch?v=xtKLaG0tCgY" class="urlextern" title="https://www.youtube.com/watch?v=xtKLaG0tCgY" rel="ugc nofollow">Solve heat flows using PDE in Modelica (Youtube lecture)</a>. <a href="http://stackoverflow.com/questions/13603769/using-coupled-system-of-pdes-in-modelica" class="urlextern" title="http://stackoverflow.com/questions/13603769/using-coupled-system-of-pdes-in-modelica" rel="ugc nofollow">Another stackoverflow thing, suggesting burgers equation</a>. Modelica can only do ODE, but can do discrete space by setting up multiple ODE&#039;s. 
+</p>
+
+</div>
+
+<h4 id="openmodelica">OpenModelica</h4>
+<div class="level4">
+
+<p>
+Run omedit (for your respective platform) to get the full <abbr title="Graphical User Interface">GUI</abbr> running
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Equations&quot;,&quot;hid&quot;:&quot;equations&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;184-1305&quot;} -->
+<h3 class="sectionedit3" id="d_engines">2D Engines</h3>
+<div class="level3">
+
+<p>
+(Gravity, collision, etc, simple stuff)
+</p>
+
+</div>
+
+<h4 id="candidates">Candidates</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.google.com/search?q=Verlet.js" class="interwiki iw_g" title="http://www.google.com/search?q=Verlet.js">Verlet.js</a> is simple option, and fast. </div>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://www.google.com/search?q=Box2D" class="interwiki iw_g" title="http://www.google.com/search?q=Box2D">Box2D</a> and derivatives seem very fast too, as well as <a href="https://github.com/google/liquidfun/releases" class="urlextern" title="https://github.com/google/liquidfun/releases" rel="ugc nofollow">Google&#039;s LiquidFun</a> which adds fast particle stuff.</div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://www.google.com/search?q=Emscripten" class="interwiki iw_g" title="http://www.google.com/search?q=Emscripten">Emscripten</a> compiles C++ to Javascript automatically! w00t. Main port is <a href="http://www.google.com/search?q=Kripken%20box2d%20javascript" class="interwiki iw_g" title="http://www.google.com/search?q=Kripken%20box2d%20javascript">Kripken box2d javascript</a>, and gotchas to get working are <a href="http://www.tamats.com/blog/?p=508" class="urlextern" title="http://www.tamats.com/blog/?p=508" rel="ugc nofollow">here</a>. </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h4 id="bad">Bad</h4>
+<div class="level4">
+
+<p>
+Many that are based on Three.js (forced to be 3d) are super slow for me on a normal laptop/desktop for some reason.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;2D Engines&quot;,&quot;hid&quot;:&quot;d_engines&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1306-1920&quot;} -->
+<h3 class="sectionedit4" id="interactiontweaking_knobs_intelligently">Interaction / Tweaking Knobs Intelligently</h3>
+<div class="level3">
+
+<p>
+Live Coding implemented somewhat at Khan Academy <a href="https://www.khanacademy.org/cs/new" class="urlextern" title="https://www.khanacademy.org/cs/new" rel="ugc nofollow">here</a> and updated <a href="http://cs-blog.khanacademy.org/2014/08/auto-suggest-and-live-documentation-on.html" class="urlextern" title="http://cs-blog.khanacademy.org/2014/08/auto-suggest-and-live-documentation-on.html" rel="ugc nofollow">here</a>.
+</p>
+
+<p>
+HTML5 now has built-in support for <a href="http://jsfiddle.net/2GhQX/" class="urlextern" title="http://jsfiddle.net/2GhQX/" rel="ugc nofollow">range sliders w/ live preview</a>…and probably knobs too.
+</p>
+<ul>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Interaction \/ Tweaking Knobs Intelligently&quot;,&quot;hid&quot;:&quot;interactiontweaking_knobs_intelligently&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1921-&quot;} --></div></body>
+</html>

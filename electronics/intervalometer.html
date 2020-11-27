@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>electronics:intervalometer</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#intervalometer">Intervalometer</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#tiny_german_guy">TINY German Guy</a></div></li>
+<li class="level2"><div class="li"><a href="#hdr_jack">HDR Jack</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="intervalometer">Intervalometer</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Basically a device for manually taking X-second pictures consistently on a camera.</div>
+</li>
+<li class="level1"><div class="li"> Randy would like a way to connect one base unit to multiple cameras to take Gigapan resolution shots at the same exact time.</div>
+</li>
+<li class="level1"><div class="li"> Josh suggested using an optoisolator, which is a very good idea</div>
+</li>
+<li class="level1"><div class="li"> Based on 2 tutorials</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Intervalometer&quot;,&quot;hid&quot;:&quot;intervalometer&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-340&quot;} -->
+<h2 class="sectionedit2" id="tiny_german_guy">TINY German Guy</h2>
+<div class="level2">
+
+<p>
+<a href="http://cms.diodenring.de/en/electronic/mikrocontroller/82-intervalltimerv2" class="urlextern" title="http://cms.diodenring.de/en/electronic/mikrocontroller/82-intervalltimerv2" rel="ugc nofollow">here</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Uses tiny PIC and doesn&#039;t need external power. Uses a watchdog timer.</div>
+</li>
+<li class="level1"><div class="li"> However, doesn&#039;t have connections for additional cameras.</div>
+</li>
+<li class="level1"><div class="li"> “Listens” for button press on camera, WHICH IS SO SLICK, and has 2 diodes to allow voltage from either focus or shutter to power VDD, but not allow them to cross-talk.</div>
+</li>
+<li class="level1"><div class="li"> Adds 22uF capacitor for temporary power, but sometimes causes shutter to depress when pressing in initially</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;TINY German Guy&quot;,&quot;hid&quot;:&quot;tiny_german_guy&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;341-873&quot;} -->
+<h2 class="sectionedit3" id="hdr_jack">HDR Jack</h2>
+<div class="level2">
+
+<p>
+<a href="http://www.doc-diy.net/photo/hdr-jack/" class="urlextern" title="http://www.doc-diy.net/photo/hdr-jack/" rel="ugc nofollow">HDR Jack</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Another take, uses a button (doesn&#039;t listen), and doesn&#039;t really have a big capacitor?</div>
+</li>
+<li class="level1"><div class="li"> Input voltage goes to a pin (not VDD), which he says saves power</div>
+</li>
+<li class="level1"><div class="li"> Has HDR mode for taking different shutter exposure timings automagically. </div>
+</li>
+</ul>
+
+<p>
+Both use watchdog timers, and I&#039;m thinking that&#039;s what I want to do too.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;HDR Jack&quot;,&quot;hid&quot;:&quot;hdr_jack&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;874-&quot;} --></div></body>
+</html>

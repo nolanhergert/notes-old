@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>robotics:lab3linereckon</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#lab_3line_following_and_ded_reckoning">Lab 3: Line Following and Ded Reckoning</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#increasing_accuracy">Increasing Accuracy</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#hardware">Hardware</a></div></li>
+<li class="level3"><div class="li"><a href="#pid_control_loop_software">PID Control Loop (software)</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="lab_3line_following_and_ded_reckoning">Lab 3: Line Following and Ded Reckoning</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lab 3: Line Following and Ded Reckoning&quot;,&quot;hid&quot;:&quot;lab_3line_following_and_ded_reckoning&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-55&quot;} -->
+<h2 class="sectionedit2" id="increasing_accuracy">Increasing Accuracy</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> The wheels are slipping on the floor if we go fast back and forth…</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Check correct wheel radius by going relatively slowly forward for a long time</div>
+</li>
+<li class="level1"><div class="li"> Check correct robot_width by </div>
+</li>
+<li class="level1"><div class="li"> 23,17</div>
+</li>
+</ul>
+
+<p>
+^ Deltas at Width=14.9 ^
+</p>
+<div class="table sectionedit3"><table class="inline">
+	<tr class="row0">
+		<td class="col0 centeralign">  19-17=-2  </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0 centeralign">  21-17=-4  </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 centeralign">  23-17=-6  </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0 rightalign">  20-17=-3 </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> 19-17=-2 </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> 23-17=-6 </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> 21.5-17=-4.5 </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> 23-17 = -6 </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"></td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:3,&quot;range&quot;:&quot;313-452&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Increasing Accuracy&quot;,&quot;hid&quot;:&quot;increasing_accuracy&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;56-452&quot;} -->
+<h3 class="sectionedit4" id="hardware">Hardware</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> Ben (head TA) suggested:</div>
+<ul>
+<li class="level2"><div class="li"> Increase the size of the wheel base of our robot (so that more encoder ticks are needed to turn the robot, resulting in slower speed and more accuracy)</div>
+</li>
+<li class="level2"><div class="li"> Gear down our robot (increasing torque, but also requiring more ticks per robot revolution and slowing down the speed)</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Hardware&quot;,&quot;hid&quot;:&quot;hardware&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;453-784&quot;} -->
+<h3 class="sectionedit5" id="pid_control_loop_software">PID Control Loop (software)</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.inpharmix.com/jps/PID_Controller_For_Lego_Mindstorms_Robots.html" class="urlextern" title="http://www.inpharmix.com/jps/PID_Controller_For_Lego_Mindstorms_Robots.html" rel="ugc nofollow">PID Controller for Lego Mindstorms Robots</a>. Complex, but good explanation.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.robotc.net/forums/viewtopic.php?f=1&amp;t=2477&amp;p=10485" class="urlextern" title="http://www.robotc.net/forums/viewtopic.php?f=1&amp;t=2477&amp;p=10485" rel="ugc nofollow">Example code from forum post</a></div>
+</li>
+<li class="level1"><div class="li"> <em>Modifying PID might be allowed, but don&#039;t count on it.</em></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;PID Control Loop (software)&quot;,&quot;hid&quot;:&quot;pid_control_loop_software&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;785-&quot;} --></div></body>
+</html>

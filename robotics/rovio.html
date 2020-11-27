@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>robotics:rovio</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#wowwee_rovio">Wowwee Rovio</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#fix_battery_circuit">Fix Battery Circuit?!</a></div></li>
+<li class="level2"><div class="li"><a href="#programmingmodding">Programming / Modding</a></div></li>
+<li class="level2"><div class="li"><a href="#face_detection">Face Detection</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="wowwee_rovio">Wowwee Rovio</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Wowwee Rovio&quot;,&quot;hid&quot;:&quot;wowwee_rovio&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-28&quot;} -->
+<h2 class="sectionedit2" id="fix_battery_circuit">Fix Battery Circuit?!</h2>
+<div class="level2">
+
+<p>
+<a href="http://hackaday.com/2011/01/07/fixing-the-rovio-battery-charging-circuit/" class="media" title="http://hackaday.com/2011/01/07/fixing-the-rovio-battery-charging-circuit/" rel="ugc nofollow"><img src="../_media/home/rovio-charging-circuit.jpg" class="media" alt="" width="300" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fix Battery Circuit?!&quot;,&quot;hid&quot;:&quot;fix_battery_circuit&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;29-184&quot;} -->
+<h2 class="sectionedit3" id="programmingmodding">Programming / Modding</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.robocommunity.com/forum/thread/14761/Rovio-API-use-examples/" class="urlextern" title="http://www.robocommunity.com/forum/thread/14761/Rovio-API-use-examples/" rel="ugc nofollow">General forum thread</a> on <abbr title="Application Programming Interface">API</abbr> implementation. Provides example of audio output to Rovio as well.</div>
+</li>
+</ul>
+
+<p>
+Looks like easiest/best way to implement is in Python. Need to do sockets, etc and push to OpenCV easily. 
+</p>
+<ul>
+<li class="level1"><div class="li"> General</div>
+</li>
+<li class="level1"><div class="li"> Python OpenCV tutorial <a href="http://www.beechtreetech.com/opencv-exercises-in-python" class="urlextern" title="http://www.beechtreetech.com/opencv-exercises-in-python" rel="ugc nofollow">1</a>, <a href="http://blog.jozilla.net/2008/06/27/fun-with-python-opencv-and-face-detection/" class="urlextern" title="http://blog.jozilla.net/2008/06/27/fun-with-python-opencv-and-face-detection/" rel="ugc nofollow">2</a>.</div>
+</li>
+<li class="level1"><div class="li"> PyRovio code on <a href="https://github.com/lotu/pyrovio" class="urlextern" title="https://github.com/lotu/pyrovio" rel="ugc nofollow">GitHub</a>, Paper</div>
+</li>
+</ul>
+<pre class="code">3.3	Using the PyRovio Interface
+The PyRovio implementation is available for current use.5	The following is a sample run to illustrate how the PyRovio code is used from within an interactive Python shell.6
+In [1]:
+In [2]:
+In [3]:
+In [4]: Out[4]:
+In [5]: Out[5]:
+In [6]: Out[6]:
+In [7]: Out[7]: {’Cmd’:
+import rovio
+v = rovio.Rovio(’vanessa’, ’192.168.10.18’)
+vc = rovio.RovioController(v)
+v.forward() 0
+v.head_middle() 0
+v.get_status() {’Cmd’: ’nav’, ’raw_state’: 0, ’responses’: 0, ’state’: ’idle’}
+v.get_report()
+’nav’,
+... ’x’: 7133, ’y’: -1747}
+In [8]: v.get_MCU_report() Out[8]: ’0E0100000000000000000003897400’
+In [9]: vc.start()
+In [10]: vc.enqueue_all([[1000, v.forward], [1, v.rotate_left, [1, 3]], [1000, v.backward], [1, v.head_down]])
+In [11]: v.get_image() Out[11]: ’\xff\xd8\xff\xdb\x00C\x00\x13\r\x10\x1d\x10\r\x10\x13\x1a ...’
+
+Lines 6–8 show how to get sensory information from the Rovio.7	To run the event queue, the RovioController thread must be started as in line 9. Line 10 shows how to queue multiple commands for execution (1000 = 1 second). The get image command returns a JPEG-compressed image from the camera.</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Programming \/ Modding&quot;,&quot;hid&quot;:&quot;programmingmodding&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;185-2029&quot;} -->
+<h2 class="sectionedit4" id="face_detection">Face Detection</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Face Detection&quot;,&quot;hid&quot;:&quot;face_detection&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:4,&quot;range&quot;:&quot;2030-&quot;} --></div></body>
+</html>

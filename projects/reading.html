@@ -1,0 +1,650 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>projects:reading</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#how_to_read_effectively">How To Read Effectively</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#video_playback_and_annotation">Video Playback and Annotation</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#markup">Markup</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#random">Random</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#notes_from_deep_learning_talk">10/21/15 Notes from Deep Learning Talk</a></div></li>
+<li class="level3"><div class="li"><a href="#other_notes">Other notes</a></div></li>
+<li class="level3"><div class="li"><a href="#storage_format">Storage Format</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#active_reading_assistant">Active Reading Assistant</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#coloring">Coloring</a></div></li>
+<li class="level3"><div class="li"><a href="#resources">Resources</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#others">Others</a></div></li>
+<li class="level2"><div class="li"><a href="#paste_buffer">Paste Buffer</a></div></li>
+<li class="level2"><div class="li"><a href="#nltk_book">NLTK Book</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#chapter_0">Chapter 0</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#people_resources">People Resources</a></div></li>
+<li class="level2"><div class="li"><a href="#parts_of_arguments">Parts of Arguments</a></div></li>
+<li class="level2"><div class="li"><a href="#implementation">Implementation</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#solr_lucidworks_fusion_notes">Solr LucidWorks Fusion Notes</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#teaching_a_computer">Teaching a Computer</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#style_of_writing">Style of Writing</a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"><a href="#smart_search_engine">Smart Search Engine</a></div>
+<ul class="toc">
+<li class="clear">
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#sentiment_analysis">Sentiment Analysis</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#extract_keywords_from_text">Extract Keywords from Text</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="how_to_read_effectively">How To Read Effectively</h1>
+<div class="level1">
+
+<p>
+Teaching myself and making an algorithm to assist me in reading effectively. I have not done it much up to this point, so it&#039;s okay to fail / be slow! 
+</p>
+<ul>
+<li class="level1 node"><div class="li"> Use the <a href="http://www.nltk.org/book/" class="urlextern" title="http://www.nltk.org/book/" rel="ugc nofollow">NLTK tutorial</a> for now and then follow another book / lecture.</div>
+<ul>
+<li class="level2"><div class="li"> Make skimming and understanding the book faster, define the “forest” quicker. Try to “bullet-ize” a text. Split on a good set of transition words.</div>
+</li>
+<li class="level2"><div class="li"> Check out other courses. <a href="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-863j-natural-language-and-the-computer-representation-of-knowledge-spring-2003/index.htm" class="urlextern" title="http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-863j-natural-language-and-the-computer-representation-of-knowledge-spring-2003/index.htm" rel="ugc nofollow">OCW...</a>. <a href="http://web.mit.edu/6.863/www/fall2012/projects12.pdf" class="urlextern" title="http://web.mit.edu/6.863/www/fall2012/projects12.pdf" rel="ugc nofollow">Project/resource list</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Companies: <a href="https://www.ihs.com/about/contact-us.html" class="urlextern" title="https://www.ihs.com/about/contact-us.html" rel="ugc nofollow">IHS Goldfire</a> and Saffron Technologies (acquired by Intel)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;How To Read Effectively&quot;,&quot;hid&quot;:&quot;how_to_read_effectively&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-852&quot;} -->
+<h2 class="sectionedit2" id="video_playback_and_annotation">Video Playback and Annotation</h2>
+<div class="level2">
+
+<p>
+<a href="https://developer.mozilla.org/en-US/Apps/Build/Audio_and_video_delivery/HTML5_playbackRate_explained" class="urlextern" title="https://developer.mozilla.org/en-US/Apps/Build/Audio_and_video_delivery/HTML5_playbackRate_explained" rel="ugc nofollow">Mozilla HTML5 video documentation</a>, <a href="https://developers.google.com/youtube/player_parameters" class="urlextern" title="https://developers.google.com/youtube/player_parameters" rel="ugc nofollow">YouTube API</a>. Listen on Repeat is nice, but you can&#039;t send a link to a repeat?!?!
+</p>
+
+<p>
+<del>=== Sublime Video ===</del> (no adjustable playback speed)
+</p>
+
+</div>
+
+<h4 id="youtube_base_api">Youtube base API</h4>
+<div class="level4">
+
+<p>
+Looks good so far. However, how to add support for variable speed playback? 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Video Playback and Annotation&quot;,&quot;hid&quot;:&quot;video_playback_and_annotation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;853-1349&quot;} -->
+<h3 class="sectionedit3" id="markup">Markup</h3>
+<div class="level3">
+
+<p>
+I really like Mortimer Adler&#039;s suggestions in <a href="http://www.google.com/search?q=How%20To%20Mark%20A%20Book" class="interwiki iw_g" title="http://www.google.com/search?q=How%20To%20Mark%20A%20Book">How To Mark A Book</a>. Underline major statements. Vertical lines at margins for details. 
+</p>
+
+<p>
+And some lines and arrows to connect the main ideas together in one big mind map.
+</p>
+
+</div>
+
+<h5 id="from_notebook">From Notebook</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Reorganize text into outline form based around an idea or subject and <strong>remove all extra words like pronouns (it, she/he, they)</strong></div>
+</li>
+<li class="level1"><div class="li"> Encourage user to summarize section as they read, and dim/hide original text to speed up visual searching</div>
+</li>
+<li class="level1"><div class="li"> Selecting text should provide the option to search before it and show quick preview (“Figure 5.1a” should provide option for visual preview of earliest “Figure 5.1a” or closest “Fig. 5.1” mention)</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Have I already read/<strong>understood</strong> this information before? <em>Allow for retraining if it gets it wrong</em></div>
+</li>
+<li class="level1"><div class="li"> Are there any similar / more authoritative works on this topic? </div>
+</li>
+<li class="level1"><div class="li"> What knowledge does this work depend on and have I understood it already?</div>
+</li>
+<li class="level1 node"><div class="li"> When is the author providing more statements than are necessary for understanding? (rambling)</div>
+<ul>
+<li class="level2"><div class="li"> What justification is the author providing? (label it an anecdote, reference to study)</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Is it true? Are there any counter-arguments to these statements? (fact-checking)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Markup&quot;,&quot;hid&quot;:&quot;markup&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1350-2590&quot;} -->
+<h2 class="sectionedit4" id="random">Random</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Random&quot;,&quot;hid&quot;:&quot;random&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;2591-2609&quot;} -->
+<h3 class="sectionedit5" id="notes_from_deep_learning_talk">10/21/15 Notes from Deep Learning Talk</h3>
+<div class="level3">
+
+<p>
+<a href="http://www.slideshare.net/DanSullivan10/text-mining-meets-neural-nets" class="urlextern" title="http://www.slideshare.net/DanSullivan10/text-mining-meets-neural-nets" rel="ugc nofollow">Slides</a>
+</p>
+
+<p>
+Word embeddings, word2vec
+</p>
+
+<p>
+Look up CoreNLP (the Stanford group)
+</p>
+
+<p>
+Deep learning works really well for fuzzy definitions that are hard to pin down in normal ways. 
+</p>
+
+<p>
+<strong>Figure out what you want to do first!</strong>
+</p>
+<ul>
+<li class="level1"><div class="li"> You can always ask a PhD student (like <a href="http://radimrehurek.com/gensim/" class="urlextern" title="http://radimrehurek.com/gensim/" rel="ugc nofollow">Gensim guy</a>) what is possible with algorithms</div>
+</li>
+</ul>
+
+<p>
+n-grams allow you to capture the nearby context of the word. E. Coli would be one n-gram instead of separate words. 
+</p>
+
+</div>
+
+<h5 id="business">Business</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> “We have gamers to thank for cheap GPU&#039;s. Millions of gamers = big market to pay engineers well.</div>
+</li>
+<li class="level1"><div class="li"> Default before was $100,000 for drop in FPGA cards for genome matching. Now $500 PCI many-core (GPU or Intel) card = 2000&#039;s supercomputer</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="word2vec">Word2Vec</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Do word2vec with dropouts</div>
+</li>
+<li class="level1"><div class="li"> Skip-gram is good for infrequent words. </div>
+</li>
+<li class="level1"><div class="li"> CBOW</div>
+</li>
+<li class="level1"><div class="li"> Antonyms can show up nearby as well, might not be what you want. </div>
+</li>
+</ul>
+
+<p>
+arxiv.org, he checks it weekly! Is there a way to get to know the *good papers* from there? Federated wiki might allow you to make meta-notes, instead of assuming commenting allowed on that website.
+</p>
+
+<p>
+Uses word embedding space to do deep learning on. <em>But it&#039;s only using 1 word, why not n-gram?</em>
+</p>
+
+<p>
+Read Yav Goldberg natural language processing paper, best overview paper in his opinion.
+</p>
+
+<p>
+doc2vec, sentence2vec
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;10\/21\/15 Notes from Deep Learning Talk&quot;,&quot;hid&quot;:&quot;notes_from_deep_learning_talk&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;2610-4030&quot;} -->
+<h3 class="sectionedit6" id="other_notes">Other notes</h3>
+<div class="level3">
+
+<p>
+Hypothes.is seems like most similar project. Another is PeerLibrary.
+</p>
+<ul>
+<li class="level1"><div class="li"> List of projects in this space: <a href="https://github.com/peerlibrary/peerlibrary/wiki/Related-Projects" class="urlextern" title="https://github.com/peerlibrary/peerlibrary/wiki/Related-Projects" rel="ugc nofollow">https://github.com/peerlibrary/peerlibrary/wiki/Related-Projects</a>. </div>
+</li>
+<li class="level1"><div class="li"> PDF.js is really slow for me. Do image previews instead?? Probably a lot of bandwidth, more than just viewing the PDF in javascript</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+<p>
+<a href="http://www.fxpal.com/xlibris-examples/" class="urlextern" title="http://www.fxpal.com/xlibris-examples/" rel="ugc nofollow">Xlibris</a> is the best one I&#039;ve seen yet. <a href="http://www.fxpal.com/research-projects/xlibris/" class="urlextern" title="http://www.fxpal.com/research-projects/xlibris/" rel="ugc nofollow">Main site</a>, and they did great investigation in how to <a href="http://pdf.aminer.org/000/467/672/designing_e_books_for_legal_research.pdf" class="urlextern" title="http://pdf.aminer.org/000/467/672/designing_e_books_for_legal_research.pdf" rel="ugc nofollow">customize best for legal research</a>. <a href="../_media/projects/pasted/20141028-110859.png" class="media" title="projects:pasted:20141028-110859.png"><img src="../_media/projects/pasted/20141028-110859.png" class="media" alt="" /></a>
+</p>
+
+<p>
+Liquid Software guy based on Engelbart&#039;s work. His <a href="http://www.liquid.info/author/index.html" class="urlextern" title="http://www.liquid.info/author/index.html" rel="ugc nofollow">Author</a> app <a href="https://twitter.com/liquidizer" class="urlextern" title="https://twitter.com/liquidizer" rel="ugc nofollow">more to come on his twitter in November 2014</a> has a lot of similar features, but it should be on the web! (not just <abbr title="Operating System">OS</abbr> X). Also, did an <a href="http://www.invisiblerevolution.net/video.html" class="urlextern" title="http://www.invisiblerevolution.net/video.html" rel="ugc nofollow">excellent Engelbart documentary</a>.
+</p>
+
+<p>
+<a href="http://docs.withdraft.com/" class="urlextern" title="http://docs.withdraft.com/" rel="ugc nofollow">Draft</a> is another similar thing to this project, but not that similar.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Other notes&quot;,&quot;hid&quot;:&quot;other_notes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;4031-5180&quot;} -->
+<h3 class="sectionedit7" id="storage_format">Storage Format</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="epub">EPUB</h4>
+<div class="level4">
+
+<p>
+Support for Table of Contents <em>arguably not necessary as we will auto-generate it from the text</em>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Storage Format&quot;,&quot;hid&quot;:&quot;storage_format&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;5181-5318&quot;} -->
+<h2 class="sectionedit8" id="active_reading_assistant">Active Reading Assistant</h2>
+<div class="level2">
+
+<p>
+Like most of the other research tools out there, except hopefully easier/better.
+</p>
+
+<p>
+Assist with de-constructing a book into its “skeleton”/outline format, assisted with your notes and observations. And…maybe even improved with other people&#039;s advice.
+</p>
+<pre class="code">j/k = up/down   = scroll up and down to next sentence
+h = left        = zoom out to next biggest outline
+l = right       = zoom in to think about idea more. Open area on right more?</pre>
+<ul>
+<li class="level1"><div class="li"> Implementation…I like sidebar manager on <a href="http://getbootstrap.com/components/#page-header" class="urlextern" title="http://getbootstrap.com/components/#page-header" rel="ugc nofollow">Bootstrap</a></div>
+</li>
+<li class="level1"><div class="li"> Yes, very similar to workflowy.</div>
+</li>
+</ul>
+
+<p>
+e = del         = archive sentence (unnecessary detail). make it gray at next to bottom zoom level. Hide it at higher levels.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Active Reading Assistant&quot;,&quot;hid&quot;:&quot;active_reading_assistant&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;5319-6076&quot;} -->
+<h3 class="sectionedit9" id="coloring">Coloring</h3>
+<div class="level3">
+
+<p>
+Already read sentences dim slightly
+</p>
+
+<p>
+Text highlighting
+</p>
+<ul>
+<li class="level1"><div class="li"> Would be nice to automatically highlight/mark sentences as “main idea”, and others as necessary (type of supporting evidence, etc)</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="good">Good</h4>
+<div class="level4">
+<ul>
+<li class="level1 node"><div class="li"> Copy paste text in <abbr title="HyperText Markup Language">HTML</abbr>/rich text format. Automatically determines headings.</div>
+<ul>
+<li class="level2"><div class="li"> DONE! At least in Chrome well. <abbr title="Internet Explorer">IE</abbr> sorta, Firefox not at all? and JQuery.</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> “What do you want to learn about?”, then only show previews of books that are relevant to that query. Jump out to Google Books if necessary as books seem better than the web right now.</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="think_about_more">Think about more</h4>
+<div class="level4">
+
+<p>
+Force summaries to check understanding?
+</p>
+<ul>
+<li class="level1"><div class="li"> You should “get hints” only when you run out of ideas and need help –&gt; Link to out-of-print book on thinking, also Tom Conerly said that too for practicing TopCoder problems.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Coloring&quot;,&quot;hid&quot;:&quot;coloring&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:9,&quot;range&quot;:&quot;6077-6903&quot;} -->
+<h3 class="sectionedit10" id="resources">Resources</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> Calibre</div>
+<ul>
+<li class="level2"><div class="li"> Cleans up input text data (attempts to remove repeated headings and page numbers from OCR)</div>
+</li>
+<li class="level2"><div class="li"> Can it detect images? </div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Google Style folks recommend not using Javascript and instead specify transitions in <abbr title="Cascading Style Sheets">CSS</abbr>. <a href="https://developers.google.com/web/fundamentals/look-and-feel/animations/animating-modal-views" class="urlextern" title="https://developers.google.com/web/fundamentals/look-and-feel/animations/animating-modal-views" rel="ugc nofollow">here</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="sidebar">Sidebar</h4>
+<div class="level4">
+<ul>
+<li class="level1 node"><div class="li"> Fancy OpenGL Formula Grapher guy&#039;s toolkit. </div>
+<ul>
+<li class="level2"><div class="li"> Make it visual and moving and play-around-able!</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="recognizing_hand-drawn_shapes">Recognizing Hand-Drawn Shapes</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.gamedev.net/topic/659886-how-can-i-recognize-hand-drawn-shapes-eg-the-wizard-in-trine/" class="urlextern" title="http://www.gamedev.net/topic/659886-how-can-i-recognize-hand-drawn-shapes-eg-the-wizard-in-trine/" rel="ugc nofollow">http://www.gamedev.net/topic/659886-how-can-i-recognize-hand-drawn-shapes-eg-the-wizard-in-trine/</a></div>
+</li>
+<li class="level1 node"><div class="li"> SMART board and <a href="https://dev.myscript.com/shop/" class="urlextern" title="https://dev.myscript.com/shop/" rel="ugc nofollow">MyScript</a> guys have shape drawing support out of the box. </div>
+<ul>
+<li class="level2"><div class="li"> Multi-touch Interaction: <a href="http://interactjs.io/" class="urlextern" title="http://interactjs.io/" rel="ugc nofollow">http://interactjs.io/</a></div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> CMU CoDe lab guy: <a href="http://six11.org/" class="urlextern" title="http://six11.org/" rel="ugc nofollow">Gabe Johnson</a>. <a href="http://six11.org/papers/sketch-lit-review.pdf" class="urlextern" title="http://six11.org/papers/sketch-lit-review.pdf" rel="ugc nofollow">Overview paper of the field</a> is excellent, as well as probably his thesis. YouTube Link! <a href="https://www.youtube.com/watch?v=6syodydGK1Q" class="urlextern" title="https://www.youtube.com/watch?v=6syodydGK1Q" rel="ugc nofollow">https://www.youtube.com/watch?v=6syodydGK1Q</a></div>
+<ul>
+<li class="level2"><div class="li"> Startup is Zotebook (dimensional analysis and optimization, sketch recognition) and advisor was mark gross.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+GET RID OF SEARCHING FOR MENU OPTIONS. SEARCH FOR THE COMMAND, PRESS THE MOUSE, &#039;?&#039; for KEYBOARD HINTS,etc.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Resources&quot;,&quot;hid&quot;:&quot;resources&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:10,&quot;range&quot;:&quot;6904-8145&quot;} -->
+<h2 class="sectionedit11" id="others">Others</h2>
+<div class="level2">
+
+<p>
+“Document Management Service”, <a href="http://www.netdocuments.com/en-us/Pricing/" class="urlextern" title="http://www.netdocuments.com/en-us/Pricing/" rel="ugc nofollow">NetDocuments</a>.
+</p>
+<ul>
+<li class="level1"><div class="li"> Supports backup and full text search, including ”<em>Search across cabinets or the entire repository with full text enterprise search, including search analysis, metadata, phrase, and proximity searching that supports Boolean operators, lemmatization, and spell checking.</em>“</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Others&quot;,&quot;hid&quot;:&quot;others&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:11,&quot;range&quot;:&quot;8146-8533&quot;} -->
+<h2 class="sectionedit12" id="paste_buffer">Paste Buffer</h2>
+<div class="level2">
+
+<p>
+Paste buffer in Firefox/Chrome should use Web Events paste and access Clipboard. <a href="https://github.com/JoelBesada/pasteboard" class="urlextern" title="https://github.com/JoelBesada/pasteboard" rel="ugc nofollow">Cross-browser example in Pasteboard</a> (but only does images, and doesn&#039;t work in <abbr title="Internet Explorer">IE</abbr>?). 
+</p>
+
+<p>
+<abbr title="Internet Explorer">IE</abbr> and Chrome work well enough with test file in project. Firefox, something isn&#039;t firing right.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Paste Buffer&quot;,&quot;hid&quot;:&quot;paste_buffer&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:12,&quot;range&quot;:&quot;8534-8871&quot;} -->
+<h2 class="sectionedit13" id="nltk_book">NLTK Book</h2>
+<div class="level2">
+
+<p>
+NLTK Book
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;NLTK Book&quot;,&quot;hid&quot;:&quot;nltk_book&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:13,&quot;range&quot;:&quot;8872-8910&quot;} -->
+<h3 class="sectionedit14" id="chapter_0">Chapter 0</h3>
+<div class="level3">
+
+<p>
+They choose to balance theory and practice. 
+</p>
+
+<p>
+<strong>After</strong> completing these materials, <em>then</em> students will be ready to attempt one of the more advanced textbooks, such as Speech and Language Processing by Jurafsky and Martin
+</p>
+<ul>
+<li class="level1"><div class="li"> Interesting. They advocate a high-level overview first too!</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Chapter 0&quot;,&quot;hid&quot;:&quot;chapter_0&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:14,&quot;range&quot;:&quot;8911-9226&quot;} -->
+<h2 class="sectionedit15" id="people_resources">People Resources</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Microsoft Research (MSR) guy: <a href="https://sites.google.com/site/xiaoxin/" class="urlextern" title="https://sites.google.com/site/xiaoxin/" rel="ugc nofollow">https://sites.google.com/site/xiaoxin/</a> (particularly fact checking it seems)</div>
+</li>
+<li class="level1"><div class="li"> Google guy: <a href="http://www.sravi.org/" class="urlextern" title="http://www.sravi.org/" rel="ugc nofollow">http://www.sravi.org/</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;People Resources&quot;,&quot;hid&quot;:&quot;people_resources&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:15,&quot;range&quot;:&quot;9227-9404&quot;} -->
+<h2 class="sectionedit16" id="parts_of_arguments">Parts of Arguments</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Sourced from <a href="http://www.speaking.pitt.edu/student/argument/argumentbasics.html" class="urlextern" title="http://www.speaking.pitt.edu/student/argument/argumentbasics.html" rel="ugc nofollow">UPitt Argument Basics</a>. However, they say that it&#039;s NOT based on logic primarily. Hmmm…I want to see a deductive/inductive argument too.</div>
+</li>
+</ul>
+<div class="table sectionedit17"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 centeralign">  Name  </th><th class="col1 centeralign">  Example  </th><th class="col2 centeralign">  Tip-off  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> Claim </td><td class="col1"> <em>The moon <strong>is</strong> made of cheese</em> </td><td class="col2"> is/was </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> Reason </td><td class="col1"> </td><td class="col2"> Because </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Support </td><td class="col1"> </td><td class="col2"> </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> Warrant </td><td class="col1"> </td><td class="col2"> </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:17,&quot;range&quot;:&quot;9662-9807&quot;} --><ul>
+<li class="level1 node"><div class="li"> Key statement: <code>Therefore, the moon is made of cheese.</code></div>
+<ul>
+<li class="level2"><div class="li"> Trigger words</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Parts of Arguments&quot;,&quot;hid&quot;:&quot;parts_of_arguments&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:16,&quot;range&quot;:&quot;9405-9892&quot;} -->
+<h2 class="sectionedit18" id="implementation">Implementation</h2>
+<div class="level2">
+
+<p>
+Stuff about synonym tables, stemming, etc. <em>Sounds cool, not sure what they mean quite yet</em>
+</p>
+<ul>
+<li class="level1"><div class="li"> One option is Ubuntu Recoll and <a href="http://www.semantic-knowledge.com/reference.htm" class="urlextern" title="http://www.semantic-knowledge.com/reference.htm" rel="ugc nofollow">Tropes</a> for more semantic understanding…Windows only though.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.amazon.com/Lucene-Action-Second-Covers-Apache/dp/1933988177/ref=sr_1_20?s=books&amp;ie=UTF8&amp;qid=1402678757&amp;sr=1-20&amp;keywords=information+retrieval" class="urlextern" title="http://www.amazon.com/Lucene-Action-Second-Covers-Apache/dp/1933988177/ref=sr_1_20?s=books&amp;ie=UTF8&amp;qid=1402678757&amp;sr=1-20&amp;keywords=information+retrieval" rel="ugc nofollow">Apache Lucene/Solr</a> might be really helpful for a commercial implementation.</div>
+</li>
+<li class="level1"><div class="li"> It&#039;d be really nice to search within a specific category of information (only within disciplines, or with all background information / lots of links, etc) </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Implementation&quot;,&quot;hid&quot;:&quot;implementation&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:18,&quot;range&quot;:&quot;9893-10568&quot;} -->
+<h3 class="sectionedit19" id="solr_lucidworks_fusion_notes">Solr LucidWorks Fusion Notes</h3>
+<div class="level3">
+
+<p>
+Incoporate OpenNLP for named entity recognition (people, places, companies). Probably also “he, it, she”, etc.
+</p>
+
+<p>
+Lucene has “More like this” functionality
+</p>
+
+<p>
+Also, “SpanQuery”, only return the part of document that is relevant
+</p>
+
+<p>
+BoostingTermQuery changes weights of terms in query
+</p>
+
+<p>
+Caching common searches and showing the “right document” as best result is a nice hack.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Solr LucidWorks Fusion Notes&quot;,&quot;hid&quot;:&quot;solr_lucidworks_fusion_notes&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:19,&quot;range&quot;:&quot;10569-10973&quot;} -->
+<h2 class="sectionedit20" id="teaching_a_computer">Teaching a Computer</h2>
+<div class="level2">
+
+<p>
+recognizes logic, reasoning, fallacies of logic, presents a contrasting view. “Semantic <em class="u"></em><em class="u"></em>” ?
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Teaching a Computer&quot;,&quot;hid&quot;:&quot;teaching_a_computer&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:20,&quot;range&quot;:&quot;10974-11105&quot;} -->
+<h3 class="sectionedit21" id="style_of_writing">Style of Writing</h3>
+<div class="level3">
+
+<p>
+It&#039;d be nice to figure out what makes a good explanation and make sure that you read books with good explanations first.
+</p>
+<ul>
+<li class="level1"><div class="li"> Maybe check out Einstein and <em class="u"></em><em class="u"></em>&#039;s intro to physics book? I also like Lyons&#039; DSP book, but maybe it&#039;s too simple.</div>
+</li>
+</ul>
+<ol>
+<li class="level1 node"><div class="li"> Information Retrieval, particularly with fact checking and material understanding. <a href="http://nlp.stanford.edu/IR-book/" class="urlextern" title="http://nlp.stanford.edu/IR-book/" rel="ugc nofollow">Free Recommended IR Book</a></div>
+<ol>
+<li class="level2 node"><div class="li"> Automatedly find out facts and explanations of things, particularly from textbooks. </div>
+<ol>
+<li class="level3"><div class="li"> WebMD isn&#039;t so great because they just give you the dumbed-down instructions to follow. <strong>Why</strong> should I wash for 20 seconds? Where are the most important places for me to wash? Someone that knows what they&#039;re talking about is <a href="http://setiathome.berkeley.edu/forum_thread.php?id=65810" class="urlextern" title="http://setiathome.berkeley.edu/forum_thread.php?id=65810" rel="ugc nofollow">here</a>, but doesn&#039;t explain the counter-intuitive scientific background.</div>
+</li>
+<li class="level3"><div class="li"> Maybe there is a heuristic like how many times they say “because”, “as”, “therefore”, or something. Conclusion statements.</div>
+</li>
+<li class="level3"><div class="li"> “From first principles”, “lucid”, Calculus, An Intuitive and Physical Approach</div>
+</li>
+</ol>
+</li>
+<li class="level2 node"><div class="li"> <a href="http://www.quora.com/Machine-Learning/How-can-machine-learning-help-solve-problems-in-journalism" class="urlextern" title="http://www.quora.com/Machine-Learning/How-can-machine-learning-help-solve-problems-in-journalism" rel="ugc nofollow">Quora: How Can ML help solve problems in Journalism?</a>, great summary of recent advances and the vision of the field. Really makes me want to do a PhD on it or work for Google <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />. </div>
+<ol>
+<li class="level3"><div class="li"> Another view: “nothing will really change unless we value citing reputable sources over sensational journalism” &lt;and teach people how to read critically&gt;. </div>
+</li>
+</ol>
+</li>
+<li class="level2"><div class="li"> If you want to work on it more, here&#039;s a few classes. <a href="http://lmgtfy.com/?q=information+retrieval+lectures" class="urlextern" title="http://lmgtfy.com/?q=information+retrieval+lectures" rel="ugc nofollow">Google it!</a> <a href="http://sifaka.cs.uiuc.edu/course/410s13/reading.html" class="urlextern" title="http://sifaka.cs.uiuc.edu/course/410s13/reading.html" rel="ugc nofollow">Theoretical</a> and more practical/hands-on <a href="http://www.stanford.edu/class/cs276/" class="urlextern" title="http://www.stanford.edu/class/cs276/" rel="ugc nofollow">Stanford CS276</a> and a Wikipedia article: <a href="http://en.wikipedia.org/wiki/Automatic_summarization" class="urlextern" title="http://en.wikipedia.org/wiki/Automatic_summarization" rel="ugc nofollow">http://en.wikipedia.org/wiki/Automatic_summarization</a></div>
+</li>
+<li class="level2"><div class="li"> I want to be able to do syntopical reading and have the computer help me do that. “What does the Bible think about dating” and have it come up with the superclasses and synonyms of dating and provide all the relevant passages associated with it. </div>
+</li>
+</ol>
+</li>
+</ol>
+
+</div>
+
+<h4 id="comments_on_the_internet">Comments on the Internet</h4>
+<div class="level4">
+
+<p>
+TLDR: Find a person you can trust and email them / search their blog or wiki directly :)
+</p>
+<ul>
+<li class="level1 node"><div class="li"> Most “free” reviews on the web are pretty bad, even though they are upvoted. Therefore those that know the subject well are disincentivized because they fear no return (upvotes) for their work! </div>
+<ul>
+<li class="level2"><div class="li"> Ehhh. As long as you write a TLDR at the top, people that want the conclusion get it right away, whereas those that want more information, get it as well! </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Style of Writing&quot;,&quot;hid&quot;:&quot;style_of_writing&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:21,&quot;range&quot;:&quot;11106-13757&quot;} -->
+<h1 class="sectionedit22" id="smart_search_engine">Smart Search Engine</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> A search engine that lets you dial up the difficulty if you want, search within a specific category, search for a specific sentiment.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Smart Search Engine&quot;,&quot;hid&quot;:&quot;smart_search_engine&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:22,&quot;range&quot;:&quot;13758-13930&quot;} -->
+<h3 class="sectionedit23" id="sentiment_analysis">Sentiment Analysis</h3>
+<div class="level3">
+
+<p>
+Train using Amazon reviews and the stars given. <a href="http://www.seobythesea.com/2009/06/googles-new-review-search-option-and-sentiment-analysis/" class="urlextern" title="http://www.seobythesea.com/2009/06/googles-new-review-search-option-and-sentiment-analysis/" rel="ugc nofollow">More tips on edge cases</a> by pulling from Google papers and patents.
+It would be helpful to search the Google search results for Brian Klemmer (and other life coaches like him) and understand dissenting opinions and facts. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sentiment Analysis&quot;,&quot;hid&quot;:&quot;sentiment_analysis&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:23,&quot;range&quot;:&quot;13931-14326&quot;} -->
+<h2 class="sectionedit24" id="extract_keywords_from_text">Extract Keywords from Text</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Important for “Find Similar Pages”</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://nadeausoftware.com/articles/2008/04/php_tip_how_extract_keywords_web_page" class="urlextern" title="http://nadeausoftware.com/articles/2008/04/php_tip_how_extract_keywords_web_page" rel="ugc nofollow">http://nadeausoftware.com/articles/2008/04/php_tip_how_extract_keywords_web_page</a></div>
+</li>
+<li class="level1"><div class="li"> Count word occurrence of popular words to develop a category for them?</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Extract Keywords from Text&quot;,&quot;hid&quot;:&quot;extract_keywords_from_text&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:24,&quot;range&quot;:&quot;14327-&quot;} --></div></body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>home:multitouchled</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#multi-touch_led_matrix_display">Multi-Touch LED Matrix Display</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#electronics">Electronics</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#writing_only">Writing only:</a></div></li>
+<li class="level3"><div class="li"><a href="#reading_only">Reading only:</a></div></li>
+<li class="level3"><div class="li"><a href="#reading_and_writing">Reading and Writing:</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#programming">Programming</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#solid_open_source_projects">Solid Open Source Projects:</a></div></li>
+<li class="level3"><div class="li"><a href="#possible_gamesapps">Possible Games/Apps:</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#audio_generation">Audio Generation</a></div></li>
+<li class="level2"><div class="li"><a href="#to_do">TO DO:</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="multi-touch_led_matrix_display">Multi-Touch LED Matrix Display</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Multi-Touch LED Matrix Display&quot;,&quot;hid&quot;:&quot;multi-touch_led_matrix_display&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-46&quot;} -->
+<h2 class="sectionedit2" id="electronics">Electronics</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Electronics&quot;,&quot;hid&quot;:&quot;electronics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;47-71&quot;} -->
+<h3 class="sectionedit3" id="writing_only">Writing only:</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Twitter Board with LED matrices <a href="http://www.atomsandelectrons.com/blog/post/TweetWall.aspx" class="urlextern" title="http://www.atomsandelectrons.com/blog/post/TweetWall.aspx" rel="ugc nofollow">here</a>, has Arduino library for <em class="u">text</em></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Place he got led matrices from <a href="http://stores.ebay.com/sureelectronics1" class="urlextern" title="http://stores.ebay.com/sureelectronics1" rel="ugc nofollow">Sure Electronics</a>. 125 for a big board &gt;.&lt; and less for a lot of 10, but they aren&#039;t 5mm, but might not be able to read light data from it. Want 5mm LED&#039;s either way</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Tom Igoe Arduino Playground tutorial <a href="http://arduino.cc/en/Tutorial/RowColumnScanning" class="urlextern" title="http://arduino.cc/en/Tutorial/RowColumnScanning" rel="ugc nofollow">here</a> with simple code. <a href="http://www.arduino.cc/playground/Main/DirectDriveLEDMatrix" class="urlextern" title="http://www.arduino.cc/playground/Main/DirectDriveLEDMatrix" rel="ugc nofollow">More optimized code here</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Writing only:&quot;,&quot;hid&quot;:&quot;writing_only&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;72-685&quot;} -->
+<h3 class="sectionedit4" id="reading_only">Reading only:</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Mike Cook <a href="http://www.thebox.myzen.co.uk/Workshop/LED_Sensing.html" class="urlextern" title="http://www.thebox.myzen.co.uk/Workshop/LED_Sensing.html" rel="ugc nofollow">reading LED&#039;s article + theory</a>…got almost all the way there with LED matrix…</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Tom Igoe simpler example <a href="http://www.arduino.cc/playground/Learning/LEDSensor" class="urlextern" title="http://www.arduino.cc/playground/Learning/LEDSensor" rel="ugc nofollow">here on Arduino playground</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Reading only:&quot;,&quot;hid&quot;:&quot;reading_only&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;686-976&quot;} -->
+<h3 class="sectionedit5" id="reading_and_writing">Reading and Writing:</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.cs.cmu.edu/~ehayashi/projects/lasercommand/" class="urlextern" title="http://www.cs.cmu.edu/~ehayashi/projects/lasercommand/" rel="ugc nofollow">CMU Student Final Project for Gadgets, Sensors, and Activity Recognition</a> “Laser Command” Final Project. good explanatory overview</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="http://projects.dimension-x.net/technology-and-projects/ledsensors" class="urlextern" title="http://projects.dimension-x.net/technology-and-projects/ledsensors" rel="ugc nofollow">Dimension-X.net</a> Best discussion on the internet about this stuff. Series of forum postings.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="../_media/home/p287-hudson.pdf" class="media mediafile mf_pdf" title="home:p287-hudson.pdf">Paper</a> by Scott Hudson, HCI Prof at CMU. <a href="../_media/home/7598949_multi_touch_sensing_light_emitti.pdf" class="media mediafile mf_pdf" title="home:7598949_multi_touch_sensing_light_emitti.pdf">Patent</a> by Jeff Han.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="http://smartplayground.wordpress.com/the-product/" class="urlextern" title="http://smartplayground.wordpress.com/the-product/" rel="ugc nofollow">Senior Project at Cal Poly</a>,REALLY EXPENSIVE!! 64&times;64 pixel board, have to worry about light levels, but pretty good. Need a computer not an Arduino to do that many analog inputs and updates that quickly</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Reading and Writing:&quot;,&quot;hid&quot;:&quot;reading_and_writing&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;977-1776&quot;} -->
+<h2 class="sectionedit6" id="programming">Programming</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Programming&quot;,&quot;hid&quot;:&quot;programming&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1777-1800&quot;} -->
+<h3 class="sectionedit7" id="solid_open_source_projects">Solid Open Source Projects:</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://monome.org/data/app" class="urlextern" title="http://monome.org/data/app" rel="ugc nofollow">Monome</a> leds plus buttons, really spendy but good sources</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.evilmadscientist.com/article.php/peggy" class="urlextern" title="http://www.evilmadscientist.com/article.php/peggy" rel="ugc nofollow">Peggy</a>…good for graphics but no input </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Solid Open Source Projects:&quot;,&quot;hid&quot;:&quot;solid_open_source_projects&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;1801-2030&quot;} -->
+<h3 class="sectionedit8" id="possible_gamesapps">Possible Games/Apps:</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Interactive Game of Life</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Tetris with “touch” controls that always light up on the side</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Space Invaders…oooohhh… :</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Pong, Tetris, Snake, <a href="http://hackaday.com/2010/06/28/links-expanded-snake-on-led-matrix/" class="urlextern" title="http://hackaday.com/2010/06/28/links-expanded-snake-on-led-matrix/" rel="ugc nofollow">Source Code + Project here</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Possible Games\/Apps:&quot;,&quot;hid&quot;:&quot;possible_gamesapps&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;2031-2317&quot;} -->
+<h2 class="sectionedit9" id="audio_generation">Audio Generation</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li">  <a href="../_media/home/standing_costume.png" class="media" title="home:standing_costume.png"><img src="../_media/home/standing_costume.png" class="mediaright" align="right" alt="" width="100" /></a><a href="http://www.nerdkits.com/videos/theremin_with_ir_distance_sensor/" class="urlextern" title="http://www.nerdkits.com/videos/theremin_with_ir_distance_sensor/" rel="ugc nofollow">NerdKits Theremin</a> Great example of using two timer counters hooked together for <strong>high-resolution audio output</strong>. 440.5 Hz is now possible, but you have to do some math first… Try to understand/copy their well documented source code and simple functions.</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Example of really good tones with reverb with source code: <a href="http://www.reenigne.org/blog/physical-tone-matrix/" class="urlextern" title="http://www.reenigne.org/blog/physical-tone-matrix/" rel="ugc nofollow">Physical Tone Matrix</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Audio Generation&quot;,&quot;hid&quot;:&quot;audio_generation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;2318-2857&quot;} -->
+<h2 class="sectionedit10" id="to_do">TO DO:</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Buy red/green displays off of Sparkfun  <a href="http://www.sparkfun.com/commerce/product_info.php?products_id=682" class="urlextern" title="http://www.sparkfun.com/commerce/product_info.php?products_id=682" rel="ugc nofollow">here</a> $7 each . Maybe get some analog muxes too to read/control everything <a href="http://www.sparkfun.com/commerce/product_info.php?products_id=9056" class="urlextern" title="http://www.sparkfun.com/commerce/product_info.php?products_id=9056" rel="ugc nofollow">here</a> $3-4.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;TO DO:&quot;,&quot;hid&quot;:&quot;to_do&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;2858-&quot;} --></div></body>
+</html>

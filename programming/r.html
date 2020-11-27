@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:r</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#using_r">Using R</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#intro">Intro</a></div></li>
+<li class="level2"><div class="li"><a href="#easy_stuff">Easy Stuff</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#vectors">Vectors</a></div></li>
+<li class="level3"><div class="li"><a href="#graphing">Graphing</a></div></li>
+<li class="level3"><div class="li"><a href="#running_a_script">Running A Script</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#medium">Medium</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#convolution">Convolution</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#tutorials">Tutorials</a></div></li>
+<li class="level2"><div class="li"><a href="#hard">Hard</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#using_external_c_functions">Using External C Functions</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="using_r">Using R</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Using R&quot;,&quot;hid&quot;:&quot;using_r&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-23&quot;} -->
+<h2 class="sectionedit2" id="intro">Intro</h2>
+<div class="level2">
+
+<p>
+R is a statistical mathematics tool similar to Matlab. However, it is free and doesn&#039;t need a license server, which is why we are investigating using it for BodyTrack. Here are some of my notes on using it.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Intro&quot;,&quot;hid&quot;:&quot;intro&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;24-249&quot;} -->
+<h2 class="sectionedit3" id="easy_stuff">Easy Stuff</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Easy Stuff&quot;,&quot;hid&quot;:&quot;easy_stuff&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;250-272&quot;} -->
+<h3 class="sectionedit4" id="vectors">Vectors</h3>
+<div class="level3">
+<pre class="code c"><span class="sy0">&gt;</span> x <span class="sy0">&lt;-</span> c<span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">2</span><span class="sy0">,</span><span class="nu0">4</span><span class="br0">&#41;</span>
+<span class="sy0">&gt;</span> length<span class="br0">&#40;</span>x<span class="br0">&#41;</span>
+<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span> <span class="nu0">3</span>
+<span class="sy0">&gt;</span> x<span class="br0">&#91;</span><span class="nu0">1</span><span class="sy0">:</span>length<span class="br0">&#40;</span>x<span class="br0">&#41;</span><span class="sy0">-</span><span class="nu0">1</span><span class="br0">&#93;</span>
+<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span> <span class="nu0">1</span> <span class="nu0">2</span>
+<span class="sy0">&gt;</span> rep<span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">10</span><span class="br0">&#41;</span>
+<span class="br0">&#91;</span><span class="nu0">1</span><span class="br0">&#93;</span> <span class="nu0">1</span> <span class="nu0">1</span> <span class="nu0">1</span> <span class="nu0">1</span> <span class="nu0">1</span> <span class="nu0">1</span> <span class="nu0">1</span> <span class="nu0">1</span> <span class="nu0">1</span> <span class="nu0">1</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Vectors&quot;,&quot;hid&quot;:&quot;vectors&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;273-404&quot;} -->
+<h3 class="sectionedit5" id="graphing">Graphing</h3>
+<div class="level3">
+<pre class="code c">getwd<span class="br0">&#40;</span><span class="br0">&#41;</span>						<span class="co2">#Shows current directory</span>
+setwd<span class="br0">&#40;</span><span class="st0">&quot;~/Downloads&quot;</span><span class="br0">&#41;</span>				<span class="co2">#Sets current directory</span>
+<span class="co2">#Read in and graph csv</span>
+tree <span class="sy0">&lt;-</span> read.<span class="me1">csv</span><span class="br0">&#40;</span>file<span class="sy0">=</span><span class="st0">&quot;trees91.csv&quot;</span><span class="sy0">,</span>sep<span class="sy0">=</span><span class="st0">&quot;,&quot;</span><span class="sy0">,</span>head<span class="sy0">=</span>TRUE<span class="br0">&#41;</span>
+plot<span class="br0">&#40;</span>tree$STBM<span class="sy0">,</span>tree$LFBM<span class="sy0">,</span>
+<span class="sy0">+</span> main<span class="sy0">=</span><span class="st0">&quot;Rel Stem Leaf&quot;</span><span class="sy0">,</span>
+<span class="sy0">+</span> xlab<span class="sy0">=</span><span class="st0">&quot;Stem Biomass&quot;</span><span class="sy0">,</span>
+<span class="sy0">+</span> ylab<span class="sy0">=</span><span class="st0">&quot;Leaf Biomass&quot;</span><span class="br0">&#41;</span></pre>
+<ul>
+<li class="level1"><div class="li"> You can save the output, but only as a PDF. However, the PDF is vector-based, which is nice!</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/programming/rplot.png" class="media" title="programming:rplot.png"><img src="../_media/programming/rplot.png" class="media" alt="" width="300" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Graphing&quot;,&quot;hid&quot;:&quot;graphing&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;405-830&quot;} -->
+<h3 class="sectionedit6" id="running_a_script">Running A Script</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> No clue why there isn&#039;t a giant green button or “Run” option anywhere</div>
+</li>
+</ul>
+<pre class="code c"><span class="co2">#This runs the script from the command line window</span>
+source<span class="br0">&#40;</span><span class="st0">&quot;/path/to/filename.R&quot;</span><span class="br0">&#41;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Running A Script&quot;,&quot;hid&quot;:&quot;running_a_script&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:6,&quot;range&quot;:&quot;831-1031&quot;} -->
+<h2 class="sectionedit7" id="medium">Medium</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Medium&quot;,&quot;hid&quot;:&quot;medium&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:7,&quot;range&quot;:&quot;1032-1050&quot;} -->
+<h3 class="sectionedit8" id="convolution">Convolution</h3>
+<div class="level3">
+
+<p>
+A little bit trickier because R has some weird ways of doing things…Does convolution using FFT and defaults to circular convolution!
+</p>
+<pre class="code c">x <span class="sy0">&lt;-</span> c<span class="br0">&#40;</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">2</span><span class="sy0">,</span><span class="nu0">3</span><span class="sy0">,</span><span class="nu0">4</span><span class="sy0">,</span><span class="nu0">5</span><span class="sy0">,</span><span class="nu0">6</span><span class="sy0">,</span><span class="nu0">7</span><span class="br0">&#41;</span>
+y <span class="sy0">&lt;-</span> c<span class="br0">&#40;</span><span class="sy0">-</span><span class="nu0">1</span><span class="sy0">,</span><span class="nu0">1</span><span class="br0">&#41;</span>
+convolve<span class="br0">&#40;</span>x<span class="sy0">,</span>y<span class="sy0">,</span>type<span class="sy0">=</span><span class="st0">&quot;open&quot;</span><span class="br0">&#41;</span>
+help<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="co2">#great for documentation!</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Convolution&quot;,&quot;hid&quot;:&quot;convolution&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:8,&quot;range&quot;:&quot;1051-1319&quot;} -->
+<h2 class="sectionedit9" id="tutorials">Tutorials</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://heather.cs.ucdavis.edu/~matloff/132/NSPpart.pdf" class="urlextern" title="http://heather.cs.ucdavis.edu/~matloff/132/NSPpart.pdf" rel="ugc nofollow">Great Book draft!</a>. <a href="http://heather.cs.ucdavis.edu/~matloff/r.html" class="urlextern" title="http://heather.cs.ucdavis.edu/~matloff/r.html" rel="ugc nofollow">From Heather at UC Davis</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.cyclismo.org/tutorial/R/index.html" class="urlextern" title="http://www.cyclismo.org/tutorial/R/index.html" rel="ugc nofollow">Pretty good one</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Tutorials&quot;,&quot;hid&quot;:&quot;tutorials&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:9,&quot;range&quot;:&quot;1320-1569&quot;} -->
+<h2 class="sectionedit10" id="hard">Hard</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Hard&quot;,&quot;hid&quot;:&quot;hard&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:10,&quot;range&quot;:&quot;1570-1586&quot;} -->
+<h3 class="sectionedit11" id="using_external_c_functions">Using External C Functions</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://mcglinn.web.unc.edu/r-code/linking-c-with-r-in-windows/" class="urlextern" title="http://mcglinn.web.unc.edu/r-code/linking-c-with-r-in-windows/" rel="ugc nofollow">Tut 1</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://biostat.mc.vanderbilt.edu/wiki/Main/WritingRExtensions" class="urlextern" title="http://biostat.mc.vanderbilt.edu/wiki/Main/WritingRExtensions" rel="ugc nofollow">Tut 2</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Using External C Functions&quot;,&quot;hid&quot;:&quot;using_external_c_functions&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:11,&quot;range&quot;:&quot;1587-&quot;} --></div></body>
+</html>

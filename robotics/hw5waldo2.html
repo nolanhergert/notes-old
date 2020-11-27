@@ -1,0 +1,132 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>robotics:hw5waldo2</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#hw_5_waldo_v2">HW 5 Waldo v2</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#finishing_up_where_s_waldo">Finishing up &quot;Where&#039;s Waldo&quot;</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#adding_rotation">Adding Rotation</a></div></li>
+<li class="level3"><div class="li"><a href="#final_code">Final Code</a></div></li>
+<li class="level3"><div class="li"><a href="#final_image">Final Image!</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#convolution_problem">Convolution Problem</a></div></li>
+<li class="level2"><div class="li"><a href="#closed_loop_problem">Closed Loop Problem</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="hw_5_waldo_v2">HW 5 Waldo v2</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;HW 5 Waldo v2&quot;,&quot;hid&quot;:&quot;hw_5_waldo_v2&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-29&quot;} -->
+<h2 class="sectionedit2" id="finishing_up_where_s_waldo">Finishing up &quot;Where&#039;s Waldo&quot;</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Finishing up \&quot;Where&#039;s Waldo\&quot;&quot;,&quot;hid&quot;:&quot;finishing_up_where_s_waldo&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;30-70&quot;} -->
+<h3 class="sectionedit3" id="adding_rotation">Adding Rotation</h3>
+<div class="level3">
+<pre class="code c"><span class="co1">//Rotates 90 degrees</span>
+<span class="kw1">for</span> <span class="br0">&#40;</span>ri <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> ri <span class="sy0">&lt;</span> image<span class="sy0">-&gt;</span>h<span class="sy0">;</span> ri<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">for</span> <span class="br0">&#40;</span>ci <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span> ci <span class="sy0">&lt;</span> image<span class="sy0">-&gt;</span>w<span class="sy0">;</span> ci<span class="sy0">++</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+		result<span class="sy0">-&gt;</span>pData<span class="br0">&#91;</span>ri<span class="sy0">*</span>image<span class="sy0">-&gt;</span>w <span class="sy0">+</span> ci<span class="br0">&#93;</span> <span class="sy0">=</span> image<span class="sy0">-&gt;</span>pData<span class="br0">&#91;</span><span class="br0">&#40;</span>image<span class="sy0">-&gt;</span>w <span class="sy0">-</span><span class="nu0">1</span> <span class="sy0">-</span>ci<span class="br0">&#41;</span><span class="sy0">*</span>image<span class="sy0">-&gt;</span>w <span class="sy0">+</span> ri<span class="br0">&#93;</span><span class="sy0">;</span>
+	<span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+Doing rotations other than 90 degrees is a bit harder (interpolation and making a larger image size is necessary), and I&#039;ll touch that when I have to. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Adding Rotation&quot;,&quot;hid&quot;:&quot;adding_rotation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;71-450&quot;} -->
+<h3 class="sectionedit4" id="final_code">Final Code</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Final Code does an “exact” search of Waldo with some wiggle room for noise and blur. I also added convolve and 90 degree rotation code.</div>
+</li>
+<li class="level1"><div class="li"> AFS Link: /afs/andrew.cmu.edu/usr23/nhergert/gitrepo/16-311GeneralRobotics/hw5waldo2/hw5</div>
+</li>
+<li class="level1"><div class="li"> Source Code: <a href="https://github.com/nolanhergert/nhergert_git/blob/master/16-311GeneralRobotics/hw5waldo2/hw5.c" class="urlextern" title="https://github.com/nolanhergert/nhergert_git/blob/master/16-311GeneralRobotics/hw5waldo2/hw5.c" rel="ugc nofollow">hw5.c</a></div>
+</li>
+</ul>
+<pre class="code c"><span class="co1">//To run executable</span>
+.<span class="sy0">/</span>hw5 waldoSearch01.<span class="me1">pgm</span> <span class="nu0">200</span> <span class="nu0">55</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Final Code&quot;,&quot;hid&quot;:&quot;final_code&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:4,&quot;range&quot;:&quot;451-896&quot;} -->
+<h3 class="sectionedit5" id="final_image">Final Image!</h3>
+<div class="level3">
+
+<p>
+<a href="../_media/robotics/waldosearch02_threshed_tagged.png" class="media" title="robotics:waldosearch02_threshed_tagged.png"><img src="../_media/robotics/waldosearch02_threshed_tagged.png" class="media" alt="" width="200" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Final Image!&quot;,&quot;hid&quot;:&quot;final_image&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;897-972&quot;} -->
+<h2 class="sectionedit6" id="convolution_problem">Convolution Problem</h2>
+<div class="level2">
+<div class="table sectionedit7"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 centeralign">  Pattern 1  </th><th class="col1 centeralign">  Pattern 2  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 centeralign">  <a href="../_media/robotics/pat1.png" class="media" title="robotics:pat1.png"><img src="../_media/robotics/pat1.png" class="media" alt="" width="350" /></a>  </td><td class="col1 centeralign">  <a href="../_media/robotics/pat2.png" class="media" title="robotics:pat2.png"><img src="../_media/robotics/pat2.png" class="media" alt="" width="350" /></a>  </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:7,&quot;range&quot;:&quot;1005-1101&quot;} -->
+<p>
+<br/>
+
+</p>
+<div class="table sectionedit8"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 centeralign">  Pattern 3  </th><th class="col1 centeralign">  Pattern 4  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 centeralign">  <a href="../_media/robotics/pat3.png" class="media" title="robotics:pat3.png"><img src="../_media/robotics/pat3.png" class="media" alt="" width="350" /></a>  </td><td class="col1 centeralign">  <a href="../_media/robotics/pat4.png" class="media" title="robotics:pat4.png"><img src="../_media/robotics/pat4.png" class="media" alt="" width="350" /></a>  </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:8,&quot;range&quot;:&quot;1105-1200&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Convolution Problem&quot;,&quot;hid&quot;:&quot;convolution_problem&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:6,&quot;range&quot;:&quot;973-1202&quot;} -->
+<h2 class="sectionedit9" id="closed_loop_problem">Closed Loop Problem</h2>
+<div class="level2">
+<div class="table sectionedit10"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 centeralign">  Original  </th><th class="col1 centeralign">  After Proportion Gain Increase  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 centeralign">  <a href="../_media/robotics/closedloopresponse.jpg" class="media" title="robotics:closedloopresponse.jpg"><img src="../_media/robotics/closedloopresponse.jpg" class="media" alt="" width="400" /></a>  </td><td class="col1 centeralign">  <a href="../_media/robotics/scan_4.png" class="media" title="robotics:scan_4.png"><img src="../_media/robotics/scan_4.png" class="media" alt="" width="400" /></a>  </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table2&quot;,&quot;secid&quot;:10,&quot;range&quot;:&quot;1235-1366&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Closed Loop Problem&quot;,&quot;hid&quot;:&quot;closed_loop_problem&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:9,&quot;range&quot;:&quot;1203-&quot;} --></div></body>
+</html>

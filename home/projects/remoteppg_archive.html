@@ -1,0 +1,348 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>home:projects:remoteppg_archive</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#cameras">Cameras</a></div></li>
+<li class="level2"><div class="li"><a href="#potential_uses">Potential Uses</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#daytime_star_viewer">Daytime Star Viewer</a></div></li>
+<li class="level3"><div class="li"><a href="#non-contact_heart_rate_detector_for_personal_fitness">Non-Contact Heart Rate Detector for Personal Fitness</a></div></li>
+<li class="level3"><div class="li"><a href="#facial_verification">Facial Verification</a></div></li>
+<li class="level3"><div class="li"><a href="#other_ideas">Other ideas</a></div></li>
+</ul>
+</li>
+<li class="level1"><div class="li"><a href="#old_stuff">Old Stuff</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#opencv_installation">OpenCV Installation</a></div></li>
+<li class="level3"><div class="li"><a href="#opencv_compiling_cross-platform">OpenCV Compiling Cross-Platform</a></div></li>
+<li class="level3"><div class="li"><a href="#other_stuff">Other Stuff</a></div></li>
+<li class="level3"><div class="li"><a href="#getting_rid_of_poisson_shot_noise_from_the_ccd">Getting Rid of Poisson Shot Noise from the CCD</a></div></li>
+<li class="level3"><div class="li"><a href="#active_appearance_model_tracker_getting_rid_of_motion_noise">Active Appearance Model Tracker (Getting rid of motion noise)</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#how_behind_i_am">How Behind I Am</a></div></li>
+<li class="level2"><div class="li"><a href="#additional_research">Additional Research</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<p>
+<strong>Please see <a href="../../projects/remoteppg.html" class="wikilink1" title="projects:remoteppg">Remote Pulse main page</a> if you haven&#039;t already!</strong>
+</p>
+
+<p>
+Wow, much more to read and learn in Wikipedia pages.
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="https://en.wikipedia.org/wiki/Analog-to-digital_converter" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Analog-to-digital_converter">Analog-to-digital_converter</a> and <a href="https://en.wikipedia.org/wiki/Analog-to-digital_converter#Oversampling" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Analog-to-digital_converter#Oversampling">Analog-to-digital_converter#Oversampling</a></div>
+</li>
+<li class="level1 node"><div class="li"> <a href="https://en.wikipedia.org/wiki/Quantization noise" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Quantization noise">Quantization noise</a>: <em>Quantization also forms the core of essentially all lossy compression algorithms.</em> HUH?!</div>
+<ul>
+<li class="level2"><div class="li"> <a href="https://en.wikipedia.org/wiki/Lossy compression" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Lossy compression">Lossy compression</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="http://theory.uchicago.edu/~ejm/pix/20d/tests/noise/" class="urlextern" title="http://theory.uchicago.edu/~ejm/pix/20d/tests/noise/" rel="ugc nofollow">Great article</a> on camera sensor noise (thermal, ADC, etc)</div>
+</li>
+</ul>
+
+<p>
+Use a <a href="https://www.sparkfun.com/products/11868" class="urlextern" title="https://www.sparkfun.com/products/11868" rel="ugc nofollow">Raspberry Pi camera</a>?! $30 for full access to 90 FPS data using their <a href="http://www.raspberrypi.org/documentation/usage/camera/raspicam/README.md" class="urlextern" title="http://www.raspberrypi.org/documentation/usage/camera/raspicam/README.md" rel="ugc nofollow">straightforward interface</a>. 
+</p>
+
+<p>
+This work uses the same averaging algorithm by ——–, but rigorously defends its optimality and combines it with Lucas-Kanade point tracking to track non-still individuals.   are not real-time, and don&#039;t seem to  and don&#039;t explain the underlying noise characteristics of the video require either an assumption about the underlying dataset (bandpass heart rate frequencies) or ove
+</p>
+
+<p>
+For our Pattern Recognition class, my partner (Billy Keyes) and I implemented an algorithm to track cardiovascular vital signs (like pulse and heart-rate variability) from video of exposed skin. Our current version uses OpenCV for face tracking and tracks the variations in an average over a region-of-interest (in this version, a sub-rectangle of the face). This readout is very similar to SPO2 sensors that you might find in hospitals, except for a fraction of the cost and much more convenient to use! Future plans are to improve robustness with Lucas-Kanade point tracking. 
+</p>
+
+<p>
+<a href="../../_media/projects/wkeyes_nhergert_18794_paper.pdf" class="media mediafile mf_pdf" title="projects:wkeyes_nhergert_18794_paper.pdf">Final Paper</a>
+<a href="http://ston.jsc.nasa.gov/collections/TRS/_techrep/TM-2011-216145.pdf" class="urlextern" title="http://ston.jsc.nasa.gov/collections/TRS/_techrep/TM-2011-216145.pdf" rel="ugc nofollow">Excellent NASA Paper</a> talking about determining pulse from radar, infrared, and visible spectrum. Gives a good overview, but doesn&#039;t do much dreaming.
+</p>
+
+<h2 class="sectionedit1" id="cameras">Cameras</h2>
+<div class="level2">
+
+<p>
+Astronomers do picture stacking to make their end pictures better. Some use Toucan (a philips webcam), whereas others use a 5MP imager, like <a href="http://www.amazon.com/Celestron-NexImage-Digital-Technology-93711/dp/B006ZN4VE2/ref=pd_sim_sbs_e_1?ie=UTF8&amp;refRID=14EA1D1E4XDT44082A82" class="urlextern" title="http://www.amazon.com/Celestron-NexImage-Digital-Technology-93711/dp/B006ZN4VE2/ref=pd_sim_sbs_e_1?ie=UTF8&amp;refRID=14EA1D1E4XDT44082A82" rel="ugc nofollow">this one</a>
+</p>
+
+<p>
+MIT guys used a DSLR camera, but it looks like it did h.264 compression.
+</p>
+
+<p>
+Just do a few tests and be done with it! 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Cameras&quot;,&quot;hid&quot;:&quot;cameras&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1981-2407&quot;} -->
+<h2 class="sectionedit2" id="potential_uses">Potential Uses</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> I was initially very skeptical of the proposed applications for this technology. </div>
+</li>
+<li class="level1 node"><div class="li"> (<strong>To put somewhere in here</strong>). From Andrew: <em>Stereotypical startups want to get something flashy out fast, build up their “worth” by hiring people that appear to know stuff, and then sell to a big company and get out as quickly as possible making as much money as they can. They don&#039;t really care about whether it actually meets a need in the long run, they are in it for the money more likely. Altruistic projects don&#039;t equal money, at least in the short-term.</em> </div>
+<ul>
+<li class="level2"><div class="li"> Thanks for the confirmation Andrew. I am going for the long-term, non-glamorous stuff that actually makes a difference in the world!</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Potential Uses&quot;,&quot;hid&quot;:&quot;potential_uses&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;2408-3130&quot;} -->
+<h3 class="sectionedit3" id="daytime_star_viewer">Daytime Star Viewer</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> Not sure how this is useful, but it&#039;s definitely possible. Just take lots of pictures during the daytime of a sky and fix the aperture and exposure. Keep a solid object in view so that any motion from the shutter are corrected for. </div>
+<ul>
+<li class="level2"><div class="li"> Keep the aperture as wide open as possible and take a long enough exposure that still captures some shot noise on the pixel level when you diff the images. (you want the shot noise gaussian to be as small as possible to minimize the number of images you have to take to find the true value, but not too small so that you don&#039;t get any noise at all).</div>
+</li>
+<li class="level2"><div class="li"> <a href="https://en.wikipedia.org/wiki/Daylight" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Daylight">Daylight</a>. All of blue sky is ~20000 lux during midday vs. lux of the moon (.25). However, we can still see moon during the day. Venus at brightest is .00014 lux. Looks like you&#039;ve got a lot of pictures to take!</div>
+</li>
+<li class="level2"><div class="li"> Set Nikon D90 to <strong>uncompressed</strong> 14-bit RAW (NEF) (super-huge-file). On the Mac it looked like the NEF was still compressed some on the pixel level, although that could have been the Preview viewer….(<a href="http://francoismalan.com/2011/10/raw-12bit-or-14bit-lossy-or-lossless/" class="urlextern" title="http://francoismalan.com/2011/10/raw-12bit-or-14bit-lossy-or-lossless/" rel="ugc nofollow">here are some other NEF files</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>How does this guy show stars while the sun is still up???</strong> Is it because there&#039;s less atmosphere up there and this is normal viewing? <iframe src="//player.vimeo.com/video/53845425" height="293" width="520" class="vshare__none" allowfullscreen="" frameborder="0" scrolling="no"></iframe></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Daytime Star Viewer&quot;,&quot;hid&quot;:&quot;daytime_star_viewer&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;3131-4457&quot;} -->
+<h3 class="sectionedit4" id="non-contact_heart_rate_detector_for_personal_fitness">Non-Contact Heart Rate Detector for Personal Fitness</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> From first glance, this product would be nice to have as an addition to a stationary camera watching a person do a workout (such as a Kinect or PlayStation Move). However, to get that system robust to the user motions such as pose changes or jumping up and down is a very difficult and frustrating proposition, on the order of real-time motion capture rigs without the IR reflective balls from <a href="https://en.wikipedia.org/wiki/motion capture" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/motion capture">motion capture</a> systems to guide you. If the new Kinect sensor pulls it off well (<a href="http://www.geekwire.com/2013/xbox-watch-kinect-detect-heart-rate-room/" class="urlextern" title="http://www.geekwire.com/2013/xbox-watch-kinect-detect-heart-rate-room/" rel="ugc nofollow">it doesn&#039;t appear so</a>), kudos to them! </div>
+</li>
+<li class="level1"><div class="li"> However, I feel that this field isn&#039;t that important in the long-term. Pulse? What can pulse tell you? </div>
+</li>
+<li class="level1"><div class="li"> <strong><a href="https://en.wikipedia.org/wiki/Heart Rate Variability" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Heart Rate Variability">Heart Rate Variability</a></strong> has been shown to correlate to stress, but you probably need a higher frame rate camera to get the timing accuracy needed. </div>
+</li>
+<li class="level1"><div class="li"> <strong><a href="http://en.wikipedia.org/wiki/Heart_rate#Recovery_heart_rate" class="urlextern" title="http://en.wikipedia.org/wiki/Heart_rate#Recovery_heart_rate" rel="ugc nofollow">Recovery rate</a></strong> (the speed at which your heart recovers after doing heavy exercise) is another marker of how healthy you are. </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Non-Contact Heart Rate Detector for Personal Fitness&quot;,&quot;hid&quot;:&quot;non-contact_heart_rate_detector_for_personal_fitness&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;4458-5587&quot;} -->
+<h3 class="sectionedit5" id="facial_verification">Facial Verification</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Ensure that people&#039;s faces you are verifying are actually living people and not paper printouts of them. </div>
+</li>
+<li class="level1"><div class="li"> Video replay over a tablet attack? You&#039;re clever…you&#039;ll have to run the code yourself to find out <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" /></div>
+</li>
+<li class="level1"><div class="li"> My biggest beef is that there are other methods for determining if the surveillance video is fake or not, including if the background of the object/person changes, random blinking of LED&#039;s and checking for diffuse reflectance off of skin, etc. that seem much easier. </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Facial Verification&quot;,&quot;hid&quot;:&quot;facial_verification&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;5588-6107&quot;} -->
+<h3 class="sectionedit6" id="other_ideas">Other ideas</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> If you have a high enough frame rate on your camera (or have direct control of CMOS sensor pixels), you can see the way that the <strong>pulse propagates</strong> throughout the skin. The original paper by Verkyusse (<a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2717852/" class="urlextern" title="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2717852/" rel="ugc nofollow">Remote Photoplethysmographic Imaging Using Ambient Light</a> uses it to evaluate the effectiveness of Port Wine Stain therapy. (<em><strong>I suspect that you can&#039;t actually pull out phase from an undersampled signal, but I could be wrong</strong></em> Check out the “phase” of the middle pane vs the right pane of the 2nd youtube video above, it&#039;s from the paper). </div>
+<ul>
+<li class="level2"><div class="li"> From this, you can determine the <strong><a href="https://en.wikipedia.org/wiki/pulse wave velocity" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/pulse wave velocity">pulse wave velocity</a></strong>, which apparently is directly correlated to <strong>arterial stiffness</strong>, which is a marker of potential heart failure but isn&#039;t related to Cardiac Output (Edwards Lifesciences&#039; big product). Good to know.</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Apparently you can better see the vasculature underneath the skin using the IR spectrum. <a href="http://lmgtfy.com/?q=pieter+wieringa+thesis" class="urlextern" title="http://lmgtfy.com/?q=pieter+wieringa+thesis" rel="ugc nofollow">F.P. Wieringa&#039;s thesis</a> talks a lot about his work towards applying that to skin therapy. He averages over ROI&#039;s too, but I&#039;m not sure what for. </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Other ideas&quot;,&quot;hid&quot;:&quot;other_ideas&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;6108-7304&quot;} -->
+<h1 class="sectionedit7" id="old_stuff">Old Stuff</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Old Stuff&quot;,&quot;hid&quot;:&quot;old_stuff&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;7305-7330&quot;} -->
+<h3 class="sectionedit8" id="opencv_installation">OpenCV Installation</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="os_x">OS X</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Make sure to fully install XCode *and* command line tools using your <abbr title="Operating System">OS</abbr> X install DVD or downloaded from the Apple Developers website. This should also install the headers for your <abbr title="Operating System">OS</abbr> version. </div>
+</li>
+<li class="level1"><div class="li"> Follow this StackOverflow post: <a href="http://stackoverflow.com/questions/5846745/opencv-python-osx" class="urlextern" title="http://stackoverflow.com/questions/5846745/opencv-python-osx" rel="ugc nofollow">http://stackoverflow.com/questions/5846745/opencv-python-osx</a></div>
+</li>
+<li class="level1"><div class="li"> To make sure OpenCV is working, open IDLE or run &#039;python&#039; in a terminal window and type &#039;import cv2&#039; and see what happens.</div>
+</li>
+</ul>
+
+<p>
+  * Cross-Platform deployment (you know, dmg&#039;s and stuff): <a href="http://qt-project.org/doc/qt-4.8/deployment.html" class="urlextern" title="http://qt-project.org/doc/qt-4.8/deployment.html" rel="ugc nofollow">http://qt-project.org/doc/qt-4.8/deployment.html</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;OpenCV Installation&quot;,&quot;hid&quot;:&quot;opencv_installation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;7331-7904&quot;} -->
+<h3 class="sectionedit9" id="opencv_compiling_cross-platform">OpenCV Compiling Cross-Platform</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Use CMake: <a href="http://stackoverflow.com/questions/10691429/should-i-stop-using-opencv" class="urlextern" title="http://stackoverflow.com/questions/10691429/should-i-stop-using-opencv" rel="ugc nofollow">http://stackoverflow.com/questions/10691429/should-i-stop-using-opencv</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;OpenCV Compiling Cross-Platform&quot;,&quot;hid&quot;:&quot;opencv_compiling_cross-platform&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;7905-8032&quot;} -->
+<h3 class="sectionedit10" id="other_stuff">Other Stuff</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.sanjivk.com/faceTracking.pdf" class="urlextern" title="http://www.sanjivk.com/faceTracking.pdf" rel="ugc nofollow">Google Research on Face Tracking</a>. Uses SVMs and stuff, former CMU grad students. Probably very similar to the algorithm being used for Google Hangouts, although probably better too. Hangout app seems similar to AAM stuff, although I haven&#039;t read their paper enough to know. </div>
+</li>
+<li class="level1"><div class="li"> <a href="../../_media/programming/utility_of_the_photoplethysmogram_in_circulatory.24.pdf" class="media mediafile mf_pdf" title="programming:utility_of_the_photoplethysmogram_in_circulatory.24.pdf">Utility of the Photoplethysmogram</a>, a frank view of how useful a photoplethysmogram might be. Seems to indicate blood flow, as well as be complicated by other effects in the body like oxygenation and stuff.</div>
+</li>
+<li class="level1"><div class="li"> More projects relating to light on my <a href="../../physics/vision.html" class="wikilink1" title="physics:vision">Physics Vision page</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Other Stuff&quot;,&quot;hid&quot;:&quot;other_stuff&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;8033-8741&quot;} -->
+<h3 class="sectionedit11" id="getting_rid_of_poisson_shot_noise_from_the_ccd">Getting Rid of Poisson Shot Noise from the CCD</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Not the same as motion noise (below)</div>
+</li>
+<li class="level1"><div class="li"> Total Variation Minimization seems like a good option: <a href="http://en.wikipedia.org/wiki/Total_variation_denoising" class="urlextern" title="http://en.wikipedia.org/wiki/Total_variation_denoising" rel="ugc nofollow">http://en.wikipedia.org/wiki/Total_variation_denoising</a></div>
+</li>
+<li class="level1 node"><div class="li"> Los Alamos National Labs person talking about using it to clean up poisson noise in images (the noise rate changes with the illumination, which makes sense), and clean up noisy numerical derivatives and stuff. <a href="http://math.lanl.gov/Research/Projects/largedata.shtml" class="urlextern" title="http://math.lanl.gov/Research/Projects/largedata.shtml" rel="ugc nofollow">http://math.lanl.gov/Research/Projects/largedata.shtml</a></div>
+<ul>
+<li class="level2"><div class="li"> Improves on the <a href="http://www.math-info.univ-paris5.fr/~lomn/Cours/ECE/PhysicaRudinOsher.pdf" class="urlextern" title="http://www.math-info.univ-paris5.fr/~lomn/Cours/ECE/PhysicaRudinOsher.pdf" rel="ugc nofollow">original paper by ROF</a> by scaling the noise amount by the intensity of the pixel underneath it (<a href="http://math.lanl.gov/Research/Highlights/PDF/tvpoisson.pdf" class="urlextern" title="http://math.lanl.gov/Research/Highlights/PDF/tvpoisson.pdf" rel="ugc nofollow">paper</a>). <a href="http://math.lanl.gov/Research/Highlights/PDF/irntv.pdf" class="urlextern" title="http://math.lanl.gov/Research/Highlights/PDF/irntv.pdf" rel="ugc nofollow">Fast implementation using compressed sensing and L1 norm</a>?</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Getting Rid of Poisson Shot Noise from the CCD&quot;,&quot;hid&quot;:&quot;getting_rid_of_poisson_shot_noise_from_the_ccd&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:11,&quot;range&quot;:&quot;8742-9608&quot;} -->
+<h3 class="sectionedit12" id="active_appearance_model_tracker_getting_rid_of_motion_noise">Active Appearance Model Tracker (Getting rid of motion noise)</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Reimplementation of Jason Saragih&#039;s face tracker in OpenFrameworks <a href="https://github.com/kylemcdonald/FaceTracker" class="urlextern" title="https://github.com/kylemcdonald/FaceTracker" rel="ugc nofollow">here</a> by Kyle Mcdonald</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="getting_facetracker_working_on_windows">Getting FaceTracker working on Windows</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Should be similar to this tutorial: <a href="http://stackoverflow.com/questions/10860352/getting-started-with-opencv-2-4-and-mingw-on-windows-7" class="urlextern" title="http://stackoverflow.com/questions/10860352/getting-started-with-opencv-2-4-and-mingw-on-windows-7" rel="ugc nofollow">http://stackoverflow.com/questions/10860352/getting-started-with-opencv-2-4-and-mingw-on-windows-7</a></div>
+</li>
+<li class="level1"><div class="li"> Switching to Ubuntu ….</div>
+</li>
+<li class="level1 node"><div class="li"> But, it might work! Downloaded OpenCV for Windows, which includes some pre-compiled DLL&#039;s for Windows and the source code in the same package.</div>
+<ul>
+<li class="level2"><div class="li"> Had to also install MinGW, and added Mingw programs to PATH variable (;C:\MinGW\bin)</div>
+</li>
+<li class="level2 node"><div class="li"> Have to modify FaceTracker&#039;s Makefile, to:</div>
+<ul>
+<li class="level3"><div class="li"> CXX=mingw32-g++.exe</div>
+</li>
+<li class="level3"><div class="li"> Removed <code>@# Make dependecy file</code> as mingw32-make didn&#039;t like it for some reason</div>
+</li>
+<li class="level3"><div class="li"> Change the back slashes to forward slashes…urgh</div>
+</li>
+<li class="level3"><div class="li"> Add each OpenCV library as a reference? There are a bunch of locations of various OpenCV library dll&#039;s and things. Blargh</div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> <a href="https://www.dropbox.com/s/iu94p7bpu6z1zpi/Makefile" class="urlextern" title="https://www.dropbox.com/s/iu94p7bpu6z1zpi/Makefile" rel="ugc nofollow">Link to Current Makefile</a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Active Appearance Model Tracker (Getting rid of motion noise)&quot;,&quot;hid&quot;:&quot;active_appearance_model_tracker_getting_rid_of_motion_noise&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:12,&quot;range&quot;:&quot;9609-10717&quot;} -->
+<h2 class="sectionedit13" id="how_behind_i_am">How Behind I Am</h2>
+<div class="level2">
+
+<p>
+Hey Jan,
+</p>
+
+<p>
+I am ashamed to send you this code, but here you go. Didn&#039;t make time to clean it up this weekend.
+</p>
+
+<p>
+How about this. I&#039;ll explain to you the algorithm real quick. Maybe you want to trade knowledge with me on bioinformatics? Oh, wow, bioinformatics is kinda what we&#039;re talking about here! Yeah, could you maybe give me the 2-minute explanation of the relation of de Brujin graphs to de novo assembly? 
+</p>
+
+<p>
+So, for this algorithm (and any pulse detection algorithm), you need to amplify small changes in color in local areas of change on open skin. The face and hands work well because there&#039;s lots of blood vessels going there I think and they&#039;re not covered by hair. Literally, hair will screw this method up, it&#039;s that sensitive. :) 
+</p>
+
+<p>
+Anyways, to do that, assuming the person is perfectly still (which doesn&#039;t happen because their heart is beating, and slightly moves their face too), you subtract the “mean” value from every pixel and then multiply the leftover “variance” (which you hope is only the change in color of the face). On this level, noise from photons hitting the camera CCD is actually kind of important, but they show up as spotty noise whereas the blood color is pretty consistent (which is why the paper just smoothed the whole image). A good alternate video is on my website here. Anyways, to find the mean value, often people use a running exponential filter or a boxcar filter (add em up and divide by N, aka the average). The running exponential filter is easier to program:
+</p>
+
+<p>
+currentFilteredValue = (alpha)*currentRawSample + (1-alpha)*lastFilteredValue
+</p>
+
+<p>
+whereas for a boxcar you have to keep an array of numbers. Someday I&#039;ll just make a well-documented set of functions like my boss has right now, but that&#039;s beside the point.
+</p>
+
+<p>
+So, for the program, just do this for each pixel:
+-Get mean value
+-Subtract mean value from current value
+-Multiply result by a magnification factor. 
+-Hope you have enough light and the person didn&#039;t move.
+-Redraw the to the image buffer and display result. 
+</p>
+
+<p>
+Fun times! I threw the attached code together in time for our final demo two semesters ago and was waiting for a much better method to come out, which the MIT paper did. I&#039;m still understanding their solution, because ours is fundamentally flawed (the person moves!). Whoo, time for work. 
+</p>
+
+<p>
+Looking forward to still talking! The other 3 interested people never emailed back :/
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;How Behind I Am&quot;,&quot;hid&quot;:&quot;how_behind_i_am&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:13,&quot;range&quot;:&quot;10718-13144&quot;} -->
+<h2 class="sectionedit14" id="additional_research">Additional Research</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Kalman filters assume independent over time…maybe not the case for CCD noise. Still need to research more</div>
+</li>
+<li class="level1"><div class="li"> Few groups publish oxy/hemoglobin *reflectance* spectra. Seen glimpses of it on a few patents. Would like to see results for Near-Infrared range too. Red, doesn&#039;t go at all, green/blue looks the most reflectance. Probably scales with lighting amount.</div>
+</li>
+<li class="level1"><div class="li"> <a href="../../_media/projects/whitelighthemoglobin.pdf" class="media mediafile mf_pdf" title="projects:whitelighthemoglobin.pdf">Detecting Hemoglobin using White Light</a> (medical research)</div>
+</li>
+<li class="level1"><div class="li"> <a href="../../_media/projects/ultrasounddespeckling.pdf" class="media mediafile mf_pdf" title="projects:ultrasounddespeckling.pdf">Despeckling Ultrasound</a>. Uses a few techniques, including wiener filtering. Probably best model is to develop noise model for individual camera.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Additional Research&quot;,&quot;hid&quot;:&quot;additional_research&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:14,&quot;range&quot;:&quot;13145-&quot;} --></div></body>
+</html>

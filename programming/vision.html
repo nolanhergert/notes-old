@@ -1,0 +1,247 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:vision</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#computer_vision_notes">Computer Vision Notes</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#opencv">OpenCV</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#python">Python</a></div></li>
+<li class="level3"><div class="li"><a href="#cc">C/C++</a></div></li>
+<li class="level3"><div class="li"><a href="#tutorials">Tutorials</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#ideas">Ideas</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#marbled_paper">Marbled Paper</a></div></li>
+<li class="level3"><div class="li"><a href="#other_stuff">Other stuff</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#great_tutorials">Great Tutorials</a></div></li>
+<li class="level2"><div class="li"><a href="#libraries">Libraries</a></div></li>
+<li class="level2"><div class="li"><a href="#classes">Classes</a></div></li>
+<li class="level2"><div class="li"><a href="#embedded">Embedded</a></div></li>
+<li class="level2"><div class="li"><a href="#simple">Simple</a></div></li>
+<li class="level2"><div class="li"><a href="#books">Books</a></div></li>
+<li class="level2"><div class="li"><a href="#face_recognitionprojection">Face Recognition/Projection?!</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#tracking">Tracking</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="computer_vision_notes">Computer Vision Notes</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> How to solve sudoku puzzles (<a href="http://stackoverflow.com/questions/10196198/how-to-remove-convexity-defects-in-sudoku-square" class="urlextern" title="http://stackoverflow.com/questions/10196198/how-to-remove-convexity-defects-in-sudoku-square" rel="ugc nofollow">convexity</a> and <a href="http://stackoverflow.com/questions/9413216/simple-digit-recognition-ocr-in-opencv-python" class="urlextern" title="http://stackoverflow.com/questions/9413216/simple-digit-recognition-ocr-in-opencv-python" rel="ugc nofollow">OCR</a>)</div>
+</li>
+<li class="level1"><div class="li"> How to detect circle dots: <a href="http://stackoverflow.com/questions/10404062/opencv-dot-target-detection-not-finding-all-targets-and-found-circles-are-offse" class="urlextern" title="http://stackoverflow.com/questions/10404062/opencv-dot-target-detection-not-finding-all-targets-and-found-circles-are-offse" rel="ugc nofollow">Dot Detection on StackOverflow</a>. <em><strong>It&#039;s all about the parameters!</strong></em></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Computer Vision Notes&quot;,&quot;hid&quot;:&quot;computer_vision_notes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-509&quot;} -->
+<h2 class="sectionedit2" id="opencv">OpenCV</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;OpenCV&quot;,&quot;hid&quot;:&quot;opencv&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;510-528&quot;} -->
+<h3 class="sectionedit3" id="python">Python</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Probably use Python? And just use cv2. <a href="http://stackoverflow.com/questions/10417108/what-is-different-between-all-these-opencv-python-interfaces/10425504#10425504" class="urlextern" title="http://stackoverflow.com/questions/10417108/what-is-different-between-all-these-opencv-python-interfaces/10425504#10425504" rel="ugc nofollow">Here&#039;s why</a></div>
+</li>
+</ul>
+<pre class="code">	Yes, you&#039;re correct. cv is close to the 1.x OpenCV API, and cv2 to the 2.x API. And better to use cv2, because cv is going to be legacy. There is a set of samples for both cv2 (opencv_trunk/samples/python2) and cv (opencv_trunk/samples/python). 
+
+	Please also note that OpenCV python API heavily relies on numpy functionality. And many things are supposed to be taken from numpy, you can see it in samples everywhere. Actually there is no OpenCV&#039;s Mat in python, numpy&#039;s arrays are used for images.
+Regards, 
+Kirill  
+	</pre>
+<ul>
+<li class="level1"><div class="li"> For Python interface, you need to install the <strong>cv2.pyd</strong> file into Lib/site-packages for things to work correctly.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Python&quot;,&quot;hid&quot;:&quot;python&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;529-1384&quot;} -->
+<h3 class="sectionedit4" id="cc">C/C++</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://stackoverflow.com/questions/10860352/getting-started-with-opencv-2-4-and-mingw-on-windows-7" class="urlextern" title="http://stackoverflow.com/questions/10860352/getting-started-with-opencv-2-4-and-mingw-on-windows-7" rel="ugc nofollow">http://stackoverflow.com/questions/10860352/getting-started-with-opencv-2-4-and-mingw-on-windows-7</a></div>
+</li>
+<li class="level1"><div class="li"> Will need to include a lot of libraries, so just be lazy and include them all?</div>
+</li>
+</ul>
+<pre class="code c"> C<span class="sy0">:</span>\opencv\opencv\samples\cpp<span class="sy0">&gt;</span> g<span class="sy0">++</span> <span class="sy0">-</span>I<span class="st0">&quot;C:\opencv\opencv<span class="es1">\b</span>uild\include&quot;</span> <span class="sy0">-</span>L<span class="st0">&quot;C:\opencv\opencv<span class="es1">\b</span>uild<span class="es2">\x86</span>\mingw\lib&quot;</span> video_homography.<span class="me1">cpp</span> <span class="sy0">-</span>lopencv_core242 <span class="sy0">-</span>lopencv_highgui242 <span class="sy0">-</span>lopencv_imgproc242 <span class="sy0">-</span>lopencv_video242 <span class="sy0">-</span>lopencv_features2d242 <span class="sy0">-</span>lopencvcalib3d242 <span class="sy0">-</span>o video_homography</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;C\/C++&quot;,&quot;hid&quot;:&quot;cc&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:4,&quot;range&quot;:&quot;1385-1872&quot;} -->
+<h3 class="sectionedit5" id="tutorials">Tutorials</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Sudoku OpenCV <a href="http://sudokugrab.blogspot.com/2009/07/how-does-it-all-work.html" class="urlextern" title="http://sudokugrab.blogspot.com/2009/07/how-does-it-all-work.html" rel="ugc nofollow">http://sudokugrab.blogspot.com/2009/07/how-does-it-all-work.html</a></div>
+</li>
+<li class="level1"><div class="li"> ARToolkit Tracker: <a href="http://www.hitl.washington.edu/artoolkit/documentation/vision.htm" class="urlextern" title="http://www.hitl.washington.edu/artoolkit/documentation/vision.htm" rel="ugc nofollow">http://www.hitl.washington.edu/artoolkit/documentation/vision.htm</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.uco.es/investiga/grupos/ava/node/26" class="urlextern" title="http://www.uco.es/investiga/grupos/ava/node/26" rel="ugc nofollow">ArUCo</a> tracker: <a href="http://www.sciencedirect.com/science/article/pii/S0031320314000235" class="urlextern" title="http://www.sciencedirect.com/science/article/pii/S0031320314000235" rel="ugc nofollow">http://www.sciencedirect.com/science/article/pii/S0031320314000235</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Tutorials&quot;,&quot;hid&quot;:&quot;tutorials&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;1873-2201&quot;} -->
+<h2 class="sectionedit6" id="ideas">Ideas</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Ideas&quot;,&quot;hid&quot;:&quot;ideas&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:6,&quot;range&quot;:&quot;2202-2220&quot;} -->
+<h3 class="sectionedit7" id="marbled_paper">Marbled Paper</h3>
+<div class="level3">
+
+<p>
+The below marbled cover notebooks have a repeating pattern. Can you find them? 
+</p>
+
+<p>
+<a href="../_media/programming/pasted/20151019-054254.png" class="media" title="programming:pasted:20151019-054254.png"><img src="../_media/programming/pasted/20151019-054254.png" class="media" alt="" width="350" /></a> <a href="https://www.google.com/search?safe=active&amp;espv=2&amp;biw=1280&amp;bih=715&amp;tbs=isz%3Al&amp;tbm=isch&amp;sa=1&amp;q=marble+notebook+cover&amp;oq=marble+notebook+cover&amp;gs_l=img.3...0.0.0.5169.0.0.0.0.0.0.0.0..0.0....0...1..64.img..0.0.0.lj_6g2LrRZc" class="urlextern" title="https://www.google.com/search?safe=active&amp;espv=2&amp;biw=1280&amp;bih=715&amp;tbs=isz%3Al&amp;tbm=isch&amp;sa=1&amp;q=marble+notebook+cover&amp;oq=marble+notebook+cover&amp;gs_l=img.3...0.0.0.5169.0.0.0.0.0.0.0.0..0.0....0...1..64.img..0.0.0.lj_6g2LrRZc" rel="ugc nofollow">Google search</a>. I have more in Dropbox, and <a href="http://blog.vernaculartypography.com/2010/11/30/composition-books/" class="urlextern" title="http://blog.vernaculartypography.com/2010/11/30/composition-books/" rel="ugc nofollow">this lady</a> did a study of them!
+</p>
+
+<p>
+You have some more in Dropbox/eng/python/examples/cv
+</p>
+
+<p>
+<a href="../_media/programming/comp_book_2.jpg" class="media" title="programming:comp_book_2.jpg"><img src="../_media/programming/comp_book_2.jpg" class="media" alt="" width="200" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Marbled Paper&quot;,&quot;hid&quot;:&quot;marbled_paper&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;2221-2838&quot;} -->
+<h3 class="sectionedit8" id="other_stuff">Other stuff</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Characterize text vs. images based on fractal “roughness”. Variance might work too…definitely shouldn&#039;t be localized variance though</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Other stuff&quot;,&quot;hid&quot;:&quot;other_stuff&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:8,&quot;range&quot;:&quot;2839-3003&quot;} -->
+<h2 class="sectionedit9" id="great_tutorials">Great Tutorials</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://manpages.ubuntu.com/manpages/intrepid/man1/opencv-haartraining.1.html" class="urlextern" title="http://manpages.ubuntu.com/manpages/intrepid/man1/opencv-haartraining.1.html" rel="ugc nofollow">How to train a Haar Classifier</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Great Tutorials&quot;,&quot;hid&quot;:&quot;great_tutorials&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:9,&quot;range&quot;:&quot;3004-3153&quot;} -->
+<h2 class="sectionedit10" id="libraries">Libraries</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> <a href="http://opencv.willowgarage.com/wiki/" class="urlextern" title="http://opencv.willowgarage.com/wiki/" rel="ugc nofollow">OpenCV</a>      * <a href="http://localhost/dokuwiki/lib/exe/detail.php?id=programming:vision&amp;media=programming:screen_shot_2011-12-14_at_10.29.38_am.png" class="media" title="http://localhost/dokuwiki/lib/exe/detail.php?id=programming:vision&amp;media=programming:screen_shot_2011-12-14_at_10.29.38_am.png" rel="ugc nofollow"><img src="../_media/programming/screen_shot_2011-12-14_at_10.29.38_am.png" class="media" alt="" width="300" /></a></div>
+<ul>
+<li class="level3"><div class="li"> The SERVO Magazine tutorials that started it all (Haar Classifiers for faces…very understandable){:programming:opencvpart01.pdf|Part 1}} <a href="../_media/programming/opencvpart02.pdf" class="media mediafile mf_pdf" title="programming:opencvpart02.pdf">Part 2</a>  <a href="../_media/programming/opencvpart03.pdf" class="media mediafile mf_pdf" title="programming:opencvpart03.pdf">Part 3</a>  <a href="../_media/programming/opencvpart04.pdf" class="media mediafile mf_pdf" title="programming:opencvpart04.pdf">Part 4</a>  <a href="../_media/programming/opencvpart05.pdf" class="media mediafile mf_pdf" title="programming:opencvpart05.pdf">Part 5</a> </div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> <a href="http://code.google.com/p/javacv/" class="urlextern" title="http://code.google.com/p/javacv/" rel="ugc nofollow">JavaCV</a> incorporates OpenCV plus some other cool stuff (AR, Kinect, etc)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Libraries&quot;,&quot;hid&quot;:&quot;libraries&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:10,&quot;range&quot;:&quot;3154-3864&quot;} -->
+<h2 class="sectionedit11" id="classes">Classes</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="https://cirl.lcsr.jhu.edu/Vision_Course_Schedule_2010" class="urlextern" title="https://cirl.lcsr.jhu.edu/Vision_Course_Schedule_2010" rel="ugc nofollow">Johns Hopkins</a>, has some sample projects too.</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.cs.brown.edu/courses/cs143/" class="urlextern" title="http://www.cs.brown.edu/courses/cs143/" rel="ugc nofollow">Brown</a>, plus his computational photography class is good too.</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.ohsu.edu/xd/education/schools/school-of-medicine/departments/basic-science-departments/biomedical-engineering/research/biomedical-optics.cfm" class="urlextern" title="http://www.ohsu.edu/xd/education/schools/school-of-medicine/departments/basic-science-departments/biomedical-engineering/research/biomedical-optics.cfm" rel="ugc nofollow">OHSU Biomedical Imaging</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Classes&quot;,&quot;hid&quot;:&quot;classes&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:11,&quot;range&quot;:&quot;3865-4293&quot;} -->
+<h2 class="sectionedit12" id="embedded">Embedded</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://chipsight.com/" class="urlextern" title="http://chipsight.com/" rel="ugc nofollow">ChipSight</a> <a href="http://localhost/dokuwiki/lib/exe/detail.php?id=programming:vision&amp;media=programming:road_fillext_6_560x420.jpg" class="media" title="http://localhost/dokuwiki/lib/exe/detail.php?id=programming:vision&amp;media=programming:road_fillext_6_560x420.jpg" rel="ugc nofollow"><img src="../_media/programming/road_fillext_6_560x420.jpg" class="media" title="road_fillext_6_560x420.jpg" alt="road_fillext_6_560x420.jpg" width="100" /></a>. Uses FPGA to compress pixel data into understandable chunks to save processing power. Neat idea, should come out with product in early 2012.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Embedded&quot;,&quot;hid&quot;:&quot;embedded&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:12,&quot;range&quot;:&quot;4294-4666&quot;} -->
+<h2 class="sectionedit13" id="simple">Simple</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.youtube.com/user/IngenuitasOfficial" class="urlextern" title="http://www.youtube.com/user/IngenuitasOfficial" rel="ugc nofollow">SimpleCV</a> looks pretty cool.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Simple&quot;,&quot;hid&quot;:&quot;simple&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:13,&quot;range&quot;:&quot;4667-4774&quot;} -->
+<h2 class="sectionedit14" id="books">Books</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Great FREE! book by Szeliski: <a href="http://szeliski.org/Book/" class="urlextern" title="http://szeliski.org/Book/" rel="ugc nofollow">http://szeliski.org/Book/</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.amazon.com/gp/product/013168728X/ref=cm_cr_asin_lnk" class="urlextern" title="http://www.amazon.com/gp/product/013168728X/ref=cm_cr_asin_lnk" rel="ugc nofollow">Digital Image Processing by Gonzalez</a>, more intro.</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.amazon.com/gp/product/0130307963/ref=cm_cr_asin_lnk" class="urlextern" title="http://www.amazon.com/gp/product/0130307963/ref=cm_cr_asin_lnk" rel="ugc nofollow">Computer Vision by Shapiro</a></div>
+</li>
+<li class="level2"><div class="li"> (you found both of them)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Books&quot;,&quot;hid&quot;:&quot;books&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:14,&quot;range&quot;:&quot;4775-5142&quot;} -->
+<h2 class="sectionedit15" id="face_recognitionprojection">Face Recognition/Projection?!</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://hackaday.com/2011/09/30/get-digital-plastic-surgery-thanks-to-openframeworks-and-some-addons/" class="urlextern" title="http://hackaday.com/2011/09/30/get-digital-plastic-surgery-thanks-to-openframeworks-and-some-addons/" rel="ugc nofollow">Crazy Hackaday article</a></div>
+</li>
+</ul>
+
+<p>
+<a href="http://localhost/dokuwiki/lib/exe/detail.php?id=programming:vision&amp;media=home:digital-plastic-surgery.png" class="media" title="http://localhost/dokuwiki/lib/exe/detail.php?id=programming:vision&amp;media=home:digital-plastic-surgery.png" rel="ugc nofollow"><img src="../_media/home/digital-plastic-surgery.png" class="media" alt="" width="200" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Face Recognition\/Projection?!&quot;,&quot;hid&quot;:&quot;face_recognitionprojection&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:15,&quot;range&quot;:&quot;5143-5476&quot;} -->
+<h3 class="sectionedit16" id="tracking">Tracking</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://info.ee.surrey.ac.uk/Personal/Z.Kalal/tld.html" class="urlextern" title="http://info.ee.surrey.ac.uk/Personal/Z.Kalal/tld.html" rel="ugc nofollow">Great webpages on the Predator tracking algorithm by Zdenek Kalal</a> also has matlab source code… :)</div>
+</li>
+</ul>
+
+<p>
+YouTube Link! <a href="https://www.youtube.com/watch?v=1GhNXHCQGsM" class="urlextern" title="https://www.youtube.com/watch?v=1GhNXHCQGsM" rel="ugc nofollow">https://www.youtube.com/watch?v=1GhNXHCQGsM</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.kaldobsky.com/tracking/" class="urlextern" title="http://www.kaldobsky.com/tracking/" rel="ugc nofollow">Simple image tracker</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Tracking&quot;,&quot;hid&quot;:&quot;tracking&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:16,&quot;range&quot;:&quot;5477-&quot;} --></div></body>
+</html>

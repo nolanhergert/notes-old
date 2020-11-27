@@ -1,0 +1,714 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>bodytrack:dailylog</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#base_station">Base Station</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#calibration">Calibration</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#wireless_devices">Wireless Devices</a></div></li>
+<li class="level2"><div class="li"><a href="#strap_devices">Strap Devices</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h3 class="sectionedit1" id="progress">Progress</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="future_plans">Future Plans</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Make adaptive thresholding algorithm. Not sure how to do it, but you&#039;ll be a lot better signals guy because of it! </div>
+</li>
+<li class="level1"><div class="li"> Is the reason 60Hz still gets through is because there&#039;s a time delay between the two different sources of a differential amplifier? I suspect not because Josh&#039;s board does a really good job of getting rid of 60Hz, but just in case, an adaptive filter would work really well (will hopefully learn how to do this in Advanced DSP)</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="done">Done</h4>
+<div class="level4">
+
+</div>
+
+<h5 id="next_week">Next Week</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> MAKE FILTER ADAPTIVE THRESHOLDING!!!</div>
+</li>
+<li class="level1"><div class="li"> Research more interaction between c++ and octave. <a href="http://www.google.com/search?q=octave+c%2B%2B&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:en-US:official&amp;client=firefox-a" class="urlextern" title="http://www.google.com/search?q=octave+c%2B%2B&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:en-US:official&amp;client=firefox-a" rel="ugc nofollow">More on Google Search &quot;octave c++&quot;</a></div>
+</li>
+<li class="level1"><div class="li"> Make sure whole filtering algorithm runs on Mac now that you don&#039;t need ruby? I seem to remember that it needed fortran to compile c to mex…argh &gt;.&lt;</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Will hopefully understand a little more the close connection between HRV and autonomic nervous system (ANS), as the Nerve-Express guy claims his does the best at.</div>
+</li>
+<li class="level1"><div class="li"> Finish reading about Matlab HRV toolbox?</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section810">8/10</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Found out about Construction Junction and East End Food Coop. Probably going to bike over there today and check them out.</div>
+</li>
+<li class="level1"><div class="li"> Got ANT things working, need to type up a quick tutorial and post it onto Sparkfun forums, as they&#039;re confused!</div>
+</li>
+<li class="level1"><div class="li"> Broke transmitter by taking out and reinserting battery?!</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section89">8/9</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Unproductive in morning, got on a long tangent on induction cooking and the bulletproof diet. Sort of work related, but I don&#039;t see anyone else being that distacted! </div>
+</li>
+<li class="level1"><div class="li"> Got some help from Josh and he suggested getting a quick prototype working in Processing instead of worry about getting ANT thing working in C!</div>
+</li>
+<li class="level1"><div class="li"> I would like some healthy/good for me snacks that give me some protein and fiber to last for another hour or two. Refined flour pretzels definitely don&#039;t cut it, and I&#039;m actually hungrier as a result! Or maybe that&#039;s just the digestive system kicking in…</div>
+</li>
+<li class="level1"><div class="li"> Stuck in Matlab/Octave, trying to figure out why Octave is slower on the same dataset in 300Hz as it is in 500Hz running essentially the same function &gt;.&lt;</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section88">8/8</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Sort of productive today. Got ANT adapter, still struggling on getting it working. Seems to hang on open(), which is weird and exactly what Josh&#039;s board does too, which suggests that the code is broken</div>
+</li>
+<li class="level1"><div class="li"> Umm…Also need to finish up Matlab optimizations before summer is out. interp1 does a really fast job!</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section84">8/4</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Need to finish making it adaptive.</div>
+</li>
+<li class="level1"><div class="li"> Argggh….slowed down after 4:30. How about just getting up earlier?</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section813">8/1-3</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Finished moving. Met with Randy to talk about next steps for filter tools. </div>
+</li>
+<li class="level1"><div class="li"> Need to find a good filter method that is independent of the sampling frequency and resistant to missing, ill-timed data points. I think 1/RC filters for low and high pass filtering should work, but I&#039;ll need to tweak the time constant based on the time between samples. Still unsure on the whole thing, but hopefully I&#039;ll understand it tomorrow.</div>
+</li>
+<li class="level1"><div class="li"> Matt forwarded me a site that had an open source C implementation</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section728729">7/28-7/29</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Helped Ray some more with his Processing script. Getting ANT parts soon.</div>
+</li>
+<li class="level1"><div class="li"> Randy asked me to test out my peak detection script in Matlab/Octave and see how well it performed. Want to start getting things going for Octave coding.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section726727">7/26-7/27</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Investigated doing our own logging from an ANT+ chest strap. Seems really doable at low power with an XMega!</div>
+</li>
+<li class="level1"><div class="li"> Worried that we need respiration still.</div>
+</li>
+<li class="level1"><div class="li"> Meeting with Randy tomorrow, need to finish up reading on HRV and respiration-less monitoring.</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section725">7/25</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Got some peak detection going. Going to try and contrast HRV and BR once I get a decent spectral response out of it…</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section722">7/22</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Got a little further on implementing footstep detection. More of a trial and error thing…hopefully we won&#039;t get too much noise!</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section721">7/21</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Got cookies working for Ray&#039;s grapher. Got frustrated with DokuWiki search. Hopefully I&#039;ll be able to start actual signal processing tomorrow!</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section720">7/20</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Updated grapher for Ray again to use a hash cache :P Much much faster! Maybe we&#039;ll work on zooming tomorrow…</div>
+</li>
+<li class="level1"><div class="li"> <strong>To Do:</strong> Implement HRV tips from paper (4 hz and wavelets?) and investigate footstep detector on Android data that you got.</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section718719">7/18-7/19</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Helped people around the lab, particularly Ray in getting a Processing script together for pulling in BodyTrack data. Getting log in working is possible, but might take a little more work with CookieManager class in Java. Going to hold off on it now until he asks for it.</div>
+</li>
+<li class="level1"><div class="li"> Finished “Sugar: The Bitter Truth” video and wrote notes down on Food page. Very applicable to eventual BodyTrack tracking.</div>
+</li>
+<li class="level1"><div class="li"> Need to get some signal classifiers going. Walking/Running, coughing? Accurate HRV with IPFM model.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section714">7/14</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Working on HRV some more. Found a paper claiming hard to tell difference between REM and awake using HRV.</div>
+</li>
+<li class="level1"><div class="li"> Finally got Kubios working…lots of learning from their docs. </div>
+</li>
+<li class="level1"><div class="li"> <strong>Timestamp on Wednesday&#039;s data seems to be way off?</strong></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section712713">7/12-7/13</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Slacked a bit on doing HRV analysis. Really should re-analyze sleep data with HRV, but probably easier to do on BodyTrack website w/ bars. Hm…</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section711">7/11</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Lots of reading about HRV analysis. Anne took the time to explain to me what she has been experimenting with on her suspicions of the intestines. HRV might help simplify things.</div>
+</li>
+<li class="level1"><div class="li"> Found some cool alternatives to our hardware design, including a radar-based method for when you&#039;re sitting still.</div>
+</li>
+<li class="level1"><div class="li"> Also, actigraphy (accelerometer) during sleeping is an even cheaper way of getting a rough idea how you&#039;re sleeping.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section7778">7/7 - 7/8</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Lots of logging with the BioHarness! Logged two nights of sleep data, and found that I flipped over a few times too. Might be time to get that air mattress and see how that affects things…</div>
+</li>
+<li class="level1"><div class="li"> Found some papers <a href="http://www.livestrong.com/article/134189-heart-rate-variability-during-sleep/" class="urlextern" title="http://www.livestrong.com/article/134189-heart-rate-variability-during-sleep/" rel="ugc nofollow">and a good article</a> correlating sleep quality and HRV. Taking a zeo home to do some more analysis. </div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section76">7/6</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Assembled Robot Diaries stuff for Clara and moved desk for Anne until 10:30. </div>
+</li>
+<li class="level1"><div class="li"> Still trying to wrap my head around HRV analysis as it relates to ANS operation. Especially where respiratory data needs to be taken into account.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section75">7/5</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Much HRV reading</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section630">6/30</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Not sure why I didn&#039;t write stuff down here yesterday. Worked on HRV analysis somewhat, but also got assigned to creating an intervalometer for Randy that will control multiple cameras at once. </div>
+</li>
+<li class="level1"><div class="li"> Need to finish up getting a good handle at what we can determine from HRV and what Nerve-Express guy is so worried about! Seems like it&#039;s just LF and HF bands…</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section628">6/28</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Found lots of papers and got kinda bogged down with HRV analysis, especially in fitness applications. </div>
+</li>
+<li class="level1"><div class="li"> Time flies…</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section627">6/27</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Read some really interesting stuff today about monitoring Galvanic Skin Response and how that reacts with regards to surprise and stuff. Can be false alarms, people react differently, and placement on the body is very key!</div>
+</li>
+<li class="level1"><div class="li"> Also started reading into Heart Rate Variability near the end. I think the key think we&#039;re looking to find is deriving Sympathetic and Parasympathetic Nervous System response from HRV especially, but maybe GSR too. </div>
+</li>
+<li class="level1"><div class="li"> Will read that paper some more tomorrow</div>
+</li>
+<li class="level1 node"><div class="li"> Also, machine learning / pattern recognition seems to be this black box that you throw stuff into and then see if the computer can find any patterns that you can&#039;t! Probably isn&#039;t that robust for raw signals (like GSR raw), but maybe is more helpful with the results from the raw data.</div>
+<ul>
+<li class="level2"><div class="li"> I.E. Don&#039;t feed raw EKG data to the computer, but rather do that analysis on the side to find heart rate, heart rate variability + the other things, and then throw all of those in there and have the computer look for patterns.</div>
+</li>
+<li class="level2"><div class="li"> Hmm….</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section624">6/24</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Made pretty good progress on researching how to recognize stress from body signals. Seems that HRV (HF/LF ratios?!) and GSR are pretty good indicators from the Jennifer Healey papers I found. More to read later…</div>
+</li>
+<li class="level1"><div class="li"> Sent email to Ming Zher Po about his CardioCam project, maybe he&#039;ll get back to me!</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section623">6/23</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Finished up c++ and perl script for processing dylos data.</div>
+</li>
+<li class="level1"><div class="li"> Started doing some reading on stress and energy level estimation from different biological signs. Hopefully that&#039;ll get somewhere tomorrow.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section622">6/22</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Turns out that plotting bar graphs in Matlab in log scale isn&#039;t nice. &gt;.&lt;</div>
+</li>
+<li class="level1"><div class="li"> Finished filtering dylos data, need to switch C++ code to use milliseconds as Dylos data comes in 61 times a minute. Shouldn&#039;t be too bad using <a href="http://www.firstobject.com/getmillicount-milliseconds-portable-c++.htm" class="urlextern" title="http://www.firstobject.com/getmillicount-milliseconds-portable-c++.htm" rel="ugc nofollow">this tutorial</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section621">6/21</h4>
+<div class="level4">
+<ul>
+<li class="level1 node"><div class="li"> So, turns out I don&#039;t really <strong>need</strong> to do bandpass filtering if we have good data coming in. Saves us a lot of computation time and headache to make it all work with noisy data.</div>
+<ul>
+<li class="level2 node"><div class="li"> It&#039;d be nice to have some simple button filters that would apply.</div>
+<ul>
+<li class="level3"><div class="li"> Averaging filter (specify window)</div>
+</li>
+<li class="level3"><div class="li"> Differentiate</div>
+</li>
+<li class="level3"><div class="li"> Square</div>
+</li>
+<li class="level3"><div class="li"> Peak detection…might need to tweak it to make it less stringent on timing. </div>
+</li>
+</ul>
+</li>
+<li class="level2 node"><div class="li"> Script from here on out could just be in C++, which is really nice! And just prototyped quickly and graphically with Matlab.</div>
+<ul>
+<li class="level3"><div class="li"> Utilize C++ libraries to do FFT if we need to.</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Tomorrow To-Do is to filter dylos data and spit out to CSV. Ideally use perl so that Anne can run it as batch filter.</div>
+<ul>
+<li class="level2"><div class="li"> Do 2-ch and 6-ch, upload to Bodytrack</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section617">6/17</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Had CREATE Lab meeting today…and I realized even more just how cool this lab is! Very interesting and hard projects that people are working on and they are very humble and nice about it. </div>
+</li>
+<li class="level1 node"><div class="li"> Struggled with interfacing Ruby and Octave due to an old octave-ruby gem that didn&#039;t update with the 3.2 release of Octave and wasn&#039;t compiling. Tried it in Ubuntu too, and it still wasn&#039;t working! Very frustrating…</div>
+<ul>
+<li class="level2"><div class="li"> Talked with Anne about it, she said that Randy was thinking about writing a custom C++ tile creator anyway, so all we&#039;d really need to do is be able to talk to call Octave from C++, which turns out is much easier thanks to Octave mostly being written in C++</div>
+</li>
+<li class="level2"><div class="li"> <strong>Takeaway:</strong> Free software is created by human beings in their free time, and *will* be broken a lot of the time! Hard to maintain it, and don&#039;t depend on it working without some maintenance more than 6 months down the road.</div>
+</li>
+<li class="level2"><div class="li"> Oh, and talk to your advisor if you&#039;re stuck! Communication is very good. </div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Had BodyTrack meeting and got to hear about the cool projects people are working on. We are definitely much better as a team than individuals! </div>
+</li>
+<li class="level1 node"><div class="li"> Talked with Anne about the difference between binrecs (recorded on each device), logrecs (storage unit on server split into a SQL entry and an associated CSV file), and tiles (what is shown on the website and takes care of averaging and zooming in and out…also very complicated!).</div>
+<ul>
+<li class="level2"><div class="li"> I need to be able to take tiles in and do quick peak detection on potentially inconsistent sampling rates, dropouts in data, and, oh yeah, noisy signals. I&#039;m thinking we can get away with dropping out the initial bandpass filter (5-15 Hz) for QRS detection because that&#039;s the only thing that is dependent on the sampling frequency, but Matt thinks that we can generate a new filter for a different sampling frequency pretty quickly. It just would stink to have to check every sample “do you have a new sampling frequency???”. It should be much more naive and untrusting than that.</div>
+</li>
+<li class="level2"><div class="li"> Testing adding 60Hz noise to signal and seeing if having bandpass filter is still necessary. We probably won&#039;t get this much 60 hz noise though with the current analog hardware setup. </div>
+</li>
+<li class="level2"><div class="li"> Hmm….interesting things to think about for next week.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section616">6/16</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Had a good quick chat with Anne today about next steps for the website. She was able to intelligently steer my thoughts away from worrying about doing easy end-user correlations to interfacing my current code in Octave and with their Rails server, just like good bosses should do. Missed the trees for the forest :P</div>
+</li>
+<li class="level1 node"><div class="li"> Ran into a good bit of problems getting Octave to use MEX files on the Mac. (something about not finding lgfortranbegin). The author suggested using a different dmg <a href="http://octave.1599824.n4.nabble.com/Installing-packages-on-Mac-OS-isn-t-working-td3519505.html" class="urlextern" title="http://octave.1599824.n4.nabble.com/Installing-packages-on-Mac-OS-isn-t-working-td3519505.html" rel="ugc nofollow">on this thread</a>, but then I got a bunch of complaints about 32-bit and 64-bit. Aaaargh. </div>
+<ul>
+<li class="level2"><div class="li"> Switching to just trying to get everything working on Ubuntu/Linux, since that&#039;s what we&#039;ll be using in the end for the server.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section69">6/9</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Got linear fit working! Turns out there&#039;s a big difference between .998 and .999 for R values…so that&#039;ll be fun to tweak.</div>
+</li>
+<li class="level1 node"><div class="li"> TO DO:</div>
+<ul>
+<li class="level2"><div class="li"> Test transition to findHR when exercising (large changes in HR). I think the threshold for switching between “OK” and findHR should be lower for when the data is good vs. when we&#039;re searching for a linear fit.</div>
+</li>
+<li class="level2"><div class="li"> Peak threshold should definitely be low to find QRS waveforms that were changed somehow by noise. Still not adaptive though <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" /></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section68">6/8</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Implemented most of the To Do&#039;s in my notebook and wrote some starter code. Fixing bugs, and it seems to crash whenever I access stack variable. &gt;.&lt;</div>
+</li>
+<li class="level1 node"><div class="li"> TO DO:</div>
+<ul>
+<li class="level2"><div class="li"> Peak threshold adjustment is still not adaptive. Still playing around to find the right value. </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section66">6/6</h5>
+<div class="level5">
+<ul>
+<li class="level1 node"><div class="li"> Got peak detection working!</div>
+<ul>
+<li class="level2"><div class="li"> Upped history to 5 peaks before</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> TO DO:</div>
+<ul>
+<li class="level2"><div class="li"> Make it adaptive…somewhere near .05 seemed to be good. Needs to be high enough to avoid spurious noise but also catch smaller ekg waveforms in the midst of “loud” noise.</div>
+</li>
+<li class="level2"><div class="li"> Maybe further differentiate peaks based based on height of expected waveform? Probably not as the height can change in the midst of noise (and potentially look like a noise peak)</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section527">5/27</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Got preliminary peak detection code written, ironing out last bugs. Seems to crash when I have meanx and meany calculated in linearfit.</div>
+</li>
+<li class="level1 node"><div class="li"> Extra Features</div>
+<ul>
+<li class="level2"><div class="li"> When you&#039;re in a “noisy” situation (2 missed beats in a row…might want to adjust that), find correlation between sets of beats before instead of waiting for 3 good beats in a row.</div>
+</li>
+<li class="level2"><div class="li"> Make an adaptive threshold for the peak detector. Should be some constant ratio of the heights of the last 3 good peaks or something like that.</div>
+</li>
+<li class="level2"><div class="li"> Might need to adjust threshold for confidence level. Right now it&#039;s .1, which is a little low! </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section526">5/26</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Almost done with peak detection code! Got distracted a little in thinking about spirograph, but a pretty productive day overall…</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section525">5/25</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Started writing MEX code for peak detection. I think I need to <a href="http://billauer.co.il/peakdet.html" class="urlextern" title="http://billauer.co.il/peakdet.html" rel="ugc nofollow">do min/max like billauer</a>, but I&#039;ll give it a little more thought.</div>
+</li>
+<li class="level1"><div class="li"> Overall, pretty productive! Writing C code for matlab / octave wasn&#039;t as bad as I thought it was going to be.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section524">5/24</h5>
+<div class="level5">
+<ul>
+<li class="level1 node"><div class="li"> Decided I need to write my own C code to get my filter working fast and correctly. Some things (like window analysis filters) can&#039;t be written without for-loops. :(</div>
+<ul>
+<li class="level2"><div class="li"> Write it tomorrow when you have a little more brain-power</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.mathworks.com/matlabcentral/fileexchange/24705-minmax-filter" class="urlextern" title="http://www.mathworks.com/matlabcentral/fileexchange/24705-minmax-filter" rel="ugc nofollow">Min/Max filter in C</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Read about some wavelets</div>
+</li>
+<li class="level1"><div class="li"> Order BioHarness tomorrow</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section523">5/23</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Fixed csv stuff. Still need to read bodytrack pdf&#039;s and do HR ignoring. It&#039;s a little more complicated than I thought. I think I need to do a fancy indexing thing to get it working.</div>
+</li>
+<li class="level1"><div class="li"> Researched the Zephyr Technology BioHarness today and am getting ready to order it or do the academic research plan.</div>
+</li>
+<li class="level1"><div class="li"> Watched the Bulletproof Executive video, which was very interesting! </div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section520">5/20</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Did some stuff and demoed other things. </div>
+</li>
+<li class="level1 node"><div class="li"> TO DO: </div>
+<ul>
+<li class="level2"><div class="li"> Fix reading in CSV file that has UTC time. (figure out the bug with reading in waterbot.csv and dylos csv&#039;s). Do you need PERL script?</div>
+</li>
+<li class="level2"><div class="li"> Make HR detection be filtered by taking first derivative of peak to peak timing. If its slope greater than .08 ~ .1, then do linear interpolation for correct HR during that time (or look for correct heart beat peak…)</div>
+</li>
+<li class="level2"><div class="li"> Read papers in BodyTrack folder on desktop. Whiz through capactitive sensor and study the wavelet paper and other EKG sensing paper (might need to finish wavelet tutorial online)</div>
+</li>
+<li class="level2"><div class="li"> Research that one company Zephyr Technology for their BioSensor thingy.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section519">5/19</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Finished doing a lot of testing and optimizing! Octave just might work out :) Still have my fftfilt version to finish for tomorrow.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section518">5/18</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> To Do: Finish optimizing ekgfilter for speed (remove convolutions) and then see how fast it runs in Octave.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section517">5/17</h5>
+<div class="level5">
+<ul>
+<li class="level1 node"><div class="li"> Implemented my own FFT convolution, and it works mostly! Then I found a fftfilt in Matlab&#039;s signal processing toolbox. I&#039;m glad I did it on my own though…I learned how to do it and it&#039;s faster than Matlab&#039;s version! </div>
+<ul>
+<li class="level2"><div class="li"> TO DO: FIX YOUR CODE!!! </div>
+</li>
+<li class="level2"><div class="li"> Does fftfilt do overlap the same? </div>
+</li>
+<li class="level2"><div class="li"> Try not specifying NFFT for fftfilt and see how fast it is (same?!)</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Also talked with Ben Shih for a bit about not knowing enough analog electronics. I think I might teach myself analog stuff after I&#039;m done with my spirograph generator.</div>
+<ul>
+<li class="level2"><div class="li"> Found some classes at JHU and Pitt, thinking I might use them as references / guides for what I need to learn. </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section516">5/16</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Recorded some new data with Josh&#039;s help! Working up to the point of using Eric&#039;s suggestions. Close…</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section512">5/12</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Got my Understanding DSP book in the mail! Great explanations by this guy and he&#039;s funny in parts too. </div>
+</li>
+<li class="level1"><div class="li"> Rectangular window has smallest main lobe width but large side lobes. All the other windows trade larger main lobe widths for greatly diminished side lobes. Lots of further tiny optimizations are detailed in the book and other sources, but that&#039;s the main jist.</div>
+</li>
+<li class="level1"><div class="li"> Why was I reading all this again? Oh yeah, to be *really* good at this stuff. :) Hopefully I&#039;ll do some welch windowing tomorrow and finish all this up!</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section511">5/11</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Simple rectangular notch filter works quite well when used in conjunction with a Hamming/Hanning window. However, I should probably do some welch sub-windowing to not have the output be consistent in magnitude. </div>
+</li>
+<li class="level1"><div class="li"> Got a bunch of books on DSP at the library and ordered Understanding Digital Signal Processing (very practical!!!) for now and next fall.</div>
+</li>
+<li class="level1"><div class="li"> Also, it&#039;d be nice to have it automagically figure out which frequencies are too sharp esp. with EKG data. Might not always be 60 Hz data, especially for higher sampling frequencies. Peak detection algorithm again?</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section510">5/10</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Talked with Eric about filtering 60 Hz and 120 Hz. I think I might just do a simple rectangular filter ala:</div>
+</li>
+</ul>
+<pre class="code">Fs = 1000; % Sampling frequency
+T = 1/Fs; % Sample time
+L = 1000; % Length of signal
+t = (0:L-1)*T; % Time vector
+% Sum of a 50 Hz sinusoid and a 120 Hz sinusoid
+x = 0.7*sin(2*pi*50*t) + sin(2*pi*120*t);
+y = x + 2*randn(size(t)); % Sinusoids plus noise
+ydft = fft(y);
+ydft(abs(ydft)&lt;200)=0;
+yfilt = ifft(ydft);
+plot(yfilt(1:100),&#039;b&#039;,&#039;linewidth&#039;,2)
+hold on;
+plot(y(1:100),&#039;k&#039;);
+legend(&#039;Filtered Signal&#039;,&#039;Unfiltered Signal&#039;);</pre>
+<ul>
+<li class="level1"><div class="li"> I will probably get some ringing, but hopefully not that much. If so, then go back to evaluating the filter for a large set of data??? My filter is ~4096, but the dataset can be pretty large! You can&#039;t just multiply the frequency responses!</div>
+</li>
+<li class="level1"><div class="li"> Also, I&#039;m not sure whether to use a hanning window when I create </div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section55">5/5</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Corrects for improper vector dimension inputs by automatically transposing. Normalized input vectors on most all programs.</div>
+</li>
+<li class="level1"><div class="li"> Trigger level for peak is a running window average of 5s for now. Appended mean of first window of signal to front of signal to prevent ramp-up of average. Seems to work well.</div>
+</li>
+<li class="level1"><div class="li"> Read up on eigenvectors and eigenvalues for some adaptive filtering/PCA/other fun stuff later. Much more to learn!</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="to_do">To Do</h4>
+<div class="level4">
+<ul>
+<li class="level1 node"><div class="li"> Using FFT and not convolution for filtering out power noise (60 Hz and 120 Hz in US, 50 and 100 Hz in UK). Not sure what&#039;s the minimum number of FFT points I can get away with and still do accurate filtering. 1024? 2^16?</div>
+<ul>
+<li class="level2"><div class="li"> <a href="https://ccrma.stanford.edu/~jos/mdft/Convolution_Theorem.html" class="urlextern" title="https://ccrma.stanford.edu/~jos/mdft/Convolution_Theorem.html" rel="ugc nofollow">Speed of FFT vs Convolution for filtering in Matlab</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Adaptive filtering?</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+</div>
+</div></body>
+</html>

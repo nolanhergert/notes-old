@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:optimization:hw1</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#homework_1">Homework 1</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#submission">Submission</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#design">Design</a></div></li>
+<li class="level3"><div class="li"><a href="#constraints">Constraints</a></div></li>
+<li class="level3"><div class="li"><a href="#optimization_criterion">Optimization Criterion</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#part_2">Part 2</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#computing_the_gradient_analytically">Computing the Gradient Analytically</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#remaining_issuesquestions">Remaining Issues/Questions</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="homework_1">Homework 1</h1>
+<div class="level1">
+
+<p>
+<a href="../../_media/programming/optimization/start.png" class="media" title="programming:optimization:start.png"><img src="../../_media/programming/optimization/start.png" class="media" alt="" width="300" /></a><a href="../../_media/programming/optimization/behind_back.png" class="media" title="programming:optimization:behind_back.png"><img src="../../_media/programming/optimization/behind_back.png" class="media" alt="" width="300" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.cs.cmu.edu/~cga/dynopt/ass1/" class="urlextern" title="http://www.cs.cmu.edu/~cga/dynopt/ass1/" rel="ugc nofollow">Assignment 1 Handout</a></div>
+</li>
+<li class="level1"><div class="li"> For this first homework we are to make a humanoid robot touch target points in its “world”. For my solution, I used Matlab&#039;s <a href="http://www.mathworks.com/help/optim/ug/fmincon.html" class="urlextern" title="http://www.mathworks.com/help/optim/ug/fmincon.html" rel="ugc nofollow">fmincon</a> function and provided it with several constraints</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Homework 1&quot;,&quot;hid&quot;:&quot;homework_1&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-433&quot;} -->
+<h2 class="sectionedit2" id="submission">Submission</h2>
+<div class="level2">
+
+<p>
+<a href="../../_media/programming/optimization/hw1_submission.zip" class="media mediafile mf_zip" title="programming:optimization:hw1_submission.zip">hw1_submission.zip</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Just run main.m, and change <code>computeGradient</code> if you would like to have it compute the analytical gradient (is not accurate nor fast, but the foundation is there)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Submission&quot;,&quot;hid&quot;:&quot;submission&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;434-676&quot;} -->
+<h3 class="sectionedit3" id="design">Design</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Due to a limited timeframe (for various reasons) in completing the assignment, I went with the provided sample Matlab code for a 3-link arm and modified the criterion and constraints code to work for a full humanoid robot.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Design&quot;,&quot;hid&quot;:&quot;design&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;677-922&quot;} -->
+<h3 class="sectionedit4" id="constraints">Constraints</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> Both of the humanoid&#039;s feet cannot move (they can bend though). </div>
+<ul>
+<li class="level2"><div class="li"> I had a tough time implementing this, as fmincon didn&#039;t like having the x,y, and z coordinate errors combined into one constraint for some reason. It worked great when they were separated though! A snippet of constraints.m is shown below for illustration:</div>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="code matlab"><span class="co1">%Was not able to optimize using this code</span>
+eq_violations<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span> = <span class="br0">&#40;</span>tree2.<a href="https://www.mathworks.com/help/matlab/ref/j.html"><span class="kw2"><span class="re0">j</span></span></a><span class="br0">&#40;</span><span class="nu0">17</span><span class="br0">&#41;</span>.<span class="me1">position</span> - <span class="br0">&#91;</span>-<span class="nu0">0.0484</span> -<span class="nu0">0.0890</span> <span class="nu0">0.0811</span><span class="br0">&#93;</span><span class="br0">&#41;</span>*<span class="br0">&#40;</span>tree2.<a href="https://www.mathworks.com/help/matlab/ref/j.html"><span class="kw2"><span class="re0">j</span></span></a><span class="br0">&#40;</span><span class="nu0">17</span><span class="br0">&#41;</span>.<span class="me1">position</span> - <span class="br0">&#91;</span>-<span class="nu0">0.0484</span> -<span class="nu0">0.0890</span> <span class="nu0">0.0811</span><span class="br0">&#93;</span><span class="br0">&#41;</span>';
+&nbsp;
+<span class="co1">%But it worked just fine with this code</span>
+eq_violations<span class="br0">&#40;</span><span class="nu0">1</span>:<span class="nu0">3</span><span class="br0">&#41;</span> = <span class="br0">&#40;</span>tree2.<a href="https://www.mathworks.com/help/matlab/ref/j.html"><span class="kw2"><span class="re0">j</span></span></a><span class="br0">&#40;</span><span class="nu0">17</span><span class="br0">&#41;</span>.<span class="me1">position</span> - <span class="br0">&#91;</span>-<span class="nu0">0.0484</span> -<span class="nu0">0.0890</span> <span class="nu0">0.0811</span><span class="br0">&#93;</span><span class="br0">&#41;</span>;</pre>
+<ul>
+<li class="level1"><div class="li"> The center of mass of the humanoid cannot go outside its base of support (or else it would tip over!)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Constraints&quot;,&quot;hid&quot;:&quot;constraints&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;923-1687&quot;} -->
+<h3 class="sectionedit5" id="optimization_criterion">Optimization Criterion</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> For my criterion, I used the euclidean distance between the humanoid robot&#039;s right wrist and the target point, which worked well.</div>
+</li>
+</ul>
+<pre class="code matlab">score = <span class="br0">&#40;</span>tree1.<a href="https://www.mathworks.com/help/matlab/ref/j.html"><span class="kw2"><span class="re0">j</span></span></a><span class="br0">&#40;</span><span class="nu0">29</span><span class="br0">&#41;</span>.<span class="me1">position</span> - target<span class="br0">&#41;</span>*<span class="br0">&#40;</span>tree1.<a href="https://www.mathworks.com/help/matlab/ref/j.html"><span class="kw2"><span class="re0">j</span></span></a><span class="br0">&#40;</span><span class="nu0">29</span><span class="br0">&#41;</span>.<span class="me1">position</span> - target<span class="br0">&#41;</span>';</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Optimization Criterion&quot;,&quot;hid&quot;:&quot;optimization_criterion&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;1688-1953&quot;} -->
+<h2 class="sectionedit6" id="part_2">Part 2</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> For part 2 of the assignment, we were asked to analytically compute the gradient (instead of letting Matlab compute it numerically). </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Part 2&quot;,&quot;hid&quot;:&quot;part_2&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:6,&quot;range&quot;:&quot;1954-2111&quot;} -->
+<h3 class="sectionedit7" id="computing_the_gradient_analytically">Computing the Gradient Analytically</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> I was able to use Matlab&#039;s Symbolic Math Toolbox to compute the partial derivatives of the forward kinematics equations analytically. This seemed to be a pretty simple operation, as all I had to do was pass in a symbol called <code>angles(i)</code> instead of a numerical angle. See below inside of drc_forward_kinematics_symbolic.m:</div>
+</li>
+</ul>
+<pre class="code matlab">angles = sym<span class="br0">&#40;</span><span class="co2">'angles'</span>,<span class="br0">&#91;</span><span class="nu0">29</span>,<span class="nu0">1</span><span class="br0">&#93;</span><span class="br0">&#41;</span>;
+<span class="kw1">for</span> <a href="https://www.mathworks.com/help/matlab/ref/i.html"><span class="kw2"><span class="re0">i</span></span></a> = <span class="nu0">2</span>:<span class="nu0">29</span>
+ parent = tree.<span class="me1">l</span><span class="br0">&#40;</span><a href="https://www.mathworks.com/help/matlab/ref/i.html"><span class="kw2"><span class="re0">i</span></span></a><span class="br0">&#41;</span>.<span class="me1">parent</span>;
+ tree.<a href="https://www.mathworks.com/help/matlab/ref/j.html"><span class="kw2"><span class="re0">j</span></span></a><span class="br0">&#40;</span><a href="https://www.mathworks.com/help/matlab/ref/i.html"><span class="kw2"><span class="re0">i</span></span></a><span class="br0">&#41;</span>.<span class="me1">rotation</span> = generate_axis_angle_rotation_matrix_symbolic<span class="br0">&#40;</span> tree.<a href="https://www.mathworks.com/help/matlab/ref/j.html"><span class="kw2"><span class="re0">j</span></span></a><span class="br0">&#40;</span><a href="https://www.mathworks.com/help/matlab/ref/i.html"><span class="kw2"><span class="re0">i</span></span></a><span class="br0">&#41;</span>.<a href="https://www.mathworks.com/help/matlab/ref/axis.html"><span class="kw2">axis</span></a>, angles<span class="br0">&#40;</span><a href="https://www.mathworks.com/help/matlab/ref/i.html"><span class="kw2"><span class="re0">i</span></span></a><span class="br0">&#41;</span> <span class="br0">&#41;</span>;
+.
+.
+.</pre>
+<ul>
+<li class="level1 node"><div class="li"> However, the equations became complicated very quickly and took around 20 seconds to evaluate them for a given set of angles (inside of criterion.m). </div>
+<ul>
+<li class="level2"><div class="li"> Also, the robot seems to crumple on the floor unnecessarily, smells fishy…</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Computing the Gradient Analytically&quot;,&quot;hid&quot;:&quot;computing_the_gradient_analytically&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;2112-2925&quot;} -->
+<h2 class="sectionedit8" id="remaining_issuesquestions">Remaining Issues/Questions</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Is there much of a difference between evaluating analytic derivatives at a point and doing numerical differentiation ((x+dx - x)/ dy) at the same point? Much to my chagrin, I saw fmincon requested a numerical gradient and not an analytic one, which was my cause for surprise :)</div>
+<ul>
+<li class="level2"><div class="li"> Taking the effort to do the 2nd derivative would make more sense, as you get even more of a picture of where global minimas might be</div>
+</li>
+<li class="level2"><div class="li"> On that note, why not 3rd or 4th derivatives if you can?</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> The analytic result is definitely not right yet, as the humanoid seems to crumple up on the floor unnecessarily. I need to do some more testing with simple examples!</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Remaining Issues\/Questions&quot;,&quot;hid&quot;:&quot;remaining_issuesquestions&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:8,&quot;range&quot;:&quot;2926-&quot;} --></div></body>
+</html>

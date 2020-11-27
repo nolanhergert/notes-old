@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>signals:windows</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#cornell_cup_intel_idea">Cornell Cup Intel Idea</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#modding_cube">Modding Cube</a></div></li>
+<li class="level2"><div class="li"><a href="#slam_simultaneous_localization_and_mapping">SLAM (Simultaneous Localization and Mapping)</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="why_use_windows">Why Use Windows?</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> It&#039;s not the software made by a company in Seattle. </div>
+</li>
+<li class="level1"><div class="li"> Spectral leakage actually occurs when you compute the FFT because it expects an infinitely long signal. What it actually gets is a signal that stops abruptly, requiring a lot more frequency power to create it, skewing the FFT.</div>
+</li>
+<li class="level1"><div class="li"> What you can do to combat that is use a windowing function, something that doesn&#039;t require much more frequency information. A hamming window is a good example. (seen below)</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/signals/screen_shot_2011-05-03_at_3.55.30_pm.png" class="media" title="signals:screen_shot_2011-05-03_at_3.55.30_pm.png"><img src="../_media/signals/screen_shot_2011-05-03_at_3.55.30_pm.png" class="media" alt="" /></a>
+<a href="../_media/signals/screen_shot_2011-05-03_at_3.50.27_pm.png" class="media" title="signals:screen_shot_2011-05-03_at_3.50.27_pm.png"><img src="../_media/signals/screen_shot_2011-05-03_at_3.50.27_pm.png" class="media" alt="" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> You can also overlap windows if you&#039;re doing real-time spectral analysis.</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/signals/18391_s11_lab4.pdf" class="media mediafile mf_pdf" title="signals:18391_s11_lab4.pdf">Decent explanation from 18-391 Lab 4</a>
+</p>
+
+</div>
+</div></body>
+</html>

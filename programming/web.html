@@ -1,0 +1,286 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:web</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#web_programming">Web Programming</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#the_immigrant_story">The Immigrant Story</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#https_setup">HTTPS Setup</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#response_time">Response Time</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#digital_ocean">Digital Ocean</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#older_stuff">Older stuff</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="web_programming">Web Programming</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Web Programming&quot;,&quot;hid&quot;:&quot;web_programming&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-31&quot;} -->
+<h2 class="sectionedit2" id="the_immigrant_story">The Immigrant Story</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;The Immigrant Story&quot;,&quot;hid&quot;:&quot;the_immigrant_story&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;32-63&quot;} -->
+<h3 class="sectionedit3" id="https_setup">HTTPS Setup</h3>
+<div class="level3">
+
+<p>
+Pretty straightforward. <a href="https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-18-04" class="urlextern" title="https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-18-04" rel="ugc nofollow">https://www.digitalocean.com/community/tutorials/how-to-secure-apache-with-let-s-encrypt-on-ubuntu-18-04</a>
+</p>
+<ul>
+<li class="level1 node"><div class="li"> Just edited the default 000-default.conf and then ran the below. <a href="https://www.linode.com/community/questions/311/how-do-i-enabledisable-a-website-hosted-with-apache" class="urlextern" title="https://www.linode.com/community/questions/311/how-do-i-enabledisable-a-website-hosted-with-apache" rel="ugc nofollow">https://www.linode.com/community/questions/311/how-do-i-enabledisable-a-website-hosted-with-apache</a></div>
+<ul>
+<li class="level2"><div class="li"> Already set up to auto-renew.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h4 id="main_page">Main page</h4>
+<div class="level4">
+
+<p>
+Add another “row” by editing “Front Page” page.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;HTTPS Setup&quot;,&quot;hid&quot;:&quot;https_setup&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;64-488&quot;} -->
+<h2 class="sectionedit4" id="response_time">Response Time</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Response Time&quot;,&quot;hid&quot;:&quot;response_time&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;489-514&quot;} -->
+<h3 class="sectionedit5" id="digital_ocean">Digital Ocean</h3>
+<div class="level3">
+
+<p>
+Trying standard Wordpress install, but dies when more than 1-2 users access it because it ran out of RAM and is dynamically allocating more ram and we&#039;re at 80% of 1GB. Lame.
+</p>
+<ul>
+<li class="level1"><div class="li"> Bluehost domain name change service: <a href="https://my.bluehost.com/cgi/dm/zoneedit" class="urlextern" title="https://my.bluehost.com/cgi/dm/zoneedit" rel="ugc nofollow">https://my.bluehost.com/cgi/dm/zoneedit</a></div>
+</li>
+<li class="level1"><div class="li"> All in One Wordpress, use 64MB chunks?</div>
+</li>
+<li class="level1"><div class="li"> Enable mod_expires module in Apache for specifying asset timeout on client side</div>
+</li>
+<li class="level1 node"><div class="li"> Lots of good tips on this site: <a href="https://www.narga.net/optimizing-apachephpmysql-low-memory-server/" class="urlextern" title="https://www.narga.net/optimizing-apachephpmysql-low-memory-server/" rel="ugc nofollow">https://www.narga.net/optimizing-apachephpmysql-low-memory-server/</a></div>
+<ul>
+<li class="level2 node"><div class="li"> Logs are in /var/log/syslog. Don&#039;t have mysql logs on right now.</div>
+<ul>
+<li class="level3"><div class="li"> DigitalOcean tried to restart apache, but couldn&#039;t. Weird.</div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> Each apache process for me is ~80MB, so only want say 5 of them on. Set min alternate to 0 and max alternate to 5 . Editing /etc/apache2/mods-available/mpm_prefork.conf. </div>
+</li>
+<li class="level2 node"><div class="li"> Edited /etc/mysql/my.cnf as recommended. Be sure to add [mysqld] to the top of the edited section.</div>
+<ul>
+<li class="level3"><div class="li"> Can&#039;t turn off innodb anymore. So I&#039;m just limiting the innodb-buffer-pool-size to 16M. Doesn&#039;t seem to affect performance under no load. Probably fine.</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Use WP Fastest Cache and Jetpack only</div>
+<ul>
+<li class="level2"><div class="li"> 700ms TTFB before caching to 150ms after caching from WP Fastest Cache.</div>
+</li>
+<li class="level2"><div class="li"> Want to compress images.</div>
+</li>
+<li class="level2 node"><div class="li"> All the html pages are set up to not cache at all. That&#039;s a problem! They should cache for a few hours. But not a few days because there might be updates.</div>
+<ul>
+<li class="level3"><div class="li"> <del>Tried adjusting /var/www/html/.htaccess but it didn&#039;t work…</del> The section was further up. But there was still a 150ms request to only find out that nothing changed? Kinda weird, and probably not worth optimizing at this point.</div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> CDN is working for the small images, but not for the theme front page images. <a href="https://jetpack.com/support/site-accelerator/" class="urlextern" title="https://jetpack.com/support/site-accelerator/" rel="ugc nofollow">https://jetpack.com/support/site-accelerator/</a></div>
+</li>
+<li class="level2"><div class="li"> Images are loaded twice?</div>
+</li>
+<li class="level2"><div class="li"> Set jetpack to also do theme images?</div>
+</li>
+<li class="level2"><div class="li"> Remove captcha? Where does it come from?</div>
+</li>
+<li class="level2"><div class="li"> <del>Remove lighthouse and shipwreck image?</del> Nope</div>
+</li>
+<li class="level2 node"><div class="li"> Problem with using webp is supporting older browser. Just use a 20-30% bigger JPEG image for the main site? Or put in the work to get it working. <a href="https://stackoverflow.com/questions/5573096/detecting-webp-support" class="urlextern" title="https://stackoverflow.com/questions/5573096/detecting-webp-support" rel="ugc nofollow">https://stackoverflow.com/questions/5573096/detecting-webp-support</a></div>
+<ul>
+<li class="level3"><div class="li"> Or somehow use jetpack still? <a href="https://jetpack.com/2020/05/14/jetpack-hooks-control-jetpack-cdn/" class="urlextern" title="https://jetpack.com/2020/05/14/jetpack-hooks-control-jetpack-cdn/" rel="ugc nofollow">https://jetpack.com/2020/05/14/jetpack-hooks-control-jetpack-cdn/</a></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+Trying out litespeed wordpress template:
+</p>
+<ul>
+<li class="level1"><div class="li"> Increase upload size to 3GB, or just upload the file locally? Hmm.. <a href="https://www.digitalocean.com/community/questions/how-to-change-the-maximum-upload-file-size-in-litespeed-wordpress" class="urlextern" title="https://www.digitalocean.com/community/questions/how-to-change-the-maximum-upload-file-size-in-litespeed-wordpress" rel="ugc nofollow">https://www.digitalocean.com/community/questions/how-to-change-the-maximum-upload-file-size-in-litespeed-wordpress</a></div>
+</li>
+<li class="level1"><div class="li"> Tried it, but it was annoying to tweak small things and not as much support. Ended up being slower than Apache out of the box and I didn&#039;t feel like optimizing it more. <a href="https://www.webpagetest.org/result/200928_SX_5e50fabd03f2b603c4e672f7521089f4/" class="urlextern" title="https://www.webpagetest.org/result/200928_SX_5e50fabd03f2b603c4e672f7521089f4/" rel="ugc nofollow">https://www.webpagetest.org/result/200928_SX_5e50fabd03f2b603c4e672f7521089f4/</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="httrack">HTTrack</h4>
+<div class="level4">
+
+<p>
+Works the best. To be clear, the *WinHTTrack* works the best. The linux one (WebHTTrack) didn&#039;t quite get everything. Also the behavior is slightly different.
+</p>
+<ul>
+<li class="level1"><div class="li"> Don&#039;t want to copy external sites. Otherwise everything is default.</div>
+</li>
+<li class="level1"><div class="li"> Do not get non-<abbr title="HyperText Markup Language">HTML</abbr> files related to a link. The link will hopefully keep working or you can get a copy on archive.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="clone_wiki">Clone Wiki</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Do copy cache, since we are getting served it.</div>
+</li>
+</ul>
+<pre class="code">+*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+
+-*recent -*edit -*revision -*backlink -*siteexport -*siteexport_addpage -*dokuwiki__top -*&amp;do=media -*index -*&amp;do=login* -*&amp;do=resendpwd* -*do=export*
+--disable-security-limits</pre>
+
+</div>
+
+<h4 id="others">Others</h4>
+<div class="level4">
+
+<p>
+Better is to just render WP to <abbr title="HyperText Markup Language">HTML</abbr> for now.
+</p>
+<ul>
+<li class="level1 node"><div class="li"> Simply Static looks great. Don&#039;t do relative (links aren&#039;t working), but rather absolute path. (hopefully). </div>
+<ul>
+<li class="level2"><div class="li"> <a href="https://hostadvice.com/how-to/how-to-convert-a-wordpress-site-to-a-static-html-website/" class="urlextern" title="https://hostadvice.com/how-to/how-to-convert-a-wordpress-site-to-a-static-html-website/" rel="ugc nofollow">https://hostadvice.com/how-to/how-to-convert-a-wordpress-site-to-a-static-html-website/</a></div>
+</li>
+<li class="level2"><div class="li"> None of the options are working…</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> HTTrack seems to do well, but shared web host won&#039;t let me install it. Maybe I can call bluehost and see if they have any ideas?</div>
+<ul>
+<li class="level2"><div class="li"> Might need to just run it </div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Might go with Github so that backups are super easy too. <a href="https://www.toptal.com/github/unlimited-scale-web-hosting-github-pages-cloudflare" class="urlextern" title="https://www.toptal.com/github/unlimited-scale-web-hosting-github-pages-cloudflare" rel="ugc nofollow">https://www.toptal.com/github/unlimited-scale-web-hosting-github-pages-cloudflare</a></div>
+</li>
+</ul>
+
+<p>
+Trying to speed up the immigrant story ….
+<a href="https://onlinemediamasters.com/slow-wordpress-hosting-bluehost/" class="urlextern" title="https://onlinemediamasters.com/slow-wordpress-hosting-bluehost/" rel="ugc nofollow">https://onlinemediamasters.com/slow-wordpress-hosting-bluehost/</a>
+</p>
+
+<p>
+Enabling the CDN here caused everything to crash! <a href="https://my.bluehost.com/hosting/wordpress_tools/performance/" class="urlextern" title="https://my.bluehost.com/hosting/wordpress_tools/performance/" rel="ugc nofollow">https://my.bluehost.com/hosting/wordpress_tools/performance/</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Got to it from Wordpress site Bluehost plugin, with the CDN tab on top.</div>
+</li>
+<li class="level1"><div class="li"> CloudFlare uses cloud certificates, wouldn&#039;t require re-uploading the certificate every 90 days.</div>
+</li>
+</ul>
+
+<p>
+opcache_enabled=1 in php.ini
+</p>
+
+<p>
+BlueSky, paid Bluehost Wordpress-specific support. $99/mo
+</p>
+
+<p>
+Higher CPU usage on our server right now. Box 2233
+</p>
+<ul>
+<li class="level1"><div class="li"> WP Pro hosting. 50-200 people vs. 1100 people shared on same server. More processing power available. But starts at $30/mo</div>
+</li>
+</ul>
+
+<p>
+VPS gives you full access, but Bluehost wouldn&#039;t be managing anything. Not ideal for our use case.
+</p>
+
+<p>
+Also dan luu: <a href="https://danluu.com/octopress-speedup/" class="urlextern" title="https://danluu.com/octopress-speedup/" rel="ugc nofollow">https://danluu.com/octopress-speedup/</a>
+</p>
+<blockquote  class="blockquote-plugin">
+<p>
+This blog is a static Octopress site, hosted on GitHub Pages. 
+</p>
+
+</blockquote>
+<p>
+Time to first byte is ~2 seconds. Even though caching at all levels is turned on. Argh. Going to profile with laptop tomorrow. Hopefully will reproduce
+</p>
+
+<p>
+Sorta got things working with XDebug and XAMPP, however the php7 included didn&#039;t have debug symbols. Argh. Also start XAMPP in admin mode to avoid Apache startup problems.
+</p>
+
+<p>
+Anyways, enabling WP Super Cache helped a lot. I feel that additional help (if needed) will come from minifying / CDN / etc. See the “recommended Links and Plugins” on the WP Super Cache setting page on Wordpress.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Digital Ocean&quot;,&quot;hid&quot;:&quot;digital_ocean&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;515-6076&quot;} -->
+<h2 class="sectionedit6" id="older_stuff">Older stuff</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Ninja: An awesome Flash-like tool for HTML5 and WebGL animation: <a href="http://arstechnica.com/information-technology/2012/07/ninja-power-open-source-html5-toolset-hopes-to-unleash-the-web/" class="urlextern" title="http://arstechnica.com/information-technology/2012/07/ninja-power-open-source-html5-toolset-hopes-to-unleash-the-web/" rel="ugc nofollow">http://arstechnica.com/information-technology/2012/07/ninja-power-open-source-html5-toolset-hopes-to-unleash-the-web/</a></div>
+</li>
+</ul>
+
+<p>
+<abbr title="HyperText Markup Language">HTML</abbr> Standard: Free text input field with dropdown. Probably taxing for large lists, but good for short ones! <a href="http://stackoverflow.com/questions/15992085/html-select-drop-down-plugin-with-an-open-text-input-field" class="urlextern" title="http://stackoverflow.com/questions/15992085/html-select-drop-down-plugin-with-an-open-text-input-field" rel="ugc nofollow">http://stackoverflow.com/questions/15992085/html-select-drop-down-plugin-with-an-open-text-input-field</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> However doesn&#039;t work in Safari &gt;.&lt;</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Older stuff&quot;,&quot;hid&quot;:&quot;older_stuff&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;6077-&quot;} --></div></body>
+</html>

@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>math:randomness</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#probabilityrandomness">Probability / Randomness</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#car_accidents_nearby_home">Car accidents nearby home</a></div></li>
+<li class="level2"><div class="li"><a href="#fitting_a_lineleast-squares_approximation">Fitting a line / Least-Squares Approximation</a></div></li>
+<li class="level2"><div class="li"><a href="#shuffling_algorithms">Shuffling Algorithms</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#fizzle_fade">Fizzle Fade</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#voting">Voting</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#answers">Answers</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#the_frequency_distribution_of_a_random_process">The Frequency Distribution of a Random Process</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#flipping_a_coin_with_frequency">Flipping A Coin with Frequency</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#application_of_the_law_of_large_numbers">Application of the Law of Large Numbers</a></div></li>
+<li class="level2"><div class="li"><a href="#poisson_distribution">Poisson Distribution</a></div></li>
+<li class="level2"><div class="li"><a href="#dithering">Dithering</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#applications">Applications</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="probabilityrandomness">Probability / Randomness</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Probability \/ Randomness&quot;,&quot;hid&quot;:&quot;probabilityrandomness&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-40&quot;} -->
+<h2 class="sectionedit2" id="car_accidents_nearby_home">Car accidents nearby home</h2>
+<div class="level2">
+
+<p>
+Of course they&#039;re more likely to occur when you&#039;re near your home, because you&#039;re most likely to be driving there!
+</p>
+
+<p>
+However, turns out that there is some edge there even after correcting for time spent driving near home / away.
+</p>
+<blockquote  class="blockquote-plugin">
+<p>
+The close to home effect in road crashes
+</p>
+
+<p>
+Roads within 11 km (6.8 miles) of home accounted for <strong>half</strong> of all travel and <strong>62%</strong> of all crashes. The ‘close to home’ effect held for male and female drivers. Novice (learner) drivers were the only demographic subgroup to not exhibit the close to home effect. Compared with crashes further away, crashes close to home were more likely to involve alcohol and diverted attention, and less likely to involve driver fatigue. 
+</p>
+
+</blockquote>
+<p>
+<a href="https://www.sciencedirect.com/science/article/pii/S092575351730783X" class="urlextern" title="https://www.sciencedirect.com/science/article/pii/S092575351730783X" rel="ugc nofollow">https://www.sciencedirect.com/science/article/pii/S092575351730783X</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Car accidents nearby home&quot;,&quot;hid&quot;:&quot;car_accidents_nearby_home&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;41-876&quot;} -->
+<h2 class="sectionedit3" id="fitting_a_lineleast-squares_approximation">Fitting a line / Least-Squares Approximation</h2>
+<div class="level2">
+
+<p>
+Scalable to m factors in n dimensional space too. 
+</p>
+
+<p>
+Great explanation in Numerical Recipes Chapter 15 showing that least-squares fit is the Maximum Likelihood Estimator if the measurement errors are independent and normally distributed.
+</p>
+
+<p>
+Gilbert Strang has a few different derivations of it in <a href="http://math.mit.edu/~gs/linearalgebra/ila0403.pdf" class="urlextern" title="http://math.mit.edu/~gs/linearalgebra/ila0403.pdf" rel="ugc nofollow">http://math.mit.edu/~gs/linearalgebra/ila0403.pdf</a>, but I liked the calculus way best.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fitting a line \/ Least-Squares Approximation&quot;,&quot;hid&quot;:&quot;fitting_a_lineleast-squares_approximation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;877-1313&quot;} -->
+<h2 class="sectionedit4" id="shuffling_algorithms">Shuffling Algorithms</h2>
+<div class="level2">
+
+<p>
+Peter Norvig talks about some shuffling algorithms in his <a href="https://www.udacity.com/course/viewer#!/c-cs212/l-48299974/e-48744097/m-48728206" class="urlextern" title="https://www.udacity.com/course/viewer#!/c-cs212/l-48299974/e-48744097/m-48728206" rel="ugc nofollow">Udacity CS212</a> class. 
+</p>
+
+<p>
+Notes from <a href="https://en.wikipedia.org/wiki/Shuffling#Shuffling_algorithms" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Shuffling#Shuffling_algorithms">Shuffling#Shuffling_algorithms</a>
+</p>
+
+</div>
+
+<h5 id="fisher-yates_pick_next_card_at_random_from_remaining_cards">(Fisher-Yates) Pick &quot;Next&quot; Card at Random From Remaining Cards</h5>
+<div class="level5">
+
+<p>
+To keep it in O(1) space, you swap the i&#039;th selection with the n-i&#039;th card at the end of the deck. There&#039;s some more optimizations too…<a href="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_.22inside-out.22_algorithm" class="urlextern" title="http://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle#The_.22inside-out.22_algorithm" rel="ugc nofollow">here</a>
+</p>
+
+</div>
+
+<h5 id="nolan_assign_random_numbers_and_sort">(Nolan) Assign Random Numbers and Sort</h5>
+<div class="level5">
+
+<p>
+&lt;My first thought for a method&gt;. Best case O(n log n) for sorting??? What about radix sort (O(N))? 
+</p>
+
+</div>
+
+<h4 id="evaluation">Evaluation</h4>
+<div class="level4">
+
+<p>
+There are a lot of ways to do it! <a href="https://en.wikipedia.org/wiki/Shuffling#Research" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Shuffling#Research">Shuffling#Research</a>, particularly the evaluation methods.
+</p>
+
+</div>
+
+<h5 id="probability_of_position_occurrences">Probability of position occurrences</h5>
+<div class="level5">
+
+<p>
+(my naive thought). Copied from <a href="http://bost.ocks.org/mike/algorithms/#shuffling" class="urlextern" title="http://bost.ocks.org/mike/algorithms/#shuffling" rel="ugc nofollow">Mike Bostocks</a>. <a href="../_media/math/shuffle.png" class="media" title="math:shuffle.png"><img src="../_media/math/shuffle.png" class="media" alt="" width="400" /></a>
+</p>
+<div class="table sectionedit5"><table class="inline">
+	<tr class="row0">
+		<td class="col0"> </td><td class="col1"> 1 </td><td class="col2"> 2 </td><td class="col3"> 3 </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> A </td><td class="col1"> </td><td class="col2"> </td><td class="col3"></td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> B </td><td class="col1"> </td><td class="col2"> </td><td class="col3"></td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> C </td><td class="col1"> </td><td class="col2"> </td><td class="col3"></td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:5,&quot;range&quot;:&quot;2299-2344&quot;} -->
+</div>
+
+<h5 id="permutation_occurrence">Permutation Occurrence</h5>
+<div class="level5">
+
+<p>
+(For small numbers of cards). <a href="http://blog.codinghorror.com/the-danger-of-naivete/" class="urlextern" title="http://blog.codinghorror.com/the-danger-of-naivete/" rel="ugc nofollow">Coding Horror</a> and Norvig do it this way.
+</p>
+<div class="table sectionedit6"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> ABC </th><th class="col1"> ACB </th><th class="col2"> BAC </th><th class="col3"> BCA </th><th class="col4"> CAB </th><th class="col5"> CBA </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> .166 </td><td class="col1"> .166 </td><td class="col2"> .166 </td><td class="col3"> .166 </td><td class="col4"> .166 </td><td class="col5"> .166 </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;2503-2584&quot;} -->
+<p>
+For 3 cards, there are 3! permutations, or 6. The previous method has 9 boxes though…??!!
+</p>
+
+</div>
+
+<h5 id="distance_of_cards_to_other_cards">Distance of cards to other cards</h5>
+<div class="level5">
+
+<p>
+Dad&#039;s method.
+</p>
+
+</div>
+
+<h5 id="markov_chain_mixing_time">Markov Chain Mixing Time</h5>
+<div class="level5">
+
+<p>
+?!?!?!? Wow cool
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Shuffling Algorithms&quot;,&quot;hid&quot;:&quot;shuffling_algorithms&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1314-2782&quot;} -->
+<h3 class="sectionedit7" id="fizzle_fade">Fizzle Fade</h3>
+<div class="level3">
+
+<p>
+A similar problem is fading in a random way and not repeating any pixels along the way. 
+</p>
+
+<p>
+<a href="http://fabiensanglard.net/fizzlefade/index.php" class="urlextern" title="http://fabiensanglard.net/fizzlefade/index.php" rel="ugc nofollow">http://fabiensanglard.net/fizzlefade/index.php</a>, uses a funky thing that only takes 16 bits for 64K pixels. 
+</p>
+
+<p>
+Another method using a Feistel network, which generalizes better. <a href="http://antirez.com/news/113" class="urlextern" title="http://antirez.com/news/113" rel="ugc nofollow">http://antirez.com/news/113</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> But, it&#039;s weird too. Turns <strong>any</strong> function into an invertible (1:1) function. </div>
+</li>
+</ul>
+
+<p>
+Original hacker news article: <a href="https://news.ycombinator.com/item?id=15122540" class="urlextern" title="https://news.ycombinator.com/item?id=15122540" rel="ugc nofollow">https://news.ycombinator.com/item?id=15122540</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fizzle Fade&quot;,&quot;hid&quot;:&quot;fizzle_fade&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2783-3259&quot;} -->
+<h2 class="sectionedit8" id="voting">Voting</h2>
+<div class="level2">
+
+<p>
+Simplified to coin flipping…sorta. Inspired by xkcd 1131: <a href="../_media/math/pasted/20150120-000121.png" class="media" title="math:pasted:20150120-000121.png"><img src="../_media/math/pasted/20150120-000121.png" class="media" alt="" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> If we have a coin with a known weight <strong>p</strong> and <strong>1-p</strong>, how many flips do we need to find out which side is more likely? <em>Ans: It depends on p</em></div>
+</li>
+<li class="level1"><div class="li"> What if we don&#039;t know <strong>p</strong>, how long will it take?</div>
+</li>
+<li class="level1 node"><div class="li"> How does our accuracy increase if we increase our resolution to 10 (instead of a binary coin), or even continuous?</div>
+<ul>
+<li class="level2"><div class="li"> This is used in industry as: “how confident are you in voting for person X or Y”. <em>However, you probably can&#039;t express people&#039;s concerns with a candidate with a number. A list of “hot topic” concerns is probably more informative for everyone, but not as mathematical</em></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Why does minimum poll amount to determine outcome not depend on the number of people voting? </div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> More on coin flipping, <a href="https://www.youtube.com/watch?v=hHdhGFYare4" class="urlextern" title="https://www.youtube.com/watch?v=hHdhGFYare4" rel="ugc nofollow">making a probability of 1/3 from Po-Shen Loh at CMU</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Voting&quot;,&quot;hid&quot;:&quot;voting&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;3260-4211&quot;} -->
+<h3 class="sectionedit9" id="answers">Answers</h3>
+<div class="level3">
+
+<p>
+Check out <a href="http://www.statisticsdonewrong.com/data-analysis.html" class="urlextern" title="http://www.statisticsdonewrong.com/data-analysis.html" rel="ugc nofollow">Statistics done Wrong</a>, but maybe try it on your own first…
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Answers&quot;,&quot;hid&quot;:&quot;answers&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;4212-4359&quot;} -->
+<h2 class="sectionedit10" id="the_frequency_distribution_of_a_random_process">The Frequency Distribution of a Random Process</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Random process, a series of outcomes that are sampled from a probability distribution. </div>
+</li>
+<li class="level1 node"><div class="li"> At work, my boss stated that the period between heart beats (<a href="https://en.wikipedia.org/wiki/Heart_Rate_Variability" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Heart_Rate_Variability">Heart_Rate_Variability</a>) has two distinct peaks in the frequency domain corresponding to the respiration frequency (HF) and sympathetic function (LF).</div>
+<ul>
+<li class="level2"><div class="li"> How can a basically high-fidelity coin-flip have a frequency distribution??</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;The Frequency Distribution of a Random Process&quot;,&quot;hid&quot;:&quot;the_frequency_distribution_of_a_random_process&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;4360-4817&quot;} -->
+<h3 class="sectionedit11" id="flipping_a_coin_with_frequency">Flipping A Coin with Frequency</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> There&#039;s a big difference between normal coin behavior: </div>
+</li>
+</ul>
+
+<p>
+<code>0 0 1 1 0 1 0 0 0 0 1 0 1 0 0 1 0 0 1 1 0 1 0 0 0 0 1 0 0 1 0 1 0 0 0 1 0 1 1 0 1 0 0 1 0 1 0 1</code>
+</p>
+
+<p>
+and:
+</p>
+
+<p>
+<code>0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1 0 1</code>
+</p>
+
+<p>
+and:
+</p>
+
+<p>
+<code>0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1 0 0 0 0 1 1 1 1</code>
+</p>
+<ul>
+<li class="level1 node"><div class="li"> They all have a probability of heads = 1/2, but for the latter two, the next coin flip is <em>not</em> independent from the coin flip before it. They have a distinct frequency to them!</div>
+<ul>
+<li class="level2"><div class="li"> Frequency (in the <a href="https://en.wikipedia.org/wiki/Fourier Transform" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Fourier Transform">Fourier Transform</a> sense, does not have to be made up of sine waves exclusively. They can be made using square waves (great for coin flipping), but you can&#039;t apply the laws of linear filtering like you can with sinusoids.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Flipping A Coin with Frequency&quot;,&quot;hid&quot;:&quot;flipping_a_coin_with_frequency&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:11,&quot;range&quot;:&quot;4818-5673&quot;} -->
+<h2 class="sectionedit12" id="application_of_the_law_of_large_numbers">Application of the Law of Large Numbers</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> How does a dice roll turn into a gaussian distribution? </div>
+<ul>
+<li class="level2 node"><div class="li"> When you look at the sum of two independent events (Z = X + Y), the probability distribution of the sum will be the convolution of the PDF&#039;s of X and Y. When you do a large number of die rolls, you get a Gaussian. </div>
+<ul>
+<li class="level3"><div class="li"> But you can also <strong>multiply</strong> the die rolls, what is the result?</div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> Now, how about when you have a dice, and you can ask what is the sum of the die rolls. ing distribution of that?</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Application of the Law of Large Numbers&quot;,&quot;hid&quot;:&quot;application_of_the_law_of_large_numbers&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:12,&quot;range&quot;:&quot;5674-6201&quot;} -->
+<h2 class="sectionedit13" id="poisson_distribution">Poisson Distribution</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Describes discrete events occurring in a fixed time frame with a mean rate. For small Initially they are weird looking, but because the events are independent and you are adding the number of discrete events</div>
+</li>
+<li class="level1 node"><div class="li"> It turns into a N(k,k) over time. (variance = k). The standard deviation (sqrt(k)) decreases as k increases. </div>
+<ul>
+<li class="level2"><div class="li"> How does the Gaussian become “peakier”/more certain again? (the spread of values is definitely wider, but relative to the mean it is smaller…)</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Poisson Distribution&quot;,&quot;hid&quot;:&quot;poisson_distribution&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:13,&quot;range&quot;:&quot;6202-6713&quot;} -->
+<h2 class="sectionedit14" id="dithering">Dithering</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> When you have a limited number of bits to use, adding noise before quantizing is actually better than not adding noise. See <a href="https://en.wikipedia.org/wiki/Dither#Examples" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Dither#Examples">Dither#Examples</a> for the excellent cat picture example.</div>
+<ul>
+<li class="level2"><div class="li"> Even though the noise is larger than your signal, the noise probabilistically adds another layer of information based on the number of times that it lands in one bit vs. another bit. </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Dithering&quot;,&quot;hid&quot;:&quot;dithering&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:14,&quot;range&quot;:&quot;6714-7117&quot;} -->
+<h3 class="sectionedit15" id="applications">Applications</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="recovering_blood_flow_from_video">Recovering Blood Flow From Video</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> An application of this is shot noise and video cameras… <a href="../home/slowmo.html" class="wikilink1" title="home:slowmo">Slow Motion Ideas</a> for now</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Applications&quot;,&quot;hid&quot;:&quot;applications&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:15,&quot;range&quot;:&quot;7118-&quot;} --></div></body>
+</html>

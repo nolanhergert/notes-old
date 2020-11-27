@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>virtualreality:ptam</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#parallel_tracking_and_mapping">Parallel Tracking and Mapping</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#intel_labs">Intel Labs</a></div></li>
+<li class="level2"><div class="li"><a href="#marker-based_tracking">Marker-Based Tracking</a></div></li>
+<li class="level2"><div class="li"><a href="#interesting_threads">Interesting Threads</a></div></li>
+<li class="level2"><div class="li"><a href="#installing_ptamm_software">Installing PTAMM Software</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#dependencies">Dependencies</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="parallel_tracking_and_mapping">Parallel Tracking and Mapping</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> AR Marker Design Intro (visual) <a href="http://www.hitl.washington.edu/artoolkit/documentation/vision.htm" class="urlextern" title="http://www.hitl.washington.edu/artoolkit/documentation/vision.htm" rel="ugc nofollow">here</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Parallel Tracking and Mapping&quot;,&quot;hid&quot;:&quot;parallel_tracking_and_mapping&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-156&quot;} -->
+<h2 class="sectionedit2" id="intel_labs">Intel Labs</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Some interesting stuff coming out of Intel Labs Seattle. <a href="http://ils.intel-research.net/projects/rgbd" class="urlextern" title="http://ils.intel-research.net/projects/rgbd" rel="ugc nofollow">http://ils.intel-research.net/projects/rgbd</a>. Some more research focus areas: <a href="http://ils.intel-research.net/research" class="urlextern" title="http://ils.intel-research.net/research" rel="ugc nofollow">http://ils.intel-research.net/research</a></div>
+</li>
+<li class="level1"><div class="li"> Seems to be based on recognition on Kinect only? </div>
+</li>
+<li class="level1"><div class="li"> YouTube Link! <a href="https://www.youtube.com/watch?v=4Ttb7zCwJ4w" class="urlextern" title="https://www.youtube.com/watch?v=4Ttb7zCwJ4w" rel="ugc nofollow">https://www.youtube.com/watch?v=4Ttb7zCwJ4w</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Intel Labs&quot;,&quot;hid&quot;:&quot;intel_labs&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;157-477&quot;} -->
+<h2 class="sectionedit3" id="marker-based_tracking">Marker-Based Tracking</h2>
+<div class="level2">
+
+<p>
+(from email convo with Benjamin Elias Teitler)
+The <abbr title="Application Programming Interface">API</abbr> I&#039;m using supports arbitrary images (so they don&#039;t have to be blocky QR codes), given that they have enough extractable features to distinguish from the rest of the room.  It seems extremely robust and its lightning fast on both my iPod touch 4G, and my Galaxy S2.
+</p>
+
+<p>
+<a href="https://ar.qualcomm.at/qdevnet/sdk" class="urlextern" title="https://ar.qualcomm.at/qdevnet/sdk" rel="ugc nofollow">https://ar.qualcomm.at/qdevnet/sdk</a>
+</p>
+
+<p>
+It was fairly easy for me to modify a sample to extract orientation.  The catch is that they upload who knows what to their servers about your usage.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Marker-Based Tracking&quot;,&quot;hid&quot;:&quot;marker-based_tracking&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;478-1023&quot;} -->
+<h2 class="sectionedit4" id="interesting_threads">Interesting Threads</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.morethantechnical.com/2010/03/06/implementing-ptam-stereo-tracking-and-pose-estimation-for-ar-with-opencv-w-code/" class="urlextern" title="http://www.morethantechnical.com/2010/03/06/implementing-ptam-stereo-tracking-and-pose-estimation-for-ar-with-opencv-w-code/" rel="ugc nofollow">Implementing PTAM in OpenCV</a>, gets into explaining technical details a bit too!</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://stackoverflow.com/questions/1318691/surf-and-sift-alternative-object-tracking-algorithm-for-augmented-reality" class="urlextern" title="http://stackoverflow.com/questions/1318691/surf-and-sift-alternative-object-tracking-algorithm-for-augmented-reality" rel="ugc nofollow">StackOverflow Thread on SIFT</a>, OpenCV&#039;s SIFT implementation has been optimized with Intel Performance Primitives (ton faster on multiple cores)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Interesting Threads&quot;,&quot;hid&quot;:&quot;interesting_threads&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1024-1536&quot;} -->
+<h2 class="sectionedit5" id="installing_ptamm_software">Installing PTAMM Software</h2>
+<div class="level2">
+
+<p>
+<a href="http://www.robots.ox.ac.uk/~bob/software/ptamm/manual.pdf" class="urlextern" title="http://www.robots.ox.ac.uk/~bob/software/ptamm/manual.pdf" rel="ugc nofollow">http://www.robots.ox.ac.uk/~bob/software/ptamm/manual.pdf</a> has very detailed install instructions that might not be up to date. He recommends Linux all the way though…
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Installing PTAMM Software&quot;,&quot;hid&quot;:&quot;installing_ptamm_software&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1537-1744&quot;} -->
+<h3 class="sectionedit6" id="dependencies">Dependencies</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.edwardrosten.com/cvd/toon.html" class="urlextern" title="http://www.edwardrosten.com/cvd/toon.html" rel="ugc nofollow">TooN</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.edwardrosten.com/cvd/index.html" class="urlextern" title="http://www.edwardrosten.com/cvd/index.html" rel="ugc nofollow">LibCVD</a></div>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://www.edwardrosten.com/cvd/gvars3.html" class="urlextern" title="http://www.edwardrosten.com/cvd/gvars3.html" rel="ugc nofollow">GVars3</a></div>
+<ul>
+<li class="level2"><div class="li"> Older versions don&#039;t want to compile…weird. Trying VM</div>
+</li>
+<li class="level2"><div class="li"> Need to add “#include &lt;cstdio&gt; to gvars3/gvars3/serialize.h”. <a href="http://forum.dev.ubuntu-fr.org/viewtopic.php?id=395785&amp;p=2" class="urlextern" title="http://forum.dev.ubuntu-fr.org/viewtopic.php?id=395785&amp;p=2" rel="ugc nofollow">thread</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="http://code.google.com/p/lib3ds/" class="urlextern" title="http://code.google.com/p/lib3ds/" rel="ugc nofollow">Lib3DS</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Dependencies&quot;,&quot;hid&quot;:&quot;dependencies&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1745-&quot;} --></div></body>
+</html>

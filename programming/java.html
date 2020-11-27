@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:java</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#java_programming_notes">Java Programming Notes</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#singletons">Singletons</a></div></li>
+<li class="level2"><div class="li"><a href="#hashing">Hashing</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="java_programming_notes">Java Programming Notes</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> So many objects and methods…I know that it&#039;s better for big projects, but I prefer C :)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Java Programming Notes&quot;,&quot;hid&quot;:&quot;java_programming_notes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-132&quot;} -->
+<h2 class="sectionedit2" id="singletons">Singletons</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Allows you to call one global method that is static. Useful for when you only want one instance of something and takes care of keeping that state.</div>
+</li>
+</ul>
+<pre class="code java"><span class="co1">//Call once on setup</span>
+PerfMonitorNode.<span class="me1">initialize</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">//This can be called from practically anywhere</span>
+PerfMonitorNode p <span class="sy0">=</span> PerfMonitorNode.<span class="me1">getInstance</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+p.<span class="me1">doStuff</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">//Your class code</span>
+<span class="kw1">private</span> <span class="kw1">static</span> PerfMonitorNode instance <span class="sy0">=</span> <span class="kw2">null</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> initialize<span class="br0">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+string"><span class="kw3">String</span></a> nodeName<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span>instance <span class="sy0">!=</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">throw</span> <span class="kw1">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+illegalstateexception"><span class="kw3">IllegalStateException</span></a><span class="br0">&#40;</span><span class="st0">&quot;PublishSubscribe already initialized.&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+<span class="co1">//The actual PerfMonitorNode you want to use</span>
+instance <span class="sy0">=</span> <span class="kw1">new</span> PerfMonitorNode<span class="br0">&#40;</span>nodeName<span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">public</span> <span class="kw1">static</span> PerfMonitorNode getInstance<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span>instance <span class="sy0">==</span> <span class="kw2">null</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+	<span class="kw1">throw</span> <span class="kw1">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+illegalstateexception"><span class="kw3">IllegalStateException</span></a><span class="br0">&#40;</span><span class="st0">&quot;PerfMonitorNode is not initialized.&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+<span class="kw1">return</span> instance<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Singletons&quot;,&quot;hid&quot;:&quot;singletons&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;133-967&quot;} -->
+<h2 class="sectionedit3" id="hashing">Hashing</h2>
+<div class="level2">
+
+<p>
+<a href="http://www.java-tips.org/java-se-tips/java.util/how-to-use-of-hashmap.html" class="urlextern" title="http://www.java-tips.org/java-se-tips/java.util/how-to-use-of-hashmap.html" rel="ugc nofollow">From Java-Tips.org</a>
+Map is an object that stores key/volume pairs. Given a key, you can find its value. Keys must be unique, but values may be duplicated. The HashMap class provides the primary implementation of the map interface. The HashMap class uses a hash table to implementation of the map interface. This allows the execution time of basic operations, such as get() and put() to be constant.
+</p>
+
+<p>
+This code shows the use of HashMap. In this program HashMap maps the names to account balances.
+</p>
+<pre class="code java"><span class="kw1">import</span> <span class="co2">java.util.*</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw1">public</span> <span class="kw1">class</span> HashMapDemo <span class="br0">&#123;</span>
+&nbsp;
+  <span class="kw1">public</span> <span class="kw1">static</span> <span class="kw4">void</span> main<span class="br0">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+string"><span class="kw3">String</span></a><span class="br0">&#91;</span><span class="br0">&#93;</span> args<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+&nbsp;
+    <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+hashmap"><span class="kw3">HashMap</span></a> hm <span class="sy0">=</span> <span class="kw1">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+hashmap"><span class="kw3">HashMap</span></a><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    hm.<span class="me1">put</span><span class="br0">&#40;</span><span class="st0">&quot;Rohit&quot;</span>, <span class="kw1">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+double"><span class="kw3">Double</span></a><span class="br0">&#40;</span><span class="nu0">3434.34</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    hm.<span class="me1">put</span><span class="br0">&#40;</span><span class="st0">&quot;Mohit&quot;</span>, <span class="kw1">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+double"><span class="kw3">Double</span></a><span class="br0">&#40;</span><span class="nu0">123.22</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    hm.<span class="me1">put</span><span class="br0">&#40;</span><span class="st0">&quot;Ashish&quot;</span>, <span class="kw1">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+double"><span class="kw3">Double</span></a><span class="br0">&#40;</span><span class="nu0">1200.34</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    hm.<span class="me1">put</span><span class="br0">&#40;</span><span class="st0">&quot;Khariwal&quot;</span>, <span class="kw1">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+double"><span class="kw3">Double</span></a><span class="br0">&#40;</span><span class="nu0">99.34</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    hm.<span class="me1">put</span><span class="br0">&#40;</span><span class="st0">&quot;Pankaj&quot;</span>, <span class="kw1">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+double"><span class="kw3">Double</span></a><span class="br0">&#40;</span><span class="sy0">-</span><span class="nu0">19.34</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+set"><span class="kw3">Set</span></a> set <span class="sy0">=</span> hm.<span class="me1">entrySet</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+    <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+iterator"><span class="kw3">Iterator</span></a> i <span class="sy0">=</span> set.<span class="me1">iterator</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+    <span class="kw1">while</span><span class="br0">&#40;</span>i.<span class="me1">hasNext</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+      <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+map.entry"><span class="kw3">Map.<span class="me1">Entry</span></span></a> me <span class="sy0">=</span> <span class="br0">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+map.entry"><span class="kw3">Map.<span class="me1">Entry</span></span></a><span class="br0">&#41;</span>i.<span class="me1">next</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+      <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+system"><span class="kw3">System</span></a>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span>me.<span class="me1">getKey</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">+</span> <span class="st0">&quot; : &quot;</span> <span class="sy0">+</span> me.<span class="me1">getValue</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="co1">//deposit into Rohit's Account</span>
+    <span class="kw4">double</span> balance <span class="sy0">=</span> <span class="br0">&#40;</span><span class="br0">&#40;</span><a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+double"><span class="kw3">Double</span></a><span class="br0">&#41;</span>hm.<span class="me1">get</span><span class="br0">&#40;</span><span class="st0">&quot;Rohit&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>.<span class="me1">doubleValue</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    hm.<span class="me1">put</span><span class="br0">&#40;</span><span class="st0">&quot;Rohit&quot;</span>, <span class="kw1">new</span> <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+double"><span class="kw3">Double</span></a><span class="br0">&#40;</span>balance <span class="sy0">+</span> <span class="nu0">1000</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+    <a href="http://www.google.com/search?hl=en&amp;q=allinurl%3Adocs.oracle.com+javase+docs+api+system"><span class="kw3">System</span></a>.<span class="me1">out</span>.<span class="me1">println</span><span class="br0">&#40;</span><span class="st0">&quot;Rohit new balance : &quot;</span> <span class="sy0">+</span> hm.<span class="me1">get</span><span class="br0">&#40;</span><span class="st0">&quot;Rohit&quot;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Hashing&quot;,&quot;hid&quot;:&quot;hashing&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;968-&quot;} --></div></body>
+</html>

@@ -1,0 +1,721 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:pattrec_ml</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#pattern_recognition_and_machine_learning">Pattern Recognition and Machine Learning</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#deep_learning_playground">Deep Learning Playground</a></div></li>
+<li class="level2"><div class="li"><a href="#fastai_course">Fast.ai course</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#lesson_1">Lesson 1</a></div></li>
+<li class="level3"><div class="li"><a href="#lesson_2">Lesson 2</a></div></li>
+<li class="level3"><div class="li"><a href="#lesson">Lesson ??</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#classifying_ml_tasks">Classifying ML tasks</a></div></li>
+<li class="level2"><div class="li"><a href="#talk_with_andres">Talk with Andres</a></div></li>
+<li class="level2"><div class="li"><a href="#deep_learning">Deep Learning</a></div></li>
+<li class="level2"><div class="li"><a href="#work">Work</a></div></li>
+<li class="level2"><div class="li"><a href="#do_simple_examples">Do Simple Examples</a></div></li>
+<li class="level2"><div class="li"><a href="#signal_conditioning">Signal Conditioning</a></div></li>
+<li class="level2"><div class="li"><a href="#feature_extraction">Feature Extraction</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#handwriting">Handwriting</a></div></li>
+<li class="level3"><div class="li"><a href="#finding_good_features">Finding Good Features</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#classification_vs_regression">Classification vs. Regression</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#estimate_parameters_of_signal">Estimate Parameters of Signal</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#amazon_interview">Amazon Interview</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#the_unreasonable_effectiveness_of_data">The Unreasonable Effectiveness of Data</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#questions">Questions</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#svdpca">SVD/PCA</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#tutorials_wexamples">Tutorials w/ Examples</a></div></li>
+<li class="level2"><div class="li"><a href="#remote_photoplethysmography_facetimingcardiocam">Remote Photoplethysmography (FaceTiming/CardioCam?)</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#ir_details">IR Details</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#ideas">Ideas</a></div></li>
+<li class="level2"><div class="li"><a href="#features">Features</a></div></li>
+<li class="level2"><div class="li"><a href="#data_acquisitionprocessing">Data Acquisition / Processing</a></div></li>
+<li class="level2"><div class="li"><a href="#websites">Websites</a></div></li>
+<li class="level2"><div class="li"><a href="#textbooks">Textbooks</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="pattern_recognition_and_machine_learning">Pattern Recognition and Machine Learning</h1>
+<div class="level1">
+
+<p>
+Don&#039;t worry too much about “which one is best”, take one and go all the way through! I think breadth is better than depth for a lot of things.
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://shop.oreilly.com/product/0636920035091.do?green=5F6E6432-7811-5CEF-A9B0-FF3C0D7AE0A0&amp;intcmp=af-mybuy-0636920035091.IP" class="urlextern" title="http://shop.oreilly.com/product/0636920035091.do?green=5F6E6432-7811-5CEF-A9B0-FF3C0D7AE0A0&amp;intcmp=af-mybuy-0636920035091.IP" rel="ugc nofollow"> Advanced Analytics with Spark: Patterns for Learning from Data at Scale</a> has some great application ideas. </div>
+</li>
+<li class="level1"><div class="li"> <a href="../_media/programming/wiley06-1.pdf" class="media mediafile mf_pdf" title="programming:wiley06-1.pdf">Pattern Recognition</a>  Very good overview paper on Pattern Recognition by Robi Polikar at Rowan University</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.noisebridge.net/wiki/Machine_Learning" class="urlextern" title="https://www.noisebridge.net/wiki/Machine_Learning" rel="ugc nofollow">Machine Learning</a> links from NoiseBridge</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://work.caltech.edu/library/" class="urlextern" title="http://work.caltech.edu/library/" rel="ugc nofollow">Machine Learning at CalTech</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.udacity.com/courses#!/data-science" class="urlextern" title="https://www.udacity.com/courses#!/data-science" rel="ugc nofollow">Udacity Data Science</a> classes look good too. </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.cs.cmu.edu/~tom/10601_fall2012/" class="urlextern" title="http://www.cs.cmu.edu/~tom/10601_fall2012/" rel="ugc nofollow">10-601 at CMU</a>, homeworks look tough and awesome. <a href="http://cc-web.isri.cmu.edu/Panopto/Pages/Sessions/List.aspx#folderID=85e1b6bf-6ac9-4a92-a0de-aaf8c2dd2418" class="urlextern" title="http://cc-web.isri.cmu.edu/Panopto/Pages/Sessions/List.aspx#folderID=85e1b6bf-6ac9-4a92-a0de-aaf8c2dd2418" rel="ugc nofollow">10-701 video</a> + <a href="http://www.cs.cmu.edu/~tom/" class="urlextern" title="http://www.cs.cmu.edu/~tom/" rel="ugc nofollow">Tom Mitchell&#039;s Website</a></div>
+</li>
+<li class="level1"><div class="li"> Varsha / Feras at Edwards recommend <a href="http://statweb.stanford.edu/~tibs/ElemStatLearn/" class="urlextern" title="http://statweb.stanford.edu/~tibs/ElemStatLearn/" rel="ugc nofollow">The Elements of Statistical Learning (Hastie)</a> (FREE BOOK) and <a href="http://www.google.com/search?q=the%20elements%20of%20statistical%20learning%20solution" class="interwiki iw_g" title="http://www.google.com/search?q=the%20elements%20of%20statistical%20learning%20solution">solutions</a>, MLAPP, and <a href="http://appliedpredictivemodeling.com/" class="urlextern" title="http://appliedpredictivemodeling.com/" rel="ugc nofollow">Applied Predictive Modeling</a></div>
+</li>
+<li class="level1"><div class="li"> Dannenberg paper on bootstrap learning for note onset detection using neural networks.<a href="../_media/programming/bootstrap2006.pdf" class="media mediafile mf_pdf" title="programming:bootstrap2006.pdf">bootstrap2006.pdf</a></div>
+</li>
+<li class="level1"><div class="li"> University of Washington has a cool <a href="http://openie.cs.washington.edu/" class="urlextern" title="http://openie.cs.washington.edu/" rel="ugc nofollow">information retrieval project</a> that pulls from Tom Mitchell&#039;s CMU library and Freebase to answer some questions. <a href="https://github.com/knowitall/openie" class="urlextern" title="https://github.com/knowitall/openie" rel="ugc nofollow">Github</a></div>
+</li>
+<li class="level1"><div class="li"> Commercial company doing Deep Learning: <a href="http://www.google.com/search?q=Metamind" class="interwiki iw_g" title="http://www.google.com/search?q=Metamind">Metamind</a>. <a href="http://www.google.com/search?q=Enlitic" class="interwiki iw_g" title="http://www.google.com/search?q=Enlitic">Enlitic</a> was the one that Jeremy Howard founded and did cool TED talk on</div>
+</li>
+<li class="level1 node"><div class="li"> Talked with Norm at Intel about machine learning. The HP project organizes compute around memory, instead of memory around/next to compute.</div>
+<ul>
+<li class="level2"><div class="li"> Also, the intel NVRAM is going to really reduce RAM refresh power on small devices. Will have to lower power usage some to get there though.</div>
+</li>
+<li class="level2"><div class="li"> Intel internal deep learning model trainer.</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Guy from PGE met at robotics tournament is Alex Banicki.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Pattern Recognition and Machine Learning&quot;,&quot;hid&quot;:&quot;pattern_recognition_and_machine_learning&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-2330&quot;} -->
+<h2 class="sectionedit2" id="deep_learning_playground">Deep Learning Playground</h2>
+<div class="level2">
+
+<p>
+<a href="http://playground.tensorflow.org/" class="urlextern" title="http://playground.tensorflow.org/" rel="ugc nofollow">http://playground.tensorflow.org/</a>. So simple and interactive. Also, need multiple layers for spiral, but it does it!
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Deep Learning Playground&quot;,&quot;hid&quot;:&quot;deep_learning_playground&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;2331-2484&quot;} -->
+<h2 class="sectionedit3" id="fastai_course">Fast.ai course</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fast.ai course&quot;,&quot;hid&quot;:&quot;fastai_course&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;2485-2511&quot;} -->
+<h3 class="sectionedit4" id="lesson_1">Lesson 1</h3>
+<div class="level3">
+
+<p>
+The higher layers seem to learn specific examples of people/cats/dogs/etc. Does the network transfer well then?
+</p>
+<ul>
+<li class="level1"><div class="li"> Is it just summing up the results?</div>
+</li>
+</ul>
+
+<p>
+Setting learning rate. You want to find a good one as you&#039;ll be re-training your models as you grab more data.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lesson 1&quot;,&quot;hid&quot;:&quot;lesson_1&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;2512-2795&quot;} -->
+<h3 class="sectionedit5" id="lesson_2">Lesson 2</h3>
+<div class="level3">
+
+<p>
+Stochastic Gradient Descent with restarts is better than ensembles because it allows one to stay in “wide” / generalizable minima rather than restart to find another minima that might not be wide.
+</p>
+<ul>
+<li class="level1"><div class="li"> I thought he said that the descent rate changed over time automatically because it was a learning rate times the <strong>gradient</strong>, which scaled smaller as we get closer to bottom. So still don&#039;t see why cosine annealing is needed. But apparently it&#039;s better.</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/programming/pasted/20180714-144623.png" class="media" title="programming:pasted:20180714-144623.png"><img src="../_media/programming/pasted/20180714-144623.png" class="media" alt="" /></a>
+<a href="../_media/programming/pasted/20180714-144716.png" class="media" title="programming:pasted:20180714-144716.png"><img src="../_media/programming/pasted/20180714-144716.png" class="media" alt="" /></a>
+</p>
+
+<p>
+Also, the initial training, <strong>what was it training</strong>? It wasn&#039;t modifying the precomputed weights, so what was it doing?
+</p>
+<ul>
+<li class="level1"><div class="li"> precompute=True/False, Freeze=True/False</div>
+</li>
+<li class="level1"><div class="li"> Discussion on forum, <a href="http://forums.fast.ai/t/precompute-vs-freezing/7511/8" class="urlextern" title="http://forums.fast.ai/t/precompute-vs-freezing/7511/8" rel="ugc nofollow">http://forums.fast.ai/t/precompute-vs-freezing/7511/8</a>. Would like to understand, but hungry right now. </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lesson 2&quot;,&quot;hid&quot;:&quot;lesson_2&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;2796-3655&quot;} -->
+<h3 class="sectionedit6" id="lesson">Lesson ??</h3>
+<div class="level3">
+
+<p>
+Still want to make a continuous output thing. Train with simple thing like sine wave amplitude or frequency and maybe combine them. Then move to something complicated like the sales prediction, data center load prediction, or better the stuff that Levi is doing at BPA.
+</p>
+
+<p>
+Winning kaggle submissions: <a href="https://www.kaggle.com/sudalairajkumar/winning-solutions-of-kaggle-competitions" class="urlextern" title="https://www.kaggle.com/sudalairajkumar/winning-solutions-of-kaggle-competitions" rel="ugc nofollow">https://www.kaggle.com/sudalairajkumar/winning-solutions-of-kaggle-competitions</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lesson ??&quot;,&quot;hid&quot;:&quot;lesson&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;3656-4055&quot;} -->
+<h2 class="sectionedit7" id="classifying_ml_tasks">Classifying ML tasks</h2>
+<div class="level2">
+
+<p>
+From Turi Create documentation: <a href="https://github.com/apple/turicreate" class="urlextern" title="https://github.com/apple/turicreate" rel="ugc nofollow">https://github.com/apple/turicreate</a>
+</p>
+<div class="table sectionedit8"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> ML Task </th><th class="col1"> Description </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> Recommender </td><td class="col1"> Personalize choices for users </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> Image Classification </td><td class="col1"> Label images </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Object Detection </td><td class="col1"> Recognize objects within images </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0">Style Transfer </td><td class="col1"> Stylize images </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> Activity Classification </td><td class="col1"> Detect an activity using sensors </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> Image Similarity </td><td class="col1"> Find similar images </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> Classifiers </td><td class="col1"> Predict a label </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> Regression </td><td class="col1"> Predict numeric values </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0"> Clustering </td><td class="col1"> Group similar datapoints together </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0"> Text Classifier </td><td class="col1"> Analyze sentiment of messages </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:8,&quot;range&quot;:&quot;4157-4643&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Classifying ML tasks&quot;,&quot;hid&quot;:&quot;classifying_ml_tasks&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;4056-4643&quot;} -->
+<h2 class="sectionedit9" id="talk_with_andres">Talk with Andres</h2>
+<div class="level2">
+
+<p>
+Talk with Andres:
+</p>
+<ul>
+<li class="level1"><div class="li"> What drives you? Do you have a goal in mind?</div>
+</li>
+<li class="level1"><div class="li"> What sort of things are you doing now? Hardware design?</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+<li class="level1"><div class="li"> While I enjoy doing machine learning problems, I&#039;m having difficulty finding applications that I can do really well / solve and I know it&#039;s a lot of work.</div>
+</li>
+<li class="level1"><div class="li"> I find I am liking being employed more than working on cool (to me) projects. But…they are much easier too. Hopefully I can get them both, but is there really that much demand for machine learning people making … real stuff?</div>
+</li>
+<li class="level1"><div class="li"> Isn&#039;t there more demand for people getting stuff done than the movers on the top of the food chain?</div>
+</li>
+</ul>
+
+<p>
+His thesis was combining correlation filters (MACE) and SVM&#039;s. 
+</p>
+
+<p>
+He&#039;s in charge of AI strategy for the data center.
+</p>
+
+<p>
+It&#039;s not going to slow down, even with economic downturn. There are more and more 2nd tier companies finding uses for things. In addition to the 1st tier guys
+</p>
+
+<p>
+It&#039;s working super well. Which would you prefer for your robot doctor? A robot that will get it correct 80% of the time but tell you why it failed or a 99% right robot that you don&#039;t know so well how to diagnose?
+</p>
+
+<p>
+Recommends starting with Kaggle things and moving from there. That&#039;s your “rep” in the industry.
+</p>
+
+<p>
+<a href="https://research.fb.com/wp-content/uploads/2017/12/hpca-2018-facebook.pdf" class="urlextern" title="https://research.fb.com/wp-content/uploads/2017/12/hpca-2018-facebook.pdf" rel="ugc nofollow">Facebook machine learning data center</a>, (deep neural networks), published 6 months ago
+</p>
+<ul>
+<li class="level1"><div class="li"> If you can get away with a simpler model, then do so. Lots faster/cheaper to train and evaluate. They use several, not just SVM or whatever.</div>
+</li>
+</ul>
+
+<p>
+Random forests are used a lot in production, surprisngly.
+</p>
+
+<p>
+Coursera specialization course by Andrew Ng
+</p>
+
+<p>
+Google has a cool demo on an automated phone calling system.
+</p>
+
+<p>
+Designing the DNN model is still an engineering exercise at this point.
+</p>
+
+<p>
+Turi, Carlos Guestrin&#039;s startup got bought by Google. Previously he was a machine learning only guy.
+</p>
+
+<p>
+Adversarial neural networks, you can come up with the same thing for normal machine learning methods too.
+</p>
+
+<p>
+I feel excited. Ready to apply machine learning / DNN to some real problems and see what comes out.
+</p>
+<ul>
+<li class="level1"><div class="li"> However, still kinda scared as I am not confident in my ability yet. Kaggle it up! Just like the next abstraction of programming skills.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Talk with Andres&quot;,&quot;hid&quot;:&quot;talk_with_andres&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;4644-6896&quot;} -->
+<h2 class="sectionedit10" id="deep_learning">Deep Learning</h2>
+<div class="level2">
+
+<p>
+Apparently is blowing every other method out of the water. Unfortunately, we don&#039;t understand <strong>why</strong> it works yet, and so we have to <a href="https://twitter.com/dfarmer/status/474609077671034880" class="urlextern" title="https://twitter.com/dfarmer/status/474609077671034880" rel="ugc nofollow">sacrifice the lives of many grad students in order to find local optima</a> <img src="/lib/images/smileys/icon_sad.gif" class="icon" alt=":-(" />
+</p>
+
+<p>
+<a href="http://yyue.blogspot.com/2015/01/a-brief-overview-of-deep-learning.html" class="urlextern" title="http://yyue.blogspot.com/2015/01/a-brief-overview-of-deep-learning.html" rel="ugc nofollow">Overview article</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> With 10 layers, you can do anything?!</div>
+</li>
+<li class="level1"><div class="li"> Stochastic Gradient Descent (SGD) is the big win that makes it work</div>
+</li>
+</ul>
+
+<p>
+Fizz buzz with a neural network: <a href="https://news.ycombinator.com/item?id=11753627" class="urlextern" title="https://news.ycombinator.com/item?id=11753627" rel="ugc nofollow">https://news.ycombinator.com/item?id=11753627</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Deep Learning&quot;,&quot;hid&quot;:&quot;deep_learning&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;6897-7483&quot;} -->
+<h2 class="sectionedit11" id="work">Work</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Maybe work for Trimet and analyze their data? </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.autonlab.org/autonweb/library/papers.html" class="urlextern" title="http://www.autonlab.org/autonweb/library/papers.html" rel="ugc nofollow">CMU Auton Lab</a> did analysis of sensors on navy helicopters to try and get forewarning of rotor aging and repair-needing. Maybe they published some papers too…but probably not for this one. </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Work&quot;,&quot;hid&quot;:&quot;work&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:11,&quot;range&quot;:&quot;7484-7803&quot;} -->
+<h2 class="sectionedit12" id="do_simple_examples">Do Simple Examples</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Neural networks are more complicated, but they can outperform other methods. <a href="http://www.quora.com/Will-deep-learning-make-other-Machine-Learning-algorithms-obsolete" class="urlextern" title="http://www.quora.com/Will-deep-learning-make-other-Machine-Learning-algorithms-obsolete" rel="ugc nofollow">quora</a>.</div>
+<ul>
+<li class="level2"><div class="li"> Apparently neural networks get better with more examples</div>
+</li>
+<li class="level2"><div class="li"> Techniques for increasing training examples include all the affine transformations. Stuff that typically shows up with consumer photography</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Can Neural Networks / Deep Learning <strong>figure out good features automatically</strong>? </div>
+<ul>
+<li class="level2 node"><div class="li"> Arterial blood pressure signals often use the <a href="http://www.google.com/search?q=slope%20sum%20function" class="interwiki iw_g" title="http://www.google.com/search?q=slope%20sum%20function">slope sum function</a>, but can&#039;t a computer figure it out too given lots of examples?</div>
+<ul>
+<li class="level3"><div class="li"> Alex says he uses SSF and others because it is pretty deterministic and predictable / based on physiology and pretty small/efficient in time and space on a microprocessor. Other, more “learning” style methods might not be that way, especially neural networks.</div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> <a href="http://shapecatcher.com/about.html" class="urlextern" title="http://shapecatcher.com/about.html" rel="ugc nofollow">Shape Catcher</a> / Detexify does shape recognition on characters in HTML5, pretty cool! (but pretty slow too…) </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h4 id="numbers">Numbers</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Generate different classes based on random things. (last digit, prime number, last digit of sum of last digits) and see if the computer can figure out the classification. <strong>SVM??</strong></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="rgb_colors">RGB Colors</h4>
+<div class="level4">
+<ul>
+<li class="level1 node"><div class="li"> Classify RGB tuple invariant to lighting </div>
+<ul>
+<li class="level2"><div class="li"> (maybe make a larger swatch and add noise?)</div>
+</li>
+</ul>
+</li>
+</ul>
+<div class="table sectionedit13"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Experiment </th><th class="col1"> Conditioning </th><th class="col2"> Feature Extraction </th><th class="col3"> Classification </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> Classifying Number Patterns </td><td class="col1"> </td><td class="col2"> </td><td class="col3"> </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> RGB Color Recognition <br/>
+(invariant to illumination) </td><td class="col1"> </td><td class="col2"> </td><td class="col3"> </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:13,&quot;range&quot;:&quot;9193-9361&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Do Simple Examples&quot;,&quot;hid&quot;:&quot;do_simple_examples&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:12,&quot;range&quot;:&quot;7804-9363&quot;} -->
+<h2 class="sectionedit14" id="signal_conditioning">Signal Conditioning</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Signal Conditioning&quot;,&quot;hid&quot;:&quot;signal_conditioning&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:14,&quot;range&quot;:&quot;9364-9396&quot;} -->
+<h2 class="sectionedit15" id="feature_extraction">Feature Extraction</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Feature Extraction&quot;,&quot;hid&quot;:&quot;feature_extraction&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:15,&quot;range&quot;:&quot;9397-9427&quot;} -->
+<h3 class="sectionedit16" id="handwriting">Handwriting</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> OpenCV <a href="http://docs.opencv.org/trunk/doc/py_tutorials/py_ml/py_knn/py_knn_opencv/py_knn_opencv.html" class="urlextern" title="http://docs.opencv.org/trunk/doc/py_tutorials/py_ml/py_knn/py_knn_opencv/py_knn_opencv.html" rel="ugc nofollow">1</a> and <a href="http://docs.opencv.org/trunk/doc/py_tutorials/py_feature2d/py_table_of_contents_feature2d/py_table_of_contents_feature2d.html" class="urlextern" title="http://docs.opencv.org/trunk/doc/py_tutorials/py_feature2d/py_table_of_contents_feature2d/py_table_of_contents_feature2d.html" rel="ugc nofollow">feature detection sequence</a></div>
+<ul>
+<li class="level2"><div class="li"> They use a png for digits, but then a pre-computed set of features using a UCI dataset, which has a <strong>very fast</strong> looking set of features that OpenCV uses for ocr. <em>I wonder how they came up with them…</em></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="http://blog.damiles.com/2008/11/basic-ocr-in-opencv/" class="urlextern" title="http://blog.damiles.com/2008/11/basic-ocr-in-opencv/" rel="ugc nofollow">implementation tutorial</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://docs.opencv.org/trunk/modules/objdetect/doc/erfilter.html" class="urlextern" title="http://docs.opencv.org/trunk/modules/objdetect/doc/erfilter.html" rel="ugc nofollow">OpenCV Docs Scene Text Detection</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://yann.lecun.com/exdb/mnist/" class="urlextern" title="http://yann.lecun.com/exdb/mnist/" rel="ugc nofollow">MNIST</a> handwriting dataset</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Handwriting&quot;,&quot;hid&quot;:&quot;handwriting&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:16,&quot;range&quot;:&quot;9428-10191&quot;} -->
+<h3 class="sectionedit17" id="finding_good_features">Finding Good Features</h3>
+<div class="level3">
+
+<p>
+How does one find features that are robust to Scale/Time/Space/Rotation? 
+</p>
+<ul>
+<li class="level1 node"><div class="li"> <a href="http://stackoverflow.com/questions/11786918/ocr-solution-that-detects-numeric-handwriting" class="urlextern" title="http://stackoverflow.com/questions/11786918/ocr-solution-that-detects-numeric-handwriting" rel="ugc nofollow">OpenCV does this with kNN and SVM</a> for handwriting recognition (<a href="http://opencv-python-tutroals.readthedocs.org/en/latest/py_tutorials/py_ml/py_knn/py_knn_opencv/py_knn_opencv.html" class="urlextern" title="http://opencv-python-tutroals.readthedocs.org/en/latest/py_tutorials/py_ml/py_knn/py_knn_opencv/py_knn_opencv.html" rel="ugc nofollow">docs</a> if they help). Somehow it does multi-class SVM???</div>
+<ul>
+<li class="level2"><div class="li"> Tesseract (<a href="http://stackoverflow.com/questions/19533273/best-ocr-optical-character-recognition-example-in-android" class="urlextern" title="http://stackoverflow.com/questions/19533273/best-ocr-optical-character-recognition-example-in-android" rel="ugc nofollow">2</a>?) is another option, but seems heavier.</div>
+</li>
+<li class="level2"><div class="li"> In general for machine learning, one should say the uncertainty of the guess for the user to use.</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> This should be very similar to Can Ye&#039;s work on arrhythmia detection at CMU. </div>
+<ul>
+<li class="level2"><div class="li"> <a href="../_media/ecg_classification_ye.pdf" class="media mediafile mf_pdf" title="ecg_classification_ye.pdf">Arrhythmia detection and classification using morphological and dynamic features of ECG signals (ICA, SVM)</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../_media/ecg_individual_customization_ye.pdf" class="media mediafile mf_pdf" title="ecg_individual_customization_ye.pdf">Customizing the Training Dataset to an Individual for Improved  Heartbeat Recognition Performance in Long-Term ECG Signals</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Can Neural Networks / Deep Learning <strong>figure out good features autonomously</strong>? </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Finding Good Features&quot;,&quot;hid&quot;:&quot;finding_good_features&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:17,&quot;range&quot;:&quot;10192-11386&quot;} -->
+<h2 class="sectionedit18" id="classification_vs_regression">Classification vs. Regression</h2>
+<div class="level2">
+
+<p>
+Parameter estimation = Regression = Continuous value as output
+</p>
+
+<p>
+Classification = “Thresholded” version of Regression (binary classification as output)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Classification vs. Regression&quot;,&quot;hid&quot;:&quot;classification_vs_regression&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:18,&quot;range&quot;:&quot;11387-11580&quot;} -->
+<h3 class="sectionedit19" id="estimate_parameters_of_signal">Estimate Parameters of Signal</h3>
+<div class="level3">
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Multiple_Signal_Classification" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Multiple_Signal_Classification">Multiple_Signal_Classification</a> (MUSIC) algorithm seems really cool. Uses eigenvectors of autocorrelation to find frequencies of k emitters. But what if my emitters aren&#039;t sinusoidal?
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Estimate Parameters of Signal&quot;,&quot;hid&quot;:&quot;estimate_parameters_of_signal&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:19,&quot;range&quot;:&quot;11581-11810&quot;} -->
+<h2 class="sectionedit20" id="amazon_interview">Amazon Interview</h2>
+<div class="level2">
+
+<p>
+I was quite weak on boosting, clustering (finding n classes among a bunch of fingerprints), and machine learning on decision trees (signal processing and recognition using decision trees?!?! Never heard of it). 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Amazon Interview&quot;,&quot;hid&quot;:&quot;amazon_interview&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:20,&quot;range&quot;:&quot;11811-12053&quot;} -->
+<h3 class="sectionedit21" id="the_unreasonable_effectiveness_of_data">The Unreasonable Effectiveness of Data</h3>
+<div class="level3">
+
+<p>
+<a href="http://www.google.com/search?q=The%20Unreasonable%20Effectiveness%20of%20Data" class="interwiki iw_g" title="http://www.google.com/search?q=The%20Unreasonable%20Effectiveness%20of%20Data">The Unreasonable Effectiveness of Data</a>, by some Google guys including Russell Norvig.
+Combining lots of simple classifiers or n-grams into one big system is performing better than elaborate models on less data.
+</p>
+
+<p>
+“What vegetables prevent osteoporosis” paper looks immediately helpful for reading project.
+</p>
+
+<p>
+The same meaning can be expressed in many different ways, and the same expression can express many different meanings.
+</p>
+<ul>
+<li class="level1"><div class="li"> Semantic Web helps solve the ambiguity problem, especially if all of the correct forms are filled out.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;The Unreasonable Effectiveness of Data&quot;,&quot;hid&quot;:&quot;the_unreasonable_effectiveness_of_data&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:21,&quot;range&quot;:&quot;12054-12642&quot;} -->
+<h2 class="sectionedit22" id="questions">Questions</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Questions&quot;,&quot;hid&quot;:&quot;questions&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:22,&quot;range&quot;:&quot;12643-12664&quot;} -->
+<h3 class="sectionedit23" id="svdpca">SVD/PCA</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> What is SVD again? I get really annoyed when people say “we skipped the first two vectors, because they represent background noise (lighting variation usually), and used the later vectors”. Why is that the case? It seems a bad heuristic for using SVD. Maybe clean up your data in other ways first, as you might miss something when you remove the first few vectors! </div>
+<ul>
+<li class="level2"><div class="li"> Fernando De La Torre had a great set of slides for MLSP. He had a method called Robust PCA that handled the above issue in filtering out the video background and highlighted events in the video.</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> A CMU professor came to Edwards and said that they are transforming raw pressure and other biomedical data into the frequency domain (through FFT) and then doing SVD on it! That seems useless, because FFT is just changing the orientation of the data, and SVD is finding the best representation of the data. Maybe there is something that I am missing?</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;SVD\/PCA&quot;,&quot;hid&quot;:&quot;svdpca&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:23,&quot;range&quot;:&quot;12665-13613&quot;} -->
+<h2 class="sectionedit24" id="tutorials_wexamples">Tutorials w/ Examples</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://videolectures.net/bootcamp2010_murray_iml/" class="urlextern" title="http://videolectures.net/bootcamp2010_murray_iml/" rel="ugc nofollow">Good VIDEO! Boot camp by Andy Murray</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="../_media/programming/tutorial11.ppt" class="media mediafile mf_ppt" title="programming:tutorial11.ppt">SVM Intro</a>  very intuitive and graphical</div>
+</li>
+<li class="level2"><div class="li"> <a href="https://www.google.com/search?q=svm+example&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:en-US:official&amp;client=firefox-a" class="urlextern" title="https://www.google.com/search?q=svm+example&amp;ie=utf-8&amp;oe=utf-8&amp;aq=t&amp;rls=org.mozilla:en-US:official&amp;client=firefox-a" rel="ugc nofollow">SVM Examples</a> (Dan Ventura&#039;s one is particularly good)</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.cs.otago.ac.nz/cosc453/" class="urlextern" title="http://www.cs.otago.ac.nz/cosc453/" rel="ugc nofollow">PCA tut (and others) from NZ</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://mecca.louisville.edu/wwwcvip/education/ECE523/" class="urlextern" title="http://mecca.louisville.edu/wwwcvip/education/ECE523/" rel="ugc nofollow">LDA and other stuff</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.autonlab.org/tutorials/index.html" class="urlextern" title="http://www.autonlab.org/tutorials/index.html" rel="ugc nofollow">Andrew Moore (Google) tutorial slides</a> very informative and funny actually too! On lots of stuff, but no examples :( He knows why and why not though</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://courses.media.mit.edu/2010fall/mas622j/" class="urlextern" title="http://courses.media.mit.edu/2010fall/mas622j/" rel="ugc nofollow">Rosalind Picard Pattern Recognition</a></div>
+</li>
+<li class="level2"><div class="li"> </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Tutorials w\/ Examples&quot;,&quot;hid&quot;:&quot;tutorials_wexamples&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:24,&quot;range&quot;:&quot;13614-14466&quot;} -->
+<h2 class="sectionedit25" id="remote_photoplethysmography_facetimingcardiocam">Remote Photoplethysmography (FaceTiming/CardioCam?)</h2>
+<div class="level2">
+
+<p>
+<a href="../_media/programming/ir_camera.png" class="media" title="programming:ir_camera.png"><img src="../_media/programming/ir_camera.png" class="media" alt="" width="400" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Maybe use SURF along with LK point tracking for more robustness to hand swipes? <a href="http://www.youtube.com/watch?v=xzVXyrIRm30&amp;feature=related" class="urlextern" title="http://www.youtube.com/watch?v=xzVXyrIRm30&amp;feature=related" rel="ugc nofollow">YouTube video</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Remote Photoplethysmography (FaceTiming\/CardioCam?)&quot;,&quot;hid&quot;:&quot;remote_photoplethysmography_facetimingcardiocam&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:25,&quot;range&quot;:&quot;14467-14734&quot;} -->
+<h3 class="sectionedit26" id="ir_details">IR Details</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Great paper on getting good pictures of veins with IR is here: <a href="../_media/programming/10248_ftp.pdf" class="media mediafile mf_pdf" title="programming:10248_ftp.pdf">Infrared Imaging of Subcutaneous Veins</a> </div>
+</li>
+<li class="level2"><div class="li"> Might need to remove IR filter as veins show up better in IR spectrum?</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Use <a href="http://webcam-osx.sourceforge.net/" class="urlextern" title="http://webcam-osx.sourceforge.net/" rel="ugc nofollow">Macam</a> for external Microsoft webcam on <abbr title="Operating System">OS</abbr> X</div>
+<ul>
+<li class="level3"><div class="li"> (really slow though…)</div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> Blood Oxygenation level based on “ratio of ratios”, or the “ratio between photoplethysmographic peak-to- peak pulse wave amplitudes acquired at ≥2 different wave- lengths”. Green and blue/red?</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://chipsight.com/color-space-for-embedded-vision/" class="urlextern" title="http://chipsight.com/color-space-for-embedded-vision/" rel="ugc nofollow">HSV Color Space</a> explanation</div>
+</li>
+<li class="level2"><div class="li"> Get heart rate monitor from QoLT?</div>
+</li>
+<li class="level2"><div class="li"> <a href="../_media/programming/utility_of_the_photoplethysmogram_in_circulatory.24.pdf" class="media mediafile mf_pdf" title="programming:utility_of_the_photoplethysmogram_in_circulatory.24.pdf">Utility of photoplethysmogram</a>  (talks about correlating with blood pressure, need to read more</div>
+</li>
+<li class="level2"><div class="li"> Based off of CardioCam</div>
+</li>
+<li class="level2 node"><div class="li"> Might need to use  <a href="http://research.ics.tkk.fi/ica/fastica/code/dlcode.html" class="urlextern" title="http://research.ics.tkk.fi/ica/fastica/code/dlcode.html" rel="ugc nofollow">FastICA</a>, <a href="http://opencv-users.1802565.n2.nabble.com/FastICA-td5606391.html" class="urlextern" title="http://opencv-users.1802565.n2.nabble.com/FastICA-td5606391.html" rel="ugc nofollow">example use code</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="http://research.ics.tkk.fi/ica/icademo/" class="urlextern" title="http://research.ics.tkk.fi/ica/icademo/" rel="ugc nofollow">ICA visual explanation</a></div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> <a href="http://processing.org/learning/library/framedifferencing.html" class="urlextern" title="http://processing.org/learning/library/framedifferencing.html" rel="ugc nofollow">Processing Webcam Code</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://madan.wordpress.com/2007/03/23/image-capture-using-webcam-in-matlab/" class="urlextern" title="http://madan.wordpress.com/2007/03/23/image-capture-using-webcam-in-matlab/" rel="ugc nofollow">Matlab Webcam Code</a></div>
+</li>
+</ul>
+<pre class="code c">imaqtool<span class="sy0">;</span> <span class="sy0">%</span>Gui
+<span class="sy0">%</span>Mac specific settings
+vid <span class="sy0">=</span> videoinput<span class="br0">&#40;</span><span class="st0">'macvideo'</span><span class="sy0">,</span> <span class="nu0">1</span><span class="sy0">,</span> <span class="st0">'YCbCr422_640x480'</span><span class="br0">&#41;</span><span class="sy0">;</span>
+src <span class="sy0">=</span> getselectedsource<span class="br0">&#40;</span>vid<span class="br0">&#41;</span><span class="sy0">;</span>
+vid.<span class="me1">FramesPerTrigger</span> <span class="sy0">=</span> <span class="nu0">5</span><span class="sy0">;</span>
+preview<span class="br0">&#40;</span>vid<span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<ul>
+<li class="level1"><div class="li"> Overall, much slower than Processing, but much easier to do complex calculations…</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;IR Details&quot;,&quot;hid&quot;:&quot;ir_details&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:26,&quot;range&quot;:&quot;14735-16366&quot;} -->
+<h2 class="sectionedit27" id="ideas">Ideas</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Remote Monitoring of Pulse. <a href="http://vimeo.com/12192224" class="urlextern" title="http://vimeo.com/12192224" rel="ugc nofollow">CardioCam</a>, <a href="http://affect.media.mit.edu/pdfs/11.Poh-etal-TBME.pdf" class="urlextern" title="http://affect.media.mit.edu/pdfs/11.Poh-etal-TBME.pdf" rel="ugc nofollow">their paper</a>, <a href="http://www.opticsinfobase.org/oe/abstract.cfm?uri=oe-16-26-21434" class="urlextern" title="http://www.opticsinfobase.org/oe/abstract.cfm?uri=oe-16-26-21434" rel="ugc nofollow">previous paper</a>,<a href="http://snoopy.cse.nd.edu/wii_healthcare/index.html" class="urlextern" title="http://snoopy.cse.nd.edu/wii_healthcare/index.html" rel="ugc nofollow">Notre Dame summer REU</a>, seems to not have worked?! Where was that flash demo…</div>
+<ul>
+<li class="level3"><div class="li"> Randy: <em>If you&#039;re capturing webcam imagery, might be fun to think about other sorts of things too like how open the eyelids are, how often the eyes move, how fast the head moves etc.</em></div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> Analyzing large biomedical data sets quickly with machine learning and pattern recognition. <a href="http://www.wired.com/wiredscience/2011/09/data-mining-heart-attack/" class="urlextern" title="http://www.wired.com/wiredscience/2011/09/data-mining-heart-attack/" rel="ugc nofollow">Wired Article</a>. <a href="../_media/programming/sci-transl-med-2011-syed-102ra95.pdf" class="media mediafile mf_pdf" title="programming:sci-transl-med-2011-syed-102ra95.pdf">Paper by professor</a>. still need to read it…</div>
+</li>
+<li class="level2 node"><div class="li"> Google Search:  <a href="http://www.google.com/search?sourceid=chrome&amp;ie=UTF-8&amp;q=machine+learning+projects&amp;qscrl=1" class="urlextern" title="http://www.google.com/search?sourceid=chrome&amp;ie=UTF-8&amp;q=machine+learning+projects&amp;qscrl=1" rel="ugc nofollow">Machine Learning Projects</a></div>
+<ul>
+<li class="level3"><div class="li"> I kind of like doing genetic algorithms and evaluating them</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Ideas&quot;,&quot;hid&quot;:&quot;ideas&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:27,&quot;range&quot;:&quot;16367-17440&quot;} -->
+<h2 class="sectionedit28" id="features">Features</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Audio: <a href="http://marsyas.info/" class="urlextern" title="http://marsyas.info/" rel="ugc nofollow">Marsyas</a>, 60-some features for audio and some cool classification demos</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Features&quot;,&quot;hid&quot;:&quot;features&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:28,&quot;range&quot;:&quot;17441-17574&quot;} -->
+<h2 class="sectionedit29" id="data_acquisitionprocessing">Data Acquisition / Processing</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://orange.biolab.si/" class="urlextern" title="http://orange.biolab.si/" rel="ugc nofollow">Orange</a> open-source, data mining, cross-platform in Qt</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://code.google.com/p/google-refine/" class="urlextern" title="http://code.google.com/p/google-refine/" rel="ugc nofollow">Google Refine</a> was way cool! Mostly for cleaning up datasets, but really useful.</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.quora.com/Data/Where-can-I-get-large-datasets-open-to-the-public" class="urlextern" title="http://www.quora.com/Data/Where-can-I-get-large-datasets-open-to-the-public" rel="ugc nofollow">Quora on Datasets</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://junar.com" class="urlextern" title="http://junar.com" rel="ugc nofollow">Junar </a>, graphical data acquisition, doesn&#039;t really work for Craigslist, needs tables? Meh…</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Data Acquisition \/ Processing&quot;,&quot;hid&quot;:&quot;data_acquisitionprocessing&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:29,&quot;range&quot;:&quot;17575-18063&quot;} -->
+<h2 class="sectionedit30" id="websites">Websites</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://onionesquereality.wordpress.com/index-all-posts/" class="urlextern" title="http://onionesquereality.wordpress.com/index-all-posts/" rel="ugc nofollow">Onionesque Reality</a> blog by graduated student. Talks and has tutorials on <a href="http://onionesquereality.wordpress.com/2009/04/17/face-recognitionauthentication-using-support-vector-machines/" class="urlextern" title="http://onionesquereality.wordpress.com/2009/04/17/face-recognitionauthentication-using-support-vector-machines/" rel="ugc nofollow">eigenfaces</a> and <a href="http://onionesquereality.wordpress.com/2008/08/31/demystifying-support-vector-machines-for-beginners/" class="urlextern" title="http://onionesquereality.wordpress.com/2008/08/31/demystifying-support-vector-machines-for-beginners/" rel="ugc nofollow">Support Vector Machines</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://robotics.stanford.edu/~ang/" class="urlextern" title="http://robotics.stanford.edu/~ang/" rel="ugc nofollow">Andrew Ng homepage</a> Professor at Stanford</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Websites&quot;,&quot;hid&quot;:&quot;websites&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:30,&quot;range&quot;:&quot;18064-18574&quot;} -->
+<h2 class="sectionedit31" id="textbooks">Textbooks</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> O&#039;Reilly Data Analysis book</div>
+</li>
+<li class="level2"><div class="li"> <a href="../_media/programming/weka_manual.pdf" class="media mediafile mf_pdf" title="programming:weka_manual.pdf">WEKA Textbook</a> </div>
+</li>
+<li class="level2 node"><div class="li"> Christopher Bishop&#039;s <a href="http://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738Pattern Recognition and Machine Learning" class="urlextern" title="http://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738Pattern Recognition and Machine Learning" rel="ugc nofollow">http://www.amazon.com/Pattern-Recognition-Learning-Information-Statistics/dp/0387310738Pattern Recognition and Machine Learning</a> (required for Neural Signal Processing)</div>
+<ul>
+<li class="level3"><div class="li"> Seems to be pretty mathy from the reviews</div>
+</li>
+</ul>
+</li>
+<li class="level2 node"><div class="li"> An alternate book (more introductory):  <a href="http://www.amazon.com/Machine-Learning-Algorithmic-Perspective-Recognition/dp/1420067184/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1311259536&amp;sr=1-1" class="urlextern" title="http://www.amazon.com/Machine-Learning-Algorithmic-Perspective-Recognition/dp/1420067184/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1311259536&amp;sr=1-1" rel="ugc nofollow">Machine Learning An Algorithmic Perspective</a></div>
+<ul>
+<li class="level3"><div class="li"> <a href="http://www.abebooks.com/products/isbn/1420067184" class="urlextern" title="http://www.abebooks.com/products/isbn/1420067184" rel="ugc nofollow">International Edition is $20</a></div>
+</li>
+</ul>
+</li>
+<li class="level2 node"><div class="li">  <a href="http://www.amazon.com/Pattern-Classification-2nd-Richard-Duda/dp/0471056693/ref=pd_sim_b_5" class="urlextern" title="http://www.amazon.com/Pattern-Classification-2nd-Richard-Duda/dp/0471056693/ref=pd_sim_b_5" rel="ugc nofollow">Pattern Classification by Duda</a></div>
+<ul>
+<li class="level3"><div class="li"> Not sure which book we need for Patt Rec, but this one has good reviews.</div>
+</li>
+<li class="level3"><div class="li"> <a href="http://www.abebooks.com/products/isbn/0471056693" class="urlextern" title="http://www.abebooks.com/products/isbn/0471056693" rel="ugc nofollow">Also cheap internationally ($25)</a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Textbooks&quot;,&quot;hid&quot;:&quot;textbooks&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:31,&quot;range&quot;:&quot;18575-&quot;} --></div></body>
+</html>

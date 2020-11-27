@@ -1,0 +1,589 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:scripts</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#helpful_scripts">Helpful Scripts</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#automatic_script_suggestion">Automatic Script Suggestion</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#algorithm">Algorithm</a></div></li>
+<li class="level3"><div class="li"><a href="#ui_automation_tools">UI Automation Tools</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#ubuntu_hud_in_windows">Ubuntu HUD in Windows</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#ubuntu_automation">Ubuntu Automation</a></div></li>
+<li class="level3"><div class="li"><a href="#installing_accerciser_inspect_for_ubuntu">Installing Accerciser (Inspect for Ubuntu)</a></div></li>
+<li class="level3"><div class="li"><a href="#browsing_vs_search">Browsing Vs. Search</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#smart_code_suggestion">Smart Code Suggestion</a></div></li>
+<li class="level2"><div class="li"><a href="#gmail_keyboard_shortcuts">Gmail Keyboard Shortcuts</a></div></li>
+<li class="level2"><div class="li"><a href="#web_automation">Web Automation</a></div></li>
+<li class="level2"><div class="li"><a href="#regular_expressions">Regular Expressions</a></div></li>
+<li class="level2"><div class="li"><a href="#finding_stuff">Finding Stuff</a></div></li>
+<li class="level2"><div class="li"><a href="#lucenedocfetcher_search_tips">Lucene/DocFetcher Search Tips</a></div></li>
+<li class="level2"><div class="li"><a href="#unix">Unix</a></div></li>
+<li class="level2"><div class="li"><a href="#windows">Windows</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#batch_file">Batch File</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#terminal">Terminal</a></div></li>
+<li class="level2"><div class="li"><a href="#autoit">AutoIT</a></div></li>
+<li class="level2"><div class="li"><a href="#autohotkey">AutoHotKey</a></div></li>
+<li class="level2"><div class="li"><a href="#makefiles">Makefiles</a></div></li>
+<li class="level2"><div class="li"><a href="#number_manipulation">Number Manipulation</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="helpful_scripts">Helpful Scripts</h1>
+<div class="level1">
+<blockquote  class="blockquote-plugin">
+<p>
+Are we preparing for this future? I look around, and see a generation of bright, inventive designers wasting their lives shoehorning obsolete interaction models onto crippled, impotent platforms. I see a generation of engineers wasting their lives mastering the carelessly-designed nuances of these dead-end platforms, and carelessly adding more. I see a generation of users wasting their lives pointing, clicking, dragging, typing, as gigahertz processors spin idly and gigabyte memories remember nothing. I see machines, machines, machines.
+</p>
+
+</blockquote>
+<p>
+ Bret Victor in <a href="http://worrydream.com/MagicInk/#p385" class="urlextern" title="http://worrydream.com/MagicInk/#p385" rel="ugc nofollow">Magic Ink</a>
+</p>
+<blockquote  class="blockquote-plugin">
+<p>
+…<strong>software should not be so lazy</strong>; it should stop making the user do work that the computer is better suited to doing (e.g. remembering where they put files), and it should stop making users go through the same steps over and over again, as if it were the first time they had ever met this user.–<a href="http://www.amazon.com/review/RZ5JZBES662SL/ref=cm_cr_dp_title?ie=UTF8&amp;ASIN=0672326140&amp;nodeID=283155&amp;store=books" class="urlextern" title="http://www.amazon.com/review/RZ5JZBES662SL/ref=cm_cr_dp_title?ie=UTF8&amp;ASIN=0672326140&amp;nodeID=283155&amp;store=books" rel="ugc nofollow">A review</a> of The Inmates are Running the Asylum
+</p>
+
+</blockquote>
+<p>
+More ideas in <a href="http://www.google.com/search?q=The%20Inmates%20are%20Running%20the%20Asylum" class="interwiki iw_g" title="http://www.google.com/search?q=The%20Inmates%20are%20Running%20the%20Asylum">The Inmates are Running the Asylum</a>, <a href="http://www.google.com/search?q=About%20Face" class="interwiki iw_g" title="http://www.google.com/search?q=About%20Face">About Face</a>, and <a href="https://en.wikipedia.org/wiki/The_Humane_Interface" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/The_Humane_Interface">The_Humane_Interface</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> A more recent guy is Paul Chiusano, who states that “Worse is Better” is NOT true (<a href="http://pchiusano.github.io/2014-07-02/css-is-unnecessary.html" class="urlextern" title="http://pchiusano.github.io/2014-07-02/css-is-unnecessary.html" rel="ugc nofollow">CSS is unneccessary</a>). Also, suggesting relevant “things to do” based on currently selected type <a href="http://pchiusano.github.io/2013-09-10/type-systems-and-ux-example.html" class="urlextern" title="http://pchiusano.github.io/2013-09-10/type-systems-and-ux-example.html" rel="ugc nofollow">here</a>.</div>
+</li>
+</ul>
+<blockquote  class="blockquote-plugin">
+<p>
+Today I was forced to edit a Microsoft Word document, containing comments (made by me, and by others) and tracked changes. I found myself wanting to delete all comments, and accept all tracked changes. It took a few minutes to figure out, and I very quickly gave up trying to actually discover the functionality within Word’s actual UI and resorted to using Google. God help me if I wanted to, say, delete only comments made by me within the last ten days.
+</p>
+
+</blockquote>
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Helpful Scripts&quot;,&quot;hid&quot;:&quot;helpful_scripts&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-2077&quot;} -->
+<h2 class="sectionedit2" id="automatic_script_suggestion">Automatic Script Suggestion</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> More ideas/theory at <a href="https://en.wikipedia.org/wiki/Recommender_system#Collaborative_filtering" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Recommender_system#Collaborative_filtering">Recommender_system#Collaborative_filtering</a></div>
+</li>
+<li class="level1"><div class="li"> Listen to key strokes, mouse movements and clicks.</div>
+</li>
+<li class="level1"><div class="li"> Windows global event mouse and keyboard hooks example: <a href="https://github.com/gmamaladze/globalmousekeyhook" class="urlextern" title="https://github.com/gmamaladze/globalmousekeyhook" rel="ugc nofollow">https://github.com/gmamaladze/globalmousekeyhook</a></div>
+</li>
+<li class="level1"><div class="li"> Re-clicking/typing:</div>
+</li>
+</ul>
+<pre class="code c">Point p <span class="sy0">=</span> b.<span class="me1">GetClickablePoint</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="co1">// Move the mouse to the point. Then click</span>
+Mouse.<span class="me1">MoveTo</span><span class="br0">&#40;</span>p<span class="br0">&#41;</span><span class="sy0">;</span>
+Mouse.<span class="me1">Click</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<ul>
+<li class="level1 node"><div class="li"> NVDA (screen reader) has support for windows cmd prompt! <a href="http://www.nvaccess.org/files/nvda/documentation/userGuide.html" class="urlextern" title="http://www.nvaccess.org/files/nvda/documentation/userGuide.html" rel="ugc nofollow">http://www.nvaccess.org/files/nvda/documentation/userGuide.html</a></div>
+<ul>
+<li class="level2"><div class="li"> <del>AutoIT has something similar, maybe. <a href="https://github.com/ellysh/au3src/blob/35517393091e7d97052d20ccdee8d9d6db36276f/src/utility.cpp#L1430" class="urlextern" title="https://github.com/ellysh/au3src/blob/35517393091e7d97052d20ccdee8d9d6db36276f/src/utility.cpp#L1430" rel="ugc nofollow">https://github.com/ellysh/au3src/blob/35517393091e7d97052d20ccdee8d9d6db36276f/src/utility.cpp#L1430</a></del> doesn&#039;t read cmd prompt and Sticky Notes, among others.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Automatic Script Suggestion&quot;,&quot;hid&quot;:&quot;automatic_script_suggestion&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;2078-2843&quot;} -->
+<h3 class="sectionedit3" id="algorithm">Algorithm</h3>
+<div class="level3">
+
+<p>
+The problem is to discover what is a repeated thing, with insertions of irrelevant things. (no deletions or reorderings I think…)
+</p>
+
+<p>
+For now, make a hash table that, given each event (mouse click, keyboard <strong>sequence</strong> (to prevent taking too much time), screen refresh with new data??, etc.), stores the offset in the log that it exists. Then do a “find common sequence” run on each of the instances of that event and see if they match.
+</p>
+<ul>
+<li class="level1"><div class="li"> Probably not great, but we&#039;ll work with it for now.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Algorithm&quot;,&quot;hid&quot;:&quot;algorithm&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;2844-3359&quot;} -->
+<h3 class="sectionedit4" id="ui_automation_tools">UI Automation Tools</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="uiautomation">UIAutomation</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Great C# up and running <a href="http://blog.functionalfun.net/2009/06/introduction-to-ui-automation-with.html" class="urlextern" title="http://blog.functionalfun.net/2009/06/introduction-to-ui-automation-with.html" rel="ugc nofollow">here</a>. Some Microsoft advice (sorta) on <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ff625913(v=vs.85).aspx" class="urlextern" title="https://msdn.microsoft.com/en-us/library/windows/desktop/ff625913(v=vs.85).aspx" rel="ugc nofollow">FindFirst</a></div>
+</li>
+<li class="level1"><div class="li"> Subscribe to changes in tree <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ee671512(v=vs.85).aspx" class="urlextern" title="https://msdn.microsoft.com/en-us/library/windows/desktop/ee671512(v=vs.85).aspx" rel="ugc nofollow">here</a></div>
+</li>
+<li class="level1"><div class="li"> <del>IronPython?</del> It&#039;s a redo of CPython and doesn&#039;t support numpy, etc. Don&#039;t use</div>
+</li>
+</ul>
+
+<p>
+<a href="http://stackoverflow.com/a/11826622" class="urlextern" title="http://stackoverflow.com/a/11826622" rel="ugc nofollow">Doesn&#039;t support right click out of the box?</a>
+<del><a href="http://www.donationcoder.com/Software/Skrommel/LabelControl/LabelControl.ahk" class="urlextern" title="http://www.donationcoder.com/Software/Skrommel/LabelControl/LabelControl.ahk" rel="ugc nofollow">LabelControl</a>, like Vimium mouseless browsing for the whole Windows <abbr title="Operating System">OS</abbr>!</del> <a href="http://blogs.msdn.com/b/winuiautomation/archive/2012/09/08/one-story-of-building-a-useful-assistive-technology-tool-from-a-ui-automation-sample.aspx" class="urlextern" title="http://blogs.msdn.com/b/winuiautomation/archive/2012/09/08/one-story-of-building-a-useful-assistive-technology-tool-from-a-ui-automation-sample.aspx" rel="ugc nofollow">Upgrade with UI Automation</a> / <a href="https://www.autoitscript.com/forum/topic/153520-iuiautomation-ms-framework-automate-chrome-ff-ie/#comment-1105548" class="urlextern" title="https://www.autoitscript.com/forum/topic/153520-iuiautomation-ms-framework-automate-chrome-ff-ie/#comment-1105548" rel="ugc nofollow">AutoIt?</a> (seems overkill but works well enough)
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="../_media/programming/cbmhx.png" class="media" title="programming:cbmhx.png"><img src="../_media/programming/cbmhx.png" class="media" alt="" width="300" /></a><a href="http://stackoverflow.com/questions/21840133/how-to-display-text-on-the-screen-without-a-window-using-python?lq=1" class="urlextern" title="http://stackoverflow.com/questions/21840133/how-to-display-text-on-the-screen-without-a-window-using-python?lq=1" rel="ugc nofollow">Solutions in tk and pywin32 example</a> </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://shortcatapp.com/" class="urlextern" title="http://shortcatapp.com/" rel="ugc nofollow">OS X LabelControl clone</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="use_cases">Use Cases</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> “Renew all library books”, does the 4 commands you need, maybe in a separate window so you can do other stuff?</div>
+</li>
+<li class="level1"><div class="li"> Setting program options without Googling, hunting, and pecking all the time.</div>
+</li>
+<li class="level1"><div class="li"> “Why is my playlist not going to the next song?” (one of the repeat modes is turned on)</div>
+</li>
+</ul>
+
+<p>
+<strong>Need to enable “accessibility mode” in Chrome:chrome://accessibility/</strong>
+</p>
+
+<p>
+<a href="https://en.wikipedia.org/wiki/List_of_GUI_testing_tools" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/List_of_GUI_testing_tools">List_of_GUI_testing_tools</a>
+<a href="http://www.google.com/search?q=Ranorex" class="interwiki iw_g" title="http://www.google.com/search?q=Ranorex">Ranorex</a> is a nice tool too! <a href="http://www.google.com/search?q=Squish" class="interwiki iw_g" title="http://www.google.com/search?q=Squish">Squish</a> is rather expensive…
+</p>
+<ul>
+<li class="level1 node"><div class="li"> <a href="http://www.getautoma.com" class="urlextern" title="http://www.getautoma.com" rel="ugc nofollow">Automa</a> is a great (commercial) tool for quick automation. However slow!</div>
+<ul>
+<li class="level2"><div class="li"> Includes image-based clicking and regular expressions</div>
+</li>
+<li class="level2"><div class="li"> However, it&#039;s quite slow in practice! </div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <del><a href="http://www.google.com/search?q=AutoIt" class="interwiki iw_g" title="http://www.google.com/search?q=AutoIt">AutoIt</a></del> and <del><a href="http://www.google.com/search?q=PyHook" class="interwiki iw_g" title="http://www.google.com/search?q=PyHook">PyHook</a></del> (they only records pixel position information and not menu trees, etc &gt;.&lt;)</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.google.com/search?q=Sikuli" class="interwiki iw_g" title="http://www.google.com/search?q=Sikuli">Sikuli</a> uses OpenCV SIFT features to find the objects again, kinda cool! But … big and kloogy seemingly too.</div>
+</li>
+<li class="level1 node"><div class="li"> So far going with <del><a href="http://www.google.com/search?q=PyWinAuto" class="interwiki iw_g" title="http://www.google.com/search?q=PyWinAuto">PyWinAuto</a></del> and maybe <del><a href="http://www.google.com/search?q=SWAPY" class="interwiki iw_g" title="http://www.google.com/search?q=SWAPY">SWAPY</a></del> to help too. (Windows only though)</div>
+<ul>
+<li class="level2 node"><div class="li"> Why don&#039;t go with it?</div>
+<ul>
+<li class="level3"><div class="li"> Can&#039;t find panes in Microsoft Word, etc. So, doesn&#039;t support UIAutomation <abbr title="Application Programming Interface">API</abbr>, only MSAA</div>
+</li>
+<li class="level3"><div class="li"> Can only traverse menu items. Doesn&#039;t support searching other tree styles. (Their example for clicking paintbrush in Paint uses pixels, a big no-no)</div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> Caches tree as it explores it in Python (local variables). </div>
+</li>
+<li class="level2"><div class="li"> Uses pywin32</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;UI Automation Tools&quot;,&quot;hid&quot;:&quot;ui_automation_tools&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:4,&quot;range&quot;:&quot;3360-6172&quot;} -->
+<h2 class="sectionedit5" id="ubuntu_hud_in_windows">Ubuntu HUD in Windows</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Ubuntu HUD in Windows&quot;,&quot;hid&quot;:&quot;ubuntu_hud_in_windows&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;6173-6207&quot;} -->
+<h3 class="sectionedit6" id="ubuntu_automation">Ubuntu Automation</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Several…ldtp (but can&#039;t get it working). Dogtail (<a href="http://stackoverflow.com/questions/7975211/how-does-the-gui-testing-tool-pyusecase-compare-to-dogtail" class="urlextern" title="http://stackoverflow.com/questions/7975211/how-does-the-gui-testing-tool-pyusecase-compare-to-dogtail" rel="ugc nofollow">old?</a>), and PyUseCase, which is meant for describing use cases in words, but I can&#039;t find where it records the “path to button” information. </div>
+</li>
+</ul>
+
+<p>
+Success in Python! <a href="http://stackoverflow.com/a/20104801/931280" class="urlextern" title="http://stackoverflow.com/a/20104801/931280" rel="ugc nofollow">here</a> (accesses Windows COM for UIAutomation, then you can call commands interactively on it!). Another is <a href="http://weichong78.blogspot.com/2013/11/python-com-and-windows-uiautomation.html" class="urlextern" title="http://weichong78.blogspot.com/2013/11/python-com-and-windows-uiautomation.html" rel="ugc nofollow">here</a>
+</p>
+<ul>
+<li class="level1 node"><div class="li"> <a href="https://msdn.microsoft.com/en-us/library/windows/desktop/ee671692%28v=vs.85%29.aspx" class="urlextern" title="https://msdn.microsoft.com/en-us/library/windows/desktop/ee671692%28v=vs.85%29.aspx" rel="ugc nofollow">Make a separate thread</a>?? <em>Only if you are calling your own automation <abbr title="Graphical User Interface">GUI</abbr>, it seems</em></div>
+<ul>
+<li class="level2"><div class="li"> “Callbacks are safe, as they are executed in a non-<abbr title="Graphical User Interface">GUI</abbr> thread (and your automation client doesn&#039;t have a <abbr title="Graphical User Interface">GUI</abbr>)”</div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+<strong>MAKE A SEPARATE THREAD</strong> (that doesn&#039;t get in way of user)
+</p>
+<ul>
+<li class="level1 node"><div class="li"> Windows Inspect tool is listening toolkit in Windows SDK. Traverse menu items and buttons…</div>
+<ul>
+<li class="level2"><div class="li"> Located at: <code>C:\Program Files\Windows Kits\8.1\bin\x86\inspect.exe</code> in Windows 8, whereas in Windows SDK v. 7, it&#039;s at <code>C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin</code> (on Quicksilver)</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="https://github.com/petmongrels/white" class="urlextern" title="https://github.com/petmongrels/white" rel="ugc nofollow">White</a> seems like a nice cross-toolkit automation toolkit (Windows only though)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Ubuntu Automation&quot;,&quot;hid&quot;:&quot;ubuntu_automation&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;6208-7579&quot;} -->
+<h3 class="sectionedit7" id="installing_accerciser_inspect_for_ubuntu">Installing Accerciser (Inspect for Ubuntu)</h3>
+<div class="level3">
+<pre class="code">git clone git://git.gnome.org/accerciser
+cd accerciser
+sudo apt-get install libgtk-3-dev python-gobject-dev libatspi2.0-dev intltool
+autoreconf -fi #They&#039;re using autoconf, which this command is the proper command
+./configure
+make</pre>
+<ul>
+<li class="level1"><div class="li"> But make is complaining on Makefile missing separator &gt;.&lt;</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Installing Accerciser (Inspect for Ubuntu)&quot;,&quot;hid&quot;:&quot;installing_accerciser_inspect_for_ubuntu&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;7580-7941&quot;} -->
+<h3 class="sectionedit8" id="browsing_vs_search">Browsing Vs. Search</h3>
+<div class="level3">
+
+<p>
+<a href="http://www.asktog.com/columns/085BrowseVsSearch.html" class="urlextern" title="http://www.asktog.com/columns/085BrowseVsSearch.html" rel="ugc nofollow">Great article</a> by UI interaction designer that worked at Apple.
+</p>
+<ul>
+<li class="level1"><div class="li"> Engineers tend to remember things very well, whereas the average person does not. <em>I certainly do not remember names of things, but I do remember what they look like</em></div>
+</li>
+<li class="level1"><div class="li"> You can elegantly support both in your app (like iOS Contacts, but better)</div>
+</li>
+<li class="level1"><div class="li"> Mac/spotlight/iOS currently does not support fuzzy search if you misspell or don&#039;t know what you are looking for. REALLY DUMB. Things like Google&#039;s “Did You Mean” is required stuff. </div>
+</li>
+<li class="level1 node"><div class="li"> Aunt Sandi: </div>
+<ul>
+<li class="level2"><div class="li"> “Why is the song playing over and over again?” –&gt; “repeat song”. </div>
+</li>
+<li class="level2"><div class="li"> “How can I not insert the CD over and over in order to play the music”? –&gt; “&#039;rip&#039; a CD”</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Browsing Vs. Search&quot;,&quot;hid&quot;:&quot;browsing_vs_search&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:8,&quot;range&quot;:&quot;7942-8717&quot;} -->
+<h2 class="sectionedit9" id="smart_code_suggestion">Smart Code Suggestion</h2>
+<div class="level2">
+
+<p>
+Not always do I remember the name of a function? Why not search the docs for the functions too?
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Smart Code Suggestion&quot;,&quot;hid&quot;:&quot;smart_code_suggestion&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:9,&quot;range&quot;:&quot;8718-8848&quot;} -->
+<h2 class="sectionedit10" id="gmail_keyboard_shortcuts">Gmail Keyboard Shortcuts</h2>
+<div class="level2">
+
+<p>
+No collapse all keyboard shortcut??!?!?! ARGH
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Gmail Keyboard Shortcuts&quot;,&quot;hid&quot;:&quot;gmail_keyboard_shortcuts&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:10,&quot;range&quot;:&quot;8849-8931&quot;} -->
+<h2 class="sectionedit11" id="web_automation">Web Automation</h2>
+<div class="level2">
+
+<p>
+<a href="http://www.google.com/search?q=Selenium" class="interwiki iw_g" title="http://www.google.com/search?q=Selenium">Selenium</a> seems a great option, but only runs once after page load. Best to go with WebDriver (also included) which is a direct talker to the browser and allows waiting for AJAX stuff.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Web Automation&quot;,&quot;hid&quot;:&quot;web_automation&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:11,&quot;range&quot;:&quot;8932-9149&quot;} -->
+<h2 class="sectionedit12" id="regular_expressions">Regular Expressions</h2>
+<div class="level2">
+<blockquote  class="blockquote-plugin">
+<p>
+Unless performance is of utmost concern, it&#039;s often easier just to run your results through a second pass, skipping those that match the words you want to negate.
+</p>
+
+<p>
+Regular expressions usually mean you&#039;re doing scripting or some sort of low-performance task anyway, so find a solution that is easy to read, easy to understand and easy to maintain. –<a href="http://stackoverflow.com/a/1240333" class="urlextern" title="http://stackoverflow.com/a/1240333" rel="ugc nofollow">Bryan Oakley</a>
+</p>
+
+</blockquote>
+<p>
+Also known as regex. Great tester at Regex101 Sticking with Python for now.
+</p>
+<pre class="code">^ - match start of line
+$ - match end of line
+() - group 
+? - something previous is optional
+</pre>
+<div class="table sectionedit13"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Description </th><th class="col1"> Code </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> Match except certain chars (* in this example) </td><td class="col1"> [^*] </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> Match except certain words (foo) </td><td class="col1"> ?? </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Stuff nearby stuff </td><td class="col1"> foo[\w\W]{1,1000}PMEMDev </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:13,&quot;range&quot;:&quot;9801-9977&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Regular Expressions&quot;,&quot;hid&quot;:&quot;regular_expressions&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:12,&quot;range&quot;:&quot;9150-9977&quot;} -->
+<h2 class="sectionedit14" id="finding_stuff">Finding Stuff</h2>
+<div class="level2">
+
+<p>
+Grepwin doesn&#039;t support searching the results again <img src="/lib/images/smileys/facepalm.gif" class="icon" alt="m(" />
+</p>
+
+<p>
+Going with DocFetcher for now. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Finding Stuff&quot;,&quot;hid&quot;:&quot;finding_stuff&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:14,&quot;range&quot;:&quot;9978-10100&quot;} -->
+<h2 class="sectionedit15" id="lucenedocfetcher_search_tips">Lucene/DocFetcher Search Tips</h2>
+<div class="level2">
+<div class="table sectionedit16"><table class="inline">
+	<tr class="row0">
+		<td class="col0">“foo bar”~20 </td><td class="col1"> foo and bar within 20 words of each other </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:16,&quot;range&quot;:&quot;10143-10202&quot;} --><ul>
+<li class="level1"><div class="li"> But HECI1_CSE_FS_OPSTATE_ can&#039;t find the string HECI1_CSE_FS_OPSTATE_CM3_NOUMA but *CM3_NOUMA can. But CM3_NOUMA can&#039;t. </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lucene\/DocFetcher Search Tips&quot;,&quot;hid&quot;:&quot;lucenedocfetcher_search_tips&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:15,&quot;range&quot;:&quot;10101-10328&quot;} -->
+<h2 class="sectionedit17" id="unix">Unix</h2>
+<div class="level2">
+
+<p>
+Keyboard completion from history. &lt;Ctrl+R&gt; then up arrow works out of the box. But just up arrow is solved with <a href="https://askubuntu.com/a/59855" class="urlextern" title="https://askubuntu.com/a/59855" rel="ugc nofollow">https://askubuntu.com/a/59855</a>
+</p>
+<pre class="code">grep -rn &quot;string&quot; . &gt; search.txt      # Search for &quot;string&quot; in all files down from current directory
+bash --login                          # Refresh terminal (reload .bashrc)
+foo &lt;Ctrl+R&gt;                          # Search history for &quot;foo&quot; and display results??! //unverified//</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Unix&quot;,&quot;hid&quot;:&quot;unix&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:17,&quot;range&quot;:&quot;10329-10781&quot;} -->
+<h2 class="sectionedit18" id="windows">Windows</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://findandreplace.codeplex.com/" class="urlextern" title="http://findandreplace.codeplex.com/" rel="ugc nofollow">Find and Replace</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Windows&quot;,&quot;hid&quot;:&quot;windows&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:18,&quot;range&quot;:&quot;10782-10863&quot;} -->
+<h3 class="sectionedit19" id="batch_file">Batch File</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Used for 18-649 and doing automated testing</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://stackoverflow.com/questions/3215501/batch-remove-file-extension" class="urlextern" title="http://stackoverflow.com/questions/3215501/batch-remove-file-extension" rel="ugc nofollow">Get filename only</a></div>
+</li>
+</ul>
+<pre class="code c">@ECHO off 
+&nbsp;
+<span class="sy0">::</span><span class="me2">Delete</span> all stats files
+ del <span class="sy0">%</span>CD<span class="sy0">%</span>\<span class="sy0">*</span>.<span class="me1">stats</span>
+&nbsp;
+<span class="kw1">for</span> <span class="sy0">%%</span>s in <span class="br0">&#40;</span><span class="st0">&quot;unit_test&quot;</span><span class="sy0">,</span><span class="st0">&quot;integration_test&quot;</span><span class="br0">&#41;</span> <span class="kw1">do</span> <span class="br0">&#40;</span>
+	echo <span class="sy0">%%</span>~s
+&nbsp;
+	<span class="kw1">for</span> <span class="sy0">%%</span>X in <span class="br0">&#40;</span><span class="sy0">%%</span>~s\<span class="sy0">*</span>.<span class="me1">mf</span><span class="br0">&#41;</span> <span class="kw1">do</span> <span class="br0">&#40;</span> 
+&nbsp;
+		java simulator<span class="sy0">/</span>framework<span class="sy0">/</span>Elevator <span class="sy0">-</span>head head.<span class="me1">txt</span> <span class="sy0">-</span>cf <span class="sy0">%%</span>~s<span class="sy0">/%%</span>~nX.<span class="me1">cf</span> <span class="sy0">-</span>mf <span class="sy0">%%</span>~s<span class="sy0">/%%</span>~nX.<span class="me1">mf</span>
+		echo <span class="sy0">%%</span>~nX
+		<span class="sy0">::</span> <span class="me2">Hold</span> <span class="kw1">for</span> a few seconds
+		PING google.<span class="me1">com</span> <span class="sy0">-</span>n <span class="nu0">2</span> <span class="sy0">-</span>w <span class="nu0">60</span> <span class="sy0">&gt;</span> NUL
+	<span class="br0">&#41;</span>
+&nbsp;
+	move <span class="sy0">/</span>Y <span class="sy0">*</span>.<span class="me1">stats</span> <span class="sy0">%%</span>~s<span class="sy0">/</span>
+&nbsp;
+<span class="br0">&#41;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Batch File&quot;,&quot;hid&quot;:&quot;batch_file&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:19,&quot;range&quot;:&quot;10864-11392&quot;} -->
+<h2 class="sectionedit20" id="terminal">Terminal</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Virtual Links (<a href="http://www.howtogeek.com/howto/windows-vista/using-symlinks-in-windows-vista/" class="urlextern" title="http://www.howtogeek.com/howto/windows-vista/using-symlinks-in-windows-vista/" rel="ugc nofollow">Windows</a>,<a href="http://www.columbia.edu/acis/rad/unixcmds/ln.html" class="urlextern" title="http://www.columbia.edu/acis/rad/unixcmds/ln.html" rel="ugc nofollow">Unix</a>)</div>
+</li>
+</ul>
+<pre class="code c"><span class="co1">//Windows</span>
+C<span class="sy0">:</span>\<span class="sy0">&gt;</span> mklink <span class="sy0">/</span>D C<span class="sy0">:</span>\TestFolderLink C<span class="sy0">:</span>\Users\Geek\TestFolder
+symbolic link created <span class="kw1">for</span> C<span class="sy0">:</span>\TestFolderLink <span class="sy0">&lt;&lt;===&gt;&gt;</span> C<span class="sy0">:</span>\Users\Geek\TestFolder
+<span class="co1">//Unix</span>
+ln <span class="sy0">-</span>s <span class="sy0">&lt;</span>thing you are pointing to<span class="sy0">&gt;</span> <span class="sy0">&lt;</span>pointer name<span class="sy0">&gt;</span>
+ln <span class="sy0">-</span>s <span class="sy0">/</span>usr<span class="sy0">/</span>var<span class="sy0">/</span>foo<span class="sy0">/</span>bar <span class="sy0">/</span>home<span class="sy0">/</span>nhergert<span class="sy0">/</span>ptr</pre>
+<ul>
+<li class="level1"><div class="li"> How to “mirror” a website with wget (from <a href="http://fosswire.com/post/2008/04/create-a-mirror-of-a-website-with-wget/" class="urlextern" title="http://fosswire.com/post/2008/04/create-a-mirror-of-a-website-with-wget/" rel="ugc nofollow">Fosswire</a></div>
+</li>
+</ul>
+<pre class="code c"><span class="co1">//Creates a backup of only the subfolder and waits 20 seconds. Also follows links?</span>
+wget <span class="sy0">-</span>mk <span class="sy0">-</span>w <span class="nu0">20</span> <span class="sy0">-</span>np http<span class="sy0">:</span><span class="co1">//example.com/subfolder/</span></pre>
+<ul>
+<li class="level1"><div class="li"> How to limit your bandwidth (for testing websites, etc). From <a href="http://hints.macworld.com/article.php?story=20080119112509736" class="urlextern" title="http://hints.macworld.com/article.php?story=20080119112509736" rel="ugc nofollow">MacWorld</a></div>
+</li>
+</ul>
+<pre class="code c">Example<span class="sy0">:</span>
+<span class="co1">//Create a 15KB/s limited pipe</span>
+sudo ipfw pipe <span class="nu0">1</span> config bw 15KByte<span class="sy0">/</span>s
+<span class="co1">//Attach the pipe to port 80</span>
+sudo ipfw add <span class="nu0">1</span> pipe <span class="nu0">1</span> src<span class="sy0">-</span>port <span class="nu0">80</span>
+<span class="co1">//Remove the pipe (gotta remember this one!)</span>
+sudo ipfw delete <span class="nu0">1</span></pre>
+<ul>
+<li class="level1"><div class="li"> How to quickly upload to web server using SCP <a href="http://www.linuxtutorialblog.com/post/ssh-and-scp-howto-tips-tricks" class="urlextern" title="http://www.linuxtutorialblog.com/post/ssh-and-scp-howto-tips-tricks" rel="ugc nofollow">more here</a></div>
+</li>
+</ul>
+<pre class="code c">scp      <span class="sy0">&lt;</span>src<span class="sy0">&gt;</span>                         <span class="sy0">&lt;</span>dest<span class="sy0">&gt;</span>
+scp filename.<span class="me1">ext</span> nolanher@nolanhergert.<span class="me1">com</span><span class="sy0">:</span>~<span class="sy0">/</span>public_html<span class="sy0">/</span>share<span class="sy0">/</span> </pre>
+<ul>
+<li class="level1"><div class="li"> Convert image formats quickly with imagemagick! <a href="http://www.imagemagick.org/script/convert.php" class="urlextern" title="http://www.imagemagick.org/script/convert.php" rel="ugc nofollow">&quot;Convert&quot; Arguments</a> <a href="http://www.imagemagick.org/Usage/basics/#mogrify" class="urlextern" title="http://www.imagemagick.org/Usage/basics/#mogrify" rel="ugc nofollow">Batch Rename (mogrify)</a></div>
+</li>
+</ul>
+<pre class="code c">mogrify <span class="sy0">-</span>quality <span class="nu0">100</span> <span class="sy0">-</span>format jpg <span class="sy0">*</span>.<span class="me1">pgm</span> <span class="co1">//Batch convert all pgm files to jpg with quality of 100% and preserve filenames</span>
+scp <span class="sy0">*</span>.<span class="me1">jpg</span> nolanher@nolanhergert.<span class="me1">com</span><span class="sy0">:</span>~<span class="sy0">/</span>public_html<span class="sy0">/</span>dokuwiki<span class="sy0">/</span>data<span class="sy0">/</span>media<span class="sy0">/</span>robotics  <span class="co1">//Upload to web server</span></pre>
+<ul>
+<li class="level1"><div class="li"> Screen grab a unix machine! </div>
+</li>
+</ul>
+<pre class="code bash">unix<span class="sy0">&gt;</span> <span class="kw2">ssh</span> username<span class="sy0">@</span>serveraddress.edu <span class="re5">-X</span>
+unix<span class="sy0">&gt;</span> Connecting...ssh details...You<span class="st_h">'re in!
+unix&gt; synaptic / matlab / browser / etc.</span></pre>
+
+<p>
+<a href="../_media/home/screen_shot_2011-03-09_at_10.51.39_am.png" class="media" title="home:screen_shot_2011-03-09_at_10.51.39_am.png"><img src="../_media/home/screen_shot_2011-03-09_at_10.51.39_am.png" class="media" alt="" width="400" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Skip using passwords for SSH (generate SSH keys)</div>
+</li>
+</ul>
+<pre class="code c">ssh<span class="sy0">-</span>keygen <span class="sy0">-</span>t dsa
+<span class="co2">#Hit return for everything</span>
+scp ~<span class="sy0">/</span>.<span class="me1">ssh</span><span class="sy0">/</span>id_dsa.<span class="me1">pub</span> nolanher@nolanhergert.<span class="me1">com</span><span class="sy0">:</span>.<span class="me1">ssh</span><span class="sy0">/</span>temp
+ssh nolanher@nolanhergert.<span class="me1">com</span>  <span class="co2">#Log into web server</span>
+cat .<span class="me1">ssh</span><span class="sy0">/</span>temp <span class="sy0">&gt;&gt;</span> .<span class="me1">ssh</span><span class="sy0">/</span>authorized_keys  <span class="co2">#Appends to authorized_keys in case you have multiple logins</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Terminal&quot;,&quot;hid&quot;:&quot;terminal&quot;,&quot;codeblockOffset&quot;:5,&quot;secid&quot;:20,&quot;range&quot;:&quot;11393-13748&quot;} -->
+<h2 class="sectionedit21" id="autoit">AutoIT</h2>
+<div class="level2">
+
+<p>
+Window interaction in Windows. Allows you to find pixel colors too. <a href="http://www.autoitscript.com/autoit3/docs/functions.htm" class="urlextern" title="http://www.autoitscript.com/autoit3/docs/functions.htm" rel="ugc nofollow">Function listing</a>
+<a href="http://www.autoitscript.com/site/" class="urlextern" title="http://www.autoitscript.com/site/" rel="ugc nofollow">http://www.autoitscript.com/site/</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;AutoIT&quot;,&quot;hid&quot;:&quot;autoit&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:21,&quot;range&quot;:&quot;13749-13945&quot;} -->
+<h2 class="sectionedit22" id="autohotkey">AutoHotKey</h2>
+<div class="level2">
+<pre class="code c"><span class="sy0">;</span>Copy some OS X keyboard functionality
+&nbsp;
+<span class="sy0">!</span>Left<span class="sy0">::</span><span class="me2">Send</span>  <span class="br0">&#123;</span>Home<span class="br0">&#125;</span>
+<span class="sy0">!</span>Right<span class="sy0">::</span><span class="me2">Send</span> <span class="br0">&#123;</span>End<span class="br0">&#125;</span>
+<span class="sy0">!+</span>Left<span class="sy0">::</span><span class="me2">Send</span> <span class="br0">&#123;</span>LShift down<span class="br0">&#125;</span><span class="br0">&#123;</span>Home<span class="br0">&#125;</span>
+<span class="sy0">!+</span>Right<span class="sy0">::</span><span class="me2">Send</span> <span class="br0">&#123;</span>LShift down<span class="br0">&#125;</span><span class="br0">&#123;</span>End<span class="br0">&#125;</span>
+<span class="sy0">!</span>Up<span class="sy0">::</span> <span class="me2">Send</span>   <span class="br0">&#123;</span>PgUp<span class="br0">&#125;</span>
+<span class="sy0">!</span>Down<span class="sy0">::</span><span class="me2">Send</span>  <span class="br0">&#123;</span>PgDn<span class="br0">&#125;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;AutoHotKey&quot;,&quot;hid&quot;:&quot;autohotkey&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:22,&quot;range&quot;:&quot;13946-14172&quot;} -->
+<h2 class="sectionedit23" id="makefiles">Makefiles</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.eng.hawaii.edu/Tutor/Make/" class="urlextern" title="http://www.eng.hawaii.edu/Tutor/Make/" rel="ugc nofollow">Image and Tutorial from Hawaii</a></div>
+</li>
+<li class="level1"><div class="li"> Using c99 standard allows for one-liner (//) comments </div>
+</li>
+<li class="level1"><div class="li"> Below is a slightly modified Makefile from my proxy lab for 15-213</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/programming/makemake.gif" class="media" title="programming:makemake.gif"><img src="../_media/programming/makemake.gif" class="media" alt="" /></a>
+</p>
+<dl class="code">
+<dt><a href="/doku.php/programming/scripts?do=export_code&amp;codeblock=13" title="Download Snippet" class="mediafile mf_">Makefile</a></dt>
+<dd><pre class="code c">CC <span class="sy0">=</span> gcc
+&nbsp;
+<span class="co2">#Compiler flags</span>
+CFLAGS <span class="sy0">=</span> <span class="sy0">-</span>g <span class="sy0">-</span>Wall <span class="sy0">-</span>std<span class="sy0">=</span>c99
+&nbsp;
+<span class="co2">#Linker flags</span>
+LDFLAGS <span class="sy0">=</span> 
+&nbsp;
+<span class="co2">#Should be same name as executable on bottom</span>
+<span class="co2">#but...might not be necessary</span>
+all<span class="sy0">:</span> proxy
+&nbsp;
+csapp.<span class="me1">o</span><span class="sy0">:</span> csapp.<span class="me1">c</span> csapp.<span class="me1">h</span>
+	$<span class="br0">&#40;</span>CC<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CFLAGS<span class="br0">&#41;</span> <span class="sy0">-</span>c csapp.<span class="me1">c</span>
+&nbsp;
+proxy.<span class="me1">o</span><span class="sy0">:</span> proxy.<span class="me1">c</span> csapp.<span class="me1">h</span>
+	$<span class="br0">&#40;</span>CC<span class="br0">&#41;</span> $<span class="br0">&#40;</span>CFLAGS<span class="br0">&#41;</span> <span class="sy0">-</span>c proxy.<span class="me1">c</span>
+&nbsp;
+<span class="co2">#This needs to have the same name as one of your input files?!</span>
+proxy<span class="sy0">:</span> proxy.<span class="me1">o</span> csapp.<span class="me1">o</span>
+&nbsp;
+<span class="co2">#Creates a gzip file of sources only</span>
+submit<span class="sy0">:</span>
+	<span class="br0">&#40;</span>make clean<span class="sy0">;</span> cd ..<span class="sy0">;</span> tar czvf proxylab.<span class="me1">tar</span>.<span class="me1">gz</span> proxylab<span class="sy0">-</span>handout<span class="br0">&#41;</span>
+&nbsp;
+clean<span class="sy0">:</span>
+	rm <span class="sy0">-</span>f <span class="sy0">*</span>~ <span class="sy0">*</span>.<span class="me1">o</span> proxy</pre>
+</dd></dl>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Makefiles&quot;,&quot;hid&quot;:&quot;makefiles&quot;,&quot;codeblockOffset&quot;:13,&quot;secid&quot;:23,&quot;range&quot;:&quot;14173-14963&quot;} -->
+<h2 class="sectionedit24" id="number_manipulation">Number Manipulation</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> “Map” from one scale to another. Used in Processing and Arduino</div>
+</li>
+</ul>
+<pre class="code c"><span class="kw4">int</span> pos <span class="sy0">=</span> map<span class="br0">&#40;</span>dist<span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> <span class="nu0">1023</span><span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> <span class="nu0">180</span><span class="br0">&#41;</span><span class="sy0">;</span></pre>
+<pre class="code c"><span class="kw4">int</span> map<span class="br0">&#40;</span><span class="kw4">int</span> x<span class="sy0">,</span> <span class="kw4">int</span> in_min<span class="sy0">,</span> <span class="kw4">int</span> in_max<span class="sy0">,</span> <span class="kw4">int</span> out_min<span class="sy0">,</span> <span class="kw4">int</span> out_max<span class="br0">&#41;</span>
+<span class="br0">&#123;</span>
+  <span class="kw1">return</span> <span class="br0">&#40;</span>x <span class="sy0">-</span> in_min<span class="br0">&#41;</span> <span class="sy0">*</span> <span class="br0">&#40;</span>out_max <span class="sy0">-</span> out_min<span class="br0">&#41;</span> <span class="sy0">/</span> <span class="br0">&#40;</span>in_max <span class="sy0">-</span> in_min<span class="br0">&#41;</span> <span class="sy0">+</span> out_min<span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Number Manipulation&quot;,&quot;hid&quot;:&quot;number_manipulation&quot;,&quot;codeblockOffset&quot;:14,&quot;secid&quot;:24,&quot;range&quot;:&quot;14964-&quot;} --></div></body>
+</html>

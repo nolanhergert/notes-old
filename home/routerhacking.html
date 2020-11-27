@@ -1,0 +1,432 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>home:routerhacking</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#router_hacking">Router Hacking</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#to_do">To Do</a></div></li>
+<li class="level2"><div class="li"><a href="#web_hosting_ideal_programs">Web Hosting Ideal Programs</a></div></li>
+<li class="level2"><div class="li"><a href="#wireless_router_in_linux">Wireless Router in Linux</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#section32111">3/21/11</a></div></li>
+<li class="level3"><div class="li"><a href="#section22811">2/28/11</a></div></li>
+<li class="level3"><div class="li"><a href="#section22411">2/24/11</a></div></li>
+<li class="level3"><div class="li"><a href="#section21411">2/14/11</a></div></li>
+<li class="level3"><div class="li"><a href="#section2711">2/7/11</a></div></li>
+<li class="level3"><div class="li"><a href="#section2611">2/6/11</a></div></li>
+<li class="level3"><div class="li"><a href="#section2411">2/4/11</a></div></li>
+<li class="level3"><div class="li"><a href="#section2311">2/3/11</a></div></li>
+<li class="level3"><div class="li"><a href="#administration">Administration</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#beagleboard">BeagleBoard</a></div></li>
+<li class="level2"><div class="li"><a href="#ideal_setupusage">Ideal Setup/Usage</a></div></li>
+<li class="level2"><div class="li"><a href="#light_blogcms_software">*Light* Blog/CMS Software</a></div></li>
+<li class="level2"><div class="li"><a href="#firmware">Firmware</a></div></li>
+<li class="level2"><div class="li"><a href="#familiar_routers">Familiar Routers</a></div></li>
+<li class="level2"><div class="li"><a href="#adding_functionality">Adding Functionality</a></div></li>
+<li class="level2"><div class="li"><a href="#extended_hacking">Extended Hacking</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#adding_usb_audio_output">Adding USB Audio output</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="router_hacking">Router Hacking</h1>
+<div class="level1">
+
+<p>
+(or, how to make your USB-enabled router (mine is ASUS) into a web-server on the free and cheap)
+</p>
+<ul>
+<li class="level1 node"><div class="li"> Why? ~10 times reduction in power usage over a desktop, with little drop in performance in ordinary usage situations.</div>
+<ul>
+<li class="level2"><div class="li"> @16.2 cents per kilowatt-hour, an 80-watt idle desktop costs $11.50 per month to operate vs an 8-watt router costing $1.15 per month. Good luck beating shared hosting with your desktop, but maybe with a low-power router or Raspberry Pi.</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Using <a href="http://tomatousb.org/" class="urlextern" title="http://tomatousb.org/" rel="ugc nofollow">TomatoUSB</a>, and most things are included already which is awesome! </div>
+</li>
+<li class="level2"><div class="li"> Current steps to reproduce setup:</div>
+</li>
+<li class="level2"><div class="li"> Via command line:</div>
+</li>
+</ul>
+<pre class="code c">	<span class="co1">//Set up flash drive correctly onto /opt directory. Get ipkg somehow</span>
+&nbsp;
+	ipkg install coreutils 	<span class="co1">//gives you things like chown</span>
+	ipkg install php<span class="sy0">-</span>fcgi nginx php<span class="sy0">-</span>gd ...<span class="me1">etc</span>
+	ipkg files nginx 	<span class="co1">//shows you where key nginx files are located</span>
+&nbsp;</pre>
+<ul>
+<li class="level1 node"><div class="li"> The default nginx.conf should work, but change a few things below + maybe add security.</div>
+<ul>
+<li class="level3"><div class="li"> The $fastcgi_script_name thing was a really annoying bug!</div>
+</li>
+</ul>
+</li>
+</ul>
+<pre class="code nginxconf">	location / {
+            root   html;
+            index  index.html index.htm index.php doku.php;
+        }
+&nbsp;
+        # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
+        #
+        location ~ \.php$ {
+            root           html;
+            fastcgi_pass   127.0.0.1:9000;
+            fastcgi_index  index.php;
+            #fastcgi_param  SCRIPT_FILENAME  /opt/share/nginx/html/$fastcgi_script_name;
+	    fastcgi_param  SCRIPT_FILENAME   $document_root$fastcgi_script_name;
+            include     fastcgi_params;
+        }
+	#prevents external access to dokuwiki data files that aren't php
+	location ~ /(data|conf|bin|inc)/ {
+	    deny all;
+	}		
+&nbsp;
+&nbsp;</pre>
+<ul>
+<li class="level1"><div class="li"> Also need to punch a hole in iptables so that you can self-host:</div>
+</li>
+</ul>
+<pre class="code">iptables -t filter -I INPUT -p tcp —dport 80 -j ACCEPT</pre>
+
+</div>
+
+<h4 id="crashing">Crashing</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> It&#039;s crashing a lot lately for some reason. Already increased the memory limit for PHP, but based on memory usage it doesn&#039;t seem to be the problem. CPU looked pegged, but that should be okay too. </div>
+</li>
+<li class="level1"><div class="li"> Normally PHP crashes every 2.5 days or so, but now I&#039;m setting the router to automatically reboot every day so I can move on with life.</div>
+</li>
+<li class="level1"><div class="li"> Check /opt/share/nginx/error.log and /opt/share/nginx/html/php_error_log.txt </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://stackoverflow.com/questions/6083430/php-spiking-cpu-usage" class="urlextern" title="http://stackoverflow.com/questions/6083430/php-spiking-cpu-usage" rel="ugc nofollow">One user recommended</a> using an opcode cache like eAccelerator or APC. (eAccelerator looks like it&#039;s installed…I checked info.php)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Router Hacking&quot;,&quot;hid&quot;:&quot;router_hacking&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-2573&quot;} -->
+<h2 class="sectionedit2" id="to_do">To Do</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.hirahim.com/blog/2010/10/25/ssh-tunneling-with-tomato/" class="urlextern" title="http://www.hirahim.com/blog/2010/10/25/ssh-tunneling-with-tomato/" rel="ugc nofollow">Get SSH Tunneling Working on Tomato</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;To Do&quot;,&quot;hid&quot;:&quot;to_do&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:2,&quot;range&quot;:&quot;2574-2701&quot;} -->
+<h2 class="sectionedit3" id="web_hosting_ideal_programs">Web Hosting Ideal Programs</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> SAMBA share</div>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://www.simplescripts.com/script_list" class="urlextern" title="http://www.simplescripts.com/script_list" rel="ugc nofollow">SimpleScripts</a> for easy program installing</div>
+<ul>
+<li class="level2"><div class="li"> From simplescripts email:</div>
+</li>
+<li class="level2"><div class="li"> Once you have logged in, try clicking on a script from the Script List.  You&#039;ll need to enter your web hosting account <abbr title="File Transfer Protocol">FTP</abbr> information (your domain name, your <abbr title="File Transfer Protocol">FTP</abbr> username, and your <abbr title="File Transfer Protocol">FTP</abbr> password) the first time you install.  The rest should be self explanatory.</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="http://openupload.sourceforge.net/" class="urlextern" title="http://openupload.sourceforge.net/" rel="ugc nofollow">OpenUpload</a> (for easy and fast temporary file uploading)</div>
+</li>
+<li class="level1"><div class="li"> PHP File Manager <a href="http://sourceforge.net/projects/extplorer/" class="urlextern" title="http://sourceforge.net/projects/extplorer/" rel="ugc nofollow">eXtplorer</a>, cool, but might not need if you set up SAMBA share. However, might be nice for other people that don&#039;t have that sort of access.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Web Hosting Ideal Programs&quot;,&quot;hid&quot;:&quot;web_hosting_ideal_programs&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:3,&quot;range&quot;:&quot;2702-3456&quot;} -->
+<h2 class="sectionedit4" id="wireless_router_in_linux">Wireless Router in Linux</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Wireless Router in Linux&quot;,&quot;hid&quot;:&quot;wireless_router_in_linux&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:4,&quot;range&quot;:&quot;3457-3493&quot;} -->
+<h3 class="sectionedit5" id="section32111">3/21/11</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Need to move this all to a webserver thing under programming!</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/" class="urlextern" title="http://www.cyberciti.biz/faq/how-do-i-add-jobs-to-cron-under-linux-or-unix-oses/" rel="ugc nofollow">Good intro tutorial to cron</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://askubuntu.com/questions/732/how-do-i-make-cron-email-my-gmail-account" class="urlextern" title="http://askubuntu.com/questions/732/how-do-i-make-cron-email-my-gmail-account" rel="ugc nofollow">Cron email gmail...troubleshooting</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.mikerubel.org/computers/rsync_snapshots/" class="urlextern" title="http://www.mikerubel.org/computers/rsync_snapshots/" rel="ugc nofollow"> Great rsync server backup tutorial 1/4 done</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;3\/21\/11&quot;,&quot;hid&quot;:&quot;section32111&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:5,&quot;range&quot;:&quot;3494-3919&quot;} -->
+<h3 class="sectionedit6" id="section22811">2/28/11</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Installed webmin. Default user is root with password and is located at port 10000</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;2\/28\/11&quot;,&quot;hid&quot;:&quot;section22811&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:6,&quot;range&quot;:&quot;3920-4023&quot;} -->
+<h3 class="sectionedit7" id="section22411">2/24/11</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Fix for installing Ubuntu on GX270: <a href="http://ubuntuforums.org/showpost.php?p=8225121&amp;postcount=1" class="urlextern" title="http://ubuntuforums.org/showpost.php?p=8225121&amp;postcount=1" rel="ugc nofollow">http://ubuntuforums.org/showpost.php?p=8225121&amp;postcount=1</a></div>
+</li>
+<li class="level1"><div class="li"> Setting chmod and chown permissions correctly…finally!</div>
+</li>
+</ul>
+<pre class="code">//PHP&#039;s UID and GID seem to be 33 (www-data) &lt;http://www.dokuwiki.org/install:permissions&gt;
+nhergert@Lazarus:~$ sudo chown -R nhergert:www-data /home/nhergert/ServerBackup/ 
+nhergert@Lazarus:~$ sudo chmod -R 775 /home/nhergert/ServerBackup/</pre>
+<ul>
+<li class="level1"><div class="li"> <a href="http://tuxtweaks.com/2010/04/installing-lamp-on-ubuntu-10-04-lucid-lynx/" class="urlextern" title="http://tuxtweaks.com/2010/04/installing-lamp-on-ubuntu-10-04-lucid-lynx/" rel="ugc nofollow"> How to set up a quick LAMP server on Ubuntu</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;2\/24\/11&quot;,&quot;hid&quot;:&quot;section22411&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:7,&quot;range&quot;:&quot;4024-4583&quot;} -->
+<h3 class="sectionedit8" id="section21411">2/14/11</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> Going to put off working on this until Spring Break due to perseverating on it too much and having a ton of other work I should get to instead! Where I&#039;m at currently:</div>
+<ul>
+<li class="level2 node"><div class="li"> <strong>Thinkpad:</strong> Heat-gunned the T40 Thinkpad and unfortunately it doesn&#039;t even show the IBM boot screen now! (before if I pressed on the palmrest, it sometimes worked). It needs a new motherboard if I want to get it fully working again, which is around $50. </div>
+<ul>
+<li class="level3"><div class="li"> Made the mistake of not heating the bottom</div>
+</li>
+<li class="level3"><div class="li"> Smelled something weird around 150 degrees C, but kept going until the recommended 230. It varied widely in temperature at that point, and that was probably how I fried the chip or something</div>
+</li>
+<li class="level3"><div class="li"> My heat gun temp was at 450 because it wasn&#039;t heating up fast enough  &gt;.&lt;</div>
+</li>
+<li class="level3"><div class="li"> Forum postings: <a href="http://forum.thinkpads.com/viewtopic.php?f=2&amp;t=57021&amp;sid=f22a89a7992333abad2b252df1373856&amp;start=180" class="urlextern" title="http://forum.thinkpads.com/viewtopic.php?f=2&amp;t=57021&amp;sid=f22a89a7992333abad2b252df1373856&amp;start=180" rel="ugc nofollow">http://forum.thinkpads.com/viewtopic.php?f=2&amp;t=57021&amp;sid=f22a89a7992333abad2b252df1373856&amp;start=180</a></div>
+</li>
+<li class="level3"><div class="li"> Link to $50-$70 refurbished board: <a href="http://www.theboardroom.info/stock.htm" class="urlextern" title="http://www.theboardroom.info/stock.htm" rel="ugc nofollow">http://www.theboardroom.info/stock.htm</a></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Desktop: Needs a Wifi card, or the direct connection to the dorm working correctly. Still takes a ton of power, which I don&#039;t really like long-term! </div>
+<ul>
+<li class="level2"><div class="li"> Reviews are great for <a href="http://www.amazon.com/External-Antenna-Wireless-802-11G-Network/dp/B0037G2BMY/ref=lh_ni_t_" class="urlextern" title="http://www.amazon.com/External-Antenna-Wireless-802-11G-Network/dp/B0037G2BMY/ref=lh_ni_t_" rel="ugc nofollow">this USB wifi card</a> on Amazon for Ubuntu.</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Web Hosting: $6.95 a month…ho hum :P</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;2\/14\/11&quot;,&quot;hid&quot;:&quot;section21411&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:8,&quot;range&quot;:&quot;4584-5935&quot;} -->
+<h3 class="sectionedit9" id="section2711">2/7/11</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> Oh boy…shaping up to be an interesting project. I&#039;ll have to work for this one. Seems to be an issue with the GPU, which is very interesting as it was the problem my old HP dv4000 probably was having. Anyways, <a href="http://forum.thinkpads.com/viewtopic.php?t=57021" class="urlextern" title="http://forum.thinkpads.com/viewtopic.php?t=57021" rel="ugc nofollow">here&#039;s a tutorial on fixing it</a>. </div>
+<ul>
+<li class="level2"><div class="li"> Be sure to have an IR thermometer, as well as a way to keep the heat from the gun going to other parts of the chip. Tack it down somehow?</div>
+</li>
+<li class="level2"><div class="li"> Also, need solder paste.</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="http://forum.thinkpads.com/viewtopic.php?t=53296" class="urlextern" title="http://forum.thinkpads.com/viewtopic.php?t=53296" rel="ugc nofollow">He also has a good guide on maxing battery life</a>, that might be good for minimizing power usage.</div>
+</li>
+<li class="level1"><div class="li"> Using a SAMBA server for easy access of files seems to be the best method.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;2\/7\/11&quot;,&quot;hid&quot;:&quot;section2711&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:9,&quot;range&quot;:&quot;5936-6661&quot;} -->
+<h3 class="sectionedit10" id="section2611">2/6/11</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Someone wants to give me a broken (but very good condition) Thinkpad T40 for free! <a href="http://forum.thinkpads.com/viewtopic.php?t=53996" class="urlextern" title="http://forum.thinkpads.com/viewtopic.php?t=53996" rel="ugc nofollow">Fixes 1</a>, <a href="http://forum.thinkpads.com/viewtopic.php?p=231164#231164" class="urlextern" title="http://forum.thinkpads.com/viewtopic.php?p=231164#231164" rel="ugc nofollow">Fixes 2</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;2\/6\/11&quot;,&quot;hid&quot;:&quot;section2611&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:10,&quot;range&quot;:&quot;6662-6897&quot;} -->
+<h3 class="sectionedit11" id="section2411">2/4/11</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Maybe I can just get someone&#039;s old laptop and use that instead :P A ton cheaper, and I don&#039;t *really* care about the power usage.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://ubuntuforums.org/showthread.php?t=376283" class="urlextern" title="http://ubuntuforums.org/showthread.php?t=376283" rel="ugc nofollow">Ubuntu wireless router setup</a>, someone suggested using <a href="http://webmin.com/demo.html" class="urlextern" title="http://webmin.com/demo.html" rel="ugc nofollow">Webmin</a> too, although <a href="http://www.amahi.org/" class="urlextern" title="http://www.amahi.org/" rel="ugc nofollow">Amahi</a> is another option. (Fedora only for the time being though :()</div>
+</li>
+<li class="level1"><div class="li"> Wireless USB for desktop (or uC if you want wifi) if you want to: $10 at Amazon. <a href="http://www.amazon.com/External-Antenna-Wireless-802-11G-Network/dp/B0037G2BMY/ref=sr_1_6?ie=UTF8&amp;qid=1296895382&amp;sr=8-6" class="urlextern" title="http://www.amazon.com/External-Antenna-Wireless-802-11G-Network/dp/B0037G2BMY/ref=sr_1_6?ie=UTF8&amp;qid=1296895382&amp;sr=8-6" rel="ugc nofollow">here</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;2\/4\/11&quot;,&quot;hid&quot;:&quot;section2411&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:11,&quot;range&quot;:&quot;6898-7519&quot;} -->
+<h3 class="sectionedit12" id="section2311">2/3/11</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> So, getting a SheevaPlug/PogoPlug might be even better! <a href="http://www.globalscaletechnologies.com/t-dreamplugdetails.aspx#physical" class="urlextern" title="http://www.globalscaletechnologies.com/t-dreamplugdetails.aspx#physical" rel="ugc nofollow">DreamPlug</a></div>
+</li>
+<li class="level1"><div class="li"> Not sure on whether this or a tiny netbook would be cheaper/more useful/better wifi range/more inputs. But then I&#039;m up to $150, $200 range?! And router was just $35…</div>
+</li>
+<li class="level1"><div class="li"> <a href="https://help.ubuntu.com/community/Router" class="urlextern" title="https://help.ubuntu.com/community/Router" rel="ugc nofollow">Setting up Wireless Router on Ubuntu</a>. Read EasyRouter, then main page.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.earth.org.uk/note-on-SheevaPlug-setup.html" class="urlextern" title="http://www.earth.org.uk/note-on-SheevaPlug-setup.html" rel="ugc nofollow">Some guy&#039;s super-optimization of his SheevaPlug</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.openplug.org/plugwiki/index.php/New_Plugger_How_To" class="urlextern" title="http://www.openplug.org/plugwiki/index.php/New_Plugger_How_To" rel="ugc nofollow">SheevaPlug new user howto</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://ubuntuforums.org/showthread.php?t=376283" class="urlextern" title="http://ubuntuforums.org/showthread.php?t=376283" rel="ugc nofollow">Another Ubuntu Setup Tutorial</a> that has some additional programs for visualizing server load…etc…what about port forwarding and stuff, easy setup for that?</div>
+</li>
+<li class="level1"><div class="li"> Also, to improve range, just tack an antenna on it somehow…antenna from old Linksys B router?</div>
+</li>
+<li class="level1"><div class="li"> <a href="../_media/home/110203-dreamplug-01.jpg" class="media" title="home:110203-dreamplug-01.jpg"><img src="../_media/home/110203-dreamplug-01.jpg" class="media" alt="" width="200" /></a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;2\/3\/11&quot;,&quot;hid&quot;:&quot;section2311&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:12,&quot;range&quot;:&quot;7520-8540&quot;} -->
+<h3 class="sectionedit13" id="administration">Administration</h3>
+<div class="level3">
+
+<p>
+Re: HOWTO: Setup Ubuntu as a wireless router
+Some suggestions:
+</p>
+
+<p>
+Instead of manipulating iptables directly, consider using shorewall (<a href="http://shorewall.net" class="urlextern" title="http://shorewall.net" rel="ugc nofollow">http://shorewall.net</a>) it makes configuring iptables much easier and also enables creating “trusted” and “untrusted” zones pretty easily. Also doing NAT/masquerade and port forwarding is also easy.
+</p>
+
+<p>
+Second, instead of installing a dhcp server, consider using the dnsmasq package. It&#039;s both a DHCP server and a <abbr title="Domain Name System">DNS</abbr> cache and works rather nicely on my Ubuntu software router (I notice you put it in the future plans, though).
+</p>
+
+<p>
+For easy web administration, I use webmin (<a href="http://webmin.com" class="urlextern" title="http://webmin.com" rel="ugc nofollow">http://webmin.com</a>). It&#039;s not in the Ubuntu repository but you can find a binary package on their web page. You can configure a lot of settings like that, including shorewall.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Administration&quot;,&quot;hid&quot;:&quot;administration&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:13,&quot;range&quot;:&quot;8541-9342&quot;} -->
+<h2 class="sectionedit14" id="beagleboard">BeagleBoard</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="../_media/home/bb.277215207_std.jpg" class="media" title="home:bb.277215207_std.jpg"><img src="../_media/home/bb.277215207_std.jpg" class="media" alt="" width="200" /></a></div>
+</li>
+<li class="level1"><div class="li"> If it&#039;s underpowered, a Beagle Board might be another option…use it for other stuff too! <a href="http://beagleboard.org/" class="urlextern" title="http://beagleboard.org/" rel="ugc nofollow">BeagleBoard xM</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;BeagleBoard&quot;,&quot;hid&quot;:&quot;beagleboard&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:14,&quot;range&quot;:&quot;9343-9546&quot;} -->
+<h2 class="sectionedit15" id="ideal_setupusage">Ideal Setup/Usage</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Host Dokuwiki and non-mysql blog on php-enabled web server running on router firmware.</div>
+<ul>
+<li class="level2"><div class="li"> Requires dynamic forwarding of domain to home IP address (DynDNS or something like that)</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Host files (all, including webserver) on NAS or SAMBA (not sure which yet) share for easy editing by all computers on home network(and backup to Dropbox). <a href="http://www.society9.com/setting-up-a-low-cost-nas-using-tomato/" class="urlextern" title="http://www.society9.com/setting-up-a-low-cost-nas-using-tomato/" rel="ugc nofollow">Society9 Tutorial</a></div>
+</li>
+<li class="level1"><div class="li"> Allow easy network printing/scanning using attached USB connection (or network cable?)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Ideal Setup\/Usage&quot;,&quot;hid&quot;:&quot;ideal_setupusage&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:15,&quot;range&quot;:&quot;9547-10100&quot;} -->
+<h2 class="sectionedit16" id="light_blogcms_software">*Light* Blog/CMS Software</h2>
+<div class="level2">
+
+<p>
+<strong>Uses flat files, not MySQL</strong>
+</p>
+<ul>
+<li class="level1 node"><div class="li"> <a href="http://pivotx.net/" class="urlextern" title="http://pivotx.net/" rel="ugc nofollow">Pivot X</a> A great option, allows for flat files as well, more well-built.</div>
+<ul>
+<li class="level2"><div class="li"> Images are a little clunky…</div>
+</li>
+<li class="level2"><div class="li"> Best documentation is on <a href="http://www.pivotlog.net/docs/doku.php?id=start" class="urlextern" title="http://www.pivotlog.net/docs/doku.php?id=start" rel="ugc nofollow">old Pivot website</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.flatpress.org/home/" class="urlextern" title="http://www.flatpress.org/home/" rel="ugc nofollow">FlatPress</a> would be second choice. Seems like good support, built similar to WordPress, and has commenting + akismet easily added!</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.razorcms.co.uk/" class="urlextern" title="http://www.razorcms.co.uk/" rel="ugc nofollow">RazorCMS</a>, last option.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;*Light* Blog\/CMS Software&quot;,&quot;hid&quot;:&quot;light_blogcms_software&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:16,&quot;range&quot;:&quot;10101-10632&quot;} -->
+<h2 class="sectionedit17" id="firmware">Firmware</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> I like the Tomato Firmware the best for AJAX display of bandwidth usage out of the box. Use <a href="http://tomatousb.org/start" class="urlextern" title="http://tomatousb.org/start" rel="ugc nofollow">Tomato USB</a> for better support of usb and easier setup of web server.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Firmware&quot;,&quot;hid&quot;:&quot;firmware&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:17,&quot;range&quot;:&quot;10633-10851&quot;} -->
+<h2 class="sectionedit18" id="familiar_routers">Familiar Routers</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="../_media/home/asus_wl500gpv2_mini.jpg" class="media" title="home:asus_wl500gpv2_mini.jpg"><img src="../_media/home/asus_wl500gpv2_mini.jpg" class="mediaright" align="right" alt="" width="50" /></a> Asus WL-500g. Faster than old 520gu and has some more space. <a href="http://www.dd-wrt.com/wiki/index.php/Asus_WL-500g_Premium_V2" class="urlextern" title="http://www.dd-wrt.com/wiki/index.php/Asus_WL-500g_Premium_V2" rel="ugc nofollow">Specs</a>. </div>
+</li>
+<li class="level1"><div class="li"> Asus WL-520GU. USB 1.1 only, so anything USB is limited to 1.5 <abbr title="Megabyte">MB</abbr>/sec transfer BOOO. Otherwise very similar</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Familiar Routers&quot;,&quot;hid&quot;:&quot;familiar_routers&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:18,&quot;range&quot;:&quot;10852-11172&quot;} -->
+<h2 class="sectionedit19" id="adding_functionality">Adding Functionality</h2>
+<div class="level2">
+
+<p>
+<em>like lighttpd, php, etc</em>
+</p>
+<ul>
+<li class="level1"><div class="li"> Use the DD-WRT tutorial on <a href="http://www.dd-wrt.com/wiki/index.php/Optware,_the_Right_Way" class="urlextern" title="http://www.dd-wrt.com/wiki/index.php/Optware,_the_Right_Way" rel="ugc nofollow">OptWare the Right Way!</a>. However, doesn&#039;t seem to include php by default</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://g300nh.blogspot.com/2010/06/lighttpd-and-php-on-dd-wrt.html" class="urlextern" title="http://g300nh.blogspot.com/2010/06/lighttpd-and-php-on-dd-wrt.html" rel="ugc nofollow">Add some additional things (PHP) using OptWare</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Adding Functionality&quot;,&quot;hid&quot;:&quot;adding_functionality&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:19,&quot;range&quot;:&quot;11173-11524&quot;} -->
+<h2 class="sectionedit20" id="extended_hacking">Extended Hacking</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Extended Hacking&quot;,&quot;hid&quot;:&quot;extended_hacking&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:20,&quot;range&quot;:&quot;11525-11554&quot;} -->
+<h3 class="sectionedit21" id="adding_usb_audio_output">Adding USB Audio output</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://lifehacker.com/5631984/how-to-make-an-inexpensive-wi+fi-radio-with-an-asus-router-and-usb-sound-card" class="urlextern" title="http://lifehacker.com/5631984/how-to-make-an-inexpensive-wi+fi-radio-with-an-asus-router-and-usb-sound-card" rel="ugc nofollow">LifeHacker</a> article with YouTube video (easiest explanation)</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://mightyohm.com/blog/2008/10/building-a-wifi-radio-part-1-introduction/" class="urlextern" title="http://mightyohm.com/blog/2008/10/building-a-wifi-radio-part-1-introduction/" rel="ugc nofollow">MightyOhm</a> More in-depth explanation with needing to re-program router with FTDI???</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Adding USB Audio output&quot;,&quot;hid&quot;:&quot;adding_usb_audio_output&quot;,&quot;codeblockOffset&quot;:4,&quot;secid&quot;:21,&quot;range&quot;:&quot;11555-&quot;} --></div></body>
+</html>

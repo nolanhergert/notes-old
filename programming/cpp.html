@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:cpp</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#databases">Databases</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#database_normalization">Database Normalization</a></div></li>
+<li class="level2"><div class="li"><a href="#relational_databases">Relational Databases</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h2 class="sectionedit1" id="linking">Linking</h2>
+<div class="level2">
+
+<p>
+<a href="http://www.lurklurk.org/linkers/linkers.html#os" class="urlextern" title="http://www.lurklurk.org/linkers/linkers.html#os" rel="ugc nofollow">Notes from Linking article</a>
+</p>
+
+</div>
+
+<h4 id="static_libraries">Static Libraries</h4>
+<div class="level4">
+
+<p>
+Includes down to the file level of granularity. (.o actually). However, can&#039;t get updated functions for printf if needed.
+</p>
+
+</div>
+
+<h4 id="dynamic_libraries">Dynamic Libraries</h4>
+<div class="level4">
+
+<p>
+The reason that <abbr title="Operating System">OS</abbr>&#039;s include the <strong>entire</strong> dynamic library in one go is that it can reuse the shared code segment in memory (but not data/bss segment).
+</p>
+
+<p>
+Some notes from C++ learnings.
+</p>
+<ul>
+<li class="level1"><div class="li"> Never have the class constructor be doing stuff. Always use an init function. Making it a part of the constructor makes you lose the ability to do initializations correctly with dependencies. <a href="http://www.gamedev.net/topic/653826-c-constructors-vs-init-functions/" class="urlextern" title="http://www.gamedev.net/topic/653826-c-constructors-vs-init-functions/" rel="ugc nofollow">source</a></div>
+</li>
+<li class="level1"><div class="li"> Don&#039;t use (new/delete) / (malloc/free) when your language can do it for you. <a href="http://stackoverflow.com/questions/333443/c-object-instantiation" class="urlextern" title="http://stackoverflow.com/questions/333443/c-object-instantiation" rel="ugc nofollow">source</a> <em>Still not sure what the deconstructor should look like though</em></div>
+</li>
+<li class="level1"><div class="li"> One can use <code>&#039;#pragma once</code>&#039; over <a href="https://en.wikipedia.org/wiki/Include_guards" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Include_guards">Include_guards</a>, but Bjourne sorta suggests not in his book on C++. </div>
+</li>
+<li class="level1"><div class="li"> Always use C++ style vectors, not C-style arrays. <a href="http://stackoverflow.com/questions/15294129/overhead-to-using-stdvector" class="urlextern" title="http://stackoverflow.com/questions/15294129/overhead-to-using-stdvector" rel="ugc nofollow">SO</a> <em>There&#039;s no overhead, support for bounds (I think) and other stuff. </em></div>
+</li>
+</ul>
+<pre class="code c">class Vector <span class="br0">&#123;</span>
+  Vector<span class="br0">&#40;</span>initializer_list<span class="sy0">&lt;</span>double<span class="sy0">&gt;</span><span class="br0">&#41;</span><span class="sy0">;</span> <span class="co1">//acquire memory; initialize elements</span>
+  ~Vector<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>                        <span class="co1">//destroy elements (destructor)</span>
+  <span class="co1">// ...</span>
+&nbsp;
+private<span class="sy0">:</span>
+  <span class="kw4">double</span><span class="sy0">*</span> elem<span class="sy0">;</span> <span class="co1">//pointer to elements</span>
+  <span class="kw4">int</span> sz<span class="sy0">;</span>       <span class="co1">// number of elements</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Linking&quot;,&quot;hid&quot;:&quot;linking&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-1561&quot;} -->
+<h2 class="sectionedit2" id="programming_in_c">Programming in C</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Made the mistake today (6/9/11) of thinking about an array the wrong way! int * is a pointer to the first element of the array. You can freely modify the elements of the array and pass it to other functions as an int * without a problem. However, when you need to change the location of the array (realloc anyone?), you need to pass an int **, which allows you to modify where the int * is pointing to. That is all. <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" /></div>
+</li>
+<li class="level1"><div class="li"> These are different?? Ahh, the first typecasts to an int whereas the second keeps the original type (unsigned int).</div>
+</li>
+</ul>
+<pre class="code c"><span class="kw4">int</span> mod<span class="br0">&#40;</span><span class="kw4">int</span> a<span class="sy0">,</span> <span class="kw4">int</span> b<span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <a href="http://www.opengroup.org/onlinepubs/009695399/functions/printf.html"><span class="kw3">printf</span></a><span class="br0">&#40;</span><span class="st0">&quot;%d<span class="es1">\n</span>&quot;</span><span class="sy0">,</span><span class="br0">&#40;</span>a <span class="sy0">%</span> b<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+	<span class="kw1">return</span>        <span class="br0">&#40;</span><span class="br0">&#40;</span>a <span class="sy0">%</span> b<span class="br0">&#41;</span> <span class="sy0">+</span> b <span class="br0">&#41;</span> <span class="sy0">%</span> b<span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="co2">#define mod2(a,b) ((a % b) + b ) % b</span>
+&nbsp;
+<span class="co1">//Value will be an *unsigned* integer of value 0xFFFFFFFF</span>
+<span class="co1">//Which is equivalent to a signed int of value -1</span>
+<span class="co1">//But C won't tell you the type of the variable</span>
+<span class="co1">//So you're confused until it bites you</span>
+<span class="co1">//Like in the above macro...</span>
+<span class="co1">//So...make sure to typecast?</span>
+<span class="co2">#define value ((int)0-(unsigned int)1)</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Programming in C&quot;,&quot;hid&quot;:&quot;programming_in_c&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:2,&quot;range&quot;:&quot;1562-&quot;} --></div></body>
+</html>

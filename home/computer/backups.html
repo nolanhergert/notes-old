@@ -1,0 +1,270 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>home:computer:backups</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#how_to_do_backups">How to do backups</a></div>
+<ul class="toc">
+<li class="clear">
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#a_good_solution_should">A good solution should</a></div></li>
+<li class="level3"><div class="li"><a href="#collision_probability">Collision Probability</a></div></li>
+<li class="level3"><div class="li"><a href="#checksumming_file_systems">Checksumming File Systems</a></div></li>
+<li class="level3"><div class="li"><a href="#test_hard_drives_long_term">Test hard drives long term</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#synology">Synology</a></div></li>
+<li class="level2"><div class="li"><a href="#backup_data_reliably">Backup Data Reliably</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#pre-done">Pre-done</a></div></li>
+<li class="level3"><div class="li"><a href="#diy">DIY</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#datacenter_admin">Datacenter Admin</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="how_to_do_backups">How to do backups</h1>
+<div class="level1">
+
+<p>
+<strong> EXCELLENT INTRO</strong>: <a href="http://www.taobackup.com/" class="urlextern" title="http://www.taobackup.com/" rel="ugc nofollow">The Tao of Backup</a>
+</p>
+
+<p>
+So that you don&#039;t get bit rot (bit flip) or worse later down the line.
+</p>
+
+<p>
+The main point that I see missing from lots of solutions is that they don&#039;t “scrub” your data very often, if at all. By scrub, I mean check every byte (typically done with a checksum) of both the source data and the backups to make sure they aren&#039;t silently corrupted over time because you haven&#039;t been accessing them.
+</p>
+<ul>
+<li class="level1"><div class="li"> Most solutions (including <abbr title="Operating System">OS</abbr> X Time Machine, NTFS, rsync by default) only check the timestamp and filesize parameters of the files to see if they have changed. For data not accessed at all, this isn&#039;t good enough.</div>
+</li>
+</ul>
+
+<p>
+Thankfully, disk manufacturers include error correction data by default, but it seems to only occur when you access the file, although some seem to mention background scrubbing of data. So, if you don&#039;t touch every byte of that hard drive when you run your backup script, the errors can accumulate and can screw you up! <em>Not sure how long exactly yet, it&#039;s a birthday/hash collision problem though. See Collision Probability</em>
+</p>
+
+<p>
+Ubuntu scrub solution (check for bad blocks): <a href="http://linux-sys-adm.com/how-to-check-for-bad-sectors-ubuntu-linux/" class="urlextern" title="http://linux-sys-adm.com/how-to-check-for-bad-sectors-ubuntu-linux/" rel="ugc nofollow">http://linux-sys-adm.com/how-to-check-for-bad-sectors-ubuntu-linux/</a>
+</p>
+
+<p>
+Windows you can run a full smart scan with HDDScan. But might want to try DiskCheckup next time for a full scan. Seems like more information and better interface.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;How to do backups&quot;,&quot;hid&quot;:&quot;how_to_do_backups&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-1423&quot;} -->
+<h3 class="sectionedit2" id="a_good_solution_should">A good solution should</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Verify every byte of your source data and make sure it isn&#039;t corrupted.</div>
+</li>
+<li class="level1"><div class="li"> Keep history if necessary</div>
+</li>
+</ul>
+
+<p>
+I like Dropbox so far if you want an automated way to do this for &lt;5-10GB of data for free. Their 1TB tier is $8.25/month. Just don&#039;t launch it on startup, it likes to scrub all your files before letting you use your computer <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;A good solution should&quot;,&quot;hid&quot;:&quot;a_good_solution_should&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;1424-1795&quot;} -->
+<h3 class="sectionedit3" id="collision_probability">Collision Probability</h3>
+<div class="level3">
+
+<p>
+Google says they see a 5 bit / hr / 8GB error rate for RAM <a href="https://en.wikipedia.org/wiki/ECC_memory" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/ECC_memory">ECC_memory</a>. <em>Wow…didn&#039;t think about ECC RAM, yikes!</em>. They indicated that the errors are correlated with high CPU activity, so probably isn&#039;t as useful in our case for HD backups (although it <strong>actually is</strong> in another sense).
+</p>
+
+<p>
+So…pick a value, scale it up to the size of your HD, then use the <a href="https://en.wikipedia.org/wiki/Birthday_problem#Cast_as_a_collision_problem" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Birthday_problem#Cast_as_a_collision_problem">Birthday_problem#Cast_as_a_collision_problem</a> calculation to find how many flips we need to get a reasonable probability of error. Then make sure we scrub more often than that! 
+</p>
+
+<p>
+How many years do we need to wait? Assuming 5 flips per hour per 8GB and stopping once 50% probability of collision within the same byte.
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.google.com/search?q=sqrt%28ln%28%281%2F%281-0.5%29%29%29%2A8%2C000%2C000%2C000%2A2%29%2F%28365%2A24%2A5%29" class="interwiki iw_g" title="http://www.google.com/search?q=sqrt%28ln%28%281%2F%281-0.5%29%29%29%2A8%2C000%2C000%2C000%2A2%29%2F%28365%2A24%2A5%29">sqrt(ln((1/(1-0.5)))*8,000,000,000*2)/(365*24*5)</a> = <strong>2.4 years</strong>.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Collision Probability&quot;,&quot;hid&quot;:&quot;collision_probability&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1796-2594&quot;} -->
+<h3 class="sectionedit4" id="checksumming_file_systems">Checksumming File Systems</h3>
+<div class="level3">
+
+<p>
+BTRFS/ZFS/ReFS (windows), they keep a checksum of each file/sector? (<em>not sure which</em>) along with the files in a custom file system. Apparently rsync doesn&#039;t keep checksums, so … keep multiple backups as a final arbiter in case a checksum doesn&#039;t match or use a checksumming file system.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Checksumming File Systems&quot;,&quot;hid&quot;:&quot;checksumming_file_systems&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;2595-2925&quot;} -->
+<h3 class="sectionedit5" id="test_hard_drives_long_term">Test hard drives long term</h3>
+<div class="level3">
+
+<p>
+disk-filltest and maybe Data Test Program (dt). Other options for memory are memtest86 and CPU are mprimes. Contained on <a href="http://www.ultimatebootcd.com/" class="urlextern" title="http://www.ultimatebootcd.com/" rel="ugc nofollow">http://www.ultimatebootcd.com/</a> and Hirens boot cd. 
+</p>
+
+</div>
+
+<h4 id="disk-filltest">disk-filltest</h4>
+<div class="level4">
+<pre class="code">// For writing data ...
+
+
+// For verifying data...
+sudo ./disk-filltest-64bit -C /media/nhergert/foo -r -s 0 -S 100</pre>
+
+<p>
+3 months later, no data corruption on 750GB, interesting <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />
+</p>
+
+<p>
+Can check S.M.A.R.T. data on Ubuntu using gsmartcontrol. Make sure to run sudo <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />
+</p>
+
+<p>
+Using nohup to log to file and continue to run after I ssh out. <a href="http://unix.stackexchange.com/questions/101529/can-a-shell-script-running-in-a-ssh-continue-to-run-if-the-ssh-instance-closes" class="urlextern" title="http://unix.stackexchange.com/questions/101529/can-a-shell-script-running-in-a-ssh-continue-to-run-if-the-ssh-instance-closes" rel="ugc nofollow">http://unix.stackexchange.com/questions/101529/can-a-shell-script-running-in-a-ssh-continue-to-run-if-the-ssh-instance-closes</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Test hard drives long term&quot;,&quot;hid&quot;:&quot;test_hard_drives_long_term&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;2926-3629&quot;} -->
+<h2 class="sectionedit6" id="synology">Synology</h2>
+<div class="level2">
+
+<p>
+Looks great for a DIY collaboration dropbox. 
+</p>
+
+<p>
+Unfortunately WebDAV doesn&#039;t work over the normal quickconnect. Need to set up a DDNS, which seems doable? <a href="https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/How_to_make_Synology_NAS_accessible_over_the_Internet#t3" class="urlextern" title="https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/How_to_make_Synology_NAS_accessible_over_the_Internet#t3" rel="ugc nofollow">https://www.synology.com/en-us/knowledgebase/DSM/tutorial/General/How_to_make_Synology_NAS_accessible_over_the_Internet#t3</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Synology&quot;,&quot;hid&quot;:&quot;synology&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;3630-3928&quot;} -->
+<h2 class="sectionedit7" id="backup_data_reliably">Backup Data Reliably</h2>
+<div class="level2">
+
+<p>
+Conclusion: Dropbox&#039;s $10/TB/month is probably good. If you want to do it yourself, be sure to check the reliability of <strong>all</strong> your data often, which can be done using the S.M.A.R.T. thorough test or using BTRFS/ZFS “scrub” features.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Backup Data Reliably&quot;,&quot;hid&quot;:&quot;backup_data_reliably&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;3929-4196&quot;} -->
+<h3 class="sectionedit8" id="pre-done">Pre-done</h3>
+<div class="level3">
+
+<p>
+Amazon glacier is currently $.007/<abbr title="Gigabyte">GB</abbr>/month to store, which is really similar to Dropbox&#039; $10/TB/month. 
+</p>
+
+<p>
+How do you ensure that the source data is not corrupted? For example, do you checksum all data every time the app is opened? How do you (or anyone) handle an I/O read error from an uncorrectable bad sector? Do you update the sector in the source file if it&#039;s corrupted and you have a good backup copy? 
+</p>
+
+<p>
+“Scrub”: force the hard drive to correct all bits using ECC / file system to correct all bits using checksum/backup on the source drive
+</p>
+
+<p>
+Optional questions if you know:
+</p>
+<ul>
+<li class="level1"><div class="li"> How long between “scrubs” of hard drive are necessary? I&#039;m trying to figure out the rate of bit rot and how much is tolerated by ECC codes before the sector goes bad.</div>
+</li>
+<li class="level1"><div class="li"> How would I “scrub” a non-zfs/btrfs file system? Would a S.M.A.R.T. long scan do this?  Or do I need to use another program to do that?</div>
+</li>
+</ul>
+
+<p>
+Thanks!
+</p>
+
+<p>
+Nolan
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Pre-done&quot;,&quot;hid&quot;:&quot;pre-done&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:8,&quot;range&quot;:&quot;4197-5121&quot;} -->
+<h3 class="sectionedit9" id="diy">DIY</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Run rsync or something similar with your source drive to your backup drive first (to update the files). Then run it and check all the checksums too and note the differences. However, you don&#039;t know which is correct for older files <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />. However, if the file plays/loads fine, what does it matter? </div>
+</li>
+</ul>
+<pre class="code c">rsync <span class="sy0">--</span>dry<span class="sy0">-</span>run <span class="sy0">--</span>checksum <span class="sy0">--</span>itemize<span class="sy0">-</span>changes <span class="sy0">--</span>exclude <span class="st0">&quot;*/homerot/*&quot;</span> <span class="sy0">--</span>exclude <span class="st0">&quot;*/551_projects/*&quot;</span> <span class="sy0">-</span>azR <span class="sy0">/</span>media<span class="sy0">/</span>nhergert<span class="sy0">/</span>Ubuntu<span class="sy0">/</span>NolanBackup<span class="sy0">/</span>home<span class="sy0">/</span>nhergert<span class="sy0">/</span>DropboxArchive<span class="sy0">/</span> <span class="sy0">/</span>media<span class="sy0">/</span>nhergert<span class="sy0">/</span>a5cbb8a7<span class="sy0">-</span>e29f<span class="sy0">-</span>4f30<span class="sy0">-</span>b09f<span class="sy0">-</span>e1e3bd17746d<span class="sy0">/</span>home<span class="sy0">/</span>nhergert<span class="sy0">/</span>DropboxArchive</pre>
+
+</div>
+
+<h4 id="btrfs_probably">BTRFS probably</h4>
+<div class="level4">
+
+<p>
+Sync files using rsync, ssh key copied. 
+<em>On write of changed files, rsync will <em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em><em class="u"></em>__ (unsure</em>
+Periodically run <strong><a href="https://btrfs.wiki.kernel.org/index.php/Manpage/btrfs-scrub" class="urlextern" title="https://btrfs.wiki.kernel.org/index.php/Manpage/btrfs-scrub" rel="ugc nofollow">btrfs-scrub</a></strong> to check state of bits in both backups.
+</p>
+<ul>
+<li class="level1"><div class="li"> Check exit status. If non-zero, send an email or something.</div>
+</li>
+</ul>
+
+<p>
+Won&#039;t 
+</p>
+
+</div>
+
+<h4 id="bad">Bad?</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Potentially really slow to sync.</div>
+</li>
+</ul>
+
+<p>
+ZFS / BTRFS protect against bit rot, and let you “scrub” the data to verify the checksums.
+</p>
+
+<p>
+<a href="http://askubuntu.com/a/406296" class="urlextern" title="http://askubuntu.com/a/406296" rel="ugc nofollow">Ubuntu howto on BTRFS</a>, <a href="http://askubuntu.com/a/406501" class="urlextern" title="http://askubuntu.com/a/406501" rel="ugc nofollow">how to test</a>. Not sure on long term file structure reliability yet. But, just include a copy of that <abbr title="Operating System">OS</abbr> on there and you should be fine…
+</p>
+
+<p>
+Don&#039;t really want to use ZFS as it&#039;s generally 64-bit only and unstable on 32-bit.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;DIY&quot;,&quot;hid&quot;:&quot;diy&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:9,&quot;range&quot;:&quot;5122-6516&quot;} -->
+<h2 class="sectionedit10" id="datacenter_admin">Datacenter Admin</h2>
+<div class="level2">
+
+<p>
+Erasure coding is more efficient storage-wise than RAID: <a href="https://www.intel.com/content/www/us/en/storage/erasure-code-isa-l-solution-video.html" class="urlextern" title="https://www.intel.com/content/www/us/en/storage/erasure-code-isa-l-solution-video.html" rel="ugc nofollow">https://www.intel.com/content/www/us/en/storage/erasure-code-isa-l-solution-video.html</a>. Just requires some CPU overhead. Can use Ceph, which probably supports Intel CPUs. <a href="https://en.wikipedia.org/wiki/Ceph_" class="urlextern" title="https://en.wikipedia.org/wiki/Ceph_" rel="ugc nofollow">https://en.wikipedia.org/wiki/Ceph_</a>(software)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Datacenter Admin&quot;,&quot;hid&quot;:&quot;datacenter_admin&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:10,&quot;range&quot;:&quot;6517-&quot;} --></div></body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>electronics:sensors</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#general_tips">General Tips</a></div></li>
+<li class="level2"><div class="li"><a href="#arduino_dumb_stuff">Arduino dumb stuff</a></div></li>
+<li class="level2"><div class="li"><a href="#arduino_setup">Arduino setup</a></div></li>
+<li class="level2"><div class="li"><a href="#projects">Projects</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#buck_converter">Buck converter</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#simulation">Simulation</a></div></li>
+<li class="level2"><div class="li"><a href="#spark_core_stuff">Spark Core Stuff</a></div></li>
+<li class="level2"><div class="li"><a href="#debugging">Debugging</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#local_builds">Local Builds</a></div></li>
+<li class="level3"><div class="li"><a href="#splitting_up_files">Splitting Up Files</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#arduino_stuff">Arduino Stuff</a></div></li>
+<li class="level2"><div class="li"><a href="#boring_but_useful_tools">Boring but useful tools</a></div></li>
+<li class="level2"><div class="li"><a href="#compression">Compression</a></div></li>
+<li class="level2"><div class="li"><a href="#power_optimization">Power Optimization</a></div></li>
+<li class="level2"><div class="li"><a href="#general_tips1">General Tips</a></div></li>
+<li class="level2"><div class="li"><a href="#using_μc_as_usb_slave_input_human_interface_device">Using μC as USB Slave Input (Human Interface Device)</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#in_hardware">In Hardware</a></div></li>
+<li class="level3"><div class="li"><a href="#in_software">In Software</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#arm_development">ARM Development</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#stm32">STM32</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#long-term_questions">Long-Term Questions</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="cool_sensors">Cool Sensors</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Cool Sensors&quot;,&quot;hid&quot;:&quot;cool_sensors&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-28&quot;} -->
+<h2 class="sectionedit2" id="lidar">LIDAR</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Neato XV11 uses a custom-made LIDAR (laser distance and ranging) sensor for $30. Really accurate resolution (down to cm/millimeter!), and much better than Kinect. But no standalone module yet.. <a href="http://hackaday.com/2011/09/12/digging-deep-into-the-neatos-lidar-module/" class="urlextern" title="http://hackaday.com/2011/09/12/digging-deep-into-the-neatos-lidar-module/" rel="ugc nofollow">Hackaday</a>, <a href="http://www.hizook.com/blog/2009/12/20/ultra-low-cost-laser-rangefinders-actualized-neato-robotics" class="urlextern" title="http://www.hizook.com/blog/2009/12/20/ultra-low-cost-laser-rangefinders-actualized-neato-robotics" rel="ugc nofollow">HiZook</a>, <a href="../_media/electronics/low-costlaserdistance.pdf" class="media mediafile mf_pdf" title="electronics:low-costlaserdistance.pdf">ICRA Paper</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://electronics.stackexchange.com/questions/6297/any-published-designs-for-time-of-flight-laser-distance-measurement" class="urlextern" title="http://electronics.stackexchange.com/questions/6297/any-published-designs-for-time-of-flight-laser-distance-measurement" rel="ugc nofollow">Really good Electronics StackExchange post</a> on whitepapers on how to actually do it</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;LIDAR&quot;,&quot;hid&quot;:&quot;lidar&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;29-&quot;} --></div></body>
+</html>

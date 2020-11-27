@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:python</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#python">Python</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#calling_c_code">Calling C code</a></div></li>
+<li class="level2"><div class="li"><a href="#publishing_python_app">Publishing Python App</a></div></li>
+<li class="level2"><div class="li"><a href="#generate_html">Generate HTML</a></div></li>
+<li class="level2"><div class="li"><a href="#sphinx">Sphinx</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="python">Python</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Python&quot;,&quot;hid&quot;:&quot;python&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-22&quot;} -->
+<h2 class="sectionedit2" id="calling_c_code">Calling C code</h2>
+<div class="level2">
+
+<p>
+<a href="https://news.ycombinator.com/item?id=22365166" class="urlextern" title="https://news.ycombinator.com/item?id=22365166" rel="ugc nofollow">https://news.ycombinator.com/item?id=22365166</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Calling C code&quot;,&quot;hid&quot;:&quot;calling_c_code&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;23-95&quot;} -->
+<h2 class="sectionedit3" id="publishing_python_app">Publishing Python App</h2>
+<div class="level2">
+
+</div>
+
+<h4 id="for_end_users">For end users</h4>
+<div class="level4">
+
+<p>
+ If only Windows, use py2exe, otherwise include CPython yourself. <a href="http://hackerboss.com/how-to-distribute-commercial-python-applications/" class="urlextern" title="http://hackerboss.com/how-to-distribute-commercial-python-applications/" rel="ugc nofollow">source</a>
+</p>
+
+</div>
+
+<h4 id="for_other_devs">For other devs</h4>
+<div class="level4">
+
+<p>
+Create an entry in pypi: <a href="http://python-packaging-user-guide.readthedocs.org/en/latest/distributing/#id72" class="urlextern" title="http://python-packaging-user-guide.readthedocs.org/en/latest/distributing/#id72" rel="ugc nofollow">here</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Publishing Python App&quot;,&quot;hid&quot;:&quot;publishing_python_app&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;96-438&quot;} -->
+<h2 class="sectionedit4" id="generate_html">Generate HTML</h2>
+<div class="level2">
+
+<p>
+Then again, it might not be that hard to rewrite in Javascript either. Ehhh, idk.
+</p>
+
+</div>
+
+<h4 id="in_browser_interpreter">In Browser Interpreter</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.google.com/search?q=Skulpt" class="interwiki iw_g" title="http://www.google.com/search?q=Skulpt">Skulpt</a>, 2.6 only?</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.google.com/search?q=Brython" class="interwiki iw_g" title="http://www.google.com/search?q=Brython">Brython</a>, 2.7+</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="javascript_compiler">Javascript Compiler</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.google.com/search?q=pyjs" class="interwiki iw_g" title="http://www.google.com/search?q=pyjs">pyjs</a>, ported from Java implementation of Google Web Toolkit. </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Generate HTML&quot;,&quot;hid&quot;:&quot;generate_html&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;439-731&quot;} -->
+<h2 class="sectionedit5" id="sphinx">Sphinx</h2>
+<div class="level2">
+
+<p>
+Had an error with running Sphinx in Ubuntu. I was getting a “could not import extension” error, and I think it&#039;s because the package in APT isn&#039;t up to date? Anyways, running <code>&#039;sudo easy_install -U sphinx</code>&#039; built the latest version of sphinx which is building the documents fine now.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sphinx&quot;,&quot;hid&quot;:&quot;sphinx&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;732-&quot;} --></div></body>
+</html>

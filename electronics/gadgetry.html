@@ -1,0 +1,229 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>electronics:gadgetry</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#gadgetry_class">Gadgetry Class</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#gadget_one">Gadget One</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#use_cases">Use Cases</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#gadget_two">Gadget Two</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#inspiration">Inspiration</a></div></li>
+<li class="level3"><div class="li"><a href="#code_organization">Code Organization</a></div></li>
+<li class="level3"><div class="li"><a href="#gadget_two_construction_notes">Gadget Two Construction Notes</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#lissajous_generator">Lissajous Generator</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#processing_spirograph_script">Processing Spirograph Script</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="gadgetry_class">Gadgetry Class</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Gadgetry Class&quot;,&quot;hid&quot;:&quot;gadgetry_class&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-31&quot;} -->
+<h2 class="sectionedit2" id="gadget_one">Gadget One</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Gadget One&quot;,&quot;hid&quot;:&quot;gadget_one&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;32-55&quot;} -->
+<h3 class="sectionedit3" id="use_cases">Use Cases</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Helping hard of hearing individuals tell where a sound is coming from. </div>
+</li>
+<li class="level1"><div class="li"> Help military personnel tell where shots are coming from. <a href="http://qinetiq-na.com/products-ears.htm" class="urlextern" title="http://qinetiq-na.com/products-ears.htm" rel="ugc nofollow">Ears system by QinetiQ</a> does a good job (heading and distance) for ~$8,000 a unit! Based on the video, it uses the time delays between the shock wave of the bullet and the sound of the muzzle blast to tell distance and 4 microphones to tell angle. Interesting…wonder how well it deals with echos?</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/electronics/vlcsnap-2011-03-17-11h49m12s236.png" class="media" title="electronics:vlcsnap-2011-03-17-11h49m12s236.png"><img src="../_media/electronics/vlcsnap-2011-03-17-11h49m12s236.png" class="media" alt="" /></a>
+<a href="http://qinetiq-na.com/products-ears.htm" class="media" title="http://qinetiq-na.com/products-ears.htm" rel="ugc nofollow"><img src="../_media/electronics/tactical_ears.jpg" class="media" alt="" /></a>j
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/s2006/mjk64jdp45/mjk64jdp45/index.html" class="urlextern" title="http://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/s2006/mjk64jdp45/mjk64jdp45/index.html" rel="ugc nofollow">Ultrasonic Localization</a> (eventually used Kalman Filter). Cool project from Cornell Senior Projects!</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/electronics/coordinates.png" class="media" title="electronics:coordinates.png"><img src="../_media/electronics/coordinates.png" class="media" alt="" width="300" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/s2007/sp369_bb226/sp369_bb226/index.htm" class="urlextern" title="http://people.ece.cornell.edu/land/courses/ece4760/FinalProjects/s2007/sp369_bb226/sp369_bb226/index.htm" rel="ugc nofollow">Another Cornell project that used 4 microphones</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Use Cases&quot;,&quot;hid&quot;:&quot;use_cases&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;56-1103&quot;} -->
+<h2 class="sectionedit4" id="gadget_two">Gadget Two</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Gadget Two&quot;,&quot;hid&quot;:&quot;gadget_two&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1104-1127&quot;} -->
+<h3 class="sectionedit5" id="inspiration">Inspiration</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.ian.org/HD-Clock/" class="urlextern" title="http://www.ian.org/HD-Clock/" rel="ugc nofollow">http://www.ian.org/HD-Clock/</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Inspiration&quot;,&quot;hid&quot;:&quot;inspiration&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1128-1183&quot;} -->
+<h3 class="sectionedit6" id="code_organization">Code Organization</h3>
+<div class="level3">
+<ol>
+<li class="level1 node"><div class="li"> Set up motors</div>
+<ol>
+<li class="level2"><div class="li"> Get mirrors mounted on motors</div>
+</li>
+<li class="level2"><div class="li"> Attach 22-gauge? wires to motors and solder into board</div>
+</li>
+<li class="level2 node"><div class="li"> Get PWM output working </div>
+<ol>
+<li class="level3"><div class="li"> (16-bit I think…probably little difference in motor speed between ticks, but it&#039;d be an interesting test)</div>
+</li>
+<li class="level3"><div class="li"> Be sure to have it set at a high frequency to limit audible noise</div>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li class="level1 node"><div class="li"> Read in joystick</div>
+<ol>
+<li class="level2 node"><div class="li"> Have a global joystick variable that gets updated on an interrupt with a change in ADC</div>
+<ol>
+<li class="level3"><div class="li"> Range should be 0 to 4096 w/ 2048 being center on each x and y</div>
+</li>
+</ol>
+</li>
+<li class="level2"><div class="li"> </div>
+</li>
+<li class="level2 node"><div class="li"> Calibrate</div>
+<ol>
+<li class="level3"><div class="li"> Measure angles of each mirror, try to match them as close as possible</div>
+</li>
+<li class="level3"><div class="li"> Do a linear mapping of motor PWM to RPM <strong>for each motor</strong></div>
+</li>
+<li class="level3"><div class="li"> Should be able to generate accurate images that correspond to Processing now</div>
+</li>
+</ol>
+</li>
+</ol>
+</li>
+<li class="level1"><div class="li"> Create Processing app to demo audio too and release interactive easily-usable version</div>
+</li>
+</ol>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Code Organization&quot;,&quot;hid&quot;:&quot;code_organization&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1184-2075&quot;} -->
+<h3 class="sectionedit7" id="gadget_two_construction_notes">Gadget Two Construction Notes</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Joystick ranges from 3300 to 230 on each side w/ about 20 ticks of noise on each side and not full range!! Middle is 1770 for each. I thought 2.2K on Vcc would remedy this, but maybe I&#039;m wrong.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Gadget Two Construction Notes&quot;,&quot;hid&quot;:&quot;gadget_two_construction_notes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2076-2315&quot;} -->
+<h2 class="sectionedit8" id="lissajous_generator">Lissajous Generator</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Use PWM (with microcontroller) and 4 mirror setup. Not sure what to do about red laser or diffractors…</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://leyanda.de/light/laser0.php" class="urlextern" title="http://leyanda.de/light/laser0.php" rel="ugc nofollow">Leyanda.de Project</a>. Talks about effective PWM operation and using mosfet for laser switching.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.instructables.com/id/Four-Motor-Laser-Spirograph/4 Motor Setup" class="urlextern" title="http://www.instructables.com/id/Four-Motor-Laser-Spirograph/4 Motor Setup" rel="ugc nofollow">http://www.instructables.com/id/Four-Motor-Laser-Spirograph/4 Motor Setup</a>! THE WAY TO GO :) </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://hackaday.com/2011/03/13/diy-laser-light-show-is-sure-to-please/" class="urlextern" title="http://hackaday.com/2011/03/13/diy-laser-light-show-is-sure-to-please/" rel="ugc nofollow">Another option</a>. He measured each angle of mirror using some math after the fact. Kinda cool!</div>
+</li>
+<li class="level1"><div class="li"> Take pictures of it on long exposure to get the full effect of the shapes (especially for higher numbers of mirrors)</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://linuxgazette.net/133/luana.html#mw-hypotrochoid" class="urlextern" title="http://linuxgazette.net/133/luana.html#mw-hypotrochoid" rel="ugc nofollow">Hypotrochoid paper (CS guy)</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.math.tamu.edu/~boas/courses/math696/including-Maple-graphics-in-LaTeX.html" class="urlextern" title="http://www.math.tamu.edu/~boas/courses/math696/including-Maple-graphics-in-LaTeX.html" rel="ugc nofollow">Plotting spirographs</a></div>
+</li>
+<li class="level1"><div class="li"> The landmark paper on this is <a href="../_media/home/2691465.pdf" class="media mediafile mf_pdf" title="home:2691465.pdf">Frank Farris&#039; Paper, &quot;Wheels on Wheels on Wheels&quot;</a></div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/home/farris.gif" class="media" title="home:farris.gif"><img src="../_media/home/farris.gif" class="media" alt="" /></a>
+</p>
+
+<p>
+<a href="../_media/home/eqn-04.png" class="media" title="home:eqn-04.png"><img src="../_media/home/eqn-04.png" class="media" alt="" /></a>
+</p>
+
+<p>
+where n is the number of engaged wheels: wheel k has its center fixed on a point of the circumference of wheel (k-1). On each wheel, a_k is related to the radius, n_k to the rotation speed, and \theta_k is an initial phase angle. Farris demonstrated that the z(t) curve has g-fold rotational symmetry if all the pairwise differences |n_k-n_j| have g as their greatest common divisor.
+</p>
+
+<p>
+So, the radius here is the degree offset of the mirror (how wide of a circle it makes), and Nk is indeed the rotation speed. So, we want to have mirror angles as similar as possible to get good shapes.
+</p>
+
+<p>
+<a href="https://www.dropbox.com/s/dxcw98u3o90fx0t/spirolab_application.windows32.zip?dl=0" class="urlextern" title="https://www.dropbox.com/s/dxcw98u3o90fx0t/spirolab_application.windows32.zip?dl=0" rel="ugc nofollow">https://www.dropbox.com/s/dxcw98u3o90fx0t/spirolab_application.windows32.zip?dl=0</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lissajous Generator&quot;,&quot;hid&quot;:&quot;lissajous_generator&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;2316-4017&quot;} -->
+<h3 class="sectionedit9" id="processing_spirograph_script">Processing Spirograph Script</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="features">Features</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Holding SHIFT &amp; CTRL follows line from center outwards. Keeps relationship between the two speeds constant</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="to_do_s_in_approximate_order">To Do&#039;s (in approximate order)</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Incorporate controlP5. <a href="http://www.syedrezaali.com/blog/?p=1119" class="urlextern" title="http://www.syedrezaali.com/blog/?p=1119" rel="ugc nofollow">Reza&#039;s supershapes</a> is a good similar example</div>
+</li>
+<li class="level1"><div class="li"> Not sure how accurate the tones actually are to the shapes. The beats seem to line up though with only a little lag.</div>
+</li>
+<li class="level1 node"><div class="li"> Fix the transitions between shapes so that it doesn&#039;t create ugly line</div>
+<ul>
+<li class="level2"><div class="li"> Maybe use integrator to smooth it out?</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Adjust low notes so they are louder. However, Minim fails to do amplitude changes that quickly over multiple notes I&#039;m thinking. It does it for one just fine though!</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Processing Spirograph Script&quot;,&quot;hid&quot;:&quot;processing_spirograph_script&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;4018-&quot;} --></div></body>
+</html>

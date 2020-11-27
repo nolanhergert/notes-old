@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>bodytrack:antlogger</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#ant_chest_strap_logger">ANT Chest Strap Logger</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#to_do">To Do</a></div></li>
+<li class="level2"><div class="li"><a href="#current_code">Current Code</a></div></li>
+<li class="level2"><div class="li"><a href="#garmin_chest_strap_data_packets">Garmin Chest Strap Data Packets</a></div></li>
+<li class="level2"><div class="li"><a href="#ant_data_packet">ANT Data Packet</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="ant_chest_strap_logger">ANT Chest Strap Logger</h1>
+<div class="level1">
+
+<p>
+<a href="http://www.sparkfun.com/products/8840" class="media" title="http://www.sparkfun.com/products/8840" rel="ugc nofollow"><img src="../_media/bodytrack/08840-03-l_i_ma.jpg" class="media" alt="" width="200" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://forum.sparkfun.com/viewtopic.php?f=13&amp;t=17017" class="urlextern" title="http://forum.sparkfun.com/viewtopic.php?f=13&amp;t=17017" rel="ugc nofollow">Forum Postings</a></div>
+</li>
+<li class="level1"><div class="li"> Check the comments for a forum thread and some more code. Should be able to interface with a Suunto strap too as someone decoded the network key. Start from the last page and work back for sample code.</div>
+</li>
+<li class="level1"><div class="li"> If this thing actually works, it&#039;ll be awesome <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" /></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;ANT Chest Strap Logger&quot;,&quot;hid&quot;:&quot;ant_chest_strap_logger&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-457&quot;} -->
+<h2 class="sectionedit2" id="to_do">To Do</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> How does ANT determine between multiple HRM&#039;s? (How do they pair?). Do they have a unique ID that you ask for? Can one listen to multiple?</div>
+</li>
+<li class="level1"><div class="li"> Have the app stay alive even through data dropout (leaving the room)</div>
+</li>
+<li class="level1"><div class="li"> Check HR accuracy vs BioHarness</div>
+</li>
+<li class="level1"><div class="li"> Logging to CSV? file</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;To Do&quot;,&quot;hid&quot;:&quot;to_do&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;458-753&quot;} -->
+<h2 class="sectionedit3" id="current_code">Current Code</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> The trick to getting real-time data (R-R timings) from the HRM is to switch the messagePeriod bytes around…lame! It seems to be a “magic” value for Garmin (and I assume Suunto). A change in the value does change the sample period of the USB ANT board, but it gets a bunch of dead packets with a real packet every 5 seconds or so from the HRM. Really weird!</div>
+</li>
+<li class="level1"><div class="li"> Also, if the board doesn&#039;t seem to be responding at all (after I took out the battery), flip the battery polarity around to reset somewhat and then stick it back in normally. Not sure why it works as it doesn&#039;t connect to the negative terminal when you do that, but it shorts something and then works for me!</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://code.google.com/p/hrvtracker/" class="urlextern" title="http://code.google.com/p/hrvtracker/" rel="ugc nofollow">HRV Tracker</a> is a great demo app (but doesn&#039;t draw anything). Code is well-documented and he explains the meaning of the bytes (which I paraphrased below).</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Current Code&quot;,&quot;hid&quot;:&quot;current_code&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;754-1654&quot;} -->
+<h2 class="sectionedit4" id="garmin_chest_strap_data_packets">Garmin Chest Strap Data Packets</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> from <a href="http://code.google.com/p/hrvtracker/source/browse/trunk/HRV_tracker/testANT_receiver/frmMain.cs" class="urlextern" title="http://code.google.com/p/hrvtracker/source/browse/trunk/HRV_tracker/testANT_receiver/frmMain.cs" rel="ugc nofollow">HRVTracker</a></div>
+</li>
+</ul>
+
+<p>
+            <em>heart rate data messages are sent as:
+            </em>SYNC, MSG_LENGTH (=9), MSG_ID (=0x4E), DEVICE/MODEL DATA (=5 bytes), RR_TIMER(=2bytes), HR(=1 byte), CHECKSUM
+</p>
+<pre class="code">          //0 - SYNC
+          //1 - MSG_LENGTH 
+          //2 - MSG_ID (0x4E)
+          //3 - DEVICE/MODEL ID
+          //4 - DEVICE/MODEL ID
+          //5 - DEVICE/MODEL ID
+          //6 - DEVICE/MODEL ID
+          //7 - DEVICE/MODEL ID
+          //8 - RR_TIMER
+          //9 - RR_TIMER
+          //10 - DATA COUNTER
+          //11 - HR
+          //12 - CHECKSUM</pre>
+<pre class="code">          //device ID data messages are sent as:
+          //0 - SYNC
+          //1 - MSG DATA LENGTH 
+          //2 - MSG_ID (0x51)
+          //3 - CHANNEL NO
+          //4 - DEVICE ID
+          //5 - DEVICE ID (MULTIPLY BY 256)
+          //6 - DEVICE TYPE ID
+          //7 - TRANSMISSION TYPE</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Garmin Chest Strap Data Packets&quot;,&quot;hid&quot;:&quot;garmin_chest_strap_data_packets&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1655-2701&quot;} -->
+<h2 class="sectionedit5" id="ant_data_packet">ANT Data Packet</h2>
+<div class="level2">
+<div class="table sectionedit6"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 centeralign">  #  </th><th class="col1 centeralign">  0  </th><th class="col2 centeralign">  1  </th><th class="col3 centeralign">  2  </th><th class="col4 centeralign">  3  </th><th class="col5 centeralign">  4  </th><th class="col6 centeralign">   5  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 centeralign">  <strong>Byte</strong>  </td><td class="col1 centeralign">  0xA4  </td><td class="col2 centeralign">  0x02  </td><td class="col3 centeralign">  0x52  </td><td class="col4 centeralign">  0x01  </td><td class="col5 centeralign">  0x03  </td><td class="col6 centeralign">  0xF6  </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 centeralign">  <strong>Meaning</strong>  </td><td class="col1 centeralign">  ANT → Host transaction <br/>
+0xA5 is Host → ANT  </td><td class="col2 centeralign">  # of bytes in payload  </td><td class="col3 centeralign">  Channel_Status Message  </td><td class="col4 centeralign">  DATA <br/>
+(Channel #)  </td><td class="col5 centeralign">  DATA  <br/>
+(Status)  </td><td class="col6 centeralign">  Checksum (xor all prev bytes)  </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:6,&quot;range&quot;:&quot;2730-3045&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;ANT Data Packet&quot;,&quot;hid&quot;:&quot;ant_data_packet&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;2702-&quot;} --></div></body>
+</html>

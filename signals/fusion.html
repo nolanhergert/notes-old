@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>signals:fusion</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#noisy_signals">Noisy Signals</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#books">Books</a></div></li>
+<li class="level2"><div class="li"><a href="#kalman_filter">Kalman Filter</a></div></li>
+<li class="level2"><div class="li"><a href="#complementary_filter">Complementary Filter</a></div></li>
+<li class="level2"><div class="li"><a href="#alpha_beta_filter">Alpha Beta Filter</a></div></li>
+<li class="level2"><div class="li"><a href="#kalman_filter1">Kalman Filter</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#ece_kid">ECE Kid</a></div></li>
+<li class="level3"><div class="li"><a href="#anthony_rowe_email">Anthony Rowe Email</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="noisy_signals">Noisy Signals</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Noisy Signals&quot;,&quot;hid&quot;:&quot;noisy_signals&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-29&quot;} -->
+<h2 class="sectionedit2" id="books">Books</h2>
+<div class="level2">
+<div class="table sectionedit3"><table class="inline">
+	<tr class="row0">
+		<td class="col0 leftalign"> <a href="http://www.amazon.com/Fundamentals-Statistical-Signal-Processing-Estimation/dp/0133457117/ref=pd_sim_b_1" class="media" title="http://www.amazon.com/Fundamentals-Statistical-Signal-Processing-Estimation/dp/0133457117/ref=pd_sim_b_1" rel="ugc nofollow"><img src="../_media/signals/51_gch4oenl._bo2_204_203_200_pisitb-sticker-arrow-click_topright_35_-76_aa300_sh20_ou01_.jpg" class="medialeft" align="left" alt="" width="200" /></a>  </td><td class="col1 leftalign"> <a href="../_media/signals/41esfys64tl._bo2_204_203_200_pisitb-sticker-arrow-click_topright_35_-76_aa300_sh20_ou01_.jpg" class="media" title="signals:41esfys64tl._bo2_204_203_200_pisitb-sticker-arrow-click_topright_35_-76_aa300_sh20_ou01_.jpg"><img src="../_media/signals/41esfys64tl._bo2_204_203_200_pisitb-sticker-arrow-click_topright_35_-76_aa300_sh20_ou01_.jpg" class="media" alt="" width="200" /></a>  </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0 rightalign">  Books by Steven Kay look pretty good. </td><td class="col1 centeralign">  <a href="../_media/signals/optimal_estimation.pdf" class="media mediafile mf_pdf" title="signals:optimal_estimation.pdf">optimal_estimation.pdf</a> <br/>
+(best for Kalman apparently)  </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:3,&quot;range&quot;:&quot;49-504&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Books&quot;,&quot;hid&quot;:&quot;books&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;30-504&quot;} -->
+<h2 class="sectionedit4" id="kalman_filter">Kalman Filter</h2>
+<div class="level2">
+
+<p>
+Kalman filtering tutorial (Texas Robotics Club): <a href="https://www.youtube.com/watch?v=18TKA-YWhX0" class="urlextern" title="https://www.youtube.com/watch?v=18TKA-YWhX0" rel="ugc nofollow">https://www.youtube.com/watch?v=18TKA-YWhX0</a>
+</p>
+
+<p>
+Greg Czerniak&#039;s Website: <a href="http://greg.czerniak.info/guides/kalman1/" class="urlextern" title="http://greg.czerniak.info/guides/kalman1/" rel="ugc nofollow">http://greg.czerniak.info/guides/kalman1/</a>
+</p>
+
+<p>
+Kalman Filter For Dummies: <a href="http://bilgin.esme.org/BitsBytes/KalmanFilterforDummies.aspx" class="urlextern" title="http://bilgin.esme.org/BitsBytes/KalmanFilterforDummies.aspx" rel="ugc nofollow">http://bilgin.esme.org/BitsBytes/KalmanFilterforDummies.aspx</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Kalman Filter&quot;,&quot;hid&quot;:&quot;kalman_filter&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;505-781&quot;} -->
+<h2 class="sectionedit5" id="complementary_filter">Complementary Filter</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Also known as “angle complementary filter”</div>
+</li>
+</ul>
+
+<p>
+<a href="http://www.ohscope.com/2009/02/17/b-b-b-balancing/" class="media" title="http://www.ohscope.com/2009/02/17/b-b-b-balancing/" rel="ugc nofollow"><img src="../_media/signals/screen_shot_2011-07-28_at_6.10.05_pm.png" class="media" alt="" width="200" /></a>
+</p>
+
+<p>
+<a href="../_media/filter.pdf" class="media mediafile mf_pdf" title="filter.pdf">filter.pdf</a> and <a href="http://stackoverflow.com/questions/1586658/combine-gyroscope-and-accelerometer-data" class="urlextern" title="http://stackoverflow.com/questions/1586658/combine-gyroscope-and-accelerometer-data" rel="ugc nofollow">StackOverflow thread</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Essentially is just low-pass on accelerometer and gyro and a high-pass on gyro. Something like that…</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Complementary Filter&quot;,&quot;hid&quot;:&quot;complementary_filter&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;782-1215&quot;} -->
+<h2 class="sectionedit6" id="alpha_beta_filter">Alpha Beta Filter</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.mstarlabs.com/control.html" class="urlextern" title="http://www.mstarlabs.com/control.html" rel="ugc nofollow">Alpha Beta explanation</a> (similar to PID???)</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://adrianboeing.blogspot.com/2010/05/kalman-filters.html" class="urlextern" title="http://adrianboeing.blogspot.com/2010/05/kalman-filters.html" rel="ugc nofollow">Good Kalman and alpha-beta explanation</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Alpha Beta Filter&quot;,&quot;hid&quot;:&quot;alpha_beta_filter&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1216-1444&quot;} -->
+<h2 class="sectionedit7" id="kalman_filter1">Kalman Filter</h2>
+<div class="level2">
+<div class="table sectionedit8"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 centeralign">  <a href="http://www.starlino.com/imu_guide.html" class="media" title="http://www.starlino.com/imu_guide.html" rel="ugc nofollow"><img src="../_media/signals/07_1_.png" class="media" alt="" width="200" /></a>  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 centeralign">  Great tutorial w/ nice pictures!  </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:8,&quot;range&quot;:&quot;1471-1586&quot;} --><ul>
+<li class="level1"><div class="li"> <a href="http://www.acasper.org/2012/03/07/kalman-filtering/" class="urlextern" title="http://www.acasper.org/2012/03/07/kalman-filtering/" rel="ugc nofollow">Kalman + EKF</a>, also <a href="http://www.acasper.org/2012/03/09/modelling-a-spinning-fan/" class="urlextern" title="http://www.acasper.org/2012/03/09/modelling-a-spinning-fan/" rel="ugc nofollow">modelling a spinning fan using equations</a>…HSV</div>
+</li>
+<li class="level1 node"><div class="li"> <del><a href="../_media/signals" class="media mediafile mf_" title="signals">Poor Man&#039;s Explanation of Kalman Filtering</a>. <strong>AWESOMELY SIMPLE :)</strong> &lt;added 10/11/11&gt;</del> still good, but got an email to take it down. Paywall now: <a href="https://www.taygeta.com/kalman_book.html" class="urlextern" title="https://www.taygeta.com/kalman_book.html" rel="ugc nofollow">https://www.taygeta.com/kalman_book.html</a></div>
+<ul>
+<li class="level2"><div class="li"> Linked from here, gives a good background: <a href="http://credentiality2.blogspot.com/2010/08/simple-kalman-filter-example.html" class="urlextern" title="http://credentiality2.blogspot.com/2010/08/simple-kalman-filter-example.html" rel="ugc nofollow">http://credentiality2.blogspot.com/2010/08/simple-kalman-filter-example.html</a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Kalman Filter&quot;,&quot;hid&quot;:&quot;kalman_filter1&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;1445-2109&quot;} -->
+<h3 class="sectionedit9" id="ece_kid">ECE Kid</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Was adding Kalman filtering to his quadrocopter. He said deriving the terms for the EKF was quite hard, but actual Kalman part is pretty easy.</div>
+</li>
+<li class="level1"><div class="li"> Kaiwen Gu</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;ECE Kid&quot;,&quot;hid&quot;:&quot;ece_kid&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;2110-2289&quot;} -->
+<h3 class="sectionedit10" id="anthony_rowe_email">Anthony Rowe Email</h3>
+<div class="level3">
+
+<p>
+These are some good Kalman filter references (the first is probably the best):
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://academic.csuohio.edu/simond/courses/eec644/kalman.pdf" class="urlextern" title="http://academic.csuohio.edu/simond/courses/eec644/kalman.pdf" rel="ugc nofollow">http://academic.csuohio.edu/simond/courses/eec644/kalman.pdf</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.cs.unc.edu/~welch/kalman/Levy1997/index.html" class="urlextern" title="http://www.cs.unc.edu/~welch/kalman/Levy1997/index.html" rel="ugc nofollow">http://www.cs.unc.edu/~welch/kalman/Levy1997/index.html</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.cs.unc.edu/~tracker/media/pdf/SIGGRAPH2001_CoursePack_08.pdf" class="urlextern" title="http://www.cs.unc.edu/~tracker/media/pdf/SIGGRAPH2001_CoursePack_08.pdf" rel="ugc nofollow">http://www.cs.unc.edu/~tracker/media/pdf/SIGGRAPH2001_CoursePack_08.pdf</a></div>
+</li>
+</ul>
+
+<p>
+You are thinking of Nat Storer.  I believe he was (maybe still is) doing the ECE minor in audio engineering. He has been doing fantastic work on the drone.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Anthony Rowe Email&quot;,&quot;hid&quot;:&quot;anthony_rowe_email&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;2290-&quot;} --></div></body>
+</html>

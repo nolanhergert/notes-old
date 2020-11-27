@@ -1,0 +1,100 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>projects:led_strip</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#led_stuff">LED Stuff</a></div>
+<ul class="toc">
+<li class="clear">
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#smooth_fade">Smooth fade</a></div></li>
+<li class="level3"><div class="li"><a href="#library">Library</a></div></li>
+<li class="level3"><div class="li"><a href="#strip">Strip</a></div></li>
+<li class="level3"><div class="li"><a href="#batteries">Batteries</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="led_stuff">LED Stuff</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Nice pre-done project called PixelBlaze. A few things to learn there, but very similar to bike helmet project. Patterns are here: <a href="https://electromage.com/patterns/" class="urlextern" title="https://electromage.com/patterns/" rel="ugc nofollow">https://electromage.com/patterns/</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;LED Stuff&quot;,&quot;hid&quot;:&quot;led_stuff&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-194&quot;} -->
+<h3 class="sectionedit2" id="smooth_fade">Smooth fade</h3>
+<div class="level3">
+
+<p>
+For some reason, it can do it for 1 side, but not the other. When it fades down it&#039;s either skipping some or something, going back up it seems smooth…
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Smooth fade&quot;,&quot;hid&quot;:&quot;smooth_fade&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;195-369&quot;} -->
+<h3 class="sectionedit3" id="library">Library</h3>
+<div class="level3">
+
+<p>
+FastLED only does RGB, not RGBW. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Library&quot;,&quot;hid&quot;:&quot;library&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;370-421&quot;} -->
+<h3 class="sectionedit4" id="strip">Strip</h3>
+<div class="level3">
+
+<p>
+Yeah, this really needs a separate page.
+</p>
+
+<p>
+The microcontroller in each LED takes 2mA on idle. Ouch.
+</p>
+<ul>
+<li class="level1"><div class="li"> They recommend a power tap every 25 pixels for voltage drop</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Strip&quot;,&quot;hid&quot;:&quot;strip&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;422-602&quot;} -->
+<h3 class="sectionedit5" id="batteries">Batteries</h3>
+<div class="level3">
+<blockquote  class="blockquote-plugin">
+<p>
+ But NiMH cells have a lower internal resistance, and if that resistance is a major part of the resistance to limit the current into the LEDs (as it often is in cheap designs with coin cells, but less often in AA-based designs) you&#039;ll probably fry the LEDs quite quickly.
+</p>
+
+</blockquote>
+<p>
+Nice tutorial on power saving stuff on Adafruit. <a href="https://learn.adafruit.com/sipping-power-with-neopixels/" class="urlextern" title="https://learn.adafruit.com/sipping-power-with-neopixels/" rel="ugc nofollow">https://learn.adafruit.com/sipping-power-with-neopixels/</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Example code: <a href="https://learn.adafruit.com/sipping-power-with-neopixels/demo-code" class="urlextern" title="https://learn.adafruit.com/sipping-power-with-neopixels/demo-code" rel="ugc nofollow">https://learn.adafruit.com/sipping-power-with-neopixels/demo-code</a></div>
+</li>
+<li class="level1"><div class="li"> Keep in mind arduino sets micros() and millis() with interrupts! &gt;.&lt; And the neopixel disables them for writing to led strip.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Batteries&quot;,&quot;hid&quot;:&quot;batteries&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;603-&quot;} --></div></body>
+</html>

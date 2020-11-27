@@ -1,0 +1,1055 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>projects:biking:helmet</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#requirements_documents">Requirements Documents</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#marketing">Marketing</a></div></li>
+<li class="level3"><div class="li"><a href="#product">Product</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#electronics_mounting_mechanics">Electronics mounting mechanics</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#helmet">Helmet</a></div></li>
+<li class="level3"><div class="li"><a href="#others">Others</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#potting_with_resin">Potting with resin</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#clear_resin">Clear Resin</a></div></li>
+<li class="level3"><div class="li"><a href="#pressure_pot">Pressure pot</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#current_bom">Current BOM</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#batteries">Batteries</a></div></li>
+<li class="level3"><div class="li"><a href="#taping">Taping</a></div></li>
+<li class="level3"><div class="li"><a href="#level_shifters">Level Shifters</a></div></li>
+<li class="level3"><div class="li"><a href="#headers">.1&quot; Headers</a></div></li>
+<li class="level3"><div class="li"><a href="#kit_checklist">Kit Checklist</a></div></li>
+<li class="level3"><div class="li"><a href="#mah_battery">4000mah battery</a></div></li>
+<li class="level3"><div class="li"><a href="#v_power">12V Power</a></div></li>
+<li class="level3"><div class="li"><a href="#legal">Legal</a></div></li>
+<li class="level3"><div class="li"><a href="#water_resistance">Water Resistance</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<p>
+Lighting 2.0
+</p>
+
+<h2 class="sectionedit1" id="requirements_documents">Requirements Documents</h2>
+<div class="level2">
+
+<p>
+Very useful for fleshing out ideas, especially when needing to communicate with others on the other side of the world. However, I probably don&#039;t want to write up everything just yet. It might change as I do more research and user testing.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Requirements Documents&quot;,&quot;hid&quot;:&quot;requirements_documents&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;14-288&quot;} -->
+<h3 class="sectionedit2" id="marketing">Marketing</h3>
+<div class="level3">
+<ol>
+<li class="level1"><div class="li"> Product description</div>
+</li>
+<li class="level1"><div class="li"> How the product works</div>
+</li>
+<li class="level1"><div class="li"> Why the product is needed</div>
+</li>
+<li class="level1"><div class="li"> Product features</div>
+</li>
+<li class="level1"><div class="li"> If software is included, what does it do and how does it work?</div>
+</li>
+<li class="level1"><div class="li"> Who is the product for?</div>
+</li>
+<li class="level1"><div class="li"> How big is the market?</div>
+</li>
+<li class="level1"><div class="li"> What competition is out there, how does it compare?</div>
+</li>
+<li class="level1"><div class="li"> Where the product will be wold</div>
+</li>
+<li class="level1"><div class="li"> What price the product needs to sell for</div>
+</li>
+<li class="level1"><div class="li"> What profit margins are required for the product</div>
+</li>
+<li class="level1"><div class="li"> How the product will be serviced and supported</div>
+</li>
+<li class="level1"><div class="li"> The estimate of the product sales volume</div>
+</li>
+</ol>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Marketing&quot;,&quot;hid&quot;:&quot;marketing&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;289-817&quot;} -->
+<h3 class="sectionedit3" id="product">Product</h3>
+<div class="level3">
+<ol>
+<li class="level1"><div class="li"> Description of the product, how it works, how it is used</div>
+</li>
+<li class="level1"><div class="li"> Description of controls switches, lights, displays and ports</div>
+</li>
+<li class="level1"><div class="li"> Software details</div>
+</li>
+<li class="level1"><div class="li"> Physical attributs: size, weight, and so on</div>
+</li>
+<li class="level1"><div class="li"> Environmental requirements (temp, humidity)</div>
+</li>
+<li class="level1"><div class="li"> Physical conditions (shock proof, inside and outside of packaging)</div>
+</li>
+<li class="level1"><div class="li"> Quality requirements (how many and what type of defects are allowed, testing)</div>
+</li>
+<li class="level1"><div class="li"> Regulatory agencies and requirements the product must meet</div>
+</li>
+</ol>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Product&quot;,&quot;hid&quot;:&quot;product&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;818-1295&quot;} -->
+<h2 class="sectionedit4" id="electronics_mounting_mechanics">Electronics mounting mechanics</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Electronics mounting mechanics&quot;,&quot;hid&quot;:&quot;electronics_mounting_mechanics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1296-1338&quot;} -->
+<h3 class="sectionedit5" id="helmet">Helmet</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Must work on uneven and slanted surfaces. Not wobble / feel loose too much</div>
+</li>
+</ul>
+
+<p>
+^ “Algorithm” ^ Result ^
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Helmet&quot;,&quot;hid&quot;:&quot;helmet&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1339-1459&quot;} -->
+<h3 class="sectionedit6" id="others">Others</h3>
+<div class="level3">
+
+<p>
+Much easier….
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Others&quot;,&quot;hid&quot;:&quot;others&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1460-1492&quot;} -->
+<h2 class="sectionedit7" id="potting_with_resin">Potting with resin</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Potting with resin&quot;,&quot;hid&quot;:&quot;potting_with_resin&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;1493-1524&quot;} -->
+<h3 class="sectionedit8" id="clear_resin">Clear Resin</h3>
+<div class="level3">
+
+<p>
+All epoxy resins eventually degrade.
+</p>
+
+<p>
+Polyester resins…don&#039;t they smell really bad during mixing? They are cheap and readily available though.
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="https://www.tapplastics.com/product/mold_making_materials/casting_products/tap_clear_lite_casting_resin/75" class="urlextern" title="https://www.tapplastics.com/product/mold_making_materials/casting_products/tap_clear_lite_casting_resin/75" rel="ugc nofollow">https://www.tapplastics.com/product/mold_making_materials/casting_products/tap_clear_lite_casting_resin/75</a> or surfboard resin: <a href="https://www.tapplastics.com/product/fiberglass/polyester_resins/tap_surfboard_resin/38" class="urlextern" title="https://www.tapplastics.com/product/fiberglass/polyester_resins/tap_surfboard_resin/38" rel="ugc nofollow">https://www.tapplastics.com/product/fiberglass/polyester_resins/tap_surfboard_resin/38</a></div>
+</li>
+</ul>
+
+<p>
+Fancy Innovative Plastics is super expensive. Clear OC-7086 is 100 for quart, 250 for gallon.
+100 250
+</p>
+
+<p>
+44.31 112.12
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Clear Resin&quot;,&quot;hid&quot;:&quot;clear_resin&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;1525-2028&quot;} -->
+<h3 class="sectionedit9" id="pressure_pot">Pressure pot</h3>
+<div class="level3">
+
+<p>
+Pressure pot conversion parts: <a href="https://youtu.be/5jOttgLQvpA?t=116" class="urlextern" title="https://youtu.be/5jOttgLQvpA?t=116" rel="ugc nofollow">https://youtu.be/5jOttgLQvpA?t=116</a>
+</p>
+<ul>
+<li class="level1 node"><div class="li"> Harbor Freight:</div>
+<ul>
+<li class="level2"><div class="li"> 1/4 inch Ball valve</div>
+</li>
+<li class="level2"><div class="li"> 3/8 to 1/4 inch adapter</div>
+</li>
+<li class="level2"><div class="li"> 1/4 inch 4 piece air hose adapter set</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Lowe&#039;s</div>
+<ul>
+<li class="level2"><div class="li"> 1/4 inch female to female elbow</div>
+</li>
+<li class="level2"><div class="li"> 1/4 inch cap</div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+Might replace wing nuts with normal bolts? <a href="https://www.youtube.com/watch?v=GA1c3Jodz1s" class="urlextern" title="https://www.youtube.com/watch?v=GA1c3Jodz1s" rel="ugc nofollow">https://www.youtube.com/watch?v=GA1c3Jodz1s</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Or 3d printed part? <a href="https://www.myminifactory.com/object/3d-print-127405" class="urlextern" title="https://www.myminifactory.com/object/3d-print-127405" rel="ugc nofollow">https://www.myminifactory.com/object/3d-print-127405</a></div>
+</li>
+</ul>
+
+<p>
+Grainger plastic sheet stock search: <a href="https://www.grainger.com/category/raw-materials/plastics/plastic-sheets-and-film?attrs=Plastic+Length%7C12%22~~Plastic+Thickness%7C0.06%22%7C0.063%22~~Plastic+Width%7C12%22&amp;filters=attrs&amp;sortKey=price&amp;sortOrder=asc" class="urlextern" title="https://www.grainger.com/category/raw-materials/plastics/plastic-sheets-and-film?attrs=Plastic+Length%7C12%22~~Plastic+Thickness%7C0.06%22%7C0.063%22~~Plastic+Width%7C12%22&amp;filters=attrs&amp;sortKey=price&amp;sortOrder=asc" rel="ugc nofollow">https://www.grainger.com/category/raw-materials/plastics/plastic-sheets-and-film?attrs=Plastic+Length%7C12%22~~Plastic+Thickness%7C0.06%22%7C0.063%22~~Plastic+Width%7C12%22&amp;filters=attrs&amp;sortKey=price&amp;sortOrder=asc</a>
+</p>
+
+<p>
+Art n Glow Art Epoxy Resin
+</p>
+<div class="table sectionedit10"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Experiment </th><th class="col1"> Result </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> 1/16“ PP with side shims on inside for easier horizontal and vertical alignment </td><td class="col1"> </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> 1/16” PP w/ pressure pot <br/>
+Took forever to place in center </td><td class="col1"> </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Pressure pot with and without vacuum beforehand <br/>
+Didn&#039;t test vacuum </td><td class="col1"> Worked great! PP and HDPE molds worked well, but liked 1/16“ thickness best as it was scissor cuttable. </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> Just vacuum? HDPE mold, some hot air gun </td><td class="col1"> Less bubbles, but still there. Hopefully will harden. <br/>
+Hardened great. A few small bubbles evenly distributed. </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> 180 F water to degas, no vacuum, HDPE mold </td><td class="col1"> Still had bubbles, stuck to HDPE after 30 hours still </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0 leftalign"> 80 F, foam core mold, vacuum and heat  </td><td class="col1"> Stuck to mold, bubbles? </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> 90 F day, clear PVC case (3) </td><td class="col1"> Did not stick to mold next day, but needed to tear mold apart due to mold design <br/>
+Many bubbles </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:10,&quot;range&quot;:&quot;2752-3571&quot;} -->
+<p>
+  * In cold weather epoxy will just stop curing until warmed up again. Nice!
+</p>
+<ul>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+<p>
+Talcum powder in mold is good mold release and bubble buster, apparently. 
+</p>
+
+<p>
+Can do vacuum pump cheap, maybe try actual vacuum first and see what it&#039;s like cheaply? Otherwise there&#039;s pumps like this. <a href="https://hackaday.com/2019/12/19/degassing-epoxy-resin-on-the-very-cheap/" class="urlextern" title="https://hackaday.com/2019/12/19/degassing-epoxy-resin-on-the-very-cheap/" rel="ugc nofollow">https://hackaday.com/2019/12/19/degassing-epoxy-resin-on-the-very-cheap/</a>
+</p>
+
+<p>
+Make a mold out of thin vinyl or stiffer silicone sheet? Or piece of stiff HDPE laundry soap jug. Might want to try that and hdpe cutting board and compare them. I feel like the sheet will not be reusable perfectly if you bend on removal (maybe if you peel with knife), but the cutting board
+</p>
+<ul>
+<li class="level1"><div class="li"> Clear tape to do first seal of edges, but might want to add hot glue too. Heat hot glue to remove panels easier?</div>
+</li>
+<li class="level1"><div class="li"> YouTube Link! <a href="https://www.youtube.com/watch?v=QxXEMJwCxEU" class="urlextern" title="https://www.youtube.com/watch?v=QxXEMJwCxEU" rel="ugc nofollow">https://www.youtube.com/watch?v=QxXEMJwCxEU</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Pressure pot&quot;,&quot;hid&quot;:&quot;pressure_pot&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;2029-4399&quot;} -->
+<h2 class="sectionedit11" id="current_bom">Current BOM</h2>
+<div class="level2">
+
+<p>
+AliExpress has been great. Slow (3 weeks max) but free (for now) shipping!
+</p>
+<div class="table sectionedit12"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Part </th><th class="col1"> Suppliers? </th><th class="col2"> Cost? </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> Dual right angle headers </td><td class="col1"> <a href="https://www.aliexpress.com/item/4001336380255.html?spm=a2g0o.productlist.0.0.20cc347b97HCSJ&amp;algo_pvid=27507bdc-2b7d-4cfe-991f-ab396b309f7b&amp;algo_expid=27507bdc-2b7d-4cfe-991f-ab396b309f7b-6&amp;btsid=0bb0623016015183671187474e8de6&amp;ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_" class="urlextern" title="https://www.aliexpress.com/item/4001336380255.html?spm=a2g0o.productlist.0.0.20cc347b97HCSJ&amp;algo_pvid=27507bdc-2b7d-4cfe-991f-ab396b309f7b&amp;algo_expid=27507bdc-2b7d-4cfe-991f-ab396b309f7b-6&amp;btsid=0bb0623016015183671187474e8de6&amp;ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_" rel="ugc nofollow">AliExpress 1</a>, <a href="https://www.aliexpress.com/item/4001257532427.html?spm=a2g0o.productlist.0.0.20cc347b97HCSJ&amp;algo_pvid=27507bdc-2b7d-4cfe-991f-ab396b309f7b&amp;algo_expid=27507bdc-2b7d-4cfe-991f-ab396b309f7b-21&amp;btsid=0bb0623016015183671187474e8de6&amp;ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_" class="urlextern" title="https://www.aliexpress.com/item/4001257532427.html?spm=a2g0o.productlist.0.0.20cc347b97HCSJ&amp;algo_pvid=27507bdc-2b7d-4cfe-991f-ab396b309f7b&amp;algo_expid=27507bdc-2b7d-4cfe-991f-ab396b309f7b-21&amp;btsid=0bb0623016015183671187474e8de6&amp;ws_ab_test=searchweb0_0,searchweb201602_,searchweb201603_" rel="ugc nofollow">Aliexpress 2</a>, <a href="https://lcsc.com/product-detail/Pin-Header-Female-Header_BOOMELE-Boom-Precision-Elec-C3410_C3410.html" class="urlextern" title="https://lcsc.com/product-detail/Pin-Header-Female-Header_BOOMELE-Boom-Precision-Elec-C3410_C3410.html" rel="ugc nofollow">LCSC</a> (but kinda spendy shipping (fast though)) </td><td class="col2"> Annoying, but 2/3 the price to buy 2&times;40 and cut them since we&#039;re doing it by hand <br/>
+6&times;2 = $.025 each </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> Silicone non-porous <strong>10mm</strong> endcaps, 4 holes? (to avoid cutting the 2 hole version) </td><td class="col1"> Any </td><td class="col2"> $.10 each </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> WS2812B 60 LEDs/m 5V led strip </td><td class="col1"> Any </td><td class="col2"> $4 / meter </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> Dupont Jumper Wire w/ female ends. <br/>
+10cm for board <br/>
+LED strip? <br/>
+Extensions as long as possible (30cm currently) </td><td class="col1"> Any </td><td class="col2"> $.60 for 8 X3 wires </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> Long Centered male pins <br/>
+Only needed for extension or fully sealed board </td><td class="col1"> <a href="https://www.aliexpress.com/item/32651418137.html?spm=a2g0o.placeorder.0.0.1f56321eYNqFys&amp;mp=1" class="urlextern" title="https://www.aliexpress.com/item/32651418137.html?spm=a2g0o.placeorder.0.0.1f56321eYNqFys&amp;mp=1" rel="ugc nofollow">AliExpress</a> <a href="https://lcsc.com/product-detail/Pin-Header-Female-Header_HOAUC-1625-1140CNG0S150001_C343639.html" class="urlextern" title="https://lcsc.com/product-detail/Pin-Header-Female-Header_HOAUC-1625-1140CNG0S150001_C343639.html" rel="ugc nofollow">LCSC</a> <a href="https://www.amazon.com/gp/product/B015KA0RRU/ref=ox_sc_act_title_1?smid=AXPTQCPMY5EH&amp;psc=1" class="urlextern" title="https://www.amazon.com/gp/product/B015KA0RRU/ref=ox_sc_act_title_1?smid=AXPTQCPMY5EH&amp;psc=1" rel="ugc nofollow">Amazon</a> </td><td class="col2"> $.20 for 40 </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> Battery bank … &lt;crickets&gt; Running out of 4000mah small size batteries for helmet <br/>
+Batteries, as low as <a href="https://liionwholesale.com/collections/batteries/products/dlg-grade-b-18650-6-4a-flat-top-3000mah-battery?variant=31378989088837" class="urlextern" title="https://liionwholesale.com/collections/batteries/products/dlg-grade-b-18650-6-4a-flat-top-3000mah-battery?variant=31378989088837" rel="ugc nofollow">$1.80 each for lower continuous current, but that&#039;s ok</a>  <br/>
+2&times;18650 case w/ electronics  <a href="https://www.aliexpress.com/item/32952550953.html?spm=a2g0o.cart.0.0.1d5f3c00Q1MueL&amp;mp=1" class="urlextern" title="https://www.aliexpress.com/item/32952550953.html?spm=a2g0o.cart.0.0.1d5f3c00Q1MueL&amp;mp=1" rel="ugc nofollow">$2, flat shipping</a>, <a href="https://www.alibaba.com/product-detail/5V-1-2A-USB-Power-Bank_62209884629.html?spm=a2700.7724857.normalList.49.49fd71fddjZA0B" class="urlextern" title="https://www.alibaba.com/product-detail/5V-1-2A-USB-Power-Bank_62209884629.html?spm=a2700.7724857.normalList.49.49fd71fddjZA0B" rel="ugc nofollow">Alibaba bulk $.80 each</a>   <br/>
+Electronics for diy case? $1 each on Amazon </td><td class="col1"> idk </td><td class="col2"> </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> Battery Mounting with 3M Dual Lock <strong>250</strong> <br/>
+400 is too much, 170 is probably too little <br/>
+I prefer black, although clear is probably ok too. </td><td class="col1"> No discount to buying from Aliexpress since made in USA and Aliexpress lists 2m as only 2m while Home Depot has 2m = 4m of tape </td><td class="col2"> $30 for 10 (20) feet…1 inch per surface X 2 = $.50 per kit </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:12,&quot;range&quot;:&quot;4500-7140&quot;} -->
+</div>
+
+<h4 id="improvements">Improvements?</h4>
+<div class="level4">
+<div class="table sectionedit13"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Part </th><th class="col1"> Suppliers? </th><th class="col2"> Cost? </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> WS2813 60 LEDs/m … <br/>
+Higher refresh rate, robuster </td><td class="col1"> Any </td><td class="col2"> $7 / meter </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table2&quot;,&quot;secid&quot;:13,&quot;range&quot;:&quot;7164-7270&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Current BOM&quot;,&quot;hid&quot;:&quot;current_bom&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:11,&quot;range&quot;:&quot;4400-7271&quot;} -->
+<h3 class="sectionedit14" id="batteries">Batteries</h3>
+<div class="level3">
+<div class="table sectionedit15"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Solution </th><th class="col1"> Review </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> DIY? </td><td class="col1"> Basic case with board seems at first glance to be same as what Monoprice is (has blinking led) <br/>
+Much cheaper too and can waterproof it and close it up again. <br/>
+Wouldn&#039;t metal be preferred though? </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> 1200mah, $3 <a href="https://www.4allpromos.com/product/span-1200-mah-power-bank" class="urlextern" title="https://www.4allpromos.com/product/span-1200-mah-power-bank" rel="ugc nofollow">https://www.4allpromos.com/product/span-1200-mah-power-bank</a> </td><td class="col1"> Too little power sorry. </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> 2000mah $4.50 <a href="https://www.anypromo.com/technology/smartphone-accessories/translucent-2000mah-power-bank-free-shipping-p750883" class="urlextern" title="https://www.anypromo.com/technology/smartphone-accessories/translucent-2000mah-power-bank-free-shipping-p750883" rel="ugc nofollow">https://www.anypromo.com/technology/smartphone-accessories/translucent-2000mah-power-bank-free-shipping-p750883</a> </td><td class="col1"> IDK </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> 2200mah UL Certified $6 <a href="https://www.anypromo.com/technology/smartphone-accessories/arcadia-translucent-2200-mah-ul-certified-power-bank-p768211" class="urlextern" title="https://www.anypromo.com/technology/smartphone-accessories/arcadia-translucent-2200-mah-ul-certified-power-bank-p768211" rel="ugc nofollow">https://www.anypromo.com/technology/smartphone-accessories/arcadia-translucent-2200-mah-ul-certified-power-bank-p768211</a> </td><td class="col1"> IDK </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table3&quot;,&quot;secid&quot;:15,&quot;range&quot;:&quot;7291-7914&quot;} -->
+<p>
+Pre-done 2000mah as cheap as $4.50 in quantity and labeling w/ free shipping. .
+</p>
+<ul>
+<li class="level1"><div class="li"> UL certified from same company is more: </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Batteries&quot;,&quot;hid&quot;:&quot;batteries&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:14,&quot;range&quot;:&quot;7272-8046&quot;} -->
+<h3 class="sectionedit16" id="taping">Taping</h3>
+<div class="level3">
+
+<p>
+<a href="https://quinled.info/2019/01/21/ip20-vs-ip65-vs-ip67-waterproof/" class="urlextern" title="https://quinled.info/2019/01/21/ip20-vs-ip65-vs-ip67-waterproof/" rel="ugc nofollow">https://quinled.info/2019/01/21/ip20-vs-ip65-vs-ip67-waterproof/</a>
+</p>
+
+<p>
+IP67 = annoying silicone sheath. Abrade with 180-330 grit sandpaper or 3m 7447 pad in circles, then clean with isopropyl alcohol 50-70%, then maybe a primer?
+</p>
+<ul>
+<li class="level1"><div class="li"> 3M VHB Tape Universal Primer UV. SDS says Heptane and Methyl Acetate plus some non-volatile polymeric components. <a href="../../_media/projects/biking/3m_vhb_tape_univ_primer_uv_sds.pdf" class="media mediafile mf_pdf" title="projects:biking:3m_vhb_tape_univ_primer_uv_sds.pdf">3m_vhb_tape_univ_primer_uv_sds.pdf</a></div>
+</li>
+<li class="level1 node"><div class="li"> Also buying cool video primer. <a href="https://www.alibaba.com/product-detail/Silicone-3M-tape-primer-for-adhesive_62001676804.html?spm=a2700.details.maylikehoz.5.7b0c5134jUxJhr" class="urlextern" title="https://www.alibaba.com/product-detail/Silicone-3M-tape-primer-for-adhesive_62001676804.html?spm=a2700.details.maylikehoz.5.7b0c5134jUxJhr" rel="ugc nofollow">https://www.alibaba.com/product-detail/Silicone-3M-tape-primer-for-adhesive_62001676804.html?spm=a2700.details.maylikehoz.5.7b0c5134jUxJhr</a>. YouTube Link! <a href="https://www.youtube.com/watch?v=0JHlrvJOmC8" class="urlextern" title="https://www.youtube.com/watch?v=0JHlrvJOmC8" rel="ugc nofollow">https://www.youtube.com/watch?v=0JHlrvJOmC8</a>.</div>
+<ul>
+<li class="level2"><div class="li"> MSDS says silicone, methanol, and toluene: <a href="../../_media/projects/biking/cl-14a-msds.pdf" class="media mediafile mf_pdf" title="projects:biking:cl-14a-msds.pdf">cl-14a-msds.pdf</a>. Wonder why 3M isn&#039;t using it…</div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+IP65 = Is it silicone as well? Supposedly comes with tape already, we&#039;ll see how well it performs.
+</p>
+
+<p>
+Great company so far, seem to want to do custom stuff easily. Not sure on prices, but they are probably reasonable. <a href="http://www.cpcdoesadhesivesandtapes.com/id33.html" class="urlextern" title="http://www.cpcdoesadhesivesandtapes.com/id33.html" rel="ugc nofollow">http://www.cpcdoesadhesivesandtapes.com/id33.html</a>
+</p>
+<blockquote  class="blockquote-plugin">
+<p>
+Nothing really sticks to silicone. Best you can get is surface tension. The bigger the strip of silicone, the more area to provide surface tension. Goop works. Scuffing the silicone strip and the plastic with 220 grit sandpaper will help. Clean the silicone with a solvent and allow to dry. Apply thin layer of goop to both gluing surfaces, allow glue to dry a bit and then assemble. So long as you&#039;re not asking the silicone to support movement, the joint will hold.
+</p>
+
+</blockquote>
+<p>
+RTV Silicone is the only stuff other than more expensive Loctite Plastics System (cyanoacrylate). <a href="https://forums.adafruit.com/viewtopic.php?f=8&amp;t=26326#p199325" class="urlextern" title="https://forums.adafruit.com/viewtopic.php?f=8&amp;t=26326#p199325" rel="ugc nofollow">https://forums.adafruit.com/viewtopic.php?f=8&amp;t=26326#p199325</a>
+<a href="../../_media/projects/biking/pasted/20201005-231448.png" class="media" title="projects:biking:pasted:20201005-231448.png"><img src="../../_media/projects/biking/pasted/20201005-231448.png" class="media" alt="" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> 66B or 80050</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Taping&quot;,&quot;hid&quot;:&quot;taping&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:16,&quot;range&quot;:&quot;8047-9809&quot;} -->
+<h3 class="sectionedit17" id="level_shifters">Level Shifters</h3>
+<div class="level3">
+
+<p>
+Was able to successfully burn out the diode! Let&#039;s try again with ~1A instead of more than that. I think most users will be ok with dimming the patterns / picking lower-brightness patterns if they want more leds than 100.
+</p>
+<div class="table sectionedit18"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> </th><th class="col1"> </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> </td><td class="col1"> </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table4&quot;,&quot;secid&quot;:18,&quot;range&quot;:&quot;10058-10069&quot;} -->
+<p>
+5V output from arduino didn&#039;t make a noticeable brightness change, probably because resistor on led strip limited led current.
+</p>
+
+<p>
+However, for driving more LEDs brightly, you&#039;ll want a model with level shifters for doing the data pins. Now, how to do it…
+</p>
+
+<p>
+There are level shifters that tap out around 2MHz, but only need 800Khz for cheaper led strips.
+</p>
+
+<p>
+What about voltage drop on longer strips?
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Level Shifters&quot;,&quot;hid&quot;:&quot;level_shifters&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:17,&quot;range&quot;:&quot;9810-10466&quot;} -->
+<h3 class="sectionedit19" id="headers">.1&quot; Headers</h3>
+<div class="level3">
+
+<p>
+All I have ordered so far are good.
+</p>
+
+<p>
+The latest one from AliExpress had slightly less long black parts on the trailing end, but I don&#039;t think that matters. Has a lingering smell to it though. Also was quite cheap.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;.1\&quot; Headers&quot;,&quot;hid&quot;:&quot;headers&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:19,&quot;range&quot;:&quot;10467-10703&quot;} -->
+<h3 class="sectionedit20" id="kit_checklist">Kit Checklist</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Pre-wire V_ALT and n-fet if people request it?</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Kit Checklist&quot;,&quot;hid&quot;:&quot;kit_checklist&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:20,&quot;range&quot;:&quot;10704-10779&quot;} -->
+<h3 class="sectionedit21" id="mah_battery">4000mah battery</h3>
+<div class="level3">
+
+<p>
+Aliexpress has some 4000mah batteries for $9.
+</p>
+
+<p>
+Maybe do a magnetic cable from a 12V battery with usb plugs? <a href="https://www.aliexpress.com/item/4000077722049.html?spm=2114.search0302.3.10.18595756W5aofK&amp;s=p&amp;ws_ab_test=searchweb0_0,searchweb201602_0,searchweb201603_0,ppcSwitch_0&amp;algo_pvid=be82760d-1cd7-4aaf-9908-42a644bb8fd8&amp;algo_expid=be82760d-1cd7-4aaf-9908-42a644bb8fd8-1" class="urlextern" title="https://www.aliexpress.com/item/4000077722049.html?spm=2114.search0302.3.10.18595756W5aofK&amp;s=p&amp;ws_ab_test=searchweb0_0,searchweb201602_0,searchweb201603_0,ppcSwitch_0&amp;algo_pvid=be82760d-1cd7-4aaf-9908-42a644bb8fd8&amp;algo_expid=be82760d-1cd7-4aaf-9908-42a644bb8fd8-1" rel="ugc nofollow">https://www.aliexpress.com/item/4000077722049.html?spm=2114.search0302.3.10.18595756W5aofK&amp;s=p&amp;ws_ab_test=searchweb0_0,searchweb201602_0,searchweb201603_0,ppcSwitch_0&amp;algo_pvid=be82760d-1cd7-4aaf-9908-42a644bb8fd8&amp;algo_expid=be82760d-1cd7-4aaf-9908-42a644bb8fd8-1</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;4000mah battery&quot;,&quot;hid&quot;:&quot;mah_battery&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:21,&quot;range&quot;:&quot;10780-11178&quot;} -->
+<h3 class="sectionedit22" id="v_power">12V Power</h3>
+<div class="level3">
+
+<p>
+Awesome, just use a car jump starter. A little bulky
+</p>
+<ul>
+<li class="level1"><div class="li"> Maybe not charging on USB is ok. It&#039;s infrequent.</div>
+</li>
+<li class="level1"><div class="li"> $80 at harbor freight for 12000 Mah.</div>
+</li>
+</ul>
+
+<p>
+If don&#039;t do a jump start battery, can get $30 battery pack when reducing capacity down to 3000mah.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;12V Power&quot;,&quot;hid&quot;:&quot;v_power&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:22,&quot;range&quot;:&quot;11179-11448&quot;} -->
+<h3 class="sectionedit23" id="legal">Legal</h3>
+<div class="level3">
+
+<p>
+“Is it Legal?”. Notes from conversation with Rick B. Recording stored on Dropbox, although my notes are decent.
+</p>
+
+<p>
+Patent doesn&#039;t prevent people from suing you. 
+</p>
+
+<p>
+After one year, I lose the right to patent in u.s.
+</p>
+
+<p>
+Patent litigation is very expensive.
+</p>
+
+<p>
+Avoid making any product claims. 3rd party data is best.
+</p>
+
+<p>
+Talk with someone in the business, see what they think. Also they probably have all the network / manufacturing / distribution set up already.
+</p>
+<ul>
+<li class="level1"><div class="li"> If they are doing all the work, then they will be the infringer not me.</div>
+</li>
+</ul>
+
+<p>
+<strong>Making</strong> a patented article is something that violates a patent. Even for no profit!
+</p>
+
+<p>
+Why is it bad to give official “legal advice”?
+</p>
+<blockquote  class="blockquote-plugin">
+<p>
+Lawyer here.
+</p>
+
+<p>
+This is a bit of a misconception. Lawyers can and do give legal advice all the time, and are generally more than happy to provide basic information on legal issues to friends, family, and anyone who might ask. (Though as the only lawyer in my extended family, this can be problematic at times. I mean, what the hell do I know about §4, subsection r(17)(b) of the Tennessee state water usage code, even though for some reason Uncle Jimmy thinks I should? But you get the point.)
+</p>
+
+<p>
+The problem arises when you may (or may not) perform some action in reliance on the advice we provide. Lawyers want to make sure that there is a formalized relationship before clients start actively relying on their advice, for a number of reasons: (1) To ensure that the lawyer has all available information before offering advice; (2) to prevent any misconceptions regarding whether the client thinks they are or are not their lawyer; (3) to prevent allegations of malpractice; (4) to protect attorneys&#039; reputations, which is of particular importance in a reputation-driven industry; and (5) to ensure that they are actually allowed to provide formal legal advice in the jurisdiction.
+</p>
+
+<p>
+In general, the solution to this (in public forums and for general advice) is for lawyers to provide broad solutions or suggestions on where to find more information. But to answer your question directly, there is no formal prohibition on offering advice, so long as the recipient acknowledges that the advice is merely that: friendly advice, not formal legal services.
+Because this distinction is easy to misinterpret, however, many lawyers are careful about giving advice publicly, even if they are allowed to.
+</p>
+
+</blockquote><ul>
+<li class="level1"><div class="li"> <a href="https://www.reddit.com/r/explainlikeimfive/comments/328wun/eli5_why_cant_lawyers_give_legal_advice/" class="urlextern" title="https://www.reddit.com/r/explainlikeimfive/comments/328wun/eli5_why_cant_lawyers_give_legal_advice/" rel="ugc nofollow">https://www.reddit.com/r/explainlikeimfive/comments/328wun/eli5_why_cant_lawyers_give_legal_advice/</a></div>
+</li>
+</ul>
+
+<p>
+Most ethical companies will send you a cease and desist letter.
+</p>
+
+<p>
+Why do anything new that isn&#039;t different than the competition?
+</p>
+
+<p>
+Freedom to operate search is different than patentability search
+</p>
+<ul>
+<li class="level1"><div class="li"> Get a legal opinion. An official document. Doesn&#039;t shield you from liability. Expensive.</div>
+</li>
+</ul>
+
+<p>
+Possibly get some insurance for liability risk.
+</p>
+
+<p>
+Rick <em class="u"></em><em class="u"></em><em class="u"></em>_
+</p>
+
+<p>
+Patent and IP counseling: no one he can specificlaly recommend, but these are the big firms
+</p>
+<ul>
+<li class="level1"><div class="li"> Schwabe Williamson and Wyatt</div>
+</li>
+<li class="level1"><div class="li"> Marger Johnson</div>
+</li>
+<li class="level1"><div class="li"> Kolisch Hartwell</div>
+</li>
+<li class="level1"><div class="li"> Klarquist Sparkman</div>
+</li>
+<li class="level1"><div class="li"> Blakely Sokalof. Right across the street from Chipotle, near by OGI.</div>
+</li>
+</ul>
+
+<p>
+Mainly IP firms.
+</p>
+
+<p>
+Associates are $100-$300, partners are $300-500 per hour.
+</p>
+
+<p>
+If you&#039;re not planning on making money, it&#039;s really expensive to spend money for confidence.
+</p>
+
+<p>
+It&#039;d be good to talk with a litigation attorney, give me confidence what the likelihood of getting sued vs. just getting a cease and desist letter.
+</p>
+
+<p>
+Men in Black 2. Riding by on a bicycles.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Legal&quot;,&quot;hid&quot;:&quot;legal&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:23,&quot;range&quot;:&quot;11449-14951&quot;} -->
+<h3 class="sectionedit24" id="water_resistance">Water Resistance</h3>
+<div class="level3">
+
+<p>
+Really water resistance.
+</p>
+
+</div>
+
+<h4 id="conformal_coating">Conformal Coating</h4>
+<div class="level4">
+
+<p>
+While a number of videos talk about a quick fix like clear nail polish, I really care about long term performance with many thermal cycles, abrasion, etc.
+</p>
+<div class="table sectionedit25"><table class="inline">
+	<tr class="row0">
+		<td class="col0"> Liquid Electrical Tape </td><td class="col1"> Really thick, also apparently not waterproof? </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> Silicone </td><td class="col1"> Don&#039;t use acetic acid silicone. <br/>
+Want viscous version too </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table5&quot;,&quot;secid&quot;:25,&quot;range&quot;:&quot;15189-15338&quot;} --><blockquote  class="blockquote-plugin">
+<p>
+Back in the old days my father used three methods to coat the boards:
+– rosin (the violin type) thinned with alcohol and “painted” on the board with a brush
+– nail polish, regular type
+– tinning
+</p>
+
+</blockquote>
+</div>
+
+<h4 id="diy_case">DIY Case</h4>
+<div class="level4">
+
+<p>
+Bad hot glue gun from craft store is on the left. I&#039;m not sure why it doesn&#039;t work as well, but the right one (long not sold anymore) is solid, despite being only 20W.
+</p>
+
+<p>
+<a href="../../_media/projects/biking/img_20200419_154851589.jpg" class="media" title="projects:biking:img_20200419_154851589.jpg"><img src="../../_media/projects/biking/img_20200419_154851589.jpg" class="media" alt="" width="400" /></a>
+</p>
+
+<p>
+However, once it&#039;s applied, hot glue held up well to 5 repeated 140F and 32F cycling of temperature, even the unsanded surface. Would recommend:
+</p>
+<ul>
+<li class="level1"><div class="li"> Sanded (preferably rougher?) surface and cleaned afterwards…HOW?</div>
+</li>
+<li class="level1"><div class="li"> Don&#039;t apply with cold hot melt gun. The hotter the better, I think. More viscous, easier to “wet” and go into grooves and stay there.</div>
+</li>
+<li class="level1"><div class="li"> Clamping probably helps too. For uneven surfaces (over cables and such), try using foam to appropriately apply pressure? </div>
+</li>
+<li class="level1 node"><div class="li"> Let cool to a warm temperature to move on to the next thing. The thicker it is, the longer it takes.</div>
+<ul>
+<li class="level2"><div class="li"> Try to avoid using while warm though <img src="/lib/images/smileys/icon_wink.gif" class="icon" alt=";-)" /></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Avoid use on wood, as it shrinks and expands over seasons and the hot glue doesn&#039;t penetrate into the grain.</div>
+</li>
+</ul>
+
+<p>
+<a href="../../_media/projects/biking/img_20200419_152703644.jpg" class="media" title="projects:biking:img_20200419_152703644.jpg"><img src="../../_media/projects/biking/img_20200419_152703644.jpg" class="media" alt="" width="400" /></a>
+</p>
+<div class="table sectionedit26"><table class="inline">
+	<tr class="row0">
+		<td class="col0"> Film Canister Style 1 </td><td class="col1"> Taking out center created less tension on side, leading to leak </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> Sealing plastic squeeze things <br/>
+(toothpaste, travel bottles) </td><td class="col1"> * Hard to reseal with soldering iron (too hot), hot glue gun tip (too cold?). <br/>
+Maybe try iron or stove. </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> Hot Glue </td><td class="col1"> Hot glue make for easy rework, just heat up with hair dryer and jiggle and you&#039;re done! <br/>
+Or it&#039;s pretty easily rip-offable </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Toothbrush holder <br/>
+<a href="../../_media/projects/biking/img_20200419_185207232.jpg" class="media" title="projects:biking:img_20200419_185207232.jpg"><img src="../../_media/projects/biking/img_20200419_185207232.jpg" class="media" alt="" width="200" /></a> </td><td class="col1"> Too small, barely </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> Travel containers <br/>
+<a href="../../_media/projects/biking/img_20200419_185036117.jpg" class="media" title="projects:biking:img_20200419_185036117.jpg"><img src="../../_media/projects/biking/img_20200419_185036117.jpg" class="media" alt="" width="300" /></a> </td><td class="col1 rightalign">  Generally good, but not clear or too large </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> Paint containers <br/>
+<a href="../../_media/projects/biking/img_20200419_185001266.jpg" class="media" title="projects:biking:img_20200419_185001266.jpg"><img src="../../_media/projects/biking/img_20200419_185001266.jpg" class="media" alt="" width="300" /></a> </td><td class="col1"> Too small </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> Tic Tac containers <br/>
+<a href="../../_media/projects/biking/img_20200419_185459052.jpg" class="media" title="projects:biking:img_20200419_185459052.jpg"><img src="../../_media/projects/biking/img_20200419_185459052.jpg" class="media" alt="" width="300" /></a> </td><td class="col1"> Hard to seal? Good size though </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0"> Lotion tubes <br/>
+<a href="../../_media/projects/biking/img_20200419_185051738.jpg" class="media" title="projects:biking:img_20200419_185051738.jpg"><img src="../../_media/projects/biking/img_20200419_185051738.jpg" class="media" alt="" width="300" /></a> </td><td class="col1"> Might be good for future / larger projects </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> Small paint tube <br/>
+<a href="../../_media/projects/biking/img_20200419_185134095.jpg" class="media" title="projects:biking:img_20200419_185134095.jpg"><img src="../../_media/projects/biking/img_20200419_185134095.jpg" class="media" alt="" width="300" /></a> <a href="../../_media/projects/biking/img_20200419_185140355.jpg" class="media" title="projects:biking:img_20200419_185140355.jpg"><img src="../../_media/projects/biking/img_20200419_185140355.jpg" class="media" alt="" width="300" /></a> </td><td class="col1"> Hopefully this works well! Just right width and depth, and might be able to squeeze two “cases” out of this. </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table6&quot;,&quot;secid&quot;:26,&quot;range&quot;:&quot;16613-17801&quot;} -->
+<p>
+Simple would be a film canister. $.30 on Amazon in quantity 30. Hot glue / epoxy the sides, maybe fill it in too.. Doesn&#039;t need to be underwater.
+</p>
+
+<p>
+Don&#039;t want conformal coating to get into connectors or buttons, as they need to make electrical connection and can&#039;t necessarily scrape off.
+</p>
+
+</div>
+
+<h4 id="bondingmounting">Bonding / Mounting</h4>
+<div class="level4">
+
+<p>
+Can do friction welding with a dremel and 3d printer rod. Can also do plastic welding with kit at Harbor Freight.
+</p>
+
+<p>
+But generally hot glue is surprisingly good, provided you sand/scratch it up plenty. 
+</p>
+
+<p>
+Not such a great idea. Increases skidding resistance during crash. But on the helmet it&#039;s very high up, easy to see. 
+</p>
+
+<p>
+<a href="https://helmets.org/ideal.htm" class="urlextern" title="https://helmets.org/ideal.htm" rel="ugc nofollow">https://helmets.org/ideal.htm</a>
+</p>
+
+<p>
+Silicone led strip on the helmet surface can&#039;t break off! Worse than bare helmet foam…
+</p>
+
+<p>
+But it should be able to break off with velcro or light hot glue.
+</p>
+
+<p>
+I think they&#039;d be open to an email discussion. They clearly have thought a bit about it:
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="https://helmets.org/lights.htm" class="urlextern" title="https://helmets.org/lights.htm" rel="ugc nofollow">https://helmets.org/lights.htm</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="https://helmets.org/helmetlights.htm" class="urlextern" title="https://helmets.org/helmetlights.htm" rel="ugc nofollow">https://helmets.org/helmetlights.htm</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="led_strip">LED Strip</h4>
+<div class="level4">
+
+</div>
+
+<h5 id="fastled">FastLED</h5>
+<div class="level5">
+
+<p>
+Dynamic setting of array sizes (can probably do in loop() too)
+</p>
+<pre class="code c"><span class="co2">#define NUM_STRIPS 3</span>
+<span class="co2">#define NUM_LEDS_PER_STRIP 60</span>
+<span class="co2">#define NUM_LEDS NUM_LEDS_PER_STRIP * NUM_STRIPS</span>
+&nbsp;
+CRGB leds<span class="br0">&#91;</span>NUM_STRIPS <span class="sy0">*</span> NUM_LEDS_PER_STRIP<span class="br0">&#93;</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw4">void</span> setup<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+  <span class="co1">// tell FastLED there's 60 NEOPIXEL leds on pin 10, starting at index 0 in the led array</span>
+  FastLED.<span class="me1">addLeds</span><span class="sy0">&lt;</span>NEOPIXEL<span class="sy0">,</span> <span class="nu0">10</span><span class="sy0">&gt;</span><span class="br0">&#40;</span>leds<span class="sy0">,</span> <span class="nu0">0</span><span class="sy0">,</span> NUM_LEDS_PER_STRIP<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  <span class="co1">// tell FastLED there's 60 NEOPIXEL leds on pin 11, starting at index 60 in the led array</span>
+  FastLED.<span class="me1">addLeds</span><span class="sy0">&lt;</span>NEOPIXEL<span class="sy0">,</span> <span class="nu0">11</span><span class="sy0">&gt;</span><span class="br0">&#40;</span>leds<span class="sy0">,</span> NUM_LEDS_PER_STRIP<span class="sy0">,</span> NUM_LEDS_PER_STRIP<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+  <span class="co1">// tell FastLED there's 60 NEOPIXEL leds on pin 12, starting at index 120 in the led array</span>
+  FastLED.<span class="me1">addLeds</span><span class="sy0">&lt;</span>NEOPIXEL<span class="sy0">,</span> <span class="nu0">12</span><span class="sy0">&gt;</span><span class="br0">&#40;</span>leds<span class="sy0">,</span> <span class="nu0">2</span> <span class="sy0">*</span> NUM_LEDS_PER_STRIP<span class="sy0">,</span> NUM_LEDS_PER_STRIP<span class="br0">&#41;</span><span class="sy0">;</span>
+&nbsp;
+<span class="br0">&#125;</span></pre>
+
+</div>
+
+<h4 id="battery">Battery</h4>
+<div class="level4">
+
+<p>
+Both the 1 18650 or the 2 X 18650 batteries handled 1.2A fine. They also had a resettable fuse for when 5V shorts to ground. 
+</p>
+
+<p>
+Whole 5m strip lit up fine, however, I feel like they might be underpowered? Should be more like 6A. Maybe try full white instead of rainbow ;)
+</p>
+
+<p>
+However, weird issue with blinking on the LED strip that I&#039;ll look into soon.
+</p>
+
+</div>
+
+<h4 id="pcb">PCB</h4>
+<div class="level4">
+
+<p>
+Still not sure about making in USA or not. 
+</p>
+
+<p>
+Silkscreen:
+</p>
+<ul>
+<li class="level1"><div class="li"> Pin values on top side</div>
+</li>
+<li class="level1"><div class="li"> Upper connector orientation</div>
+</li>
+<li class="level1"><div class="li"> Dashed outlines of top part of wemos d1 mini board so you know orientation is correct. Also USB connector position</div>
+</li>
+</ul>
+
+<p>
+Features:
+</p>
+<ul>
+<li class="level1"><div class="li"> <del>Split apart each group of 3 double decker connectors so it&#039;s clear they&#039;re separate.</del> Makes it harder to solder. Just do a full one, but put a very clear silkscreen with indicators for each group of 3.</div>
+</li>
+<li class="level1"><div class="li"> Add extra holes/surface mount pads for ground/5V for additional side stuff? Maybe expose ADC port. Although, those are exposed already. Maybe just line them up on the back or make it easy to cut the traces and “green wire” it to other stuff but use the same connector.</div>
+</li>
+</ul>
+
+<p>
+Black color? Extra two days, but looks kinda cool. Maybe purple or something fun instead.
+</p>
+
+<p>
+Move connectors further up, can overlap hard .1” connector with USB cable hard connector.
+</p>
+
+</div>
+
+<h4 id="usb_cable">USB Cable</h4>
+<div class="level4">
+
+<p>
+Nickel or gold plated connectors? Nickel is ok
+</p>
+<blockquote  class="blockquote-plugin">
+<p>
+One outstanding property of gold is that it is unreactive and exceptionally resistant to corrosion, only being attacked by a mixture of concentrated hydrochloric and nitric acids. It has far superior corrosion resistance in comparison to copper, brass and even nickel – if you happen to be playing guitar on the surface of Venus then gold-plated jack plugs are definitely the ones to use in this situation.
+</p>
+
+<p>
+But gold is also a very soft and expensive metal. What this means in practical terms is that manufacturers deposit only the merest hint of gold plating, just enough to give the impression that the jack plug has a gold-like appearance. It’s so thin that it quickly wears off after just a few insertion/removal cycles of the plug to reveal good old nickel plating beneath. There were genuine technical justifications for plating connectors with nickel, however gold plating serves no practical purpose other than to act as ‘eye candy’.
+</p>
+
+</blockquote>
+<p>
+<a href="../../_media/projects/biking/pasted/20200402-115956.png" class="media" title="projects:biking:pasted:20200402-115956.png"><img src="../../_media/projects/biking/pasted/20200402-115956.png" class="media" alt="" /></a>
+</p>
+
+</div>
+
+<h4 id="christopher">Christopher</h4>
+<div class="level4">
+
+<p>
+Web app be like this? <a href="https://github.com/jasoncoon/esp8266-fastled-webserver" class="urlextern" title="https://github.com/jasoncoon/esp8266-fastled-webserver" rel="ugc nofollow">https://github.com/jasoncoon/esp8266-fastled-webserver</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Brightness and pattern for sure</div>
+</li>
+<li class="level1"><div class="li"> Not sure about color…seems incongruent with pattern, but maybe can customize some patterns.</div>
+</li>
+</ul>
+
+<p>
+<a href="../../_media/projects/biking/pasted/20200401-143658.png" class="media" title="projects:biking:pasted:20200401-143658.png"><img src="../../_media/projects/biking/pasted/20200401-143658.png" class="media" alt="" width="200" /></a>
+</p>
+
+</div>
+
+<h4 id="reusing_harbor_freight_switch">Reusing Harbor Freight Switch</h4>
+<div class="level4">
+
+<p>
+Really want a momentary switch for horn in front.
+</p>
+<ul>
+<li class="level1"><div class="li"> Use with Arduino to limit to 3 second cumulative horn time. </div>
+</li>
+<li class="level1"><div class="li"> Can also make momentary by changing state on up and down. </div>
+</li>
+<li class="level1"><div class="li"> Need debounce</div>
+</li>
+</ul>
+
+<p>
+High current (replacement of light switch):
+</p>
+<ul>
+<li class="level1"><div class="li"> Assuming it&#039;s also rated at 50V and .5A like Adafruit: <a href="https://www.adafruit.com/product/1683" class="urlextern" title="https://www.adafruit.com/product/1683" rel="ugc nofollow">https://www.adafruit.com/product/1683</a></div>
+</li>
+<li class="level1"><div class="li"> Then you should be able to use it at lower voltage and higher currents provided you stay under the power rating? (I*V) <a href="https://electronics.stackexchange.com/a/53314/71181" class="urlextern" title="https://electronics.stackexchange.com/a/53314/71181" rel="ugc nofollow">https://electronics.stackexchange.com/a/53314/71181</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="perf_board">Perf board</h4>
+<div class="level4">
+
+<p>
+Search: <a href="https://www.digikey.com/short/zj275t" class="urlextern" title="https://www.digikey.com/short/zj275t" rel="ugc nofollow">https://www.digikey.com/short/zj275t</a>
+</p>
+
+<p>
+This one is $3 for 4“X3”. Good enough for now. <a href="https://www.digikey.com/product-detail/en/FIT0193/1738-1005-ND/6588427/?itemSeq=322135784" class="urlextern" title="https://www.digikey.com/product-detail/en/FIT0193/1738-1005-ND/6588427/?itemSeq=322135784" rel="ugc nofollow">https://www.digikey.com/product-detail/en/FIT0193/1738-1005-ND/6588427/?itemSeq=322135784</a>. 
+</p>
+
+<p>
+Eventually want to move to real PCB though for quantity &gt;10.
+</p>
+
+</div>
+
+<h4 id="plastic_welding">Plastic welding</h4>
+<div class="level4">
+
+<p>
+Weld-On 16/4 is the recommended for PLA and probably most plastics. 16 is the viscous kind, like PVC cement, whereas 4 is watery and flows easily into the cracks needed. Assuming I get to the roto casting stage, I don&#039;t actually need this anymore, except for the boxes.
+</p>
+
+<p>
+However in a pinch others (including acetone) work decent too: 
+YouTube Link! <a href="https://www.youtube.com/watch?v=Mx10ZN9Jigo" class="urlextern" title="https://www.youtube.com/watch?v=Mx10ZN9Jigo" rel="ugc nofollow">https://www.youtube.com/watch?v=Mx10ZN9Jigo</a>
+</p>
+
+</div>
+
+<h4 id="connectors">Connectors</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <strong>Low profile</strong> .1“ male headers for more flushness and less bending.</div>
+</li>
+</ul>
+<div class="table sectionedit27"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Low profile </th><th class="col1"> Not low profile </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> <a href="../../_media/projects/biking/pasted/20200329-090428.png" class="media" title="projects:biking:pasted:20200329-090428.png"><img src="../../_media/projects/biking/pasted/20200329-090428.png" class="media" alt="" /></a> </td><td class="col1"> <a href="../../_media/projects/biking/pasted/20200329-090347.png" class="media" title="projects:biking:pasted:20200329-090347.png"><img src="../../_media/projects/biking/pasted/20200329-090347.png" class="media" alt="" /></a> </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> <a href="https://www.amazon.com/Adafruit-Accessories-Break-away-36-pin-right-angle/dp/B00QSIYYZK" class="urlextern" title="https://www.amazon.com/Adafruit-Accessories-Break-away-36-pin-right-angle/dp/B00QSIYYZK" rel="ugc nofollow">Adafruit</a> or <a href="https://shop.evilmadscientist.com/partsmenu/292" class="urlextern" title="https://shop.evilmadscientist.com/partsmenu/292" rel="ugc nofollow">EMS</a> or <a href="https://www.pololu.com/product/967" class="urlextern" title="https://www.pololu.com/product/967" rel="ugc nofollow">Polulu</a> <br/>
+<a href="https://www.digikey.com/short/zjr28m" class="urlextern" title="https://www.digikey.com/short/zjr28m" rel="ugc nofollow">Digikey Search</a>, <a href="https://www.digikey.com/product-detail/en/sullins-connector-solutions/PRPC040SBAN-M71RC/S1111EC-40-ND/2775294" class="urlextern" title="https://www.digikey.com/product-detail/en/sullins-connector-solutions/PRPC040SBAN-M71RC/S1111EC-40-ND/2775294" rel="ugc nofollow">short post one Digikey</a> </td><td class="col1"> Everyone else. <a href="https://www.amazon.com/Position-Single-Right-Angle-Header/dp/B0079SJAC0" class="urlextern" title="https://www.amazon.com/Position-Single-Right-Angle-Header/dp/B0079SJAC0" rel="ugc nofollow">Amazon</a> </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table7&quot;,&quot;secid&quot;:27,&quot;range&quot;:&quot;23583-24228&quot;} -->
+<p>
+  * While not joined at the end, this for $8 is awesome. <a href="https://www.adafruit.com/product/793" class="urlextern" title="https://www.adafruit.com/product/793" rel="ugc nofollow">https://www.adafruit.com/product/793</a>. <a href="../../_media/projects/biking/pasted/20200329-093103.png" class="media" title="projects:biking:pasted:20200329-093103.png"><img src="../../_media/projects/biking/pasted/20200329-093103.png" class="media" alt="" width="300" /></a>, also at Digikey: <a href="https://www.digikey.com/product-detail/en/adafruit-industries-llc/1949/1528-1960-ND/6827083" class="urlextern" title="https://www.digikey.com/product-detail/en/adafruit-industries-llc/1949/1528-1960-ND/6827083" rel="ugc nofollow">https://www.digikey.com/product-detail/en/adafruit-industries-llc/1949/1528-1960-ND/6827083</a>
+</p>
+
+<p>
+Maybe during Covid 19 stuff, just DIY. 
+</p>
+
+</div>
+
+<h4 id="wifi">Wifi</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Have wifi come on for first … 1 minute of power on to allow configuration.</div>
+</li>
+<li class="level1"><div class="li"> Have wifi password? be set by user? Reset by flashing from computer.</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="configuration_interface">Configuration interface</h4>
+<div class="level4">
+
+<p>
+Probably more important to get everything else working first. But…say it was working, then what?
+</p>
+<ul>
+<li class="level1"><div class="li"> Configure what strands/objects are where.</div>
+</li>
+<li class="level1"><div class="li"> Whole helmet patterns, pre-configured.</div>
+</li>
+<li class="level1"><div class="li"> Individual strand patterns, if desired (think heartbeat on the back and something else on top)</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="todo">Todo</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Make sure that FastLED or equivalent is able to use most GPIO pins on board so I don&#039;t run out. Only need 2-6 individual ones, can keep power and ground the same.</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Water Resistance&quot;,&quot;hid&quot;:&quot;water_resistance&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:24,&quot;range&quot;:&quot;14952-&quot;} --></div></body>
+</html>

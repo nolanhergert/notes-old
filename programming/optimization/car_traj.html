@@ -1,0 +1,174 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:optimization:car_traj</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#optimizing_car_trajectories">Optimizing Car Trajectories</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#introduction">Introduction</a></div></li>
+<li class="level2"><div class="li"><a href="#inspiration">Inspiration</a></div></li>
+<li class="level2"><div class="li"><a href="#background_research">Background Research</a></div></li>
+<li class="level2"><div class="li"><a href="#implementation">Implementation</a></div></li>
+<li class="level2"><div class="li"><a href="#results">Results</a></div></li>
+</ul>
+</li>
+<li class="level1"><div class="li"><a href="#my_other_project">My Other Project</a></div>
+<ul class="toc">
+<li class="clear">
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#results1">Results</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="optimizing_car_trajectories">Optimizing Car Trajectories</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Final project for 16-745 Dynamic Optimization for Pfr. Chris Atkeson</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Optimizing Car Trajectories&quot;,&quot;hid&quot;:&quot;optimizing_car_trajectories&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-117&quot;} -->
+<h2 class="sectionedit2" id="introduction">Introduction</h2>
+<div class="level2">
+
+<p>
+For this project, we will demonstrate an optimized path for a vehicle that passes through a given curve at the fastest speed. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Introduction&quot;,&quot;hid&quot;:&quot;introduction&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;118-269&quot;} -->
+<h2 class="sectionedit3" id="inspiration">Inspiration</h2>
+<div class="level2">
+
+<p>
+YouTube Link! <a href="https://www.youtube.com/watch?v=buFRknN1ckMYouTube" class="urlextern" title="https://www.youtube.com/watch?v=buFRknN1ckMYouTube" rel="ugc nofollow">https://www.youtube.com/watch?v=buFRknN1ckMYouTube</a> Link! <a href="https://www.youtube.com/watch?v=p3nZHnOWhrg" class="urlextern" title="https://www.youtube.com/watch?v=p3nZHnOWhrg" rel="ugc nofollow">https://www.youtube.com/watch?v=p3nZHnOWhrg</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Inspiration&quot;,&quot;hid&quot;:&quot;inspiration&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;270-409&quot;} -->
+<h2 class="sectionedit4" id="background_research">Background Research</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> <a href="../../_media/programming/optimization/trajopt2.pdf" class="media mediafile mf_pdf" title="programming:optimization:trajopt2.pdf">Case Studies in Trajectory Optimization: Trains, Planes, and other Pastimes</a> by Robert J. Vanderbei</div>
+<ul>
+<li class="level2"><div class="li"> Really got me interested in the applications of optimization outside of linear programming and attempting to make humanoid robots walk. </div>
+</li>
+<li class="level2"><div class="li"> Excellent and similar path optimization examples, and they appear to have been solved in &lt; 5 minutes using a 2003 computer and AMPL. Plus, there&#039;s free source code online and in his book on the topic.</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> <a href="../../_media/programming/optimization/isie05a.pdf" class="media mediafile mf_pdf" title="programming:optimization:isie05a.pdf">Minimum Time vs Maximum Exit Velocity Path Optimization During Cornering</a> by Velenis and Tsiotras.</div>
+<ul>
+<li class="level2"><div class="li"> They optimized for both minimum time and maximum exit velocity for a 90° turn, shown below. </div>
+</li>
+<li class="level2"><div class="li"> <a href="../../_media/programming/optimization/optimal_path.png" class="media" title="programming:optimization:optimal_path.png"><img src="../../_media/programming/optimization/optimal_path.png" class="media" alt="" width="250" /></a><a href="../../_media/programming/optimization/optimal_speed.png" class="media" title="programming:optimization:optimal_speed.png"><img src="../../_media/programming/optimization/optimal_speed.png" class="media" alt="" width="250" /></a></div>
+</li>
+<li class="level2"><div class="li"> In practice with high friction coefficients (F1 racing, for example) the “racing line” method on the left is seen. However, in rally car scenarios with low friction, alternative methods seem to be preferable resulting in the drifting-style racing seen on dirt tracks.</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://phors.locost7.info/contents.htm" class="urlextern" title="http://phors.locost7.info/contents.htm" rel="ugc nofollow">The Physics of Racing Series</a> by Brian Beckman (physics guy who writes software for Microsoft Research but races on the side and developed the Forza physics engine)</div>
+<ul>
+<li class="level2"><div class="li"> Excellent series. Provides an <a href="http://phors.locost7.info/phors21.htm" class="urlextern" title="http://phors.locost7.info/phors21.htm" rel="ugc nofollow">in-depth explanation of implementing Pacejka&#039;s &quot;Magic Formula&quot; model for tire friction forces</a>.</div>
+</li>
+<li class="level2"><div class="li"> Also talks about the dangers of eulerian integration, and advises using the Runge-Kutta model in a nice graphical explanation</div>
+</li>
+<li class="level2"><div class="li"> It appears that drift is not endorsed by professional racers (at least on asphalt).</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Many more on the internet, but not as good as the above for brevity.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Background Research&quot;,&quot;hid&quot;:&quot;background_research&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;410-2245&quot;} -->
+<h2 class="sectionedit5" id="implementation">Implementation</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Initially I spent a good amount of time investigating the strategies behind a lot of the bots in the TORCS racing game (<a href="http://www.berniw.org/tutorials/robot/tutorial.html" class="urlextern" title="http://www.berniw.org/tutorials/robot/tutorial.html" rel="ugc nofollow">a good tutorial here</a>). However, it appears many of them are just finding a few heuristics and twiddling the numbers to see how well they improve over time (one group did use CMA-ES). Quickly abandoned in favor of doing a simple model for this class.</div>
+</li>
+<li class="level1"><div class="li"> Tried to implement as much as I could of the above two papers! </div>
+</li>
+<li class="level1"><div class="li"> Using the bicycle model, which ignores the roll dynamics of the car. </div>
+</li>
+<li class="level1"><div class="li"> <a href="../../_media/programming/optimization/bicycle_model.png" class="media" title="programming:optimization:bicycle_model.png"><img src="../../_media/programming/optimization/bicycle_model.png" class="media" alt="" /></a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Implementation&quot;,&quot;hid&quot;:&quot;implementation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;2246-2899&quot;} -->
+<h2 class="sectionedit6" id="results">Results</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Forthcoming…stuck on getting the integration methods working correctly and into fmincon. I did get good results for the tire model though! You prevent skidding by staying in the linear region before those humps taper off (about 8 degrees in this car model) and you lose traction.</div>
+</li>
+</ul>
+
+<p>
+<a href="../../_media/programming/optimization/pacejka.png" class="media" title="programming:optimization:pacejka.png"><img src="../../_media/programming/optimization/pacejka.png" class="media" alt="" width="300" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Results&quot;,&quot;hid&quot;:&quot;results&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;2900-3254&quot;} -->
+<h1 class="sectionedit7" id="my_other_project">My Other Project</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Think the above lacks depth? I agree. However, I have a decent excuse…</div>
+</li>
+<li class="level1 node"><div class="li"> I was working on pumping out a paper for a different project for the last two weeks. While not explicitly covered in this class, it was basically looking at the optimal estimator for a signal with additive gaussian noise with significant variance. Oh, and you have a poor bit depth when you sample the signal, so it ends up looking like an optimal un-dithering problem! </div>
+<ul>
+<li class="level2"><div class="li"> For an example, how would you extract poor David to the right? <a href="../../_media/programming/optimization/dither.png" class="media" title="programming:optimization:dither.png"><img src="../../_media/programming/optimization/dither.png" class="media" alt="" /></a></div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> The quick explanation is that we can extract the pulse of an individual just from looking at RGB video of their face. After some point tracking for stabilization, we are able to see that the underlying color change due to the pulse is actually below the bit resolution of the camera and that averaging over a neighborhood of pixels (and reducing the overwhelming gaussian noise) is actually the best way to extract the underlying signal.</div>
+<ul>
+<li class="level2"><div class="li"> Only one other paper talked about taking the mean of a region of pixels, and I showed why it was an optimal estimator and gave suggestions on how to get a good estimate of the pulse frequency over the whole face.</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="https://www.dropbox.com/s/vzm1h47lpr61y60/btas_pulse_merge.pdf" class="urlextern" title="https://www.dropbox.com/s/vzm1h47lpr61y60/btas_pulse_merge.pdf" rel="ugc nofollow">Submitted paper, pending review</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;My Other Project&quot;,&quot;hid&quot;:&quot;my_other_project&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;3255-4613&quot;} -->
+<h3 class="sectionedit8" id="results1">Results</h3>
+<div class="level3">
+
+<p>
+<a href="http://people.csail.mit.edu/mrub/vidmag/video/face.mp4" class="urlextern" title="http://people.csail.mit.edu/mrub/vidmag/video/face.mp4" rel="ugc nofollow">Original Video</a>, <a href="http://people.csail.mit.edu/mrub/vidmag/video/face-ideal-from-0.83333-to-1-alpha-50-level-4-chromAtn-1.mp4" class="urlextern" title="http://people.csail.mit.edu/mrub/vidmag/video/face-ideal-from-0.83333-to-1-alpha-50-level-4-chromAtn-1.mp4" rel="ugc nofollow">MIT results</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> My results:</div>
+</li>
+</ul>
+
+<p>
+YouTube Link! <a href="https://www.youtube.com/watch?v=SkW6tgWnUH8" class="urlextern" title="https://www.youtube.com/watch?v=SkW6tgWnUH8" rel="ugc nofollow">https://www.youtube.com/watch?v=SkW6tgWnUH8</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Results&quot;,&quot;hid&quot;:&quot;results1&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;4614-&quot;} --></div></body>
+</html>

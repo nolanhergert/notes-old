@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>home:cars:electric</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#how_to_do_backups">How to do backups</a></div>
+<ul class="toc">
+<li class="clear">
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#a_good_solution_should">A good solution should</a></div></li>
+<li class="level3"><div class="li"><a href="#collision_probability">Collision Probability</a></div></li>
+<li class="level3"><div class="li"><a href="#checksumming_file_systems">Checksumming File Systems</a></div></li>
+<li class="level3"><div class="li"><a href="#test_hard_drives_long_term">Test hard drives long term</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#synology">Synology</a></div></li>
+<li class="level2"><div class="li"><a href="#backup_data_reliably">Backup Data Reliably</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#pre-done">Pre-done</a></div></li>
+<li class="level3"><div class="li"><a href="#diy">DIY</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#datacenter_admin">Datacenter Admin</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h2 class="sectionedit1" id="expected_lifetime_of_lithium_ion_batteries">Expected lifetime of lithium ion batteries</h2>
+<div class="level2">
+
+<p>
+<a href="https://electrek.co/2016/11/01/tesla-battery-degradation/" class="urlextern" title="https://electrek.co/2016/11/01/tesla-battery-degradation/" rel="ugc nofollow">https://electrek.co/2016/11/01/tesla-battery-degradation/</a> says Tesla got 500K miles before significant degradation.
+</p>
+
+<p>
+Basically varies with how often you fast charge, temperature, and surprisingly with <strong>depth of discharge</strong>. 
+</p>
+
+<p>
+<del>A misconception (I think) is that battery university&#039;s cycle count is always the cumulative full cycle count, when it&#039;s likely a count of partial cycles at the given depth of discharge. The chart below shows the result assuming partial cycle count.</del> Wow, they really <strong>do</strong> mean a full or 80% cycle. So, you can get 200K+ miles out of an electric car. Dang…
+</p>
+
+<p>
+<a href="http://batteryuniversity.com/learn/article/discharge_methods" class="urlextern" title="http://batteryuniversity.com/learn/article/discharge_methods" rel="ugc nofollow">http://batteryuniversity.com/learn/article/discharge_methods</a>
+</p>
+
+<p>
+<a href="../../_media/home/pasted/20170413-200936.png" class="media" title="home:pasted:20170413-200936.png"><img src="../../_media/home/pasted/20170413-200936.png" class="media" alt="" /></a>
+<a href="https://docs.google.com/spreadsheets/d/18R2bb_8SURcnsdMu4_F4lGl29HvkHXD_QN5MCYe3bSw/edit?usp=sharing" class="urlextern" title="https://docs.google.com/spreadsheets/d/18R2bb_8SURcnsdMu4_F4lGl29HvkHXD_QN5MCYe3bSw/edit?usp=sharing" rel="ugc nofollow">https://docs.google.com/spreadsheets/d/18R2bb_8SURcnsdMu4_F4lGl29HvkHXD_QN5MCYe3bSw/edit?usp=sharing</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Expected lifetime of lithium ion batteries&quot;,&quot;hid&quot;:&quot;expected_lifetime_of_lithium_ion_batteries&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-856&quot;} -->
+<h3 class="sectionedit2" id="temperature_speed_and_range">Temperature, speed and Range</h3>
+<div class="level3">
+
+<p>
+Specifically for Spark EV, but probably pretty general. 
+</p>
+<ul>
+<li class="level1"><div class="li"> My manual is saying when you plug it in, leave it enough time to do a full charge?? (better for range?)</div>
+</li>
+<li class="level1"><div class="li"> Plug in when below 32F or above 90F. For maximum range, plug it in anyway to have batteries at optimum temperature. </div>
+</li>
+</ul>
+
+<p>
+<a href="../../_media/home/pasted/20160915-160429.png" class="media" title="home:pasted:20160915-160429.png"><img src="../../_media/home/pasted/20160915-160429.png" class="media" alt="" width="400" /></a>
+</p>
+
+<p>
+<a href="../../_media/home/pasted/20170310-045600.png" class="media" title="home:pasted:20170310-045600.png"><img src="../../_media/home/pasted/20170310-045600.png" class="media" alt="" width="400" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Temperature, speed and Range&quot;,&quot;hid&quot;:&quot;temperature_speed_and_range&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;857-&quot;} --></div></body>
+</html>

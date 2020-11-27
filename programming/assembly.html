@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:assembly</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#size_of_stuff_at_compile_time">Size of stuff at compile time</a></div></li>
+<li class="level2"><div class="li"><a href="#find_the_bugs">Find the bugs</a></div></li>
+<li class="level2"><div class="li"><a href="#things_missing">Things missing</a></div></li>
+<li class="level2"><div class="li"><a href="#struct_alignment">Struct alignment</a></div></li>
+<li class="level2"><div class="li"><a href="#ixp_library">IXP Library</a></div></li>
+<li class="level2"><div class="li"><a href="#debugging">Debugging</a></div></li>
+<li class="level2"><div class="li"><a href="#setup">Setup</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<p>
+Busy loop
+</p>
+
+<p>
+dead_loop:
+</p>
+<pre class="code"> test %esi, %esi
+ jz dead_loop </pre>
+
+<p>
+change esi to non zero in order to break out
+and for our code specifically esi=0 always so immediately change it back to 0 once you have broken out
+</p>
+</div></body>
+</html>

@@ -1,0 +1,456 @@
+diff -r old_src/Makefile new_src/Makefile
+2c2
+< CXXOPTFLAGS=-Wall -O3 -fsigned-char -fomit-frame-pointer
+---
+> CXXOPTFLAGS=-Wall -O3 -fsigned-char -fomit-frame-pointer -fpermissive
+5c5
+< CLIENT_LIBS=-L../enet -lenet `sdl-config --libs` -lSDL_image -lSDL_mixer -lz -lGL -lGLU 
+---
+> CLIENT_LIBS=-L../enet -lenet `sdl-config --libs` -lSDL_image -lSDL_mixer -lz -lGL -lGLU -lusb -lhid
+diff -r old_src/clientgame.cpp new_src/clientgame.cpp
+105c105,106
+<     d->maxspeed = 22;
+---
+>     d->maxspeed = 18;
+> 	//d->maxspeed = 10;
+331a333,334
+>     while(player1->roll<-180.0f) player1->roll += 360.0f;
+>     while(player1->roll>=180.0f) player1->roll -= 360.0f;
+342a346,479
+> 
+> HIDInterface* hidHead;
+> HIDInterface* hidHand;
+> 
+> 
+> bool match_serial_number(struct usb_dev_handle* usbdev, void* custom, unsigned int len)
+> {
+>   bool ret;
+>   char* buffer = (char*)malloc(len);
+>   usb_get_string_simple(usbdev, usb_device(usbdev)->descriptor.iSerialNumber,
+>       buffer, len);
+>   ret = strncmp(buffer, (char*)custom, len) == 0;
+>   free(buffer);
+>   return ret;
+> }
+> 
+> void spacepointinit()
+> {
+>     hid_return ret;
+> 	string serial1 = "4309404132374231066E0036";
+> 	string serial0 = "4309494732374231066D0036";
+>     HIDInterfaceMatcher matcher;
+> 
+> 	ret = hid_init();
+> 	if (ret != HID_RET_SUCCESS) {
+> 	    fprintf(stderr, "hid_init failed with return code %d\n", ret);
+> 	    return;
+> 	}
+> 	
+> 
+> 	hidHead = hid_new_HIDInterface();
+> 	if (hidHead == 0) {
+> 	    fprintf(stderr, "hid_new_HIDInterface() failed, out of memory?\n");
+> 	    return;
+> 	}
+> 
+> 	matcher = { 0x20ff, 0x0100,(matcher_fn_t)match_serial_number, serial0, 25};
+> 
+> 	ret = hid_force_open(hidHead, 1, &matcher, 3);
+> 	if (ret != HID_RET_SUCCESS) {
+> 	    ret = hid_force_open(hidHead, 0, &matcher, 3);
+> 	}
+> 	if (ret != HID_RET_SUCCESS) {
+> 	    fprintf(stderr, "hid_force_open failed with return code %d.\n", ret);
+> 	    return;
+> 	}
+> 
+> 
+> 	hidHand = hid_new_HIDInterface();
+> 	if (hidHand == 0) {
+> 	    fprintf(stderr, "hid_new_HIDInterface() failed, out of memory?\n");
+> 	    return;
+> 	}
+> 
+> 	matcher = { 0x20ff, 0x0100,(matcher_fn_t)match_serial_number, serial1, 25};
+> 	ret = hid_force_open(hidHand, 1, &matcher, 3);
+> 	if (ret != HID_RET_SUCCESS) {
+> 	    ret = hid_force_open(hidHand, 0, &matcher, 3);
+> 	}
+> 	if (ret != HID_RET_SUCCESS) {
+> 	    fprintf(stderr, "hid_force_open failed with return code %d.\n", ret);
+> 	    return;
+> 	}
+> 
+> /*
+> 	while (i < 2) {
+> 		if (i == 0) {
+> 			string serial = "4309404132374231066E0036";
+> 			hid = hidHead;
+> 		} else {
+> 			string serial = "4309494732374231066D0036";
+> 			hid = hidHand;
+> 		}
+> 
+> 
+> 		
+> 		
+> 		i++;
+> 	}
+> */
+> }
+> 
+> float handRelYaw,handRelPitch,handRelRoll;
+> 
+> void spacepointmove()
+> {
+> 	HIDInterface* hid;
+> 	int i = 0;
+> 	
+>     if (hidHead == 0 || player1->state==CS_DEAD || intermission) return;
+>     char data[15];
+> 	while (i < 2) {
+> 		if (i == 0) {
+> 			hid = hidHead;
+> 		} else {
+> 			hid = hidHand;
+> 		}
+> 
+> 		memset(data, 0, sizeof(data)); 
+> 		hid_return ret = hid_interrupt_read(hid,0x82,data,15,0);
+> 		if (ret != HID_RET_SUCCESS) {
+> 		    fprintf(stderr, "hid_interrupt_read failed with return code %d.\n", ret);
+> 		    return;
+> 		}
+> 		
+> 		float qx = (((unsigned char)data[6]|((unsigned char)data[7]<<8))-32768)/32768.0f;
+> 		float qy = (((unsigned char)data[8]|((unsigned char)data[9]<<8))-32768)/32768.0f;
+> 		float qz = (((unsigned char)data[10]|((unsigned char)data[11]<<8))-32768)/32768.0f;
+> 		float qw = (((unsigned char)data[12]|((unsigned char)data[13]<<8))-32768)/32768.0f;
+> 		
+> 		float sqx = qx*qx;
+> 		float sqy = qy*qy;
+> 		float sqz = qz*qz;
+> 		float sqw = qw*qw;
+> 
+> 		float yaw = (180.0f/M_PI)*atan2(2.0f * (qx*qy + qz*qw),(sqx - sqy - sqz + sqw));
+> 		float pitch = (180.0f/M_PI)*asin(-2.0f * (qx*qz - qy*qw));
+> 		float roll = (180.0f/M_PI)*atan2(2.0f * (qy*qz + qx*qw),(-sqx - sqy + sqz + sqw));
+> 		
+> 		if (i == 0) {
+> 			player1->yaw = yaw;
+> 			player1->pitch = pitch;
+> 			player1->roll = roll;
+> 			fixplayer1range();
+> 		} else {
+> 			handRelYaw = yaw - player1->yaw;
+> 			handRelPitch = pitch - player1->pitch;
+> 			handRelRoll = roll - player1->roll;
+> 		}
+> 		i++;
+> 	}
+> }
+> 
+> 
+354,356c491,496
+<     float droll = damage/0.5f;
+<     player1->roll += player1->roll>0 ? droll : (player1->roll<0 ? -droll : (rnd(2) ? droll : -droll));  // give player a kick depending on amount of damage
+<     if((player1->health -= damage)<=0)
+---
+>     //float droll = damage/0.5f;
+>     //player1->roll += player1->roll>0 ? droll : (player1->roll<0 ? -droll : (rnd(2) ? droll : -droll));  // give player a kick depending on amount of damage
+> 
+> 	//Invincible!
+>     //if((player1->health -= damage)<=0)
+> 	if ((player1->health) <= 0)
+429a570
+> 	spacepointinit();
+430a572
+> 	
+Only in new_src: config.cfg
+diff -r old_src/cube.h new_src/cube.h
+199a200,204
+> extern float handRelYaw;					//Relative Y,P,R of SpacePoint Fusion in hand
+> extern float handRelPitch;
+> extern float handRelRoll;
+> extern int crossHairX;
+> extern int crossHairY;
+diff -r old_src/main.cpp new_src/main.cpp
+195a196
+> 		spacepointmove();
+218,221c219,222
+<                 case SDL_MOUSEMOTION:
+<                     if(ignore) { ignore--; break; };
+<                     mousemove(event.motion.xrel, event.motion.yrel);
+<                     break;
+---
+>                 //case SDL_MOUSEMOTION:
+>                 //    if(ignore) { ignore--; break; };
+>                 //    mousemove(event.motion.xrel, event.motion.yrel);
+>                 //    break;
+diff -r old_src/monster.cpp new_src/monster.cpp
+274c274,275
+<     if((m->health -= damage)<=0)
+---
+>     
+> 	if((m->health -= damage)<=0)
+diff -r old_src/physics.cpp new_src/physics.cpp
+300a301
+> /*
+311c312
+<     
+---
+>  */   
+diff -r old_src/protos.h new_src/protos.h
+21c21
+< extern void conoutf(const char *s, ...);
+---
+> extern void conoutf(const char *s, ...);
+78a79
+> extern void spacepointmove();
+133c134
+< extern void draw_textf(char *fstr, int left, int top, int gl_num, ...);
+---
+> extern void draw_textf(char *fstr, int left, int top, int gl_num, ...);
+diff -r old_src/renderextras.cpp new_src/renderextras.cpp
+212a213,215
+> int crossHairX,crossHairY;
+> 
+> //w,h is screen width and height
+215c218,226
+<     glReadPixels(w/2, h/2, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &cursordepth);
+---
+> 	//Pick a good absolute distance that gun will be away from head
+> 	//Not sure on units, but 300 seemed to work well. Tweak as needed!
+> 	float distance = 300;
+> 	//crosshair's x=0,y=0 is in bottom left hand corner
+> 	
+> 	crossHairX = w/2 + distance*tan(PI * handRelYaw / (float)180);
+> 	crossHairY = h/2 + distance*tan(PI * handRelPitch / (float)180);
+> 	
+>     glReadPixels(crossHairX, crossHairY, 1, 1, GL_DEPTH_COMPONENT, GL_FLOAT, &cursordepth);
+217c228
+<     gluUnProject(w/2, h/2, depthcorrect(cursordepth), mm, pm, viewport, &worldx, &worldz, &worldy);
+---
+>     gluUnProject(crossHairX, crossHairY, depthcorrect(cursordepth), mm, pm, viewport, &worldx, &worldz, &worldy);
+321,324c332,339
+<         glTexCoord2d(0.0, 0.0); glVertex2f(VIRTW/2 - chsize, VIRTH/2 - chsize);
+<         glTexCoord2d(1.0, 0.0); glVertex2f(VIRTW/2 + chsize, VIRTH/2 - chsize);
+<         glTexCoord2d(1.0, 1.0); glVertex2f(VIRTW/2 + chsize, VIRTH/2 + chsize);
+<         glTexCoord2d(0.0, 1.0); glVertex2f(VIRTW/2 - chsize, VIRTH/2 + chsize);
+---
+> 
+> 		//VIRTW = 2400, VIRTH = 1800
+> 		float centerX = ((float)crossHairX/(float)640)*(float)VIRTW;
+> 		float centerY = VIRTH/2 + -((int)(((float)crossHairY/(float)480)*(float)VIRTH) - VIRTH/2);
+>         glTexCoord2d(0.0, 0.0); glVertex2f(centerX - chsize, centerY - chsize);
+>         glTexCoord2d(1.0, 0.0); glVertex2f(centerX + chsize, centerY - chsize);
+>         glTexCoord2d(1.0, 1.0); glVertex2f(centerX + chsize, centerY + chsize);
+>         glTexCoord2d(0.0, 1.0); glVertex2f(centerX - chsize, centerY + chsize);
+338a354,361
+> 		
+> /*
+> 		draw_textf("%f", 3200, 2060, 2, handRelYaw);
+> 		draw_textf("%f", 3200, 2110, 2, handRelPitch);
+> 		draw_textf("%d,%d", 3200, 2180, 2, crossHairX, crossHairY);
+> 		draw_textf("%d,%d,%d", 3200, 2250, 2, (int)worldpos.x,(int)worldpos.y,(int)worldpos.z);
+> 		draw_textf("%d,%d,%d", 3200, 2320, 2, (int)player1->o.x,(int)player1->o.y,(int)player1->o.z);
+> */
+342a366
+> 
+diff -r old_src/rendergl.cpp new_src/rendergl.cpp
+269c269,272
+<     rendermodel(hudgunnames[player1->gunselect], start, end, 0, 1.0f, player1->o.x, player1->o.z, player1->o.y, player1->yaw+90, player1->pitch, false, 1.0f, speed, 0, base);
+---
+>     //rendermodel(hudgunnames[player1->gunselect], start, end, 0, 1.0f, player1->o.x, player1->o.z, player1->o.y, player1->yaw+90, player1->pitch, false, 1.0f, speed, 0, base);
+> 
+> 	//Moving on-screen gun along with Wii Zapper
+> 	rendermodel(hudgunnames[player1->gunselect], start, end, 0, 1.0f, player1->o.x, player1->o.z, player1->o.y, player1->yaw + 90 + handRelYaw, player1->pitch + handRelPitch, false, 1.0f, speed, 0, base);
+diff -r old_src/sound.cpp new_src/sound.cpp
+13,18c13,19
+< #define MAXCHAN 32
+< #define SOUNDFREQ 22050
+< 
+< struct soundloc { vec loc; bool inuse; } soundlocs[MAXCHAN];
+< 
+< #ifdef USE_MIXER
+---
+> #define MAXCHAN 32
+> #define SOUNDFREQ 22050
+> 
+> struct soundloc { vec loc; bool inuse; } soundlocs[MAXCHAN];
+> 
+> #ifdef USE_MIXER
+>     //#include "../include/SDL_mixer.h"
+62c63
+<         };
+---
+>         };
+139,172c140,173
+< VAR(stereo, 0, 1, 1);
+< 
+< void updatechanvol(int chan, vec *loc)
+< {
+<     int vol = soundvol, pan = 255/2;
+<     if(loc)
+<     {
+<         vdist(dist, v, *loc, player1->o);
+<         vol -= (int)(dist*3*soundvol/255); // simple mono distance attenuation
+<         if(stereo && (v.x != 0 || v.y != 0))
+<         {
+<             float yaw = -atan2(v.x, v.y) - player1->yaw*(PI / 180.0f); // relative angle of sound along X-Y axis
+<             pan = int(255.9f*(0.5*sin(yaw)+0.5f)); // range is from 0 (left) to 255 (right)
+<         };
+<     };
+<     vol = (vol*MAXVOL)/255;
+<     #ifdef USE_MIXER
+<         Mix_Volume(chan, vol);
+<         Mix_SetPanning(chan, 255-pan, pan);
+<     #else
+<         FSOUND_SetVolume(chan, vol);
+<         FSOUND_SetPan(chan, pan);
+<     #endif
+< };  
+< 
+< void newsoundloc(int chan, vec *loc)
+< {
+<     assert(chan>=0 && chan<MAXCHAN);
+<     soundlocs[chan].loc = *loc;
+<     soundlocs[chan].inuse = true;
+< };
+< 
+< void updatevol()
+< {
+---
+> VAR(stereo, 0, 1, 1);
+> 
+> void updatechanvol(int chan, vec *loc)
+> {
+>     int vol = soundvol, pan = 255/2;
+>     if(loc)
+>     {
+>         vdist(dist, v, *loc, player1->o);
+>         vol -= (int)(dist*3*soundvol/255); // simple mono distance attenuation
+>         if(stereo && (v.x != 0 || v.y != 0))
+>         {
+>             float yaw = -atan2(v.x, v.y) - player1->yaw*(PI / 180.0f); // relative angle of sound along X-Y axis
+>             pan = int(255.9f*(0.5*sin(yaw)+0.5f)); // range is from 0 (left) to 255 (right)
+>         };
+>     };
+>     vol = (vol*MAXVOL)/255;
+>     #ifdef USE_MIXER
+>         Mix_Volume(chan, vol);
+>         Mix_SetPanning(chan, 255-pan, pan);
+>     #else
+>         FSOUND_SetVolume(chan, vol);
+>         FSOUND_SetPan(chan, pan);
+>     #endif
+> };  
+> 
+> void newsoundloc(int chan, vec *loc)
+> {
+>     assert(chan>=0 && chan<MAXCHAN);
+>     soundlocs[chan].loc = *loc;
+>     soundlocs[chan].inuse = true;
+> };
+> 
+> void updatevol()
+> {
+174,185c175,186
+<     loopi(MAXCHAN) if(soundlocs[i].inuse)
+<     {
+<         #ifdef USE_MIXER
+<             if(Mix_Playing(i))
+<         #else
+<             if(FSOUND_IsPlaying(i))
+<         #endif
+<                 updatechanvol(i, &soundlocs[i].loc);
+<             else soundlocs[i].inuse = false;
+<     };
+< };
+< 
+---
+>     loopi(MAXCHAN) if(soundlocs[i].inuse)
+>     {
+>         #ifdef USE_MIXER
+>             if(Mix_Playing(i))
+>         #else
+>             if(FSOUND_IsPlaying(i))
+>         #endif
+>                 updatechanvol(i, &soundlocs[i].loc);
+>             else soundlocs[i].inuse = false;
+>     };
+> };
+> 
+211,222c212,223
+< 
+<     #ifdef USE_MIXER
+<         int chan = Mix_PlayChannel(-1, samples[n], 0);
+<     #else
+<         int chan = FSOUND_PlaySoundEx(FSOUND_FREE, samples[n], NULL, true);
+<     #endif
+<     if(chan<0) return;
+<     if(loc) newsoundloc(chan, loc);
+<     updatechanvol(chan, loc);
+<     #ifndef USE_MIXER
+<         FSOUND_SetPaused(chan, false);
+<     #endif
+---
+> 
+>     #ifdef USE_MIXER
+>         int chan = Mix_PlayChannel(-1, samples[n], 0);
+>     #else
+>         int chan = FSOUND_PlaySoundEx(FSOUND_FREE, samples[n], NULL, true);
+>     #endif
+>     if(chan<0) return;
+>     if(loc) newsoundloc(chan, loc);
+>     updatechanvol(chan, loc);
+>     #ifndef USE_MIXER
+>         FSOUND_SetPaused(chan, false);
+>     #endif
+diff -r old_src/tools.h new_src/tools.h
+9a10,12
+> #include <stdbool.h>
+> #include <hid.h>
+> 
+22,26c25,29
+< #ifdef __GNUC__
+< #include <new>
+< #else
+< #include <new.h>
+< #endif
+---
+> #ifdef __GNUC__
+> #include <new>
+> #else
+> #include <new.h>
+> #endif
+68,72c71,75
+< inline void formatstring(char *d, const char *fmt, va_list v)
+< {
+<     _vsnprintf(d, _MAXDEFSTR, fmt, v);
+<     d[_MAXDEFSTR-1] = 0;
+< };
+---
+> inline void formatstring(char *d, const char *fmt, va_list v)
+> {
+>     _vsnprintf(d, _MAXDEFSTR, fmt, v);
+>     d[_MAXDEFSTR-1] = 0;
+> };
+88,91c91,94
+< #define sprintf_s(d) sprintf_s_f((char *)d)
+< #define sprintf_sd(d) string d; sprintf_s(d)
+< #define sprintf_sdlv(d,last,fmt) string d; { va_list ap; va_start(ap, last); formatstring(d, fmt, ap); va_end(ap); }
+< #define sprintf_sdv(d,fmt) sprintf_sdlv(d,fmt,fmt)
+---
+> #define sprintf_s(d) sprintf_s_f((char *)d)
+> #define sprintf_sd(d) string d; sprintf_s(d)
+> #define sprintf_sdlv(d,last,fmt) string d; { va_list ap; va_start(ap, last); formatstring(d, fmt, ap); va_end(ap); }
+> #define sprintf_sdv(d,fmt) sprintf_sdlv(d,fmt,fmt)
+149a153
+> 
+diff -r old_src/weapon.cpp new_src/weapon.cpp
+301c301,302
+<     if(d->gunselect) d->ammo[d->gunselect]--;
+---
+> 	//Infinite ammo!    
+> 	//if(d->gunselect) d->ammo[d->gunselect]--;

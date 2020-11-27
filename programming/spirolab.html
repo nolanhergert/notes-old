@@ -1,0 +1,703 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:spirolab</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#laser_spirograph_simulation">Laser Spirograph Simulation</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#link_dump">Link Dump</a></div></li>
+<li class="level2"><div class="li"><a href="#math">Math</a></div></li>
+<li class="level2"><div class="li"><a href="#lissajous_generator">Lissajous Generator</a></div></li>
+<li class="level2"><div class="li"><a href="#processing_spirograph_script">Processing Spirograph Script</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#ui">UI</a></div></li>
+<li class="level3"><div class="li"><a href="#teaching_points">Teaching Points</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="laser_spirograph_simulation">Laser Spirograph Simulation</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Laser Spirograph Simulation&quot;,&quot;hid&quot;:&quot;laser_spirograph_simulation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-43&quot;} -->
+<h2 class="sectionedit2" id="link_dump">Link Dump</h2>
+<div class="level2">
+
+</div>
+
+<h4 id="section12222014">12/22/2014</h4>
+<div class="level4">
+
+<p>
+<a href="http://youtu.be/D2HF-1xjpP8?t=6m40s" class="media" title="http://youtu.be/D2HF-1xjpP8?t=6m40s" rel="ugc nofollow"><img src="../_media/programming/phasor.png" class="media" alt="" width="400" /></a>, cool visual demo of a phasor. Very intuitive now!
+</p>
+
+</div>
+
+<h4 id="section5182013">5/18/2013</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Read about configuration spaces and toroid-type shapes from the c.s. of pendulums in “Beyond the Third Dimension”. Might be good to explore again, very visual book.</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section4162013">4/16/2013</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Very good explanation of the weird “shape inside a shape” shapes. More mathematical in nature, but at least he defines them. <a href="http://ioso.org/library/fun/spirograph.pdf" class="urlextern" title="http://ioso.org/library/fun/spirograph.pdf" rel="ugc nofollow">http://ioso.org/library/fun/spirograph.pdf</a></div>
+</li>
+<li class="level1"><div class="li"> Plot in Mathematica again to see phasing of shapes in time (3 circles, but view them over time &lt;z&gt;)</div>
+</li>
+<li class="level1 node"><div class="li"> Have a keyboard interface (use one of them from the site below), but make it sound cool.</div>
+<ul>
+<li class="level2"><div class="li"> Ease up to the new note (is it called a chirp?), change the frequency to new note slowly, but be sure to keep the phase correct</div>
+</li>
+<li class="level2"><div class="li"> Maybe add a bit of harmonics but keep shape the same? Ehhh…</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section4152013">4/15/2013</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Man, Bret Victor is addicting.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://webaudiodemos.appspot.com/" class="urlextern" title="http://webaudiodemos.appspot.com/" rel="ugc nofollow">http://webaudiodemos.appspot.com/</a>, might be useful for HTML5 interaction.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://chromium.googlecode.com/svn/trunk/samples/audio/samples.html" class="urlextern" title="http://chromium.googlecode.com/svn/trunk/samples/audio/samples.html" rel="ugc nofollow">http://chromium.googlecode.com/svn/trunk/samples/audio/samples.html</a> Another huge thumbs up, including the piano demo here: <a href="http://www.iquilezles.org/apps/soundtoy/index.html" class="urlextern" title="http://www.iquilezles.org/apps/soundtoy/index.html" rel="ugc nofollow">http://www.iquilezles.org/apps/soundtoy/index.html</a></div>
+</li>
+</ul>
+
+<p>
+<a href="http://oolong.co.uk/trochoid.htm" class="media" title="http://oolong.co.uk/trochoid.htm" rel="ugc nofollow"><img src="../_media/programming/ringstab.gif" class="mediaright" align="right" alt="" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> More equations at the GIF to the right.</div>
+</li>
+<li class="level1"><div class="li"> Want to get tool-tip editing working, using either Bret Victor&#039;s implementation or Khan Academy</div>
+</li>
+<li class="level1"><div class="li"> Display in a sphere (for 3D), maybe other views?</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section452013">4/5/2013</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Another source for a simplified <abbr title="Application Programming Interface">API</abbr>: <a href="http://mathiversity.com/Spirograph" class="urlextern" title="http://mathiversity.com/Spirograph" rel="ugc nofollow">http://mathiversity.com/Spirograph</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section232013">2/3/2013</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> You can definitely do this online! </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://webaudio-io2012.appspot.com/" class="urlextern" title="http://webaudio-io2012.appspot.com/" rel="ugc nofollow">http://webaudio-io2012.appspot.com/</a> WebAudio presentation, tons of tricks and javascript things</div>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://airtightinteractive.com/demos/js/reactive/" class="urlextern" title="http://airtightinteractive.com/demos/js/reactive/" rel="ugc nofollow">http://airtightinteractive.com/demos/js/reactive/</a> very fast audio processing demo with 3D</div>
+<ul>
+<li class="level2"><div class="li"> Using Three.JS, works great</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Many fun Web Audio <abbr title="Application Programming Interface">API</abbr> demos here: <a href="http://chromium.googlecode.com/svn/trunk/samples/audio/samples.html" class="urlextern" title="http://chromium.googlecode.com/svn/trunk/samples/audio/samples.html" rel="ugc nofollow">http://chromium.googlecode.com/svn/trunk/samples/audio/samples.html</a>  </div>
+</li>
+<li class="level1"><div class="li"> Maybe even a Javascript piano too:  <a href="https://github.com/mrcoles/javascript-piano" class="urlextern" title="https://github.com/mrcoles/javascript-piano" rel="ugc nofollow">https://github.com/mrcoles/javascript-piano</a> </div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section620">6/20</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> I think you can scale down higher speeds to lower speeds and still have the phase and rotation look right. You just need to scale the 3rd frequency accordingly. I have no clue how that&#039;d work, but it seems possible.</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section613">6/13</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Mathematica Notebook of Spirolab (plotted over time): <a href="https://www.dropbox.com/s/zwox3nvs42alsbx/Spirolab.nb" class="urlextern" title="https://www.dropbox.com/s/zwox3nvs42alsbx/Spirolab.nb" rel="ugc nofollow">https://www.dropbox.com/s/zwox3nvs42alsbx/Spirolab.nb</a></div>
+</li>
+<li class="level1"><div class="li"> Cyclic curves! <a href="https://www.google.com/search?aq=f&amp;sugexp=chrome,mod=17&amp;sourceid=chrome&amp;ie=UTF-8&amp;q=cyclic+curve&amp;qscrl=1" class="urlextern" title="https://www.google.com/search?aq=f&amp;sugexp=chrome,mod=17&amp;sourceid=chrome&amp;ie=UTF-8&amp;q=cyclic+curve&amp;qscrl=1" rel="ugc nofollow">Google search</a> and very important looking paper: <a href="http://www.mscand.dk/article.php?id=2242" class="urlextern" title="http://www.mscand.dk/article.php?id=2242" rel="ugc nofollow">Cyclic Curves in R^N</a></div>
+</li>
+<li class="level1"><div class="li"> Perhaps below animations of 3D objects rotating is simply a matrix transformation of built-in coordinates?</div>
+</li>
+<li class="level1"><div class="li"> First attempts at characterizing this thing using a spirolab notebook: </div>
+</li>
+<li class="level1"><div class="li"> Great example Mathematica notebook: <a href="http://demonstrations.wolfram.com/Spirograph/" class="urlextern" title="http://demonstrations.wolfram.com/Spirograph/" rel="ugc nofollow">http://demonstrations.wolfram.com/Spirograph/</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.creativeapplications.net/flash/unverse-created-by-ian-snyder-and-ported-to-ios-by-lucky-frame/" class="urlextern" title="http://www.creativeapplications.net/flash/unverse-created-by-ian-snyder-and-ported-to-ios-by-lucky-frame/" rel="ugc nofollow">iOS touch and audio application</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://librocket.com/" class="urlextern" title="http://librocket.com/" rel="ugc nofollow">LibRocket</a>Great UI Library for C++</div>
+</li>
+<li class="level1"><div class="li"> both are made using X/Y input of oscilloscope</div>
+</li>
+</ul>
+
+<p>
+YouTube Link! <a href="https://www.youtube.com/watch?v=o4YyI6_y6kw" class="urlextern" title="https://www.youtube.com/watch?v=o4YyI6_y6kw" rel="ugc nofollow">https://www.youtube.com/watch?v=o4YyI6_y6kw</a>
+</p>
+<iframe src="//www.youtube-nocookie.com/embed/s1eNjUgaB-g" height="239" width="425" class="vshare__none" allowfullscreen="" frameborder="0" scrolling="no"></iframe>
+<p>
+YouTube Link! <a href="https://www.youtube.com/watch?v=W5pTi3UEKioYouTube" class="urlextern" title="https://www.youtube.com/watch?v=W5pTi3UEKioYouTube" rel="ugc nofollow">https://www.youtube.com/watch?v=W5pTi3UEKioYouTube</a> Link! <a href="https://www.youtube.com/watch?v=zAvMmnA4sTE" class="urlextern" title="https://www.youtube.com/watch?v=zAvMmnA4sTE" rel="ugc nofollow">https://www.youtube.com/watch?v=zAvMmnA4sTE</a>
+</p>
+
+</div>
+
+<h4 id="section525">5/25</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Another awesome demo of combination tones using SuperCollider. There&#039;s more than just difference tones going on here…<a href="http://www.earslap.com/doodle/combination-tones-and-the-non-linearities-of-the-human-ear" class="urlextern" title="http://www.earslap.com/doodle/combination-tones-and-the-non-linearities-of-the-human-ear" rel="ugc nofollow">http://www.earslap.com/doodle/combination-tones-and-the-non-linearities-of-the-human-ear</a></div>
+</li>
+<li class="level1"><div class="li"> Also related to missing fundamental…<a href="http://en.wikipedia.org/wiki/Missing_fundamental" class="urlextern" title="http://en.wikipedia.org/wiki/Missing_fundamental" rel="ugc nofollow">http://en.wikipedia.org/wiki/Missing_fundamental</a>. Maybe they look the same in time or complex domain? </div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section46">4/6</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <a href="https://github.com/mrdoob/three.js/" class="urlextern" title="https://github.com/mrdoob/three.js/" rel="ugc nofollow">Three.js</a> is way cool implementation of OpenGL. Still need to learn OpenGL, but potentially useful for things. Processing should be fine though for now..</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section328">3/28</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Waiting to hear back from Apple design guy, Bret Victor</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://en.wikipedia.org/wiki/Combination_tone" class="urlextern" title="http://en.wikipedia.org/wiki/Combination_tone" rel="ugc nofollow">Combination Tone</a>, explains why there are tones going downward when you go upwards in pitch. More than just difference of frequencies…</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section19">1/9</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <a href="http://maxwelldemon.com/2010/01/14/spirographs-and-the-third-dimension/" class="urlextern" title="http://maxwelldemon.com/2010/01/14/spirographs-and-the-third-dimension/" rel="ugc nofollow">3D Spirographs</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section15">1/5</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.cabrillo.edu/~jmccullough/Applets/oscillations.html" class="urlextern" title="http://www.cabrillo.edu/~jmccullough/Applets/oscillations.html" rel="ugc nofollow">Physics Oscillations Hands-On Demos</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section11">1/1</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <a href="http://rudar.ruc.dk/bitstream/1800/5190/1/Chladni%20Pattern.pdf" class="urlextern" title="http://rudar.ruc.dk/bitstream/1800/5190/1/Chladni%20Pattern.pdf" rel="ugc nofollow">Derivation of visualizing chladni patterns</a></div>
+</li>
+<li class="level1"><div class="li"> Need to read about laser hologram</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.animations.physics.unsw.edu.au/waves-sound/interference/" class="urlextern" title="http://www.animations.physics.unsw.edu.au/waves-sound/interference/" rel="ugc nofollow">Visualization of sound intereferences</a> from Australia UNSW physics website</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section1130">11/30</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Met with Pfr. Dannenberg. Human voice has formants for different shapes! Weird to explore and look at. “E”, “I” sound the same from different people, because they&#039;re focused on the same frequencies (your mouth shape is the same), it&#039;s just the harmonics of people&#039;s voices that make it up are different…</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/programming/screen_shot_2011-11-30_at_6.01.28_pm.png" class="media" title="programming:screen_shot_2011-11-30_at_6.01.28_pm.png"><img src="../_media/programming/screen_shot_2011-11-30_at_6.01.28_pm.png" class="media" alt="" width="200" /></a>
+</p>
+
+</div>
+
+<h4 id="section1124">11/24</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Similar demo, except with Lissajous curves. <a href="http://gerdbreitenbach.de/index.html" class="urlextern" title="http://gerdbreitenbach.de/index.html" rel="ugc nofollow">here</a>, explains motion of planets as epitrochoids too! </div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section1120">11/20</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Maybe you can just do FFT in Processing (which for some reason only gives you 1/2 of phasors (doesn&#039;t repeat), which is key for this…the negative phasors don&#039;t cancel out), and then do the IFFT but don&#039;t throw away the imaginary returned part. Play around with this some more…</div>
+</li>
+<li class="level1"><div class="li"> REALLY annoying bug in Mac that only lets you play more than 3 keys at a time for certain keys. For example, try to play &#039;arf&#039; or &#039;agt&#039; or &#039;agy&#039; in GarageBand…it doesn&#039;t work! But playing only home-row keys at the same time works fine. Wonder how this one slipped though…</div>
+</li>
+<li class="level1"><div class="li"> So, finally realized that this spirograph plot is summing over the frequencies to get each time step. It&#039;s kinda doing the inverse fourier transform, except of both real and imaginary data. More to come on that…</div>
+</li>
+<li class="level1"><div class="li"> Excellent OpenGL Processing implementations of things: <a href="../_media/programming/screen_shot_2011-11-20_at_10.45.53_am.png" class="media" title="programming:screen_shot_2011-11-20_at_10.45.53_am.png"><img src="../_media/programming/screen_shot_2011-11-20_at_10.45.53_am.png" class="media" alt="" width="100" /></a><a href="../_media/programming/screen_shot_2011-11-20_at_10.46.10_am.png" class="media" title="programming:screen_shot_2011-11-20_at_10.46.10_am.png"><img src="../_media/programming/screen_shot_2011-11-20_at_10.46.10_am.png" class="media" alt="" width="100" /></a> at <a href="http://mistercrunch.blogspot.com/search?updated-max=2010-11-18T12%3A11%3A00-08%3A00&amp;max-results=7" class="urlextern" title="http://mistercrunch.blogspot.com/search?updated-max=2010-11-18T12%3A11%3A00-08%3A00&amp;max-results=7" rel="ugc nofollow">MisterCrunch</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section1113">11/13</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Also, another method described in Understanding DSP is simply </div>
+</li>
+<li class="level1 node"><div class="li"> Hilbert transform is as easy as taking FFT, multiplying negative frequencies by -1 and doing IFFT! <a href="http://www.math.upenn.edu/~cle/m584/matlab/ws_hilbert.html" class="urlextern" title="http://www.math.upenn.edu/~cle/m584/matlab/ws_hilbert.html" rel="ugc nofollow">http://www.math.upenn.edu/~cle/m584/matlab/ws_hilbert.html</a></div>
+<ul>
+<li class="level2"><div class="li"> Also, Minim can do IFFT, but I&#039;m not sure that it does full spectrum? </div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> YouTube Link! <a href="https://www.youtube.com/watch?v=2tE2oLLXXHA" class="urlextern" title="https://www.youtube.com/watch?v=2tE2oLLXXHA" rel="ugc nofollow">https://www.youtube.com/watch?v=2tE2oLLXXHA</a> (from <a href="http://www.youtube.com/results?search_query=Dr%20Ted%20Monchesky&amp;search=tag" class="urlextern" title="http://www.youtube.com/results?search_query=Dr%20Ted%20Monchesky&amp;search=tag" rel="ugc nofollow">http://www.youtube.com/results?search_query=Dr%20Ted%20Monchesky&amp;search=tag</a>)</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="section1105">11/05</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> “Spirograph Math” on Google: <a href="http://www.exo.net/~pauld/activities/spirograph/Spirograph.html" class="urlextern" title="http://www.exo.net/~pauld/activities/spirograph/Spirograph.html" rel="ugc nofollow">Least-Common Multiple</a> and <a href="http://www.iw.net/~nnburk/Presentation1.pdf" class="urlextern" title="http://www.iw.net/~nnburk/Presentation1.pdf" rel="ugc nofollow">really helpful presentation</a>!</div>
+</li>
+<li class="level1"><div class="li"> 3D Spirograph is possible <a href="http://robertinventor.com/software/Lissajous_3D/index.htm" class="urlextern" title="http://robertinventor.com/software/Lissajous_3D/index.htm" rel="ugc nofollow">Robert Inventor</a>. Maybe just use one of the circles and rotate in polar? Plotting in OpenGL would prob be slow though…</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://zynaddsubfx.sourceforge.net/doc/PADsynth/PADsynth.htm" class="urlextern" title="http://zynaddsubfx.sourceforge.net/doc/PADsynth/PADsynth.htm" rel="ugc nofollow">PADSynth</a>…explains generating audio for synths and making it sound good by adding random phase shifts along the frequency spectrum.</div>
+</li>
+<li class="level1"><div class="li"> Time for sleep <img src="/lib/images/smileys/icon_wink.gif" class="icon" alt=";-)" /></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Link Dump&quot;,&quot;hid&quot;:&quot;link_dump&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;44-7624&quot;} -->
+<h2 class="sectionedit3" id="math">Math</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> What is difference between harmonograph and spirograph? Seem sort of related, but phase of harmonograph varies between real &amp; imaginary whereas spirograph is fixed circle. I like spirograph better…more predictable!</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/programming/screen_shot_2011-09-14_at_11.00.13_pm.png" class="media" title="programming:screen_shot_2011-09-14_at_11.00.13_pm.png"><img src="../_media/programming/screen_shot_2011-09-14_at_11.00.13_pm.png" class="media" alt="" width="800" /></a>
+</p>
+
+<p>
+(from <a href="../_media/programming/58804929-harmonograph-a-visual-guide-to-the-mathematics-of-music.pdf" class="media mediafile mf_pdf" title="programming:58804929-harmonograph-a-visual-guide-to-the-mathematics-of-music.pdf">Harmonograph: A Visual Guide to the Mathematics of Music</a>)
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="../_media/programming/super4.gif" class="media" title="programming:super4.gif"><img src="../_media/programming/super4.gif" class="media" alt="" /></a></div>
+</li>
+<li class="level1"><div class="li"> <em>In the movie at left two waves with slightly different frequencies are travelling to the right. The resulting wave travels in the same direction and with the same speed as the two component waves. The “beat” wave oscillates with the average frequency, and its amplitude envelope varies according to the difference frequency.</em></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Math&quot;,&quot;hid&quot;:&quot;math&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;7625-8444&quot;} -->
+<h2 class="sectionedit4" id="lissajous_generator">Lissajous Generator</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Use PWM (with microcontroller) and 4 mirror setup. Not sure what to do about red laser or diffractors…</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://leyanda.de/light/laser0.php" class="urlextern" title="http://leyanda.de/light/laser0.php" rel="ugc nofollow">Leyanda.de Project</a>. Talks about effective PWM operation and using mosfet for laser switching.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.instructables.com/id/Four-Motor-Laser-Spirograph/4 Motor Setup" class="urlextern" title="http://www.instructables.com/id/Four-Motor-Laser-Spirograph/4 Motor Setup" rel="ugc nofollow">http://www.instructables.com/id/Four-Motor-Laser-Spirograph/4 Motor Setup</a>! THE WAY TO GO :) </div>
+</li>
+<li class="level1"><div class="li"> <a href="http://hackaday.com/2011/03/13/diy-laser-light-show-is-sure-to-please/" class="urlextern" title="http://hackaday.com/2011/03/13/diy-laser-light-show-is-sure-to-please/" rel="ugc nofollow">Another option</a>. He measured each angle of mirror using some math after the fact. Kinda cool!</div>
+</li>
+<li class="level1"><div class="li"> Take pictures of it on long exposure to get the full effect of the shapes (especially for higher numbers of mirrors)</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://linuxgazette.net/133/luana.html#mw-hypotrochoid" class="urlextern" title="http://linuxgazette.net/133/luana.html#mw-hypotrochoid" rel="ugc nofollow">Hypotrochoid paper (CS guy)</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.math.tamu.edu/~boas/courses/math696/including-Maple-graphics-in-LaTeX.html" class="urlextern" title="http://www.math.tamu.edu/~boas/courses/math696/including-Maple-graphics-in-LaTeX.html" rel="ugc nofollow">Plotting spirographs</a></div>
+</li>
+<li class="level1"><div class="li"> The landmark paper on this is <a href="../_media/home/2691465.pdf" class="media mediafile mf_pdf" title="home:2691465.pdf">Frank Farris&#039; Paper, &quot;Wheels on Wheels on Wheels&quot;</a></div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/home/farris.gif" class="media" title="home:farris.gif"><img src="../_media/home/farris.gif" class="media" alt="" /></a>
+</p>
+
+<p>
+<a href="../_media/home/eqn-04.png" class="media" title="home:eqn-04.png"><img src="../_media/home/eqn-04.png" class="media" alt="" /></a>
+</p>
+
+<p>
+where n is the number of engaged wheels: wheel k has its center fixed on a point of the circumference of wheel (k-1). On each wheel, a_k is related to the radius, n_k to the rotation speed, and \theta_k is an initial phase angle. Farris demonstrated that the z(t) curve has g-fold rotational symmetry if all the pairwise differences |n_k-n_j| have g as their greatest common divisor.
+</p>
+
+<p>
+So, the radius here is the degree offset of the mirror (how wide of a circle it makes), and Nk is indeed the rotation speed. So, we want to have mirror angles as similar as possible to get good shapes.
+</p>
+
+<p>
+<a href="https://www.dropbox.com/s/dxcw98u3o90fx0t/spirolab_application.windows32.zip?dl=0" class="urlextern" title="https://www.dropbox.com/s/dxcw98u3o90fx0t/spirolab_application.windows32.zip?dl=0" rel="ugc nofollow">https://www.dropbox.com/s/dxcw98u3o90fx0t/spirolab_application.windows32.zip?dl=0</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Lissajous Generator&quot;,&quot;hid&quot;:&quot;lissajous_generator&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;8445-10148&quot;} -->
+<h2 class="sectionedit5" id="processing_spirograph_script">Processing Spirograph Script</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Processing Spirograph Script&quot;,&quot;hid&quot;:&quot;processing_spirograph_script&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;10149-10191&quot;} -->
+<h3 class="sectionedit6" id="ui">UI</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Ask Harold Kim or Reza Ali or CMU professor for advice/review</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://worrydream.com/KillMath/" class="urlextern" title="http://worrydream.com/KillMath/" rel="ugc nofollow">Bret Victor</a> might have some good advice too. (Apple guy that left to do visual work). He likes <a href="http://www.lua.org/docs.html" class="urlextern" title="http://www.lua.org/docs.html" rel="ugc nofollow">Lua</a> too</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;UI&quot;,&quot;hid&quot;:&quot;ui&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;10192-10452&quot;} -->
+<h3 class="sectionedit7" id="teaching_points">Teaching Points</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Maybe ask Kalid Azad of BetterExplained for help? You talked with him before, and he&#039;s definitely interested…</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="relationship_between_rotating_circle_and_sine_waveaudio">Relationship between rotating circle and sine wave / audio</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Start off with something they know…a sine wave and the corresponding tone. Show it moving by on the screen, and let them interact with it by changing the x-axis.</div>
+</li>
+<li class="level1"><div class="li"> Then fade just one circle moving around and drawing the corresponding sinusoid (it&#039;s the real (y) axis)</div>
+</li>
+<li class="level1 node"><div class="li"> <strong>Not sure how to explain positioning of two circles yet. The subsequent circles are placed on the endpoint of the “pen” before it. </strong></div>
+<ul>
+<li class="level2"><div class="li"> <strong>How is the speed of rotation of the circle related to the size of the spirograph shapes? </strong></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Similar to <a href="http://www.rkm.com.au/ANIMATIONS/animation-sine-wave.html" class="urlextern" title="http://www.rkm.com.au/ANIMATIONS/animation-sine-wave.html" rel="ugc nofollow">this animation</a></div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/programming/video_animation_movie_of_a_sine_wave_sinusoidal_wave_y_sin_x_and_a_cosine_wave_y_cos_x_by_russell_kightley_media.png" class="media" title="programming:video_animation_movie_of_a_sine_wave_sinusoidal_wave_y_sin_x_and_a_cosine_wave_y_cos_x_by_russell_kightley_media.png"><img src="../_media/programming/video_animation_movie_of_a_sine_wave_sinusoidal_wave_y_sin_x_and_a_cosine_wave_y_cos_x_by_russell_kightley_media.png" class="media" alt="" width="200" /></a>
+</p>
+
+</div>
+
+<h5 id="frequency_relationships_and_their_shapes">Frequency relationships and their shapes</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> On two mirrors, the shapes stay the same if their ratio stays the same</div>
+</li>
+<li class="level1"><div class="li"> On three mirrors (one is set), I&#039;m still not sure what happens! Shape is “similar” when you go over straight lines. But not sure how to keep the shape the same</div>
+</li>
+</ul>
+
+<p>
+YouTube Link! <a href="https://www.youtube.com/watch?v=wm2_qmC0qq4" class="urlextern" title="https://www.youtube.com/watch?v=wm2_qmC0qq4" rel="ugc nofollow">https://www.youtube.com/watch?v=wm2_qmC0qq4</a>
+YouTube Link! <a href="https://www.youtube.com/watch?v=0i0OLlrK49Q" class="urlextern" title="https://www.youtube.com/watch?v=0i0OLlrK49Q" rel="ugc nofollow">https://www.youtube.com/watch?v=0i0OLlrK49Q</a>
+</p>
+<iframe src="//www.youtube-nocookie.com/embed/fOZkgejZ-U8" height="239" width="425" class="vshare__none" allowfullscreen="" frameborder="0" scrolling="no"></iframe><ul>
+<li class="level1"><div class="li"> “Scratch panels” apparently…for calibrating the turntable…<a href="http://www.traktorbible.com/en/tutorial5.aspx" class="urlextern" title="http://www.traktorbible.com/en/tutorial5.aspx" rel="ugc nofollow">more here</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="bugs">Bugs</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Zooming is still not working correctly on vertical screen</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="features">Features</h4>
+<div class="level4">
+
+</div>
+
+<h5 id="visual">Visual</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Double-clicking two points selects a line to follow.</div>
+</li>
+<li class="level1"><div class="li"> Suggests convergence points (eventually)</div>
+</li>
+<li class="level1"><div class="li"> <del>Holding SHIFT holds X speed, holding CTRL holds Y speed. Holding both keeps relationship (slope) between the two speeds constant.</del></div>
+</li>
+<li class="level1"><div class="li"> <del>Tapping the spacebar holds and releases the current configuration across different modes.</del></div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="audio">Audio</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.theassc.org/files/assc/sound_files/rising.wav" class="urlextern" title="http://www.theassc.org/files/assc/sound_files/rising.wav" rel="ugc nofollow">Rising Difference Tone demo</a> from <a href="http://www.theassc.org/difference_tone_training" class="urlextern" title="http://www.theassc.org/difference_tone_training" rel="ugc nofollow">some psychology website</a>…really serious for musicians apparently! I&#039;m just playing around with it…</div>
+</li>
+<li class="level1"><div class="li"> Taking microphone input and plotting it in real and imag domain isn&#039;t so bad after all! Hilbert Transform, look it up in “Understanding DSP” book.</div>
+</li>
+<li class="level1"><div class="li"> Play around with difference tones! It&#039;s a psychoacoustic phenomena where a third tone is generated when just two tones are played. Crazy! <a href="http://en.wikipedia.org/wiki/Combination_tone" class="urlextern" title="http://en.wikipedia.org/wiki/Combination_tone" rel="ugc nofollow">Wiki article</a> and <a href="http://www.patmissin.com/ffaq/q26.html" class="urlextern" title="http://www.patmissin.com/ffaq/q26.html" rel="ugc nofollow">demo</a></div>
+</li>
+<li class="level1"><div class="li"> Create chords with piano/keyboard input (coming soon). </div>
+</li>
+<li class="level1"><div class="li"> Model audio and visual convergences based on <a href="http://en.wikipedia.org/wiki/Harmonic_series_(music)" class="urlextern" title="http://en.wikipedia.org/wiki/Harmonic_series_(music)" rel="ugc nofollow">harmonic series</a>. Lots to learn from this page, apparently actual tuning is slightly off from perfect harmonics…Need to pick some significant harmonics and don&#039;t have to do all of space of mod n, etc. Piano is definitely key though…</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://en.wikipedia.org/wiki/Just_intonation" class="urlextern" title="http://en.wikipedia.org/wiki/Just_intonation" rel="ugc nofollow">Just Intonation</a> and <a href="http://en.wikipedia.org/wiki/Five-limit_tuning" class="urlextern" title="http://en.wikipedia.org/wiki/Five-limit_tuning" rel="ugc nofollow">Five-Limit Tuning</a> on Wikipedia</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="html5_implementation">HTML5 Implementation</h4>
+<div class="level4">
+
+</div>
+
+<h5 id="audio1">Audio</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Using Audio Tag in HTML5 <a href="http://www.sk89q.com/2008/11/dynamically-generating-a-wav-in-javascript/" class="urlextern" title="http://www.sk89q.com/2008/11/dynamically-generating-a-wav-in-javascript/" rel="ugc nofollow">Javascript WAV by Albert</a></div>
+</li>
+<li class="level1"><div class="li"> Using Web Audio <abbr title="Application Programming Interface">API</abbr>. Works much better, but only by enabling a flag in Chrome and custom Safari!  Might work in long run though…<a href="http://0xfe.blogspot.com/2011/08/generating-tones-with-web-audio-api.html" class="urlextern" title="http://0xfe.blogspot.com/2011/08/generating-tones-with-web-audio-api.html" rel="ugc nofollow">0xFE blog post</a>. He uses “onaudioprocess” to trigger generating new data, and that&#039;s apparently how it&#039;s supposed to be done from this <a href="http://stackoverflow.com/questions/6593738/audio-data-streaming-in-html5" class="urlextern" title="http://stackoverflow.com/questions/6593738/audio-data-streaming-in-html5" rel="ugc nofollow">StackOverflow thread</a>. The thread has a simpler bit of code too. </div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="drawing">Drawing</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> <a href="../_media/programming/screen_shot_2011-09-08_at_12.00.28_am.png" class="media" title="programming:screen_shot_2011-09-08_at_12.00.28_am.png"><img src="../_media/programming/screen_shot_2011-09-08_at_12.00.28_am.png" class="mediaright" align="right" alt="" width="200" /></a> <a href="https://github.com/hakimel/Sphere" class="urlextern" title="https://github.com/hakimel/Sphere" rel="ugc nofollow">Perfect example code! </a>. Solves clearing the screen on redraw and updates every 16ms, w/ minimum cpu usage! <a href="http://hakim.se/experiments" class="urlextern" title="http://hakim.se/experiments" rel="ugc nofollow">Other great examples</a> too. Really neat site <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" /></div>
+</li>
+<li class="level1"><div class="li"> Is mostly already done through processing.js, but might be able to speed it up using HTML5 and raw javascript. Having access to a jQuery would be nice too…</div>
+</li>
+<li class="level1"><div class="li"> Drawing in Canvas: <a href="http://diveintohtml5.org" class="urlextern" title="http://diveintohtml5.org" rel="ugc nofollow">Dive Into HTML5</a></div>
+</li>
+<li class="level1"><div class="li"> Detecting Mouse Zoom in Javascript/Canvas: <a href="http://stackoverflow.com/questions/2916081/zoom-in-on-a-point-using-scale-and-translate" class="urlextern" title="http://stackoverflow.com/questions/2916081/zoom-in-on-a-point-using-scale-and-translate" rel="ugc nofollow">StackOverflow</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="to_do_s_in_approximate_order">To Do&#039;s (in approximate order)</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Detect between <abbr title="Operating System">OS</abbr>&#039;s so that mouse scroll works normally. <a href="http://stackoverflow.com/questions/228477/how-do-i-programmatically-determine-operating-system-in-java" class="urlextern" title="http://stackoverflow.com/questions/228477/how-do-i-programmatically-determine-operating-system-in-java" rel="ugc nofollow">StackOverflow</a></div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="frequency_change">Frequency Change</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Do a frequency ramp instead of computing phase change each time? </div>
+</li>
+<li class="level1"><div class="li"> Initial ramp should be a little longer? Make frequency quickly speed up and slow down to next frequency, kind of like starting up a motor</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="pretty_colors_and_tails_make_it_look_awesome">Pretty Colors and Tails (make it look awesome)</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Do this by keeping a frame of what&#039;s been drawn and update the new frame and add back a fraction of the old frame, like a low-pass exponential. Should make this “tail length” a user-adjustable knob</div>
+</li>
+<li class="level2"><div class="li"> Make it look awesome like this: (Hough Transform using “hot” colormap in Matlab) <a href="../_media/programming/hough_xform_ex.gif" class="media" title="programming:hough_xform_ex.gif"><img src="../_media/programming/hough_xform_ex.gif" class="mediaright" align="right" alt="" width="200" /></a></div>
+</li>
+<li class="level2 node"><div class="li"> Change color according to what color mix you&#039;re creating? Kind of a different domain (octaves double in frequency whereas low to high on color spectrum might be only double freq), but could work with log scale or something</div>
+<ul>
+<li class="level3 node"><div class="li"> <a href="http://www.sciforums.com/The-math-behind-mixing-colors-t-109746.html" class="urlextern" title="http://www.sciforums.com/The-math-behind-mixing-colors-t-109746.html" rel="ugc nofollow">The Math Behind Mixing Colors</a> Our brain mixes EM frequencies in the visual spectrum. Red + Blue = Green (in our brain), and it looks visually the same as green light (white light through a green color filter), but a prism will split R/B apart and keep G the same. Way cool…</div>
+<ul>
+<li class="level4"><div class="li"> So, you could still potentially mix 950nm infrared and 550nm and get 400nm? (blue) Does heterodyning work with EM spectrum too?</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="integrator_path">Integrator Path</h5>
+<div class="level5">
+<ul>
+<li class="level1 node"><div class="li"> Adjust integrator so that it updates all speeds at one time, shortest net path instead of shortest path for each one.</div>
+<ul>
+<li class="level2"><div class="li"> This one is really weird…not sure how to fix. You see it as a curved path to get to new spot instead of straight line</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="parametersinput">Parameters/Input</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Would be really cool to provide options to change graphing method. Graph x&amp;y to get oscilloscope lissajous figures and allow phase to be open…? </div>
+</li>
+<li class="level1"><div class="li"> Piano keyboard should be touch via mouse only, pressing multiple keys at one time is limited by hardware (called “keyboard ghosting”, <a href="http://www.microsoft.com/appliedsciences/antighostingexplained.mspx" class="urlextern" title="http://www.microsoft.com/appliedsciences/antighostingexplained.mspx" rel="ugc nofollow">explanation and great demo by microsoft</a>)</div>
+</li>
+<li class="level1"><div class="li"> MIDI, WAV input by drag and drop?! <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" /></div>
+</li>
+<li class="level1"><div class="li"> Should be able to provide a link to save them somehow. But, I think having a fast input method via keyboard will be good enough for now. Photoshop doesn&#039;t really have scripts, people just follow instructions</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="tutorial">Tutorial</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Oh…yeah. This stuff is really hard to understand and then teach! But it looks really cool.</div>
+</li>
+<li class="level1 node"><div class="li"> For tutorial, make different objects have their own touch and move classes so that they can be controlled by different steps of the tutorial.</div>
+<ul>
+<li class="level2"><div class="li"> motor1.move(100), use integrator to move smoothly (esp when typing in characters)</div>
+</li>
+<li class="level2"><div class="li"> motor1.click?, lights up for a bit. Helpful to know during tutorial what happened</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h5 id="other_ideas">Other Ideas</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> 3D???!! Might show more intuitive background of data. </div>
+</li>
+</ul>
+
+<p>
+<del>  * RESERVE DOMAIN NAME? (spirolab.org is available :) ) $10</del>
+</p>
+<ul>
+<li class="level1 node"><div class="li"> Port everything to a web-based thing using Processing.js</div>
+<ul>
+<li class="level2 node"><div class="li"> Mouse scroll</div>
+<ul>
+<li class="level3"><div class="li"> <a href="https://processing-js.lighthouseapp.com/projects/41284/tickets/230-mouse-scroll-wheel-support" class="urlextern" title="https://processing-js.lighthouseapp.com/projects/41284/tickets/230-mouse-scroll-wheel-support" rel="ugc nofollow">Feature ticket</a>, <a href="https://github.com/annasob/processing-js/commit/6083bac3d20e41a6c7d857a272efd8fcda3cf120#diff-2" class="urlextern" title="https://github.com/annasob/processing-js/commit/6083bac3d20e41a6c7d857a272efd8fcda3cf120#diff-2" rel="ugc nofollow">final code</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="http://www.vargatron.com/2010/06/processing-js-is-unreal/" class="urlextern" title="http://www.vargatron.com/2010/06/processing-js-is-unreal/" rel="ugc nofollow">Another 3D example that works well</a>. Don&#039;t know *how* it works though… </div>
+</li>
+</ul>
+</li>
+<li class="level2 node"><div class="li"> Exact javascript sine wave audio? </div>
+<ul>
+<li class="level3"><div class="li"> Great one! <a href="http://www.sk89q.com/2008/11/dynamically-generating-a-wav-in-javascript/" class="urlextern" title="http://www.sk89q.com/2008/11/dynamically-generating-a-wav-in-javascript/" rel="ugc nofollow">Javascript WAV by Albert</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="http://js.do/html5-audio-element/" class="urlextern" title="http://js.do/html5-audio-element/" rel="ugc nofollow">Rodrigo&#039;s tutorial</a>, <a href="http://js.do/sound-waves-with-javascript/" class="urlextern" title="http://js.do/sound-waves-with-javascript/" rel="ugc nofollow">his other tutorial</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="http://stackoverflow.com/questions/4974531/writing-musical-notes-to-a-wav-file" class="urlextern" title="http://stackoverflow.com/questions/4974531/writing-musical-notes-to-a-wav-file" rel="ugc nofollow">MS Geek WAV Help</a></div>
+</li>
+<li class="level3"><div class="li"> <a href="https://ccrma.stanford.edu/courses/422/projects/WaveFormat/" class="urlextern" title="https://ccrma.stanford.edu/courses/422/projects/WaveFormat/" rel="ugc nofollow">WAV Header Formatting Help</a> (Josh sent you this page)</div>
+</li>
+<li class="level3 node"><div class="li"> Mmmm, need to generate the full waveform (due to the beats needing to line up at slow speeds). Actually, you can just generate the length of 1/(f2-f1) (1/beat frequency) to get beat period I think…wonder what it&#039;s like for multiple tones?! &gt;.&lt;</div>
+<ul>
+<li class="level4"><div class="li"> Need to have it repeat that waveform</div>
+</li>
+</ul>
+</li>
+<li class="level3"><div class="li"> MAKE THE LOWER FREQUENCIES LOUDER!!! :) Maybe you&#039;ll actually be able to do it this time..</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Have the app go full screen, but adjust max speeds accordingly so it&#039;s still square</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Have an <strong>introduction animation</strong> with the actual circles</div>
+</li>
+<li class="level1 node"><div class="li"> Incorporate controlP5? <a href="http://www.syedrezaali.com/blog/?p=1119" class="urlextern" title="http://www.syedrezaali.com/blog/?p=1119" rel="ugc nofollow">Reza&#039;s supershapes</a> is a good similar example</div>
+<ul>
+<li class="level2"><div class="li"> Text input is a little hard. I kinda want to shy away from controlP5 as long as possible… :)  </div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Save favorite spots</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="progress">Progress</h4>
+<div class="level4">
+
+</div>
+
+<h5 id="section5911">5/9/11</h5>
+<div class="level5">
+<ul>
+<li class="level1"><div class="li"> Finals are over!  Geeking out…</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="section51511">5/15/11</h5>
+<div class="level5">
+<ul>
+<li class="level1 node"><div class="li"> Thinking of porting the whole thing to online-friendly things, but Processing.js (while really easy to port!) is a little underfeatured right now. It doesn&#039;t really do audio tones as far as I can tell, but it seems to do scrolling with a few tweaks.</div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://adomas.org/javascript-mouse-wheel/" class="urlextern" title="http://adomas.org/javascript-mouse-wheel/" rel="ugc nofollow">Source 1</a>, <a href="http://www.emanueleferonato.com/2006/07/29/mouse-wheel-handler-in-javascript/" class="urlextern" title="http://www.emanueleferonato.com/2006/07/29/mouse-wheel-handler-in-javascript/" rel="ugc nofollow">Source 2</a></div>
+</li>
+<li class="level2"><div class="li"> </div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Teaching Points&quot;,&quot;hid&quot;:&quot;teaching_points&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;10453-&quot;} --></div></body>
+</html>

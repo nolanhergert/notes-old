@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>electronics:audio</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#audio_processing">Audio Processing</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#microphone_input">Microphone Input</a></div></li>
+<li class="level2"><div class="li"><a href="#fm_transmitter">FM Transmitter</a></div></li>
+<li class="level2"><div class="li"><a href="#noise_cancellation">Noise Cancellation</a></div></li>
+<li class="level2"><div class="li"><a href="#sound_generation_using_pwm">Sound Generation Using PWM</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#sine_wave_generationmusic">Sine Wave Generation / Music</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#digital_signal_processing_dsp">Digital Signal Processing (DSP)</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="audio_processing">Audio Processing</h1>
+<div class="level1">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Audio Processing&quot;,&quot;hid&quot;:&quot;audio_processing&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-32&quot;} -->
+<h2 class="sectionedit2" id="microphone_input">Microphone Input</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.analog.com/en/audiovideo-products/imems-microphone/admp421/products/product.html" class="urlextern" title="http://www.analog.com/en/audiovideo-products/imems-microphone/admp421/products/product.html" rel="ugc nofollow">Analog Devices MEMS Mic Digital w/ Built in Amplifier</a></div>
+</li>
+<li class="level1"><div class="li"> Might need to up sampling frequency to the max on Arduino/XMega in order to get decent output on even the Sparkfun microphone. To test tomorrow: try to have sample audio coming in on microphone and sent right back out through the DAC to headphones (or logged at a really fast pace to computer).</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Microphone Input&quot;,&quot;hid&quot;:&quot;microphone_input&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;33-515&quot;} -->
+<h2 class="sectionedit3" id="fm_transmitter">FM Transmitter</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> A fun looking project if the need ever comes up…<a href="http://www.sparkfun.com/products/8482" class="urlextern" title="http://www.sparkfun.com/products/8482" rel="ugc nofollow">http://www.sparkfun.com/products/8482</a></div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/electronics/fmmodule-01-l_i_ma.jpg" class="media" title="electronics:fmmodule-01-l_i_ma.jpg"><img src="../_media/electronics/fmmodule-01-l_i_ma.jpg" class="media" alt="" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;FM Transmitter&quot;,&quot;hid&quot;:&quot;fm_transmitter&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;516-677&quot;} -->
+<h2 class="sectionedit4" id="noise_cancellation">Noise Cancellation</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> <a href="../_media/electronics/dspquietcomfort3.pdf" class="media mediafile mf_pdf" title="electronics:dspquietcomfort3.pdf">dspquietcomfort3.pdf</a> Great MIT Master&#039;s thesis by Nathan Hanagami on creating a DSP version of Bose&#039;s Quiet-Comfort 2 Headphones (which were previously all-analog!). </div>
+<ul>
+<li class="level2"><div class="li"> Used a Blackfin processor, but did some feature comparison between different chips. Was limited to fixed-point math, and Blackfin had hardware support for only fractions &lt; 1 or integers &gt; 1…which is pretty inconvenient! Luckily it had a floating point emulation mode, but that made his code run a bit slower. </div>
+</li>
+<li class="level2"><div class="li"> Didn&#039;t take the time to implement noise cancellation, but rather add appropriate sound boosting?</div>
+</li>
+<li class="level2"><div class="li"> Talks a lot about the appropriate algorithm designs for filtering</div>
+</li>
+<li class="level2"><div class="li"> <strong>Is this implementable on an ARM processor? I doubt it…</strong></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Noise Cancellation&quot;,&quot;hid&quot;:&quot;noise_cancellation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;678-1459&quot;} -->
+<h2 class="sectionedit5" id="sound_generation_using_pwm">Sound Generation Using PWM</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sound Generation Using PWM&quot;,&quot;hid&quot;:&quot;sound_generation_using_pwm&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1460-1500&quot;} -->
+<h3 class="sectionedit6" id="sine_wave_generationmusic">Sine Wave Generation / Music</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://aquaticus.info/pwm-sine-wave" class="urlextern" title="http://aquaticus.info/pwm-sine-wave" rel="ugc nofollow">Aquaticus ROV Sine Wave</a> Hands down best tutorial on sine wave generation and RC low-pass filtering.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.nerdkits.com/videos/theremin_with_ir_distance_sensor/" class="urlextern" title="http://www.nerdkits.com/videos/theremin_with_ir_distance_sensor/" rel="ugc nofollow">NerdKits Hardware PWM tutorial</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="audio_effects">Audio Effects</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <a href="http://elm-chan.org/works/vp/report.html" class="media" title="http://elm-chan.org/works/vp/report.html" rel="ugc nofollow"><img src="../_media/electronics/vp.jpeg" class="medialeft" align="left" title="vp.jpeg" alt="vp.jpeg" width="100" /></a> <a href="http://elm-chan.org/works/vp/report.html" class="urlextern" title="http://elm-chan.org/works/vp/report.html" rel="ugc nofollow">Cheap DSP Audio Effects by ELM-Chan</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="polyphonic_audio_generation">Polyphonic Audio Generation</h4>
+<div class="level4">
+<ul>
+<li class="level1 node"><div class="li"> Great example is PolyAVR <a href="http://makingofadrumsynth.blogspot.com/2008/12/avr-based-synth.html" class="urlextern" title="http://makingofadrumsynth.blogspot.com/2008/12/avr-based-synth.html" rel="ugc nofollow">blog post</a> <a href="http://www.lbelectronics.net/polyavr.html" class="urlextern" title="http://www.lbelectronics.net/polyavr.html" rel="ugc nofollow">Site w/ source assembly code</a></div>
+<ul>
+<li class="level2"><div class="li"> Only 4 voices max. Compute wave data for each tone if enabled.</div>
+</li>
+<li class="level2"><div class="li"> Utilize <a href="http://en.wikiaudio.org/ADSR_envelope" class="urlextern" title="http://en.wikiaudio.org/ADSR_envelope" rel="ugc nofollow">MIDI ADSR</a> (Attack, Decay, Sustain, Release) settings for appropriate timings and voicings of tones so they sound more real. Purely volume-only, so no frequency-changes needed. </div>
+</li>
+<li class="level2"><div class="li"> Then it&#039;s simply an additive process after that to determine what the voltage output should be at a given time. </div>
+</li>
+<li class="level2"><div class="li"> ANY INTERRUPTS NEEDED?</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Also <a href="http://elm-chan.org/works/mxb/report.html" class="urlextern" title="http://elm-chan.org/works/mxb/report.html" rel="ugc nofollow">ELM-Chan</a> has a great perl txt2asm melody converter. Everything else is in assembly though :(</div>
+</li>
+<li class="level1"><div class="li"> Making notes <a href="http://forums.makezine.com/comments.php?DiscussionID=6136&amp;page=1" class="urlextern" title="http://forums.makezine.com/comments.php?DiscussionID=6136&amp;page=1" rel="ugc nofollow">&quot;slide&quot;</a> would be cool too, but his way of queuing up melodies is all wrong!</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sine Wave Generation \/ Music&quot;,&quot;hid&quot;:&quot;sine_wave_generationmusic&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;1501-2962&quot;} -->
+<h2 class="sectionedit7" id="digital_signal_processing_dsp">Digital Signal Processing (DSP)</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.onarm.com/" class="urlextern" title="http://www.onarm.com/" rel="ugc nofollow">ARM Optimized Library</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://tinkerish.com/blog/?p=39" class="urlextern" title="http://tinkerish.com/blog/?p=39" rel="ugc nofollow">FFT on Nokia LCD</a>. Great writeup on using Chan&#039;s AVR-optimized FFT library.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Digital Signal Processing (DSP)&quot;,&quot;hid&quot;:&quot;digital_signal_processing_dsp&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;2963-&quot;} --></div></body>
+</html>

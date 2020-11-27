@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:hacks</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#java_programming_notes">Java Programming Notes</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#singletons">Singletons</a></div></li>
+<li class="level2"><div class="li"><a href="#hashing">Hashing</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="elegant_hacksoptimizations">Elegant Hacks / Optimizations</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Hash Codes…why do they use large primes and 31 anyways? <a href="http://stackoverflow.com/questions/299304/why-does-javas-hashcode-in-string-use-31-as-a-multiplier" class="urlextern" title="http://stackoverflow.com/questions/299304/why-does-javas-hashcode-in-string-use-31-as-a-multiplier" rel="ugc nofollow">StackOverflow</a></div>
+</li>
+</ul>
+<pre class="code c">x<span class="sy0">*</span><span class="nu0">31</span> <span class="sy0">=</span> <span class="br0">&#40;</span>x <span class="sy0">&lt;&lt;</span> <span class="nu0">5</span><span class="br0">&#41;</span> <span class="sy0">-</span> x<span class="sy0">;</span>
+<span class="co1">//Bam! 2 ops!</span></pre>
+
+</div>
+</div></body>
+</html>

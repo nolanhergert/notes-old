@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>programming:matlab</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#programming_with_matlab">Programming with Matlab</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#general_beginner_tips">General Beginner Tips</a></div></li>
+<li class="level2"><div class="li"><a href="#more_advanced_tricks">More advanced tricks</a></div></li>
+<li class="level2"><div class="li"><a href="#bugs">Bugs</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#batch_processing_in_matlab">Batch Processing in MATLAB</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#making_an_accurate_fft">Making an accurate FFT</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#mouse_coords">Mouse Coords</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#optimizing_speed">Optimizing Speed</a></div></li>
+<li class="level2"><div class="li"><a href="#fixing_slow_startup_speeds">Fixing Slow Startup Speeds</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="programming_with_matlab">Programming with Matlab</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> <strong>OOP in Matlab</strong>, <a href="http://stackoverflow.com/questions/1693429/is-matlab-oop-slow-or-am-i-doing-something-wrong" class="urlextern" title="http://stackoverflow.com/questions/1693429/is-matlab-oop-slow-or-am-i-doing-something-wrong" rel="ugc nofollow">apparently faster nowadays</a>?</div>
+</li>
+</ul>
+
+<p>
+&gt; I get results similar to <a href="http://stackoverflow.com/questions/1693429/is-matlab-oop-slow-or-am-i-doing-something-wrong" class="urlextern" title="http://stackoverflow.com/questions/1693429/is-matlab-oop-slow-or-am-i-doing-something-wrong" rel="ugc nofollow">http://stackoverflow.com/questions/1693429/is-matlab-oop-slow-or-am-i-doing-something-wrong</a>. At my old work (2012-2013) it skipped running the JIT compiler on the entire script-only (no parameter passing, all global variables, but several for-loop sections) codebase just because I added one top-level function call that passed in a string. 10X slower, if not more. Nowhere was this documented or indicated in the profiler, which was really frustrating. My boss and I were astonished and then switched to Python/Numpy for further algorithm development since we had a lot of work to do and needed OOP and speed.
+</p>
+<ul>
+<li class="level1"><div class="li"> Add JIT information to profiler <a href="http://undocumentedmatlab.com/blog/undocumented-profiler-options" class="urlextern" title="http://undocumentedmatlab.com/blog/undocumented-profiler-options" rel="ugc nofollow">here</a></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> <a href="http://code.google.com/p/yagtom/" class="urlextern" title="http://code.google.com/p/yagtom/" rel="ugc nofollow">Yet Another Guide to Matlab</a> Great Google Wiki site for everyone. Haven&#039;t gone through it all yet but I&#039;d point people here.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Programming with Matlab&quot;,&quot;hid&quot;:&quot;programming_with_matlab&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-1102&quot;} -->
+<h2 class="sectionedit2" id="general_beginner_tips">General Beginner Tips</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> I learned mostly from looking at example code by Googling things I needed to do. Indexing is a little weird to get used to. </div>
+<ul>
+<li class="level2"><div class="li"> Row/column both start at 1 in the top left corner of the matrix.</div>
+</li>
+<li class="level2"><div class="li"> mat[1,:] –&gt; returns first row of matrix</div>
+</li>
+<li class="level2"><div class="li"> mat[1:4,1] –&gt; returns rows 1 thru 4 of column 1</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> A&#039; –&gt; A transposed</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Also, a common hitch for operating on matrices is that you usually want to do element by element operations. For example:</div>
+<ul>
+<li class="level2"><div class="li"> A*B does matrix multiplication</div>
+</li>
+<li class="level2"><div class="li"> A.*B does each element in matrix multiplied by each other (same size matrix of course)</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> If you&#039;re doing large data sets, you&#039;ll see that any sort of for-looping operation takes a long time! Matlab is optimized for matrix operations and sucks at for loops (something about re-allocating each time). Look up “vectorization” for more where that came from.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;General Beginner Tips&quot;,&quot;hid&quot;:&quot;general_beginner_tips&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;1103-1991&quot;} -->
+<h2 class="sectionedit3" id="more_advanced_tricks">More advanced tricks</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.mathworks.com/help/matlab/ref/meshgrid.html" class="urlextern" title="http://www.mathworks.com/help/matlab/ref/meshgrid.html" rel="ugc nofollow">meshgrid</a> is really helpful for generating image/matrix coordinates</div>
+</li>
+<li class="level1"><div class="li"> Many are from <a href="http://www.socher.org/index.php/Main/MatlabHacks" class="urlextern" title="http://www.socher.org/index.php/Main/MatlabHacks" rel="ugc nofollow">Richard Socher&#039;s website</a></div>
+</li>
+</ul>
+<pre class="code">%Set value at many index pairs in matrix
+a = zeros(3,3);
+rows = [1 2 3];
+cols = [3 1 2];
+a(sub2ind(size(a),rows,cols)) = [1 2 3]</pre>
+<pre class="code">%Moving average for large N
+y = cumsum(x)/N;
+y(N+1:end) = y(N+1:end) - y(1:end-N);</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;More advanced tricks&quot;,&quot;hid&quot;:&quot;more_advanced_tricks&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1992-2495&quot;} -->
+<h2 class="sectionedit4" id="bugs">Bugs</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Legend markers come out as same color: </div>
+<ul>
+<li class="level2"><div class="li"> Bug is that matlab burps on plotting matrices! </div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+<a href="../_media/programming/matlab_bug.png" class="media" title="programming:matlab_bug.png"><img src="../_media/programming/matlab_bug.png" class="mediaright" align="right" alt="" width="300" /></a>
+</p>
+<pre class="code">a = [1,2,3; 4,5,6; 7,8,9];
+b = rand(3,3);
+c = rand(3,3);
+
+plot(a,b,&#039;b-&#039;,a,c,&#039;g-&#039;)
+%Burps on legend
+legend(&#039;1&#039;,&#039;2&#039;);
+
+%Reshaping to vectors fixes it
+plot(reshape(a,1,[]),reshape(b,1,[]),&#039;b-&#039;,reshape(a,1,[]),reshape(c,1,[]),&#039;g-&#039;);
+legend(&#039;1&#039;,&#039;2&#039;);</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Bugs&quot;,&quot;hid&quot;:&quot;bugs&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:4,&quot;range&quot;:&quot;2496-2913&quot;} -->
+<h3 class="sectionedit5" id="batch_processing_in_matlab">Batch Processing in MATLAB</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://blogs.mathworks.com/steve/2006/06/06/batch-processing/" class="urlextern" title="http://blogs.mathworks.com/steve/2006/06/06/batch-processing/" rel="ugc nofollow">Batch Processing</a>. Dealing with reading in all the files in a directory and doing something with them.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Batch Processing in MATLAB&quot;,&quot;hid&quot;:&quot;batch_processing_in_matlab&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:5,&quot;range&quot;:&quot;2914-3123&quot;} -->
+<h2 class="sectionedit6" id="making_an_accurate_fft">Making an accurate FFT</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.mathworks.com/support/tech-notes/1700/1702.html" class="urlextern" title="http://www.mathworks.com/support/tech-notes/1700/1702.html" rel="ugc nofollow">Matlab Tech-Note</a> <br/>
+<a href="../_media/programming/1702.png" class="media" title="programming:1702.png"><img src="../_media/programming/1702.png" class="media" alt="" width="200" /></a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Making an accurate FFT&quot;,&quot;hid&quot;:&quot;making_an_accurate_fft&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:6,&quot;range&quot;:&quot;3124-3277&quot;} -->
+<h3 class="sectionedit7" id="mouse_coords">Mouse Coords</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Absolute pixel: </div>
+</li>
+</ul>
+<pre class="code">get(0,&#039;PointerLocation&#039;)</pre>
+<ul>
+<li class="level1"><div class="li"> Relative to axes</div>
+</li>
+</ul>
+<pre class="code">a = axes;
+get(a,&#039;CurrentPoint&#039;);</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Mouse Coords&quot;,&quot;hid&quot;:&quot;mouse_coords&quot;,&quot;codeblockOffset&quot;:3,&quot;secid&quot;:7,&quot;range&quot;:&quot;3278-3430&quot;} -->
+<h2 class="sectionedit8" id="optimizing_speed">Optimizing Speed</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Don&#039;t use for loops</div>
+<ul>
+<li class="level2"><div class="li"> <a href="../_media/programming/matopt.pdf" class="media mediafile mf_pdf" title="programming:matopt.pdf">Writing Fast Matlab Code by Pascal Getreuer</a></div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Might need to use C/Mex code (really simple too!)</div>
+<ul>
+<li class="level2"><div class="li"> <a href="../_media/programming/cmex.pdf" class="media mediafile mf_pdf" title="programming:cmex.pdf">Another excellent PDF by Pascal Getreuer</a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Optimizing Speed&quot;,&quot;hid&quot;:&quot;optimizing_speed&quot;,&quot;codeblockOffset&quot;:5,&quot;secid&quot;:8,&quot;range&quot;:&quot;3431-3689&quot;} -->
+<h2 class="sectionedit9" id="fixing_slow_startup_speeds">Fixing Slow Startup Speeds</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.mathworks.com/support/solutions/en/data/1-2Z18MA/" class="urlextern" title="http://www.mathworks.com/support/solutions/en/data/1-2Z18MA/" rel="ugc nofollow">Help document here</a></div>
+</li>
+<li class="level1"><div class="li"> Turn off wifi?! Crazy…but it seems to work.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fixing Slow Startup Speeds&quot;,&quot;hid&quot;:&quot;fixing_slow_startup_speeds&quot;,&quot;codeblockOffset&quot;:5,&quot;secid&quot;:9,&quot;range&quot;:&quot;3690-&quot;} --></div></body>
+</html>

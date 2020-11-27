@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>projects:bookscan</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#scanning_books">Scanning Books</a></div>
+<ul class="toc">
+<li class="clear">
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#smartphone_app">Smartphone App</a></div></li>
+<li class="level3"><div class="li"><a href="#camera_calibration">Camera Calibration</a></div></li>
+<li class="level3"><div class="li"><a href="#construction">Construction</a></div></li>
+<li class="level3"><div class="li"><a href="#ocr_software">OCR Software</a></div></li>
+<li class="level3"><div class="li"><a href="#remaining_questions">Remaining Questions</a></div></li>
+<li class="level3"><div class="li"><a href="#scraping_from_web">Scraping from Web</a></div></li>
+<li class="level3"><div class="li"><a href="#camera_remote_shutter">Camera Remote Shutter</a></div></li>
+<li class="level3"><div class="li"><a href="#remote_controlpreview_ideal_for_face_pulse_stuff">Remote Control/Preview (ideal for face pulse stuff)</a></div></li>
+<li class="level3"><div class="li"><a href="#my_setup">My Setup</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="scanning_books">Scanning Books</h1>
+<div class="level1">
+
+<p>
+Random notes for now until this becomes more important. 
+</p>
+
+<p>
+Most dewarpers assume a linear or quadratic dewarping. However, reality is more complicated…
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>If you don&#039;t intend to regenerate a book, then you only need to capture the page edges exactly!</strong> All we need is the page text … and formatting … and pictures.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.google.com/search?q=Booksorber" class="interwiki iw_g" title="http://www.google.com/search?q=Booksorber">Booksorber</a> might be good enough for DIY. <a href="http://www.google.com/search?q=Booksorber%20results" class="interwiki iw_g" title="http://www.google.com/search?q=Booksorber%20results">Booksorber results</a>. Seems to use edge of book to do dewarping, a nice trick. Why didn&#039;t he use the lines in the text though??!</div>
+</li>
+<li class="level1"><div class="li"> There are some more results using laser scanning.</div>
+</li>
+</ul>
+
+<p>
+<strong><a href="http://spreads.readthedocs.org/en/latest/" class="urlextern" title="http://spreads.readthedocs.org/en/latest/" rel="ugc nofollow">Spreads</a> automates the entire process</strong> (including tedious research) quite well. Picks all the right programs and is super-easy in Ubuntu.
+<em>Optional packages?? zlib1g-dev libpng12-dev libtiff4-dev libjpeg62-dev libxrender-dev </em>
+</p>
+<pre class="code">sudo apt-get install ruby-dev libmagickwand-dev libboost-all-dev 
+sudo gem install pdfbeads</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Scanning Books&quot;,&quot;hid&quot;:&quot;scanning_books&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-976&quot;} -->
+<h3 class="sectionedit2" id="smartphone_app">Smartphone App</h3>
+<div class="level3">
+
+<p>
+<a href="../_media/projects/bukhari-adaptive-binarization-jucs09.pdf" class="media mediafile mf_pdf" title="projects:bukhari-adaptive-binarization-jucs09.pdf">Really nice smartphone paper</a> (blurring, adaptive binarization, dewarping?). <a href="../_media/projects/binarising-camera-images-for-ocr.pdf" class="media mediafile mf_pdf" title="projects:binarising-camera-images-for-ocr.pdf">Another nice paper</a>, references <a href="../_media/projects/enhancement-of-document-images-from-cameras.pdf" class="media mediafile mf_pdf" title="projects:enhancement-of-document-images-from-cameras.pdf">their previous paper</a>.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Smartphone App&quot;,&quot;hid&quot;:&quot;smartphone_app&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:2,&quot;range&quot;:&quot;977-1299&quot;} -->
+<h3 class="sectionedit3" id="camera_calibration">Camera Calibration</h3>
+<div class="level3">
+
+<p>
+Following <a href="http://docs.opencv.org/trunk/doc/py_tutorials/py_calib3d/py_calibration/py_calibration.html" class="urlextern" title="http://docs.opencv.org/trunk/doc/py_tutorials/py_calib3d/py_calibration/py_calibration.html" rel="ugc nofollow">OpenCV tutorial</a>, and used <a href="http://upload.wikimedia.org/wikipedia/commons/d/d5/Chess_Board.svg" class="urlextern" title="http://upload.wikimedia.org/wikipedia/commons/d/d5/Chess_Board.svg" rel="ugc nofollow">this chessboard</a> at 110% zoom on my Thinkpad. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Camera Calibration&quot;,&quot;hid&quot;:&quot;camera_calibration&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;1300-1578&quot;} -->
+<h3 class="sectionedit4" id="construction">Construction</h3>
+<div class="level3">
+
+<p>
+<a href="https://www.youtube.com/channel/UCwMsuo69GH2OkeFk8Y9jHmQ" class="media" title="https://www.youtube.com/channel/UCwMsuo69GH2OkeFk8Y9jHmQ" rel="ugc nofollow"><img src="../_media/projects/pasted/20141023-043235.png" class="media" alt="" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Maybe add a handle. Maybe not…</div>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://vimeo.com/22590570" class="media" title="http://vimeo.com/22590570" rel="ugc nofollow"><img src="../_media/projects/pasted/20141023-044407.png" class="media" alt="" /></a></div>
+<ul>
+<li class="level2"><div class="li"> A way to screw in a camera using bolt and wingnut. Also, reinforced design for platen.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+<strong>Cheap/free <a href="http://www.instructables.com/id/Bargain-Price-Book-Scanner-From-A-Cardboard-Box/?ALLSTEPS" class="urlextern" title="http://www.instructables.com/id/Bargain-Price-Book-Scanner-From-A-Cardboard-Box/?ALLSTEPS" rel="ugc nofollow">Instructable</a></strong>. Use a cardboard box, old picture frames (glass/plastic), and a camera with tripod!
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Construction&quot;,&quot;hid&quot;:&quot;construction&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:4,&quot;range&quot;:&quot;1579-2116&quot;} -->
+<h3 class="sectionedit5" id="ocr_software">OCR Software</h3>
+<div class="level3">
+
+<p>
+<a href="http://www.splitbrain.org/blog/2010-06/15-linux_ocr_software_comparison" class="urlextern" title="http://www.splitbrain.org/blog/2010-06/15-linux_ocr_software_comparison" rel="ugc nofollow">Great test</a> that generates test text and sees how several perform.
+</p>
+
+<p>
+OpenOCR is a great service combining Google&#039;s Tesseract OCR and Docker, which I want to learn about more.
+</p>
+
+</div>
+
+<h4 id="tesseract">Tesseract</h4>
+<div class="level4">
+
+<p>
+<a href="https://code.google.com/p/tesseract-ocr/wiki/Compiling" class="urlextern" title="https://code.google.com/p/tesseract-ocr/wiki/Compiling" rel="ugc nofollow">To install Tesseract from source</a>
+</p>
+
+<p>
+<code>&#039;tesseract myscan.png -l eng out</code>&#039;, more at <a href="https://code.google.com/p/tesseract-ocr/wiki/ReadMe" class="urlextern" title="https://code.google.com/p/tesseract-ocr/wiki/ReadMe" rel="ugc nofollow">readme</a>
+</p>
+
+<p>
+Optimal letter height in pixels (less pixel scanning, other operations) is … 40 pixels? Also, black and white probably speeds it up. You can also <a href="http://stackoverflow.com/questions/1762565/python-tesseract-ocr-question?rq=1" class="urlextern" title="http://stackoverflow.com/questions/1762565/python-tesseract-ocr-question?rq=1" rel="ugc nofollow">set a specific dictionary</a> or train a “font” of characters.
+</p>
+
+<p>
+<a href="http://www.leptonica.com/dewarping.html" class="urlextern" title="http://www.leptonica.com/dewarping.html" rel="ugc nofollow">Leptonica does do dewarping, just fine automagically too</a>!
+</p>
+<ul>
+<li class="level1"><div class="li"> He is able to correct vertical disparity by drawing straight lines through text, but needs to normalize text spacing to figure out horizontal disparity. Hmmm…test.</div>
+</li>
+<li class="level1"><div class="li"> But Tesseract doesn&#039;t use it?!?! Although it seems to use leptonica for other stuff…Maybe do a test where you warp images and see what happens, maybe plot with hOCR data too.</div>
+</li>
+<li class="level1"><div class="li"> <strong>OpenCV</strong> use SO post <a href="http://stackoverflow.com/questions/10196198/how-to-remove-convexity-defects-in-a-sudoku-square/10226971#10226971" class="urlextern" title="http://stackoverflow.com/questions/10196198/how-to-remove-convexity-defects-in-a-sudoku-square/10226971#10226971" rel="ugc nofollow">1</a> and OpenCV Remap (<a href="http://stackoverflow.com/questions/10364201/image-transformation-in-opencv" class="urlextern" title="http://stackoverflow.com/questions/10364201/image-transformation-in-opencv" rel="ugc nofollow">usage</a>). <a href="http://mathematica.stackexchange.com/questions/31274/how-can-i-efficiently-remap-an-image" class="urlextern" title="http://mathematica.stackexchange.com/questions/31274/how-can-i-efficiently-remap-an-image" rel="ugc nofollow">Apparently speed is .03 sec with Mathematica or Intel Pperformance Primitives</a>. </div>
+</li>
+</ul>
+
+<p>
+<a href="http://www.win.tue.nl/~aeb/linux/ocr/tesseract.html" class="urlextern" title="http://www.win.tue.nl/~aeb/linux/ocr/tesseract.html" rel="ugc nofollow">Bad experience with Tesseract</a>? 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;OCR Software&quot;,&quot;hid&quot;:&quot;ocr_software&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:5,&quot;range&quot;:&quot;2117-3889&quot;} -->
+<h3 class="sectionedit6" id="remaining_questions">Remaining Questions</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Can the software do the whole process with only 1 camera? Or do I need two…</div>
+</li>
+<li class="level1"><div class="li"> How does ScanTailor do image warping? Why can&#039;t it handle non-flat pages? The <a href="http://halfbakedmaker.org/?p=366" class="urlextern" title="http://halfbakedmaker.org/?p=366" rel="ugc nofollow">algorithm explanation</a> looks good…</div>
+</li>
+<li class="level1"><div class="li"> Merge OCR back into image? Not for this app, but maybe future. Use pdftk. <a href="https://raw.githubusercontent.com/gkovacs/pdfocr/master/pdfocr.rb" class="urlextern" title="https://raw.githubusercontent.com/gkovacs/pdfocr/master/pdfocr.rb" rel="ugc nofollow">1</a>, <a href="http://www.konradvoelkel.com/2013/03/scan-to-pdfa/" class="urlextern" title="http://www.konradvoelkel.com/2013/03/scan-to-pdfa/" rel="ugc nofollow">2</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Remaining Questions&quot;,&quot;hid&quot;:&quot;remaining_questions&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;3890-4372&quot;} -->
+<h3 class="sectionedit7" id="scraping_from_web">Scraping from Web</h3>
+<div class="level3">
+
+<p>
+<a href="https://github.com/jiminoc/goose/wiki" class="urlextern" title="https://github.com/jiminoc/goose/wiki" rel="ugc nofollow">Goose</a> is one standalone but bulky option. Maybe better is Readability API
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Scraping from Web&quot;,&quot;hid&quot;:&quot;scraping_from_web&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;4373-4524&quot;} -->
+<h3 class="sectionedit8" id="camera_remote_shutter">Camera Remote Shutter</h3>
+<div class="level3">
+
+<p>
+USB shutter (toggling the 5V line on and off, or just plug and unplug usb from a usb port on computer) can work with CHDK, not sure of other cameras. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Camera Remote Shutter&quot;,&quot;hid&quot;:&quot;camera_remote_shutter&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:8,&quot;range&quot;:&quot;4525-4708&quot;} -->
+<h3 class="sectionedit9" id="remote_controlpreview_ideal_for_face_pulse_stuff">Remote Control/Preview (ideal for face pulse stuff)</h3>
+<div class="level3">
+
+<p>
+Lots of cameras have PTP protocol built-in for transfer of files over usb and some for even remote control (shutter, preview, etc). <a href="http://www.gphoto.org/doc/remote/" class="urlextern" title="http://www.gphoto.org/doc/remote/" rel="ugc nofollow">Gphoto remote control</a> has a great list. For Canon cameras,<a href="http://chdk.wikia.com/wiki/PTP_Extension" class="urlextern" title="http://chdk.wikia.com/wiki/PTP_Extension" rel="ugc nofollow">CHDK&#039;s PTP addons</a> enables some more flexibility than Gphoto.
+</p>
+<ul>
+<li class="level1"><div class="li"> Dad&#039;s Nikon D90 allows remote preview out of box apparently with gPhoto</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Note: Gphoto states that Canon Powershot cameras after 2009 do not have remote control (shutter, preview, etc) enabled anymore, even if you use CHDK. (my $50 camera &gt;.&lt;)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Remote Control\/Preview (ideal for face pulse stuff)&quot;,&quot;hid&quot;:&quot;remote_controlpreview_ideal_for_face_pulse_stuff&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:9,&quot;range&quot;:&quot;4709-5357&quot;} -->
+<h3 class="sectionedit10" id="my_setup">My Setup</h3>
+<div class="level3">
+
+<p>
+I have a Canon Powershot A3000, but only browse and download of files is enabled.
+</p>
+
+<p>
+scan em
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;My Setup&quot;,&quot;hid&quot;:&quot;my_setup&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:10,&quot;range&quot;:&quot;5358-&quot;} --></div></body>
+</html>

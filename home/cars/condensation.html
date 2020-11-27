@@ -1,0 +1,700 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>home:cars:condensation</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#plotting_scripts">Plotting scripts</a></div></li>
+<li class="level3"><div class="li"><a href="#service_manual_on_hvac">Service Manual on HVAC</a></div></li>
+<li class="level3"><div class="li"><a href="#chevy_spark_ev_forum_answer">Chevy Spark EV forum answer</a></div></li>
+<li class="level3"><div class="li"><a href="#email_to_schrodinger_s_box">Email to Schrodinger&#039;s Box</a></div></li>
+<li class="level2"><div class="li"><a href="#better_experiments">Better experiments</a></div></li>
+<li class="level3"><div class="li"><a href="#sensor_test">Sensor test</a></div></li>
+<li class="level3"><div class="li"><a href="#water_leakage_test">Water Leakage test</a></div></li>
+<li class="level3"><div class="li"><a href="#heater_test">Heater test</a></div></li>
+<li class="level2"><div class="li"><a href="#testing_sensor_response_time">Testing sensor response time</a></div></li>
+<li class="level2"><div class="li"><a href="#chevy_cruze_forum">Chevy Cruze forum</a></div></li>
+<li class="level2"><div class="li"><a href="#real_data_experiment">Real Data Experiment!!</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h3 class="sectionedit1" id="plotting_scripts">Plotting scripts</h3>
+<div class="level3">
+<pre class="code python"><span class="kw1">from</span> <span class="kw3">Tkinter</span> <span class="kw1">import</span> *
+<span class="kw1">import</span> <span class="kw3">math</span>
+<span class="kw1">import</span> <span class="kw3">time</span>
+<span class="kw1">import</span> serial
+<span class="kw1">import</span> matplotlib.<span class="me1">pyplot</span> <span class="kw1">as</span> plt
+<span class="kw1">import</span> numpy <span class="kw1">as</span> np
+<span class="kw1">import</span> <span class="kw3">timeit</span>
+<span class="kw1">import</span> <span class="kw3">re</span>
+&nbsp;
+&nbsp;
+SECONDS_PER_SAMPLE <span class="sy0">=</span> <span class="nu0">5</span>
+NUM_SAMPLES <span class="sy0">=</span> <span class="nu0">100</span>
+&nbsp;
+timeOrig <span class="sy0">=</span> <span class="kw3">time</span>.<span class="kw3">time</span><span class="br0">&#40;</span><span class="br0">&#41;</span>/<span class="nu0">60.0</span>
+x <span class="sy0">=</span> <span class="br0">&#91;</span><span class="br0">&#93;</span><span class="co1">#range(0,SECONDS_PER_SAMPLE*NUM_SAMPLES,SECONDS_PER_SAMPLE)</span>
+temperature <span class="sy0">=</span> <span class="br0">&#91;</span><span class="br0">&#93;</span>
+dew_point <span class="sy0">=</span> <span class="br0">&#91;</span><span class="br0">&#93;</span>
+&nbsp;
+plt.<span class="me1">ion</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+&nbsp;
+fig <span class="sy0">=</span> plt.<span class="me1">figure</span><span class="br0">&#40;</span>figsize<span class="sy0">=</span><span class="br0">&#40;</span><span class="nu0">20</span><span class="sy0">,</span><span class="nu0">10</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+ax <span class="sy0">=</span> fig.<span class="me1">add_subplot</span><span class="br0">&#40;</span><span class="nu0">111</span><span class="br0">&#41;</span>
+ax.<span class="me1">set_xlabel</span><span class="br0">&#40;</span><span class="st0">'Time (min)'</span><span class="br0">&#41;</span>
+&nbsp;
+ax2 <span class="sy0">=</span> ax.<span class="me1">twinx</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+line1 <span class="sy0">=</span> ax.<span class="me1">plot</span><span class="br0">&#40;</span>x<span class="sy0">,</span>temperature<span class="sy0">,</span><span class="st0">'ro-'</span><span class="br0">&#41;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>
+ax.<span class="me1">set_ylabel</span><span class="br0">&#40;</span><span class="st0">'Temperature F'</span><span class="sy0">,</span> color<span class="sy0">=</span><span class="st0">'r'</span><span class="br0">&#41;</span>
+line2 <span class="sy0">=</span> ax2.<span class="me1">plot</span><span class="br0">&#40;</span>x<span class="sy0">,</span>dew_point<span class="sy0">,</span><span class="st0">'bo-'</span><span class="br0">&#41;</span><span class="br0">&#91;</span><span class="nu0">0</span><span class="br0">&#93;</span>
+ax2.<span class="me1">set_ylabel</span><span class="br0">&#40;</span><span class="st0">'Dew Point F'</span><span class="sy0">,</span> color<span class="sy0">=</span><span class="st0">'b'</span><span class="br0">&#41;</span>
+&nbsp;
+<span class="co1">#ax.set_aspect('equal')</span>
+<span class="co1">#ax.grid(True, which='both')</span>
+<span class="co1">#ax.autoscale_view(True,True,True)</span>
+&nbsp;
+ser <span class="sy0">=</span> serial.<span class="me1">Serial</span><span class="br0">&#40;</span><span class="st0">'/dev/ttyUSB0'</span><span class="sy0">,</span> <span class="nu0">9600</span><span class="br0">&#41;</span>  <span class="co1"># open serial port, 9600</span>
+<span class="st0">'''
+root = Tk()
+clock = Label(root, font=('times', 80, 'bold'), fg='white', bg='green')
+clock.pack(fill=BOTH, expand=1)
+'''</span>
+f <span class="sy0">=</span> <span class="st0">&quot;[-+]?[0-9]*<span class="es0">\.</span>?[0-9]*&quot;</span>
+<span class="kw1">while</span><span class="br0">&#40;</span><span class="kw2">True</span><span class="br0">&#41;</span>:
+	line <span class="sy0">=</span> ser.<span class="kw3">readline</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+	floats <span class="sy0">=</span> <span class="kw3">re</span>.<span class="me1">search</span><span class="br0">&#40;</span><span class="st0">'Temp: ('</span> + f + <span class="st0">') RH: ('</span> + f + <span class="st0">') DP: ('</span> + f + <span class="st0">')'</span><span class="sy0">,</span>line<span class="br0">&#41;</span>
+	<span class="kw1">print</span> line
+	<span class="kw1">if</span> <span class="kw1">not</span> floats:
+		<span class="kw1">print</span> <span class="st0">&quot;no floats found&quot;</span>
+		<span class="kw1">continue</span>
+	temp <span class="sy0">=</span> <span class="kw2">float</span><span class="br0">&#40;</span>floats.<span class="me1">group</span><span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+	rh <span class="sy0">=</span> <span class="kw2">float</span><span class="br0">&#40;</span>floats.<span class="me1">group</span><span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+	dp <span class="sy0">=</span> <span class="kw2">float</span><span class="br0">&#40;</span>floats.<span class="me1">group</span><span class="br0">&#40;</span><span class="nu0">3</span><span class="br0">&#41;</span><span class="br0">&#41;</span>
+	x.<span class="me1">append</span><span class="br0">&#40;</span><span class="kw3">time</span>.<span class="kw3">time</span><span class="br0">&#40;</span><span class="br0">&#41;</span>/<span class="nu0">60.0</span> - timeOrig<span class="br0">&#41;</span>
+	temperature.<span class="me1">append</span><span class="br0">&#40;</span>temp<span class="br0">&#41;</span><span class="co1">#math.sin(time.clock()))</span>
+	dew_point.<span class="me1">append</span><span class="br0">&#40;</span>dp<span class="br0">&#41;</span><span class="co1">#math.cos(time.clock()))</span>
+	<span class="co1">#y[3] = math.sin(time.clock())</span>
+	line1.<span class="me1">set_xdata</span><span class="br0">&#40;</span>x<span class="br0">&#41;</span>
+	line1.<span class="me1">set_ydata</span><span class="br0">&#40;</span>temperature<span class="br0">&#41;</span>
+	line2.<span class="me1">set_xdata</span><span class="br0">&#40;</span>x<span class="br0">&#41;</span>
+	line2.<span class="me1">set_ydata</span><span class="br0">&#40;</span>dew_point<span class="br0">&#41;</span>
+	<span class="kw1">print</span> x
+	<span class="kw1">print</span> temperature
+	<span class="kw1">print</span> dew_point
+	<span class="co1">#ax.autoscale_view(True,True,True)</span>
+	ax.<span class="me1">set_xbound</span><span class="br0">&#40;</span><span class="kw2">min</span><span class="br0">&#40;</span>x<span class="br0">&#41;</span><span class="sy0">,</span><span class="kw2">max</span><span class="br0">&#40;</span>x<span class="br0">&#41;</span><span class="br0">&#41;</span>
+	ax.<span class="me1">set_ybound</span><span class="br0">&#40;</span><span class="kw2">min</span><span class="br0">&#40;</span>temperature<span class="br0">&#41;</span><span class="sy0">,</span><span class="kw2">max</span><span class="br0">&#40;</span>temperature<span class="br0">&#41;</span><span class="br0">&#41;</span>
+	ax2.<span class="me1">set_ybound</span><span class="br0">&#40;</span><span class="kw2">min</span><span class="br0">&#40;</span>dew_point<span class="br0">&#41;</span><span class="sy0">,</span><span class="kw2">max</span><span class="br0">&#40;</span>dew_point<span class="br0">&#41;</span><span class="br0">&#41;</span>
+&nbsp;
+	<span class="co1">#plt.legend([line1,line2],['Temperature', 'Dew Point'],'upper left',ncol=1)</span>
+	fig.<span class="me1">canvas</span>.<span class="me1">draw</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+	<span class="co1">#fig.canvas.show()</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Plotting scripts&quot;,&quot;hid&quot;:&quot;plotting_scripts&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-1804&quot;} -->
+<h3 class="sectionedit2" id="service_manual_on_hvac">Service Manual on HVAC</h3>
+<div class="level3">
+
+<p>
+<a href="../../_media/home/cars/spark_ev_hvac.pdf" class="media mediafile mf_pdf" title="home:cars:spark_ev_hvac.pdf">spark_ev_hvac.pdf</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Service Manual on HVAC&quot;,&quot;hid&quot;:&quot;service_manual_on_hvac&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:2,&quot;range&quot;:&quot;1805-1874&quot;} -->
+<h3 class="sectionedit3" id="chevy_spark_ev_forum_answer">Chevy Spark EV forum answer</h3>
+<div class="level3">
+
+<p>
+I&#039;ll list where I&#039;m at right now after talking with the dealer. Nothing is physically wrong with the car. Some answers and some remaining wonderings.
+</p>
+
+<p>
+One should avoid using the AC system for defrosting the windshield/cabin because, while it “dehumidifies” really well, current AC evaporator designs can “hold” a lot of water before the condensed water starts to drip into the drain tube. Just google “condensation” to see what I mean. <a href="http://physics.stackexchange.com/questions/229377/how-can-condensation-be-aided" class="urlextern" title="http://physics.stackexchange.com/questions/229377/how-can-condensation-be-aided" rel="ugc nofollow">There&#039;s some more optimization that can be done in this space though...</a>
+</p>
+
+<p>
+So if you choose or unknowingly use the AC, all that water is still sitting there in your dash. In my and &lt;I think&gt; amphibious&#039; case, we stopped at work or at home and let it sit. It will evaporate somewhat and tend to condense on the windshield on a cold night. This is maybe due to the proximity to the evaporation, but I think it&#039;s partially because the windshield has an angle and the other windows on the Spark are vertical. I have noticed that the windshield condensation generally doesn&#039;t occur in the region covered by the windshield wiper, telling me that the temperature transfer is helped with dew. 
+</p>
+
+<p>
+How to get rid of the contained moisture? Pulling in less humid air from outside will do the trick (and is what GM assumes generally), but on a day like today in Portland where it&#039;s raining and 95% humidity all day … <a href="http://physics.stackexchange.com/a/13293/118063" class="urlextern" title="http://physics.stackexchange.com/a/13293/118063" rel="ugc nofollow">it appears you have 2 options</a>:
+* If you&#039;re driving, don&#039;t try… just keep the cabin cold so that condensation doesn&#039;t happen.
+* If not driving, turn up the heat and recirc to absorb as much moisture as possible (lots of internal fogging if outside is cool) and then crack windows to let it out.
+</p>
+
+<p>
+Not sure why I don&#039;t notice the overnight windshield condensation on gasoline cars as much yet. Possible suspect is residual engine heat, of course…
+</p>
+
+<p>
+Hope this helps!  :)
+</p>
+
+<p>
+EDIT: amphibious, if this fixes your issue, can you edit your top post to include a summary and a link to this post so people can find it a little easier? Thanks!
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Chevy Spark EV forum answer&quot;,&quot;hid&quot;:&quot;chevy_spark_ev_forum_answer&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:3,&quot;range&quot;:&quot;1875-4023&quot;} -->
+<h3 class="sectionedit4" id="email_to_schrodinger_s_box">Email to Schrodinger&#039;s Box</h3>
+<div class="level3">
+
+<p>
+Want to make a video explaining climate control in cabin / finding leaks? My problem was the windshield having moisture similar to a leaky car, but only on cold nights.
+</p>
+
+<p>
+Main points:
+</p>
+<ul>
+<li class="level1"><div class="li"> Using the A/C or “SUPER DEFROST MODE” to “dehumidify” the cabin really just transfers the moisture to the evaporator core. As I&#039;m finding out, current evaporator designs “hold” a lot of water before it starts sending water drops down the drain tube, so one should transfer that moisture outside the vehicle before parking it at night. That&#039;s tricky to do without fogging the windshield if you&#039;re driving, and even tougher if it&#039;s humid outside, but turning on the blower is necessary. Most cars have an “afterblow” feature for this, but I&#039;m skeptical that I runs for enough time to transfer the moisture outside the vehicle.</div>
+</li>
+<li class="level1"><div class="li"> Ozone generator is the most effective for getting rid of smells, including mold, dog, and cigarette smoke. Few people know about it though…</div>
+</li>
+<li class="level1"><div class="li"> Getting rid of inside condensation quickly really depends on the weather. If it&#039;s humid outside, pulling in fresh air in defrost mode won&#039;t be as fast as recirculating, unlike what Chevrolet thinks for my car. But generally, it is less humid outside than inside, and pulling in fresh air is the right thing to do.</div>
+</li>
+</ul>
+
+<p>
+Anyways, just hoping to transfer the knowledge somewhere on the internet. Thanks for all your videos, they are really helpful and appreciated! 
+</p>
+
+<p>
+Nolan
+</p>
+
+<p>
+Rained a bunch today and was warm. It condensed on <strong>all</strong> the windows this time, although it seemed the most on the windshield.
+</p>
+
+<p>
+Measured when it started condensing when it sat at home for a while. &lt;INSERT FUNKY PHOTOS HERE&gt;
+</p>
+<div class="table sectionedit5"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Time, location </th><th class="col1"> Temp </th><th class="col2"> RH </th><th class="col3"> DP </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> Spark back seat, 9:18PM </td><td class="col1"> 48.0 </td><td class="col2"> 81% </td><td class="col3"> 42 </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> Spark dash 9:23 PM </td><td class="col1"> 47.4 </td><td class="col2"> 82.1% </td><td class="col3"> 42 </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Spark right next to condensation in corner</td><td class="col1"> 46.2 </td><td class="col2"> 90.2% </td><td class="col3"> 43 </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> Fusion front seat 9:39PM </td><td class="col1"> 49.3 </td><td class="col2"> 79.7% </td><td class="col3"> 43 </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> Fusion back window, starting to condense too </td><td class="col1"> 44.6 </td><td class="col2"> 88.6% </td><td class="col3"> 40 </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> Outside 9:58PM </td><td class="col1"> 46.11 </td><td class="col2"> 85.7% </td><td class="col3"> 42 </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:5,&quot;range&quot;:&quot;5719-6067&quot;} --><ul>
+<li class="level1 node"><div class="li"> Not sure what to say from this data. </div>
+<ul>
+<li class="level2"><div class="li"> Interesting data point is that air in fusion back window is cooler than outside by 2 degrees!…maybe the condensed water is warmer than outside air too? <em>Not really sure how that works. Since I didn&#039;t take an outside air sample, the spark could have the same effect too…</em></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Email to Schrodinger&#039;s Box&quot;,&quot;hid&quot;:&quot;email_to_schrodinger_s_box&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:4,&quot;range&quot;:&quot;4024-6395&quot;} -->
+<h2 class="sectionedit6" id="better_experiments">Better experiments</h2>
+<div class="level2">
+
+<p>
+I still feel like there is some leak in the front. Meh. More experiments:
+</p>
+<div class="table sectionedit7"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Independent variables </th><th class="col1"> Experimental Results </th><th class="col2"> Conclusion </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> Angle of surface </td><td class="col1"> <del>Vertical windows get less condensation, if any</del> What if potential leak is near front? </td><td class="col2"> None yet </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> Dew as <strong>necessary</strong> conductor </td><td class="col1"> * Try spraying water with spray bottle? <br/>
+Not really done yet, but windshield wiper catching dew instead of outside of windshield was shown to prevent condensation on inside of &lt;bottom of&gt; windshield </td><td class="col2"> Mmm, idk </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Air filter preventing air flow </td><td class="col1"> Taking it out seems to help, but too correlated with other variables </td><td class="col2"> TODO </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> Leak in windshield / car, rain necessary for problem to reproduce </td><td class="col1"> Try turning on heater in car, do without “rain” added and with rain added * Need to check dew point before condensation starts occurring <br/>
+Post-condensation Spark had similar dew point throughout car and was same dew point as Fusion. <em>No duh</em> <img src="/lib/images/smileys/facepalm.gif" class="icon" alt="m(" /> </td><td class="col2"> </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> Human moisture from inside of car </td><td class="col1"> </td><td class="col2"> </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> Lack of latent heat from gas engine, provide a longer time for moist air to exchange without condensing </td><td class="col1"> Tricky … </td><td class="col2"> </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table1&quot;,&quot;secid&quot;:7,&quot;range&quot;:&quot;6502-7543&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Better experiments&quot;,&quot;hid&quot;:&quot;better_experiments&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;6396-7544&quot;} -->
+<h3 class="sectionedit8" id="sensor_test">Sensor test</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="faster_sampling">Faster sampling??</h4>
+<div class="level4">
+
+<p>
+Doesn&#039;t help. Temperature changed 5 degrees without sampling at all! Also, rate of change didn&#039;t change.
+</p>
+
+</div>
+
+<h4 id="response_time">Response time??</h4>
+<div class="level4">
+
+<p>
+Outside is 38F and DP of 34F. 
+</p>
+<div class="table sectionedit9"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Time </th><th class="col1"> Action </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> 0 </td><td class="col1"> recirc mode, no heating </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> 14 </td><td class="col1"> Fresh air mode, no heating <br/>
+Dew point settles out to new equilibrium as there&#039;s not enough input air to force all the moisture out very quickly</td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> 20 </td><td class="col1"> Open doors all doors except sensor </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> 22.5 </td><td class="col1"> Open car door where sensor is at, sensor is basically outside.<br/>
+Shaking sensor doesn&#039;t help cool it off quicker </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> 24 </td><td class="col1"> Mistakenly breathed on sensor\\Great response time! Way better response for DP than temperature though</td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> 26 </td><td class="col1"> Brought sensor inside house <br/>
+Took about 1 minute for DP to settle, and 5 for temperature to settle. Probably a predictable time constant you can use to predict after a few samples </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table2&quot;,&quot;secid&quot;:9,&quot;range&quot;:&quot;7756-8429&quot;} -->
+<p>
+It takes surprisingly long for the sensor to come to a stable temperature reading. But the response time is really good?!?!
+<a href="../../_media/home/cars/temp_adj_time_const.png" class="media" title="home:cars:temp_adj_time_const.png"><img src="../../_media/home/cars/temp_adj_time_const.png" class="media" alt="" width="600" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sensor test&quot;,&quot;hid&quot;:&quot;sensor_test&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:8,&quot;range&quot;:&quot;7545-8599&quot;} -->
+<h3 class="sectionedit10" id="water_leakage_test">Water Leakage test</h3>
+<div class="level3">
+
+<p>
+With sufficient dry heat in the vehicle (can use hair dryer, &gt;70F is probably good enough), then put a fan in the car pointed at the different regions with a sensor nearby and see if spraying on the outside registers a change. 
+</p>
+
+<p>
+<a href="../../_media/home/cars/water_leakage_test.png" class="media" title="home:cars:water_leakage_test.png"><img src="../../_media/home/cars/water_leakage_test.png" class="media" alt="" width="400" /></a>
+</p>
+
+<p>
+In this case, I used the recirculate + face vents on the car, which isn&#039;t good enough for leakage in the back of the car. Spraying on the fresh air vents did a tiny amount of change, which is expected since recirculate probably sucks a little air from outside as the flap for air filter is closed.
+</p>
+
+<p>
+Same rate of cooling with car in “engine off” mode with temp on high or low. Probably be a better test with “engine on” mode. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Water Leakage test&quot;,&quot;hid&quot;:&quot;water_leakage_test&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:10,&quot;range&quot;:&quot;8600-9328&quot;} -->
+<h3 class="sectionedit11" id="heater_test">Heater test</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="section3">#3</h4>
+<div class="level4">
+
+<p>
+Try it on a “working” vehicle, the Ford Fusion. Surprise surprise, <strong>same</strong> behavior. So…how are we supposed to clear out the windshield when it&#039;s raining outside and humid inside?
+</p>
+
+<p>
+<a href="../../_media/undefined/lots_o_water_vapor_fusion.png" class="media" title="undefined:lots_o_water_vapor_fusion.png"><img src="../../_media/undefined/lots_o_water_vapor_fusion.png" class="media" alt="" width="600" /></a>
+</p>
+
+</div>
+
+<h4 id="section2">#2</h4>
+<div class="level4">
+
+<p>
+Kinda just doing #1 over again, except with a lot more water vapor, using a kettle with hot water + hair dryer to spray it about. <strong>I put sensor into output of AC evaporator</strong>. <em>It&#039;d have been nice to have 2 sensors, but that&#039;ll wait for another time…</em>
+</p>
+
+<p>
+Recirc is on.
+</p>
+<div class="table sectionedit12"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Time </th><th class="col1"> Thing </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> 5-10 </td><td class="col1"> Heating up more water, put it in air, opening door, etc </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> 13-20 </td><td class="col1"> Turn on TEMP setting (“Air Conditioner / Heater Power) AC to cold. <br/>
+Not the greatest for defrosting windshield (higher temps = easier to absorb water), but I wanted to see if it&#039;d help turn water into drops or not</td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> 20-23 </td><td class="col1"> Turn off TEMP setting. <br/>
+Magical water vapor comes from … where??? </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> 23-end </td><td class="col1"> Turn off recirculate (outside air, cold, pretty dry) </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table3&quot;,&quot;secid&quot;:12,&quot;range&quot;:&quot;9881-10340&quot;} --><ul>
+<li class="level1"><div class="li"> Main thing is where is that water vapor getting stored?? And <strong>why</strong> are they storing it?</div>
+</li>
+<li class="level1"><div class="li"> Also seems that water on evaporator isn&#039;t frozen…also it&#039;s not fully saturated air coming out of the evaporator either.</div>
+</li>
+</ul>
+
+<p>
+<a href="../../_media/home/cars/lots_o_water_vapor.png" class="media" title="home:cars:lots_o_water_vapor.png"><img src="../../_media/home/cars/lots_o_water_vapor.png" class="media" alt="" width="600" /></a>
+</p>
+
+</div>
+
+<h4 id="section1">#1</h4>
+<div class="level4">
+
+<p>
+If you turn on heat with recirc turned on and A/C turned off, there should be a fixed amount of moisture in the vehicle and the dew point should stay constant.
+</p>
+<ul>
+<li class="level1"><div class="li"> Perhaps I have been using the A/C and the moisture is building up in the condenser area…</div>
+</li>
+</ul>
+<div class="table sectionedit13"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Time </th><th class="col1"> Action </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> 30 </td><td class="col1"> Turned on heat, recirc</td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> 60 </td><td class="col1"> Turned on A/C, cold, fresh air I think</td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> 70 </td><td class="col1"> Turned on heat, recirc</td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> 80 </td><td class="col1"> Turned on heat, fresh air (to fully clear out any moisture in vents of vehicle) </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> 175 </td><td class="col1"> Kept heat on, recirc; No dew point change should occur</td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> 280 </td><td class="col1"> Started spraying water on front and right of vehicle. A change is noticed! </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table4&quot;,&quot;secid&quot;:13,&quot;range&quot;:&quot;10875-11239&quot;} -->
+<p>
+<a href="../../_media/home/cars/heat_recirc2.png" class="media" title="home:cars:heat_recirc2.png"><img src="../../_media/home/cars/heat_recirc2.png" class="media" alt="" width="600" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> X-axis is totally wrong, it&#039;s about 1/2 the time in minutes. Use time.time()/60.0 instead. </div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="try_2">Try 2</h5>
+<div class="level5">
+
+<p>
+Fans are on full blast with recirc on
+</p>
+<div class="table sectionedit14"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Time (s) </th><th class="col1"> Action </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0">300 </td><td class="col1"> Started active heating/ac </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> 550 </td><td class="col1"> Turned off active heating/ac </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> 750 </td><td class="col1"> Turned on active heating/ac </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> 2600 </td><td class="col1"> Turned off active heating/ac <br/>
+Fogged windows like crazy, all the ice on ac condenser melted rapidly</td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> 3000 </td><td class="col1"> Turned off vehicle </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> 3750 </td><td class="col1"> Put vehicle into “no engine” mode, no active heating/ac, full fans <br/>
+Apparently there is some heating in this state </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table5&quot;,&quot;secid&quot;:14,&quot;range&quot;:&quot;11425-11828&quot;} -->
+<p>
+<a href="../../_media/home/cars/heat_recirc3.png" class="media" title="home:cars:heat_recirc3.png"><img src="../../_media/home/cars/heat_recirc3.png" class="media" alt="" width="450" /></a> <a href="../../_media/home/cars/pasted/20170213-045626.png" class="media" title="home:cars:pasted:20170213-045626.png"><img src="../../_media/home/cars/pasted/20170213-045626.png" class="media" alt="" /></a>
+</p>
+
+<p>
+ <a href="../../_media/home/cars/condensation.jpg" class="media" title="home:cars:condensation.jpg"><img src="../../_media/home/cars/condensation.jpg" class="mediaright" align="right" alt="" width="300" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Condensation tends to start at a very odd section of the windshield. It&#039;s starting below the defrost vents, but above from the very base of the windshield. Also, it tapers to the base of the windshield at the sides of the car, and sorta condenses along the edges of the windshield going up the sides of the car.</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> Also, I&#039;m seeing if a region is covered slightly by the windshield wipers (blocking 1/2 inch up high, but tapering to a point on bottom), there&#039;s no condensation outside or inside. </div>
+<ul>
+<li class="level3"><div class="li"> So … what is the temperature there? Dew is captured by the windshield wiper, so maybe the lack of water as a temperature transfer medium has something to do with it…</div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> <del>Or use ice in a rag on glass to test time to visible dew on that spot?</del> Fusion and spark have same dew point throughout vehicle. </div>
+</li>
+<li class="level2"><div class="li"> Use a garage (grandma and grandpa?) and make it into an ice chest by bringing along a cooler with ice (to catch the melted water) and use a fan to distribute the cold air quickly and evenly (no striations). <em>I wonder how long/how much ice that would take…</em> </div>
+</li>
+<li class="level2 node"><div class="li"> Repeat experiment with “rain” beforehand, with internal breathing moisture, and with a gasoline car.</div>
+<ul>
+<li class="level3"><div class="li"> By end of 8 hours, the car and gas engine has cooled off, no problem</div>
+</li>
+</ul>
+</li>
+<li class="level2"><div class="li"> Record dew point throughout the day, especially with vent closed somehow. If it goes up correlated with rain, you&#039;ve found your culprit!</div>
+</li>
+</ul>
+
+<p>
+And this thing isn&#039;t important, just urgent and tantalizingly close to being understood! &gt;.&lt; 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Heater test&quot;,&quot;hid&quot;:&quot;heater_test&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:11,&quot;range&quot;:&quot;9329-13463&quot;} -->
+<h2 class="sectionedit15" id="testing_sensor_response_time">Testing sensor response time</h2>
+<div class="level2">
+
+<p>
+Might be useful: <a href="http://www.kandrsmith.org/rjs/misc/hygrometers/calib_dht22.html" class="urlextern" title="http://www.kandrsmith.org/rjs/misc/hygrometers/calib_dht22.html" rel="ugc nofollow">http://www.kandrsmith.org/rjs/misc/hygrometers/calib_dht22.html</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Testing sensor response time&quot;,&quot;hid&quot;:&quot;testing_sensor_response_time&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:15,&quot;range&quot;:&quot;13464-13586&quot;} -->
+<h2 class="sectionedit16" id="chevy_cruze_forum">Chevy Cruze forum</h2>
+<div class="level2">
+
+<p>
+Man found that computer indicated changing position of vent behind glovebox, but the positions were incorrect…interesting!
+</p>
+
+<p>
+<a href="http://www.cruzetalk.com/forum/25-gen1-service-issues/109625-fix-excessive-moisture-condensation-frost-windows.html#post1666193" class="urlextern" title="http://www.cruzetalk.com/forum/25-gen1-service-issues/109625-fix-excessive-moisture-condensation-frost-windows.html#post1666193" rel="ugc nofollow">http://www.cruzetalk.com/forum/25-gen1-service-issues/109625-fix-excessive-moisture-condensation-frost-windows.html#post1666193</a>
+<a href="http://www.cruzetalk.com/forum/64-gen1-diesel-general-discussion/107713-interior-condensation-5.html" class="urlextern" title="http://www.cruzetalk.com/forum/64-gen1-diesel-general-discussion/107713-interior-condensation-5.html" rel="ugc nofollow">http://www.cruzetalk.com/forum/64-gen1-diesel-general-discussion/107713-interior-condensation-5.html</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Chevy Cruze forum&quot;,&quot;hid&quot;:&quot;chevy_cruze_forum&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:16,&quot;range&quot;:&quot;13587-13972&quot;} -->
+<h2 class="sectionedit17" id="real_data_experiment">Real Data Experiment!!</h2>
+<div class="level2">
+
+<p>
+Reallu condensing night
+Clear sky is most important,
+</p>
+<ul>
+<li class="level1"><div class="li"> doesn&#039;t seem to correlate with high pressure, as leaving overnight at carr chevrolet parking lot with overcast skies / mist / light rain didn&#039;t make the windshield condense by the morning (unless they kept it in the shop…)</div>
+</li>
+<li class="level1"><div class="li"> Can reflect crisply lit object off of inside of glass to tell if condensing on pictures. Condensation/dew will blur out the object</div>
+</li>
+<li class="level1"><div class="li"> Dew only forms on sections where water vapor can fall onto it. For example, the back of the spark has an overhang, and under the overhang there is no dew! (it&#039;s just as cold though, I&#039;m sure)</div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+<p>
+With htu21d at 10:30pm
+</p>
+<div class="table sectionedit18"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> location </th><th class="col1"> Temp (F) </th><th class="col2"> RH % </th><th class="col3"> Dew Point </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0">outside </td><td class="col1">39.9F </td><td class="col2"> 88% </td><td class="col3"> </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0">spark back seat </td><td class="col1"> 39.8 </td><td class="col2"> 82% </td><td class="col3"> </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0">spark front seat </td><td class="col1"> 40.1 </td><td class="col2"> 80.8% </td><td class="col3"> </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> spark dash </td><td class="col1"> 40.3 </td><td class="col2"> 80.0% </td><td class="col3"> 33 </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> spark defrost vent!!! </td><td class="col1"> 40.5 </td><td class="col2"> 76.6%</td><td class="col3"> </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> Ford fusion dash </td><td class="col1"> 42.2 </td><td class="col2"> 67.5% </td><td class="col3"> 33 </td>
+	</tr>
+	<tr class="row7">
+		<td class="col0">outside, 11pm huh whaa? </td><td class="col1"> 37.8 </td><td class="col2"> 92.4% </td><td class="col3"> </td>
+	</tr>
+	<tr class="row8">
+		<td class="col0"> outside reference (KHIO) </td><td class="col1"> 34 </td><td class="col2"> 92% </td><td class="col3 leftalign">  </td>
+	</tr>
+	<tr class="row9">
+		<td class="col0"> spark driver foot well </td><td class="col1"> 39.2 </td><td class="col2"> 86.5% </td><td class="col3"> 35 </td>
+	</tr>
+	<tr class="row10">
+		<td class="col0"> spark defrost vent 11:14PM </td><td class="col1"> 38.5 </td><td class="col2"> 81.7% </td><td class="col3 leftalign">  </td>
+	</tr>
+	<tr class="row11">
+		<td class="col0"> outside 11:15 </td><td class="col1"> 37.3 </td><td class="col2"> 91.0% </td><td class="col3"> </td>
+	</tr>
+	<tr class="row12">
+		<td class="col0"> Saab 11:27 </td><td class="col1"> 43.0 </td><td class="col2"> 70% </td><td class="col3"> 34 </td>
+	</tr>
+	<tr class="row13">
+		<td class="col0"> outside 11:29 </td><td class="col1"> 37.75 </td><td class="col2"> 90.2% </td><td class="col3"> </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table6&quot;,&quot;secid&quot;:18,&quot;range&quot;:&quot;14652-15196&quot;} --><ul>
+<li class="level1"><div class="li"> So…the saab and fusion were both still warm enough to not allow outside moisture to condense, at least on the front dash areas. Ford&#039;s outside windows were starting to condense</div>
+</li>
+</ul>
+
+<p>
+ * Interesting, the dew point is basically the same for all 3 cars! Which means, they all have the same amount of moisture…?!?!
+</p>
+
+<p>
+Re-measure at 7:30am the next morning. Lots of frozen dew and pretty foggy
+</p>
+<div class="table sectionedit19"><table class="inline">
+	<tr class="row0">
+		<th class="col0"> Location </th><td class="col1"> Temp </td><td class="col2"> RH </td><td class="col3"> Dew Point </td>
+	</tr>
+	<tr class="row1">
+		<td class="col0"> Outside </td><td class="col1"> ~32.6 </td><td class="col2"> 92.5 % </td><td class="col3"> 30.9 </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> KHIO </td><td class="col1"> 31 </td><td class="col2"> 92% </td><td class="col3"> 29.3 </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Saab front dash </td><td class="col1"> 33.5 </td><td class="col2"> 75.6% </td><td class="col3"> 25.7 </td>
+	</tr>
+	<tr class="row4">
+		<td class="col0"> Spark front dash </td><td class="col1"> 36.0 </td><td class="col2"> 84.2% </td><td class="col3"> 31.8 </td>
+	</tr>
+	<tr class="row5">
+		<td class="col0"> Spark front seat </td><td class="col1"> 35.08 </td><td class="col2"> 85.3% </td><td class="col3"> 31.0 </td>
+	</tr>
+	<tr class="row6">
+		<td class="col0"> Spark front seat (7:30 next night, starting to condense) </td><td class="col1"> 46 </td><td class="col2"> 65 </td><td class="col3"> 35 </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table7&quot;,&quot;secid&quot;:19,&quot;range&quot;:&quot;15589-15893&quot;} --><ul>
+<li class="level1"><div class="li"> Spark side windows are melted, but the windshield top is still somewhat frozen?!? I thoguht the heat came from the front dash when charging…</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Man, I should plot this temperature / dew point over time. It&#039;s very slow and meandering …</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Saab</div>
+</li>
+</ul>
+
+<p>
+Non-contact IR thermometer was all over the place at these temperatures…
+</p>
+<ul>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+<p>
+I want to check the long vent sound, might be switching from defrost to feet mode or something…
+</p>
+<pre class="code python"><span class="kw1">from</span> <span class="kw3">Tkinter</span> <span class="kw1">import</span> *
+<span class="kw1">import</span> <span class="kw3">time</span>
+<span class="kw1">import</span> serial
+&nbsp;
+&nbsp;
+ser <span class="sy0">=</span> serial.<span class="me1">Serial</span><span class="br0">&#40;</span><span class="st0">'/dev/ttyUSB0'</span><span class="sy0">,</span> <span class="nu0">9600</span><span class="br0">&#41;</span>  <span class="co1"># open serial port, 9600</span>
+<span class="co1">#ser.open()</span>
+&nbsp;
+root <span class="sy0">=</span> Tk<span class="br0">&#40;</span><span class="br0">&#41;</span>
+clock <span class="sy0">=</span> Label<span class="br0">&#40;</span>root<span class="sy0">,</span> font<span class="sy0">=</span><span class="br0">&#40;</span><span class="st0">'times'</span><span class="sy0">,</span> <span class="nu0">150</span><span class="sy0">,</span> <span class="st0">'bold'</span><span class="br0">&#41;</span><span class="sy0">,</span> bg<span class="sy0">=</span><span class="st0">'green'</span><span class="br0">&#41;</span>
+clock.<span class="me1">pack</span><span class="br0">&#40;</span>fill<span class="sy0">=</span>BOTH<span class="sy0">,</span> expand<span class="sy0">=</span><span class="nu0">1</span><span class="br0">&#41;</span>
+&nbsp;
+&nbsp;
+&nbsp;
+<span class="kw1">def</span> tick<span class="br0">&#40;</span><span class="br0">&#41;</span>:
+	line <span class="sy0">=</span> ser.<span class="kw3">readline</span><span class="br0">&#40;</span><span class="br0">&#41;</span> + ser.<span class="kw3">readline</span><span class="br0">&#40;</span><span class="br0">&#41;</span>
+	clock.<span class="me1">config</span><span class="br0">&#40;</span>text<span class="sy0">=</span>line<span class="br0">&#41;</span>
+	clock.<span class="me1">after</span><span class="br0">&#40;</span><span class="nu0">200</span><span class="sy0">,</span>tick<span class="br0">&#41;</span>
+tick<span class="br0">&#40;</span><span class="br0">&#41;</span>
+mainloop<span class="br0">&#40;</span><span class="br0">&#41;</span></pre>
+
+<p>
+<a href="../../_media/home/cars/national_weather_service_observed_weather_for_past_3_days_portland_portland_international_airport.html.zip" class="media mediafile mf_zip" title="home:cars:national_weather_service_observed_weather_for_past_3_days_portland_portland_international_airport.html.zip">national_weather_service_observed_weather_for_past_3_days_portland_portland_international_airport.html.zip</a>
+</p>
+
+<p>
+<a href="../../_media/home/cars/national_weather_service_observed_weather_for_past_3_days_portland_portland-hillsboro_airport.html.zip" class="media mediafile mf_zip" title="home:cars:national_weather_service_observed_weather_for_past_3_days_portland_portland-hillsboro_airport.html.zip">national_weather_service_observed_weather_for_past_3_days_portland_portland-hillsboro_airport.html.zip</a>
+Lists dew point and other stuff for portland airport
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Real Data Experiment!!&quot;,&quot;hid&quot;:&quot;real_data_experiment&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:17,&quot;range&quot;:&quot;13973-&quot;} --></div></body>
+</html>

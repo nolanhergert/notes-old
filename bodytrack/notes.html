@@ -1,0 +1,420 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>bodytrack:notes</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#notes">Notes</a></div>
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#accelerometer">Accelerometer</a></div></li>
+<li class="level2"><div class="li"><a href="#ekg">EKG</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#heart_rate_variability">Heart Rate Variability</a></div></li>
+<li class="level3"><div class="li"><a href="#clinical_tests">Clinical Tests</a></div></li>
+<li class="level3"><div class="li"><a href="#software">Software</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#breathing">Breathing</a></div></li>
+<li class="level2"><div class="li"><a href="#galvanic_skin_response">Galvanic Skin Response</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#filtering">Filtering</a></div></li>
+<li class="level3"><div class="li"><a href="#location">Location</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#working_out">Working Out</a></div></li>
+<li class="level2"><div class="li"><a href="#sleeping">Sleeping</a></div></li>
+<li class="level2"><div class="li"><a href="#signal_filtering">Signal Filtering</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h1 class="sectionedit1" id="notes">Notes</h1>
+<div class="level1">
+
+<p>
+<a href="../_media/bodytrack/9810.jpg" class="media" title="bodytrack:9810.jpg"><img src="../_media/bodytrack/9810.jpg" class="mediaright" align="right" alt="" width="100" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> “If you can&#039;t explain it to a six year old, you don&#039;t understand it yourself.” — Albert Einstein</div>
+</li>
+<li class="level1"><div class="li"> Surely there are some simple explanations to all of this…</div>
+</li>
+</ul>
+<ul>
+<li class="level1 node"><div class="li"> <a href="http://bodytrack.org/datasources/13" class="urlextern" title="http://bodytrack.org/datasources/13" rel="ugc nofollow">BioHarness BodyTrack Site</a> (Uploaded Data)</div>
+<ul>
+<li class="level2"><div class="li"> -100 is on your back, +100 is on your stomach</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Notes&quot;,&quot;hid&quot;:&quot;notes&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-358&quot;} -->
+<h2 class="sectionedit2" id="accelerometer">Accelerometer</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> <a href="../_media/bodytrack/p225-lester.pdf" class="media mediafile mf_pdf" title="bodytrack:p225-lester.pdf">Validated Caloric Expenditure Estimation using a Single Body-Worn Sensor</a></div>
+<ul>
+<li class="level2"><div class="li"> Much better caloric intake estimation than FitBit because they compute activity based on footsteps from the accelerometer data. Intensity is based on speed change derived from footsteps and elevation change, which they compare a pressure sensor and GPS.</div>
+</li>
+<li class="level2"><div class="li"> A jog only burns &lt;500 calories…whereas just sitting or sleeping all day/night adds up quickly(1500-2000 calories)! </div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> <a href="../_media/bodytrack/libby_peak_detection.pdf" class="media mediafile mf_pdf" title="bodytrack:libby_peak_detection.pdf">A simple method for reliable footstep detection</a> (Ryan Libby from <a href="http://ubicomplab.cs.washington.edu/wiki/Main_Page" class="urlextern" title="http://ubicomplab.cs.washington.edu/wiki/Main_Page" rel="ugc nofollow">UbiComp group at UW</a>)</div>
+<ul>
+<li class="level2"><div class="li"> Uses frequency domain to adaptively find the right low-pass filter cutoff. Seems to work okay…</div>
+</li>
+<li class="level2"><div class="li"> Play around with in Matlab, but getting adaptive part while not using for loop is difficult. Try using for loop with FFT and see how slow it is?</div>
+</li>
+<li class="level2"><div class="li"> <strong>Not sure how robust it is against rotation, moving in pocket while running</strong></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Accelerometer&quot;,&quot;hid&quot;:&quot;accelerometer&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;359-1400&quot;} -->
+<h2 class="sectionedit3" id="ekg">EKG</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Great set of articles on reading an EKG. <a href="http://www.mauvila.com/ECG/ecg.htm" class="urlextern" title="http://www.mauvila.com/ECG/ecg.htm" rel="ugc nofollow">Mauvila</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="../_media/home/basicecg.gif" class="media" title="home:basicecg.gif"><img src="../_media/home/basicecg.gif" class="media" alt="" width="500" /></a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.engr.wisc.edu/bme/faculty/tompkins_willis.html" class="urlextern" title="http://www.engr.wisc.edu/bme/faculty/tompkins_willis.html" rel="ugc nofollow">QRS Detection Algorithms</a> that are co-authored by Willis Tompkins.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.eplimited.com/confirmation.htm" class="urlextern" title="http://www.eplimited.com/confirmation.htm" rel="ugc nofollow">Open Source C QRS Detection</a> Should be pretty fast too…Matt sent it to you.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;EKG&quot;,&quot;hid&quot;:&quot;ekg&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1401-1800&quot;} -->
+<h3 class="sectionedit4" id="heart_rate_variability">Heart Rate Variability</h3>
+<div class="level3">
+
+</div>
+
+<h4 id="sleep">Sleep</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <a href="../_media/bodytrack/05333527.pdf" class="media mediafile mf_pdf" title="bodytrack:05333527.pdf">HRV isn&#039;t helpful in distinguishing REM from awake</a>. They don&#039;t use an accelerometer, but do use some other parameters. Anne says trying to overtake Zeo is not as important as just getting HRV. </div>
+</li>
+<li class="level1"><div class="li"> Anne takes naps around 4 or 5 too! Or just do something else other than coding. Or have some chocolate?</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="notes1">Notes</h4>
+<div class="level4">
+<div class="table sectionedit5"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 centeralign">  Coherence  </th><th class="col1 centeralign">  Corposcindosis  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0 rightalign">  <a href="http://www.coherence.com/science_html_production.htm" class="media" title="http://www.coherence.com/science_html_production.htm" rel="ugc nofollow"><img src="../_media/bodytrack/guage_finished.png" class="media" alt="" width="200" /></a> </td><td class="col1 centeralign">  <a href="http://editthis.info/corposcindosis/The_Corposcindosis_Model" class="media" title="http://editthis.info/corposcindosis/The_Corposcindosis_Model" rel="ugc nofollow"><img src="../_media/bodytrack/aspace1.jpg" class="media" alt="" width="200" /></a>  </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0 centeralign">  Optimum state  supposedly<br/>
+When HRV and BR are synced (5RPM)  </td><td class="col1 centeralign">  Tries to map autonomic space. Sort of works…  </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:5,&quot;range&quot;:&quot;2196-2552&quot;} -->
+<p>
+  * <a href="http://quantifiedself.com/2010/04/numbers-from-the-heart/" class="urlextern" title="http://quantifiedself.com/2010/04/numbers-from-the-heart/" rel="ugc nofollow">Quantified Self Numbers from the Heart</a>, the best overview article yet.
+</p>
+<ul>
+<li class="level1"><div class="li"> Goes over different measurement methods and software</div>
+</li>
+<li class="level2"><div class="li"> Correlates some interesting stuff, including running styles, breathing styles, and some meditation and yoga</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.livestrong.com/article/134189-heart-rate-variability-during-sleep/" class="urlextern" title="http://www.livestrong.com/article/134189-heart-rate-variability-during-sleep/" rel="ugc nofollow">HRV and Sleep, good LiveStrong overview article</a></div>
+</li>
+<li class="level2"><div class="li"> Sympathetic Nervous System: Low frequency HRV, “fight-or-flight” response. Unintuitive, but that&#039;s the way it is.</div>
+</li>
+<li class="level2"><div class="li"> Parasympathetic Nervous System: High Freq HRV, “rest and digest” response. </div>
+</li>
+<li class="level2"><div class="li"> Common Measurements are </div>
+</li>
+<li class="level2"><div class="li"> Normalized High Frequency Variability (.05 Hz to 1 Hz???): Correlated to parasympathetic nervous system</div>
+</li>
+<li class="level2"><div class="li"> Normalized Low Freq Variability (<em class="u"></em> to <em class="u"></em> ????): Correlated to sympathetic nervous system</div>
+</li>
+<li class="level2"><div class="li"> LF/HF Ratio: You want parasympathetic nervous system to dominate over sympathetic, and this ratio basically tells you the balance between them. A high ratio is worse, means you&#039;re “dead-er”.</div>
+</li>
+<li class="level2"><div class="li"> Should use a Lomb periodogram to get more accurate frequency representation, since “it does not require resampling of unevenly sampled signals such as RR data”</div>
+</li>
+<li class="level2"><div class="li"> HRV analysis should be based on respiratory data. Reading a paper now, and they use Wavelet analysis too. <a href="../_media/bodytrack/aysinembs06.doc" class="media mediafile mf_doc" title="bodytrack:aysinembs06.doc">aysinembs06.doc</a></div>
+</li>
+<li class="level2"><div class="li"> Haha, IntelliWave references this paper and talks about how it&#039;s not as good on page 39. hm…</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Heart Rate Variability&quot;,&quot;hid&quot;:&quot;heart_rate_variability&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1801-4037&quot;} -->
+<h3 class="sectionedit6" id="clinical_tests">Clinical Tests</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Doctors usually perform an orthostatic (lying-to-standing) test and a Valsalva maneuver combined with deep breathing.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Clinical Tests&quot;,&quot;hid&quot;:&quot;clinical_tests&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;4038-4184&quot;} -->
+<h3 class="sectionedit7" id="software">Software</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://forum.polar.fi/showthread.php?t=16187" class="urlextern" title="http://forum.polar.fi/showthread.php?t=16187" rel="ugc nofollow">Polar thread on analyzing HRV</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="firstbeat">FirstBeat</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> <a href="http://scholar.google.com/scholar?pq=kettunen+saalasti+patent+procedure+for+detection+of+stress+state&amp;hl=en&amp;sugexp=bvec&amp;cp=64&amp;gs_id=57&amp;xhr=t&amp;q=kettunen+saalasti+patent+procedure+for+detection+of+stress+state&amp;qe=a2V0dHVuZW4gc2FhbGFzdGkgcGF0ZW50IHByb2NlZHVyZSBmb3IgZGV0ZWN0aW9uIG9mIHN0cmVzcyBzdGF0ZQ&amp;qesig=-nwuewCXNF-ugz57hqU32Q&amp;pkc=AFgZ2tmH43iCm8Ox1iSEGgKRGnktaG1rpzFI9so9GqD4NNV6spNK4uyWWFybHOjmqv9ol8d9Dx90dhH9IEUF6YIbJvFsprn8Cg&amp;qscrl=1&amp;gs_sm=&amp;gs_upl=&amp;bav=on.2,or.r_gc.r_pw.&amp;biw=1280&amp;bih=684&amp;um=1&amp;ie=UTF-8&amp;sa=N&amp;tab=ws" class="urlextern" title="http://scholar.google.com/scholar?pq=kettunen+saalasti+patent+procedure+for+detection+of+stress+state&amp;hl=en&amp;sugexp=bvec&amp;cp=64&amp;gs_id=57&amp;xhr=t&amp;q=kettunen+saalasti+patent+procedure+for+detection+of+stress+state&amp;qe=a2V0dHVuZW4gc2FhbGFzdGkgcGF0ZW50IHByb2NlZHVyZSBmb3IgZGV0ZWN0aW9uIG9mIHN0cmVzcyBzdGF0ZQ&amp;qesig=-nwuewCXNF-ugz57hqU32Q&amp;pkc=AFgZ2tmH43iCm8Ox1iSEGgKRGnktaG1rpzFI9so9GqD4NNV6spNK4uyWWFybHOjmqv9ol8d9Dx90dhH9IEUF6YIbJvFsprn8Cg&amp;qscrl=1&amp;gs_sm=&amp;gs_upl=&amp;bav=on.2,or.r_gc.r_pw.&amp;biw=1280&amp;bih=684&amp;um=1&amp;ie=UTF-8&amp;sa=N&amp;tab=ws" rel="ugc nofollow">Patent Listings</a> and their <a href="http://www.firstbeat.fi/physiology/white-papers" class="urlextern" title="http://www.firstbeat.fi/physiology/white-papers" rel="ugc nofollow">white papers</a> have some great research!</div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="kubios_hrv">Kubios HRV</h4>
+<div class="level4">
+<ul>
+<li class="level1 node"><div class="li"> <a href="http://kubios.uku.fi/" class="urlextern" title="http://kubios.uku.fi/" rel="ugc nofollow">Kubios HRV Analyzer</a>! (from the Finns and free!) Built on Matlab and offers some cool output formatting…<a href="http://kubios.uku.fi/media/Kubios_HRV_Users_Guide.pdf" class="urlextern" title="http://kubios.uku.fi/media/Kubios_HRV_Users_Guide.pdf" rel="ugc nofollow">Descriptive help document here</a></div>
+<ul>
+<li class="level2"><div class="li"> Offers 21 different parameters to analyze</div>
+</li>
+<li class="level2"><div class="li"> <a href="../_media/bodytrack/kubios_hrv_report_sheet.png" class="media" title="bodytrack:kubios_hrv_report_sheet.png"><img src="../_media/bodytrack/kubios_hrv_report_sheet.png" class="media" alt="" width="300" /></a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+
+<h4 id="intellewave_nerve-express">IntelleWave (Nerve-Express)</h4>
+<div class="level4">
+<ul>
+<li class="level1 node"><div class="li"> <a href="http://www.intellewave.net/" class="urlextern" title="http://www.intellewave.net/" rel="ugc nofollow">Intellewave (Nerve-Express)</a>: His <a href="../_media/bodytrack/theory.pdf" class="media mediafile mf_pdf" title="bodytrack:theory.pdf">theory review paper</a> is 50 pages long?! Cites Marvin Minsky&#039;s Frame Theory as inspiration. </div>
+<ul>
+<li class="level2"><div class="li"> His patent, <a href="../_media/bodytrack/7826892_method_for_quantitative_assessme.pdf" class="media mediafile mf_pdf" title="bodytrack:7826892_method_for_quantitative_assessme.pdf">Method for Quantitative Assessment of Autonomic Nervous System based on HRV Analysis</a>, goes a little more in-depth</div>
+</li>
+<li class="level2"><div class="li"> $4000 for Zephyr HxM Bluetooth ($100) and his proprietary software</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.google.com/patents?id=QIvYAAAAEBAJ&amp;pg=PA38&amp;dq=Quantitative+assessment+of+Autonomic+function+based+on+Heart+Rate+Variability&amp;hl=en&amp;ei=nOcITrHWMuPm0QGm6MDPCw&amp;sa=X&amp;oi=book_result&amp;ct=result&amp;resnum=1&amp;ved=0CCkQ6AEwAA#v=onepage&amp;q=Quantitative%20assessment%20of%20Autonomic%20function%20based%20on%20Heart%20Rate%20Variability&amp;f=false" class="urlextern" title="http://www.google.com/patents?id=QIvYAAAAEBAJ&amp;pg=PA38&amp;dq=Quantitative+assessment+of+Autonomic+function+based+on+Heart+Rate+Variability&amp;hl=en&amp;ei=nOcITrHWMuPm0QGm6MDPCw&amp;sa=X&amp;oi=book_result&amp;ct=result&amp;resnum=1&amp;ved=0CCkQ6AEwAA#v=onepage&amp;q=Quantitative%20assessment%20of%20Autonomic%20function%20based%20on%20Heart%20Rate%20Variability&amp;f=false" rel="ugc nofollow">Just got a patent too</a> in case the paper doesn&#039;t spill the beans.</div>
+</li>
+<li class="level2 node"><div class="li"> <em>Nerve-Express solved a challenging problem of subdividing the Spectral Function of R-R intervals variability into two parts:<br/>
+
+
+- High Frequency (which correlates with Parasympathetic activity 95% of the time) and <br/>
+
+- Low Frequency (correlates with Sympathetic activity up to 70% of time). <br/>
+
+
+In the past, the division line (between PNS and SNS) was found at a mean Frequency of 0.15 Hz (for an average healthy person). However, for each individual, this transition point varies.<br/>
+
+Nerve-Express was able to come up with a calculation which is unique to any given person.<br/>
+
+In addition, Nerve-Express also dealt with the problem of reducing all possible variations of multiple parameters (20-30) into a quantitative relationship between only two parameters: SNS and PSNS.
+Nerve-Express is the first and only system to solve this problem of SNS-PSNS quantification. This technological breakthrough is achieved by the application of Dr. Riftine&#039;s proprietary algorithms.</em></div>
+<ul>
+<li class="level3"><div class="li"> From <a href="http://nerveexpress.com/en/10/24.html" class="urlextern" title="http://nerveexpress.com/en/10/24.html" rel="ugc nofollow">product history page</a></div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.intellewave.net/en/4/11.html" class="urlextern" title="http://www.intellewave.net/en/4/11.html" rel="ugc nofollow">Random Duplicate website...</a></div>
+</li>
+</ul>
+
+</div>
+
+<h4 id="biocom_technologies">Biocom Technologies</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Also very expensive.</div>
+</li>
+</ul>
+
+<p>
+<a href="http://www.biocomtech.com/hrv-science/heart-rate-variability-analysis" class="media" title="http://www.biocomtech.com/hrv-science/heart-rate-variability-analysis" rel="ugc nofollow"><img src="../_media/bodytrack/ecg_abnormal_heartbeats.jpg" class="media" alt="" width="300" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.biocomtech.com/products/heart-rhythm-scanner_trainings" class="urlextern" title="http://www.biocomtech.com/products/heart-rhythm-scanner_trainings" rel="ugc nofollow">Decent videos though</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Software&quot;,&quot;hid&quot;:&quot;software&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;4185-7608&quot;} -->
+<h2 class="sectionedit8" id="breathing">Breathing</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> <a href="http://www.atmabodh.net/pranayama" class="urlextern" title="http://www.atmabodh.net/pranayama" rel="ugc nofollow">Pranayama</a> is deep breathing exercises. Anne also mentioned ayurveda being a few-millenia-old Indian medicinal/spiritual practice, her agni going crazy, –&gt; no nightshades?!</div>
+<ul>
+<li class="level2"><div class="li"> <a href="../_media/bodytrack/baba_ramdev_what_is_pranayama_helth_yoga_pose.jpg" class="media" title="bodytrack:baba_ramdev_what_is_pranayama_helth_yoga_pose.jpg"><img src="../_media/bodytrack/baba_ramdev_what_is_pranayama_helth_yoga_pose.jpg" class="media" alt="" width="100" /></a></div>
+</li>
+<li class="level2"><div class="li"> Starts getting into Hindu stuff?</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Breathing&quot;,&quot;hid&quot;:&quot;breathing&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;7609-7960&quot;} -->
+<h2 class="sectionedit9" id="galvanic_skin_response">Galvanic Skin Response</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Should provide some juicy data on stress levels, but might need some intelligent filtering to remove baseline shifts and such.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://affect.media.mit.edu/areas.php?id=sensing" class="urlextern" title="http://affect.media.mit.edu/areas.php?id=sensing" rel="ugc nofollow">Overview MIT Media Lab Article</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.extremenxt.com/gsr.htm" class="urlextern" title="http://www.extremenxt.com/gsr.htm" rel="ugc nofollow">Radioshack Kit Common Exploratory Experiments</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://wiki.pumpingstationone.org/index.php/Biosensor_Array_Galvanic_Skin_Response" class="urlextern" title="http://wiki.pumpingstationone.org/index.php/Biosensor_Array_Galvanic_Skin_Response" rel="ugc nofollow">Wiki Article</a>, lots of links and documentation!</div>
+</li>
+</ul>
+
+<p>
+<a href="http://wiki.pumpingstationone.org/index.php/Biosensor_Array_Galvanic_Skin_Response" class="media" title="http://wiki.pumpingstationone.org/index.php/Biosensor_Array_Galvanic_Skin_Response" rel="ugc nofollow"><img src="../_media/bodytrack/gsr_schematic_04.png" class="media" alt="" width="400" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Galvanic Skin Response&quot;,&quot;hid&quot;:&quot;galvanic_skin_response&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;7961-8568&quot;} -->
+<h3 class="sectionedit10" id="filtering">Filtering</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Seems like people are using slope and change in frequency of oscillation.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Filtering&quot;,&quot;hid&quot;:&quot;filtering&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;8569-8668&quot;} -->
+<h3 class="sectionedit11" id="location">Location</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> “Palms and soles are preferred only because they have the highest concentration of eccrine glands” (and aren&#039;t as responsible for thermoregulation, and thus less baseline drift)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Location&quot;,&quot;hid&quot;:&quot;location&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:11,&quot;range&quot;:&quot;8669-8869&quot;} -->
+<h2 class="sectionedit12" id="working_out">Working Out</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://philmaffetone.com/hrv.cfm" class="urlextern" title="http://philmaffetone.com/hrv.cfm" rel="ugc nofollow">HRV Tips for Not Overtraining</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.pponline.co.uk/encyc/heart-rate-variability-analysis-how-to-improve-your-training-performance-40837" class="urlextern" title="http://www.pponline.co.uk/encyc/heart-rate-variability-analysis-how-to-improve-your-training-performance-40837" rel="ugc nofollow">This article</a> talks about FirstBeat&#039;s research that shows that training programs using HRV data to not push the body too hard and rest accordingly will help you perform better than the normal exercise routine…</div>
+</li>
+<li class="level1"><div class="li"> You can get a very good approximation of your anaerobic threshold when you start breathing hard. It&#039;s not as sensitive as actually measuring lactic acid building and VO2 output, but close enough for 99.9% of the population. <a href="../_media/bodytrack/v4n4-15pdf.pdf" class="media mediafile mf_pdf" title="bodytrack:v4n4-15pdf.pdf">Academic Paper</a><a href="../_media/bodytrack/whitepaper_vt.pdf" class="media mediafile mf_pdf" title="bodytrack:whitepaper_vt.pdf">Zephyr Technology White Paper</a></div>
+</li>
+<li class="level1 node"><div class="li"> Seems like aerobic is good for short activities and anaerobic is better for quick bursts. Not sure though why/how you would train knowing that! </div>
+<ul>
+<li class="level2"><div class="li"> Zephyr&#039;s paper seems pretty good <a href="../_media/bodytrack/application-note-why-conduct-fitness-testing-2010-08-02.pdf" class="media mediafile mf_pdf" title="bodytrack:application-note-why-conduct-fitness-testing-2010-08-02.pdf">Why Conduct Fitness Testing</a></div>
+</li>
+</ul>
+</li>
+</ul>
+
+<p>
+<a href="../_media/bodytrack/screen_shot_2011-06-28_at_11.18.45_am.png" class="media" title="bodytrack:screen_shot_2011-06-28_at_11.18.45_am.png"><img src="../_media/bodytrack/screen_shot_2011-06-28_at_11.18.45_am.png" class="media" alt="" width="300" /></a>
+</p>
+
+</div>
+
+<h4 id="firstbeat_software_hrv_only">Firstbeat Software (HRV only)</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Works with only certain watches, but their ATHLETE version is cheap &lt;$100. Looking at the trial now.</div>
+</li>
+<li class="level1 node"><div class="li"> They&#039;ve done tons of research onto the relationship between HR/HRV and oxygen consumption, energy expenditure, training effect, etc. They&#039;re able to put your whole workout into 5 different zones, mainly based on HRV I think. However, the fact that it doesn&#039;t use respiration is kinda interesting.</div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://www.firstbeat.fi/physiology/white-papers" class="urlextern" title="http://www.firstbeat.fi/physiology/white-papers" rel="ugc nofollow">Very Informative White Papers</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.firstbeat.fi/physiology/research-and-publications" class="urlextern" title="http://www.firstbeat.fi/physiology/research-and-publications" rel="ugc nofollow">Research Papers</a> (some research uses stuff like neural networks)</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> I&#039;d like to try this software out with some real data, which apparently can be an hrm file.</div>
+</li>
+<li class="level1"><div class="li"> Maybe look into buying a Garmin GPS-enabled watch? Forerunner 110 and 210 are ~$200 and do FirstBeat analysis too. Hmmm…give it a few days of thought.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Working Out&quot;,&quot;hid&quot;:&quot;working_out&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:12,&quot;range&quot;:&quot;8870-10905&quot;} -->
+<h2 class="sectionedit13" id="sleeping">Sleeping</h2>
+<div class="level2">
+<ul>
+<li class="level1 node"><div class="li"> Since we don&#039;t have EEG yet, it might be interesting to see how well we can track sleep quality from other measures such as HR or HRV and respiration rate.</div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://jap.physiology.org/content/19/3/417.abstract" class="urlextern" title="http://jap.physiology.org/content/19/3/417.abstract" rel="ugc nofollow">Changes in respiration, heart rate, and systolic blood pressure in human sleep</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://en.wikipedia.org/wiki/Sleep" class="urlextern" title="http://en.wikipedia.org/wiki/Sleep" rel="ugc nofollow">Wiki article on Sleep</a>. WOW. Didn&#039;t know that the human biological clock is so consistent! </div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> Blue light plays a rather big role too! Good article on picture:</div>
+</li>
+</ul>
+
+<p>
+<a href="http://provideyourown.com/2010/do-you-have-trouble-sleeping/" class="media" title="http://provideyourown.com/2010/do-you-have-trouble-sleeping/" rel="ugc nofollow"><img src="../_media/bodytrack/kindlelight3.jpg" class="media" alt="" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sleeping&quot;,&quot;hid&quot;:&quot;sleeping&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:13,&quot;range&quot;:&quot;10906-11533&quot;} -->
+<h2 class="sectionedit14" id="signal_filtering">Signal Filtering</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="../_media/home/00083591.pdf" class="media mediafile mf_pdf" title="home:00083591.pdf">Adaptive Filtering for ECG Analysis (Thakor)</a><a href="../_media/home/hopkins_medicine_magazine_-_a_silver_bullet_for_blake.png" class="media" title="home:hopkins_medicine_magazine_-_a_silver_bullet_for_blake.png"><img src="../_media/home/hopkins_medicine_magazine_-_a_silver_bullet_for_blake.png" class="media" alt="" /></a></div>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://techresearch.intel.com/ProjectDetails.aspx?Id=156&amp;wapkw=%28jennifer+healey%29" class="urlextern" title="http://techresearch.intel.com/ProjectDetails.aspx?Id=156&amp;wapkw=%28jennifer+healey%29" rel="ugc nofollow">Jennifer Healy</a>, Intel Researcher on mood recognition. Was an Intel “rock star” :). Her paper on and <a href="../_media/bodytrack/hrv_stress.pdf" class="media mediafile mf_pdf" title="bodytrack:hrv_stress.pdf">Detecting Stress During Real-World Driving Tasks</a></div>
+<ul>
+<li class="level2 node"><div class="li"> <a href="../_media/bodytrack/fulltext-1.pdf" class="media mediafile mf_pdf" title="bodytrack:fulltext-1.pdf">Modeling Emotion in Everyday Life</a></div>
+<ul>
+<li class="level3 node"><div class="li"> GSR</div>
+<ul>
+<li class="level4"><div class="li"> Found points of interest and prompt points when there was a large change in the signal and “specific patterns in the tonic level” &gt;.&gt; I think they later said peak frequency…interesting</div>
+</li>
+<li class="level4"><div class="li"> However, to minimize annoyance, the system prompted at most every 15 minutes even if an interesting event happened.</div>
+</li>
+</ul>
+</li>
+<li class="level3 node"><div class="li"> Time Windows</div>
+<ul>
+<li class="level4"><div class="li"> It seems that no one can crack the nut of knowing “mood” from GSR, so this study tried to start some of that by measuring slope and frequency change. However, know that there is a (1-3 second) delay between instantaneous “startle” events and the GSR response that follow.</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Signal Filtering&quot;,&quot;hid&quot;:&quot;signal_filtering&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:14,&quot;range&quot;:&quot;11534-&quot;} --></div></body>
+</html>

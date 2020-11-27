@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>electronics:ucnotes</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#general_tips">General Tips</a></div></li>
+<li class="level2"><div class="li"><a href="#arduino_dumb_stuff">Arduino dumb stuff</a></div></li>
+<li class="level2"><div class="li"><a href="#arduino_setup">Arduino setup</a></div></li>
+<li class="level2"><div class="li"><a href="#projects">Projects</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#buck_converter">Buck converter</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#simulation">Simulation</a></div></li>
+<li class="level2"><div class="li"><a href="#spark_core_stuff">Spark Core Stuff</a></div></li>
+<li class="level2"><div class="li"><a href="#debugging">Debugging</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#local_builds">Local Builds</a></div></li>
+<li class="level3"><div class="li"><a href="#splitting_up_files">Splitting Up Files</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#arduino_stuff">Arduino Stuff</a></div></li>
+<li class="level2"><div class="li"><a href="#boring_but_useful_tools">Boring but useful tools</a></div></li>
+<li class="level2"><div class="li"><a href="#compression">Compression</a></div></li>
+<li class="level2"><div class="li"><a href="#power_optimization">Power Optimization</a></div></li>
+<li class="level2"><div class="li"><a href="#general_tips1">General Tips</a></div></li>
+<li class="level2"><div class="li"><a href="#using_μc_as_usb_slave_input_human_interface_device">Using μC as USB Slave Input (Human Interface Device)</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#in_hardware">In Hardware</a></div></li>
+<li class="level3"><div class="li"><a href="#in_software">In Software</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#arm_development">ARM Development</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#stm32">STM32</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#long-term_questions">Long-Term Questions</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h2 class="sectionedit1" id="general_tips">General Tips</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <em>When attempting to do a project microcontroller-related, look up “Arduino ——” for better-explained versions that aren&#039;t too technical, and look for “AVR ——” or “ARM ——” for fully-featured solutions with more technical explanations. </em></div>
+</li>
+<li class="level1"><div class="li"> Usually a certain chip can do a lot, it&#039;s just a matter of implementing it! <a href="http://hackaday.com/2010/12/14/garage-monitor-has-an-extra-arduino/" class="urlextern" title="http://hackaday.com/2010/12/14/garage-monitor-has-an-extra-arduino/" rel="ugc nofollow">XBee does ADC!</a></div>
+</li>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Get a debugger for Arduino. <a href="https://platformio.org/" class="urlextern" title="https://platformio.org/" rel="ugc nofollow">https://platformio.org/</a></div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Great Starter Links for implementations by <a href="https://labitat.dk/wiki/Microcontroller_Resources" class="urlextern" title="https://labitat.dk/wiki/Microcontroller_Resources" rel="ugc nofollow">Labitat</a>.</div>
+</li>
+<li class="level1"><div class="li"> General tips by <a href="http://www.ganssle.com/tem-back.htm" class="urlextern" title="http://www.ganssle.com/tem-back.htm" rel="ugc nofollow">Jack Ganssle</a></div>
+</li>
+<li class="level1"><div class="li"> Screen is a good Linux / <abbr title="Operating System">OS</abbr> X command line program for logging serial. <a href="http://www.rackaid.com/resources/linux-screen-tutorial-and-how-to/" class="urlextern" title="http://www.rackaid.com/resources/linux-screen-tutorial-and-how-to/" rel="ugc nofollow">Screen Commands</a></div>
+</li>
+</ul>
+<pre class="code c">screen <span class="sy0">/</span>dev<span class="sy0">/</span>tty.<span class="me1">usbserial</span><span class="sy0">-</span>A400gw05 <span class="nu0">115200</span> <span class="sy0">&gt;&gt;</span> output.<span class="me1">txt</span>
+<span class="co1">//Ctrl-A then Ctrl-K then y and &lt;Enter&gt; exits</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;General Tips&quot;,&quot;hid&quot;:&quot;general_tips&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-974&quot;} -->
+<h2 class="sectionedit2" id="arduino_dumb_stuff">Arduino dumb stuff</h2>
+<div class="level2">
+
+<p>
+Turn on warnings for arduino! It&#039;ll catch dumb compiler stuff like this:
+</p>
+<pre class="code c"><span class="kw4">unsigned</span> <span class="kw4">long</span> a <span class="sy0">=</span> <span class="nu0">500</span> <span class="sy0">*</span> <span class="nu0">1000</span><span class="sy0">;</span> <span class="co1">// ~30000</span>
+<span class="kw4">unsigned</span> <span class="kw4">long</span> a <span class="sy0">=</span> <span class="br0">&#40;</span><span class="kw4">unsigned</span> <span class="kw4">long</span><span class="br0">&#41;</span> <span class="nu0">500</span> <span class="sy0">*</span> <span class="nu0">1000</span><span class="sy0">;</span> <span class="co1">// 500000</span></pre>
+
+<p>
+Also default value for int is 2^16
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Arduino dumb stuff&quot;,&quot;hid&quot;:&quot;arduino_dumb_stuff&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:2,&quot;range&quot;:&quot;975-1227&quot;} -->
+<h2 class="sectionedit3" id="arduino_setup">Arduino setup</h2>
+<div class="level2">
+<div class="table sectionedit4"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> Name </th><th class="col1"> Board </th><th class="col2"> Programmer </th><th class="col3"> Notes </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> Pro Trinket </td><td class="col1"> Pro Trinket 5V 16MHz </td><td class="col2"> USBtinyISP </td><td class="col3"> Need to install Adafruit driver for Windows </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> Arduino Mini Clone (CH340) </td><td class="col1"> Arduino Duemolinovae </td><td class="col2"> AVRISP mkII </td><td class="col3"> Need to install CH340 drivers for Windows </td>
+	</tr>
+	<tr class="row3">
+		<td class="col0"> Wemos D1 Mini </td><td class="col1"> LOLIN WEMOS D1 R2 &amp; Mini </td><td class="col2"> AVRISP mkII </td><td class="col3"> I think CH340 drivers too </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:4,&quot;range&quot;:&quot;1254-1588&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Arduino setup&quot;,&quot;hid&quot;:&quot;arduino_setup&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:3,&quot;range&quot;:&quot;1228-1589&quot;} -->
+<h2 class="sectionedit5" id="projects">Projects</h2>
+<div class="level2">
+
+<p>
+Cheap arduino clones at Banggood. Probably don&#039;t want an attiny as there&#039;s not a lot of flash/ram space. .50 more and a little more real estate to use something more, 328p for example.
+</p>
+
+<p>
+<a href="https://www.banggood.com/Wholesale-Attribute-Module-Board-c-2152-0-1-3-44-0-s-4662v39801_page1.html?version=1&amp;sortType=asc" class="urlextern" title="https://www.banggood.com/Wholesale-Attribute-Module-Board-c-2152-0-1-3-44-0-s-4662v39801_page1.html?version=1&amp;sortType=asc" rel="ugc nofollow">https://www.banggood.com/Wholesale-Attribute-Module-Board-c-2152-0-1-3-44-0-s-4662v39801_page1.html?version=1&amp;sortType=asc</a>
+</p>
+
+<p>
+Don&#039;t need it right now as I have other similar boards available that I can use up. But for future projects…
+</p>
+
+<p>
+Bought FTDI header. Cheap.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Projects&quot;,&quot;hid&quot;:&quot;projects&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:5,&quot;range&quot;:&quot;1590-2060&quot;} -->
+<h3 class="sectionedit6" id="buck_converter">Buck converter</h3>
+<div class="level3">
+
+<p>
+Cheap at banggood. Can get 3a input and buck/boost for dollars.
+</p>
+
+<p>
+<a href="https://www.banggood.com/TP4056-Micro-USB-5V-1A-Lithium-Battery-Charging-Module-Board-TE585-Lipo-Charger-p-1225993.html?rmmds=category" class="urlextern" title="https://www.banggood.com/TP4056-Micro-USB-5V-1A-Lithium-Battery-Charging-Module-Board-TE585-Lipo-Charger-p-1225993.html?rmmds=category" rel="ugc nofollow">https://www.banggood.com/TP4056-Micro-USB-5V-1A-Lithium-Battery-Charging-Module-Board-TE585-Lipo-Charger-p-1225993.html?rmmds=category</a>
+</p>
+
+<p>
+<a href="https://www.banggood.com/DC-DC-Boost-Buck-Adjustable-Step-Up-Step-Down-Automatic-Converter-XL6009-Module-p-1087346.html?rmmds=detail-bottom-alsobought__1" class="urlextern" title="https://www.banggood.com/DC-DC-Boost-Buck-Adjustable-Step-Up-Step-Down-Automatic-Converter-XL6009-Module-p-1087346.html?rmmds=detail-bottom-alsobought__1" rel="ugc nofollow">https://www.banggood.com/DC-DC-Boost-Buck-Adjustable-Step-Up-Step-Down-Automatic-Converter-XL6009-Module-p-1087346.html?rmmds=detail-bottom-alsobought__1</a>
+</p>
+
+<p>
+<a href="https://www.banggood.com/DC-DC-8A-Automatic-Step-Up-Step-Down-Adjustable-Power-Module-p-969195.html?rmmds=search" class="urlextern" title="https://www.banggood.com/DC-DC-8A-Automatic-Step-Up-Step-Down-Adjustable-Power-Module-p-969195.html?rmmds=search" rel="ugc nofollow">https://www.banggood.com/DC-DC-8A-Automatic-Step-Up-Step-Down-Adjustable-Power-Module-p-969195.html?rmmds=search</a>
+</p>
+
+<p>
+Lots of good tips in this flashlight led recharge li ion project video. Maybe need a fuse though <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />
+</p>
+
+<p>
+YouTube Link! <a href="https://www.youtube.com/watch?v=0CnhTuoTY2M" class="urlextern" title="https://www.youtube.com/watch?v=0CnhTuoTY2M" rel="ugc nofollow">https://www.youtube.com/watch?v=0CnhTuoTY2M</a>
+</p>
+
+<p>
+Also spot welder with old microwave, maybe batteries.
+</p>
+<iframe src="//www.youtube-nocookie.com/embed/tPuKu5J-_64" height="239" width="425" class="vshare__none" allowfullscreen="" frameborder="0" scrolling="no"></iframe>
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Buck converter&quot;,&quot;hid&quot;:&quot;buck_converter&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:6,&quot;range&quot;:&quot;2061-2803&quot;} -->
+<h2 class="sectionedit7" id="simulation">Simulation</h2>
+<div class="level2">
+
+<p>
+It might be helpful to have a simulator running your chip. For example, if you want to give funky inputs but don&#039;t have an extra scope lying around. Ehhh…most people want to test on the hardware itself.
+</p>
+<ul>
+<li class="level1"><div class="li"> Anyways, <a href="http://www.google.com/search?q=Qemu" class="interwiki iw_g" title="http://www.google.com/search?q=Qemu">Qemu</a> or <a href="http://www.google.com/search?q=Proteus" class="interwiki iw_g" title="http://www.google.com/search?q=Proteus">Proteus</a> is an option.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Simulation&quot;,&quot;hid&quot;:&quot;simulation&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:7,&quot;range&quot;:&quot;2804-3087&quot;} -->
+<h2 class="sectionedit8" id="spark_core_stuff">Spark Core Stuff</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> To build <strong>for CORE</strong>, slightly different at end for photon. See <a href="https://community.particle.io/t/building-modules-on-the-core/16778" class="urlextern" title="https://community.particle.io/t/building-modules-on-the-core/16778" rel="ugc nofollow">mdma post</a></div>
+</li>
+</ul>
+<pre class="code">&gt; git clone https://github.com/spark/firmware
+&gt; git checkout latest //(not develop)
+&gt; cd firmware/user/applications/
+firmware/user/applications&gt; ln -s ~/Dropbox/eng/projects/homerot/spark/homerot/src/ homerot
+firmware/user/applications&gt; cd ../../main
+firmware/main&gt; sudo make clean all PLATFORM=core APP=homerot program-dfu</pre>
+<ul>
+<li class="level1"><div class="li"> </div>
+</li>
+<li class="level1"><div class="li"> Really spotty Serial? Disable Spark cloud syncing by using SYSTEM_MODE to turn it off. But, you&#039;ll need to flash locally (which you&#039;ll prefer anyways)</div>
+</li>
+<li class="level1"><div class="li"> Can&#039;t get WiFi to connect out of the box? Install the <a href="https://github.com/spark/spark-cli" class="urlextern" title="https://github.com/spark/spark-cli" rel="ugc nofollow">Spark Command Line Interface</a> then <a href="https://github.com/spark/spark-cli#apply-the-cc3000-patch" class="urlextern" title="https://github.com/spark/spark-cli#apply-the-cc3000-patch" rel="ugc nofollow">apply the CC3000 patch</a></div>
+</li>
+<li class="level1"><div class="li"> Can&#039;t get WiFi to turn off then on? <strong>Don&#039;t hammer the WiFi chip with connect() calls</strong>. Let it tell you when it&#039;s ready.</div>
+</li>
+</ul>
+<pre class="code c">SYSTEM_MODE<span class="br0">&#40;</span>MANUAL<span class="br0">&#41;</span><span class="sy0">;</span>
+bool WiFiEnabled <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+&nbsp;
+<span class="kw4">void</span> loop<span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>ConnectToWifiNow <span class="sy0">==</span> <span class="nu0">1</span> <span class="sy0">&amp;&amp;</span> WiFiEnabled <span class="sy0">==</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        WiFi.<span class="me1">connect</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        WiFiEnabled <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+    <span class="co1">//Wait until WiFi is ready</span>
+    <span class="kw1">if</span> <span class="br0">&#40;</span>WiFi.<span class="me1">ready</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">==</span> <span class="nu0">1</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+        <span class="co1">//Do sync stuff</span>
+        DoSyncStuff<span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        <span class="co1">//Then</span>
+        WiFi.<span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+        WiFiEnabled <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+    <span class="br0">&#125;</span>
+<span class="br0">&#125;</span></pre>
+<ul>
+<li class="level1"><div class="li"> Want to sync your RTC? You can&#039;t simply run <code>Spark.syncTime()</code>, you have to do Spark.connect() and Spark.process() as below.</div>
+</li>
+</ul>
+<pre class="code c">bool SparkConnect <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span>
+<span class="kw1">if</span> <span class="br0">&#40;</span>WiFi.<span class="me1">ready</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">==</span> <span class="nu0">1</span> <span class="sy0">&amp;&amp;</span> SparkConnect <span class="sy0">==</span> <span class="nu0">0</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    Spark.<span class="me1">connect</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    SparkConnect <span class="sy0">=</span> <span class="nu0">1</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span>WiFi.<span class="me1">ready</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">==</span> <span class="nu0">1</span> <span class="sy0">&amp;&amp;</span> Spark.<span class="me1">connected</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&amp;&amp;</span> Time.<span class="me1">now</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&lt;</span> <span class="nu0">1000000</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    Spark.<span class="me1">process</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    <span class="co1">//Spark.syncTime();</span>
+    Serial.<span class="me1">println</span><span class="br0">&#40;</span><span class="st0">&quot;Syncing time&quot;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+<span class="br0">&#125;</span>
+&nbsp;
+<span class="kw1">if</span> <span class="br0">&#40;</span>WiFi.<span class="me1">ready</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">==</span> <span class="nu0">1</span> <span class="sy0">&amp;&amp;</span> Spark.<span class="me1">connected</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&amp;&amp;</span> Time.<span class="me1">now</span><span class="br0">&#40;</span><span class="br0">&#41;</span> <span class="sy0">&gt;</span> <span class="nu0">100000</span><span class="br0">&#41;</span> <span class="br0">&#123;</span>
+    Spark.<span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    WiFi.<span class="me1">disconnect</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="sy0">;</span>
+    WiFiConnect <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+    SparkConnect <span class="sy0">=</span> <span class="nu0">0</span><span class="sy0">;</span>
+<span class="br0">&#125;</span></pre>
+<ul>
+<li class="level1"><div class="li"> Weird bugs in compiling like `__dso_handle&#039; isn&#039;t defined and “undefined reference to operator(void)”? <strong>Make sure your backup file names end with something other than .cpp</strong> &gt;.&lt;</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Spark Core Stuff&quot;,&quot;hid&quot;:&quot;spark_core_stuff&quot;,&quot;codeblockOffset&quot;:2,&quot;secid&quot;:8,&quot;range&quot;:&quot;3088-5233&quot;} -->
+<h2 class="sectionedit9" id="debugging">Debugging</h2>
+<div class="level2">
+
+</div>
+
+<h4 id="jtag_hardware">JTAG Hardware</h4>
+<div class="level4">
+
+<p>
+I am using a Bus Pirate for debugging because I have it lying around. <a href="http://cybermashup.com/2014/05/01/jtag-debugging-made-easy-with-bus-pirate-and-openocd/" class="urlextern" title="http://cybermashup.com/2014/05/01/jtag-debugging-made-easy-with-bus-pirate-and-openocd/" rel="ugc nofollow">Bus Pirate pinout</a>,Spark core Pinout (<strong>make sure TDO <em>(D4 on Core)</em>is pulled up with 10K resistor!</strong>) 
+<a href="../_media/electronics/sparkcorejtag.png" class="media" title="electronics:sparkcorejtag.png"><img src="../_media/electronics/sparkcorejtag.png" class="media" alt="" width="500" /></a>
+</p>
+
+<p>
+Additionally, if your wifi isn&#039;t working (optionally, you hear a high-pitched whining from the board), plug in your USB serial cable as <strong>you don&#039;t have enough power!</strong>. It provides the &gt;200mA of current needed for the WiFi chip plus your normal serial connection.
+</p>
+
+</div>
+
+<h4 id="software">Software</h4>
+<div class="level4">
+
+<p>
+Build your code using make (as normal), but add JTAG and debug flag support:
+</p>
+<pre class="code">make clean //Erase your normal (non-debug) build
+USE_SWD_JTAG=y DEBUG_BUILD=y make  //Rebuild with debug flags</pre>
+
+<p>
+Set some stuff for OpenOCD:
+</p>
+<dl class="code">
+<dt><a href="/doku.php/electronics/ucnotes?do=export_code&amp;codeblock=6" title="Download Snippet" class="mediafile mf_cfg">mybuspirate.cfg</a></dt>
+<dd><pre class="code cfg">source [find interface/buspirate.cfg]
+#Set serial port
+buspirate_port /dev/ttyUSB0
+&nbsp;
+# Not really used
+buspirate_vreg 0        #turn on voltage regulator
+buspirate_mode normal   #or open-drain
+buspirate_pullup 1</pre>
+</dd></dl>
+<dl class="code">
+<dt><a href="/doku.php/electronics/ucnotes?do=export_code&amp;codeblock=7" title="Download Snippet" class="mediafile mf_cfg">sparkcore.cfg</a></dt>
+<dd><pre class="code cfg"># This is a SPARK-CORE board with a single STM32F103MD chip.
+source [find target/stm32f1x.cfg]
+# use hardware reset, connect under reset
+reset_config srst_only srst_nogate</pre>
+</dd></dl>
+
+<p>
+Start up OpenOCD server
+</p>
+<pre class="code">&gt; sudo openocd -f mybuspirate.cfg -f sparkcore.cfg</pre>
+
+<p>
+Open up a Telnet connection to OpenOCD to reset the chip if needed. (<strong>soft_reset_halt</strong> seems to work better than <strong>reset halt</strong>)
+</p>
+<pre class="code">&gt; telnet localhost 4444
+telnet&gt; soft_reset_halt</pre>
+
+</div>
+
+<h4 id="gdb">GDB</h4>
+<div class="level4">
+
+<p>
+To run, do <code>arm-none-eabi-gdb -x jtag.gdb -tui</code>, then <code>&lt;Ctrl&gt;+x 2</code> which enables assembly and code view mode. <code>&lt;Ctrl&gt;+x o</code> switches the views. <a href="http://stackoverflow.com/a/1354762/931280" class="urlextern" title="http://stackoverflow.com/a/1354762/931280" rel="ugc nofollow">More info here</a>
+</p>
+<dl class="code">
+<dt><a href="/doku.php/electronics/ucnotes?do=export_code&amp;codeblock=10" title="Download Snippet" class="mediafile mf_gdb">jtag.gdb</a></dt>
+<dd><pre class="code gdb">target remote localhost:<span class="re5">3333</span>
+file core-firmware.elf
+set remotetimeout <span class="nu0">2000</span></pre>
+</dd></dl>
+
+<p>
+<em><a href="https://community.spark.io/t/tutorial-using-eclipse-st-link-v2-openocd-to-debug/10042" class="urlextern" title="https://community.spark.io/t/tutorial-using-eclipse-st-link-v2-openocd-to-debug/10042" rel="ugc nofollow">Use eclipse?</a></em>
+</p>
+
+<p>
+<a href="http://openocd.sourceforge.net/doc/html/General-Commands.html" class="urlextern" title="http://openocd.sourceforge.net/doc/html/General-Commands.html" rel="ugc nofollow">Other OpenOCD commands</a>…
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Debugging&quot;,&quot;hid&quot;:&quot;debugging&quot;,&quot;codeblockOffset&quot;:5,&quot;secid&quot;:9,&quot;range&quot;:&quot;5234-7372&quot;} -->
+<h3 class="sectionedit10" id="local_builds">Local Builds</h3>
+<div class="level3">
+<pre class="code">&lt;project-dir&gt; &gt; sudo ../sparky make</pre>
+
+<p>
+<em>To distinguish between the normal spark commands and Spark-Util commands, I&#039;ve made a local executable of spark-util and called it <strong>sparky</strong></em>
+</p>
+
+<p>
+Follow <a href="https://bitbucket.org/xoseperez/spark-util/src" class="urlextern" title="https://bitbucket.org/xoseperez/spark-util/src" rel="ugc nofollow">Spark-Util instructions</a> for doing multiple projects at once. However, I think you need to <strong>reset</strong> in between changing projects, which <strong>wipes out your build.mk file, so be sure to have a backup</strong>.
+</p>
+<ul>
+<li class="level1"><div class="li"> However, for including libraries, follow the <a href="https://github.com/m-mcgowan/spark-flashee-eeprom#setting-up-your-environment" class="urlextern" title="https://github.com/m-mcgowan/spark-flashee-eeprom#setting-up-your-environment" rel="ugc nofollow">flashee eeprom library instructions</a></div>
+</li>
+</ul>
+
+<p>
+Added <code>-std=gnu++11</code> to <code>CFLAGS +=</code> in <code>spark/core-firmware/build/Makefile</code>, now static asserts work!
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Local Builds&quot;,&quot;hid&quot;:&quot;local_builds&quot;,&quot;codeblockOffset&quot;:11,&quot;secid&quot;:10,&quot;range&quot;:&quot;7373-8128&quot;} -->
+<h3 class="sectionedit11" id="splitting_up_files">Splitting Up Files</h3>
+<div class="level3">
+
+<p>
+Can&#039;t put header and implementation in the same file for some reason. It&#039;s saying there&#039;s multiple definitions :/
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Splitting Up Files&quot;,&quot;hid&quot;:&quot;splitting_up_files&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:11,&quot;range&quot;:&quot;8129-8272&quot;} -->
+<h2 class="sectionedit12" id="arduino_stuff">Arduino Stuff</h2>
+<div class="level2">
+
+<p>
+<a href="http://provideyourown.com/2011/advanced-arduino-including-multiple-libraries/" class="urlextern" title="http://provideyourown.com/2011/advanced-arduino-including-multiple-libraries/" rel="ugc nofollow">Include a separate library inside of your C++ and H files</a>? It still doesn&#039;t work… &gt;.&lt;
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Arduino Stuff&quot;,&quot;hid&quot;:&quot;arduino_stuff&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:12,&quot;range&quot;:&quot;8273-8469&quot;} -->
+<h2 class="sectionedit13" id="boring_but_useful_tools">Boring but useful tools</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://frank.circleofcurrent.com/fusecalc/fusecalc.php?chip=attiny85" class="urlextern" title="http://frank.circleofcurrent.com/fusecalc/fusecalc.php?chip=attiny85" rel="ugc nofollow">Fuse calculator</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://frank.circleofcurrent.com/cache/avrtimercalc.htm" class="urlextern" title="http://frank.circleofcurrent.com/cache/avrtimercalc.htm" rel="ugc nofollow">AVR Timer Calculator</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Boring but useful tools&quot;,&quot;hid&quot;:&quot;boring_but_useful_tools&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:13,&quot;range&quot;:&quot;8470-8684&quot;} -->
+<h2 class="sectionedit14" id="compression">Compression</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> NerdKits <a href="http://hackaday.com/2011/10/19/halloween-hacks-scaring-small-children-with-huffman-coding/#more-58926" class="urlextern" title="http://hackaday.com/2011/10/19/halloween-hacks-scaring-small-children-with-huffman-coding/#more-58926" rel="ugc nofollow">Huffman Coding</a> </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Compression&quot;,&quot;hid&quot;:&quot;compression&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:14,&quot;range&quot;:&quot;8685-8843&quot;} -->
+<h2 class="sectionedit15" id="power_optimization">Power Optimization</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Great videos of using AVR&#039;s picoPower (and source docs): <a href="http://www2.atmel.com/Technologies/lowpower/design_examples.aspx" class="media" title="http://www2.atmel.com/Technologies/lowpower/design_examples.aspx" rel="ugc nofollow"><img src="../_media/electronics/atmel_corporation_-_technologies_-_picopower_-_design_examples.png" class="media" alt="" width="200" /></a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://jeelabs.org/2009/05/14/power-consumption-baseline/" class="urlextern" title="http://jeelabs.org/2009/05/14/power-consumption-baseline/" rel="ugc nofollow">Examples from JeeLabs</a> on practical implementations with current measurements. (gets into resetting based on Watchdog Timer to save more power! Linked at bottom of page)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Power Optimization&quot;,&quot;hid&quot;:&quot;power_optimization&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:15,&quot;range&quot;:&quot;8844-9329&quot;} -->
+<h2 class="sectionedit16" id="general_tips1">General Tips</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Allow custom file endings (Arduino&#039;s pde) to be mapped in text editors (textmate for now). <a href="http://www.comanswer.com/question/textmate-file-type-association" class="urlextern" title="http://www.comanswer.com/question/textmate-file-type-association" rel="ugc nofollow">link</a></div>
+</li>
+<li class="level1"><div class="li"> How to use MOSFET&#039;s: YouTube Link! <a href="https://www.youtube.com/watch?v=Te5YYVZiOKs" class="urlextern" title="https://www.youtube.com/watch?v=Te5YYVZiOKs" rel="ugc nofollow">https://www.youtube.com/watch?v=Te5YYVZiOKs</a></div>
+</li>
+<li class="level1"><div class="li"> What PWM does: YouTube Link! <a href="https://www.youtube.com/watch?v=YmPziPfaByw" class="urlextern" title="https://www.youtube.com/watch?v=YmPziPfaByw" rel="ugc nofollow">https://www.youtube.com/watch?v=YmPziPfaByw</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://wiblocks.luciani.org/FAQ/faq-books-ee.html" class="urlextern" title="http://wiblocks.luciani.org/FAQ/faq-books-ee.html" rel="ugc nofollow">Recommended EE Books by Wiblocks</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;General Tips&quot;,&quot;hid&quot;:&quot;general_tips1&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:16,&quot;range&quot;:&quot;9330-9776&quot;} -->
+<h2 class="sectionedit17" id="using_μc_as_usb_slave_input_human_interface_device">Using μC as USB Slave Input (Human Interface Device)</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="http://frank.circleofcurrent.com/cache/usbbusinesscard_details.htm" class="urlextern" title="http://frank.circleofcurrent.com/cache/usbbusinesscard_details.htm" rel="ugc nofollow">USB Business Card</a> uses VUSB on an ATTiny?! Wow…</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/electronics/usbbusinesscard_1.jpg" class="media" title="electronics:usbbusinesscard_1.jpg"><img src="../_media/electronics/usbbusinesscard_1.jpg" class="media" alt="" width="300" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://elasticsheep.com/2010/04/teensy2-usb-mass-storage-with-an-sd-card/" class="urlextern" title="http://elasticsheep.com/2010/04/teensy2-usb-mass-storage-with-an-sd-card/" rel="ugc nofollow">Teensy w/ SD Card as USB Drive</a>! (300 KB/s transfer rate though…)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Using \u03bcC as USB Slave Input (Human Interface Device)&quot;,&quot;hid&quot;:&quot;using_\u03bcc_as_usb_slave_input_human_interface_device&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:17,&quot;range&quot;:&quot;9777-10163&quot;} -->
+<h3 class="sectionedit18" id="in_hardware">In Hardware</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Can do Keyboard, Mouse, MIDI, Audio, bunch of stuff using <a href="http://fourwalledcubicle.com/LUFA.php" class="urlextern" title="http://fourwalledcubicle.com/LUFA.php" rel="ugc nofollow">LUFA framework</a></div>
+</li>
+<li class="level1 node"><div class="li"> Adafruit</div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://ladyada.net/products/atmega32u4breakout/#design_specifications" class="urlextern" title="http://ladyada.net/products/atmega32u4breakout/#design_specifications" rel="ugc nofollow">Why Use a Teensy?</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://ladyada.net/make/magstripe/index.html" class="urlextern" title="http://ladyada.net/make/magstripe/index.html" rel="ugc nofollow">Adafruit Sample Teensy Projects</a></div>
+</li>
+<li class="level2"><div class="li"> Their Teensy+ board had some additional perks (mostly safety)</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> PJRC (original creator of Teensy)</div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://pjrc.com/teensy/index.html" class="urlextern" title="http://pjrc.com/teensy/index.html" rel="ugc nofollow">Some more information w/ more USB info</a></div>
+</li>
+<li class="level2"><div class="li"> <a href="http://www.pjrc.com/teensy/projects.html" class="urlextern" title="http://www.pjrc.com/teensy/projects.html" rel="ugc nofollow">Great Teensy Example Projects</a>. Includes MIDI output, fast and simple RCA output, and much more!</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;In Hardware&quot;,&quot;hid&quot;:&quot;in_hardware&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:18,&quot;range&quot;:&quot;10164-10841&quot;} -->
+<h3 class="sectionedit19" id="in_software">In Software</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.obdev.at/products/vusb/index.html" class="urlextern" title="http://www.obdev.at/products/vusb/index.html" rel="ugc nofollow">V-USB</a>. More to come soon…</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://courses.cit.cornell.edu/ee476/FinalProjects/s2010/ss868_jfe5/ss868_jfe5/index.html" class="urlextern" title="http://courses.cit.cornell.edu/ee476/FinalProjects/s2010/ss868_jfe5/ss868_jfe5/index.html" rel="ugc nofollow">Example Cornell Student Project</a></div>
+</li>
+</ul>
+
+<p>
+Not sure how much easier hardware method using LUFA is compared to software V-USB. Will be finding out soon. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;In Software&quot;,&quot;hid&quot;:&quot;in_software&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:19,&quot;range&quot;:&quot;10842-11188&quot;} -->
+<h2 class="sectionedit20" id="arm_development">ARM Development</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;ARM Development&quot;,&quot;hid&quot;:&quot;arm_development&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:20,&quot;range&quot;:&quot;11189-11217&quot;} -->
+<h3 class="sectionedit21" id="stm32">STM32</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> STM32 Development (C compilation). <a href="http://stm32.spacevs.com/index.php?option=com_content&amp;view=featured&amp;Itemid=101" class="urlextern" title="http://stm32.spacevs.com/index.php?option=com_content&amp;view=featured&amp;Itemid=101" rel="ugc nofollow">Step-By-Step Introduction by Geoffrey</a></div>
+</li>
+<li class="level1"><div class="li"> <a href="http://leaflabs.com/" class="urlextern" title="http://leaflabs.com/" rel="ugc nofollow">LeafLabs</a> Delivers Maple microprocessors, similar to Arduino in coding. Might be a performance hit, but likely not. Should look at for future projects!!!</div>
+</li>
+<li class="level1"><div class="li"> (1/7/11)<a href="../_media/home/opensourcearm.pdf" class="media mediafile mf_pdf" title="home:opensourcearm.pdf">opensourcearm.pdf</a> Long tutorial on using Eclipse and other Open Source tools for C &amp; ARM development. Might be useful someday?</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;STM32&quot;,&quot;hid&quot;:&quot;stm32&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:21,&quot;range&quot;:&quot;11218-11727&quot;} -->
+<h2 class="sectionedit22" id="long-term_questions">Long-Term Questions</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> How do you burn a bootloader to allow easy USB programming? What difference is there between avrdude, LUFA, and Arduino bootloaders?</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Long-Term Questions&quot;,&quot;hid&quot;:&quot;long-term_questions&quot;,&quot;codeblockOffset&quot;:12,&quot;secid&quot;:22,&quot;range&quot;:&quot;11728-&quot;} --></div></body>
+</html>

@@ -1,0 +1,269 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>electronics:pcbs</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#solder">Solder</a></div></li>
+<li class="level2"><div class="li"><a href="#fab_house">Fab House</a></div></li>
+<li class="level2"><div class="li"><a href="#coating">Coating</a></div></li>
+<li class="level2"><div class="li"><a href="#connectors_and_cables">Connectors and Cables</a></div></li>
+<li class="level1"><div class="li"><a href="#eagle_stuff_for_pcb_s">Eagle Stuff for PCB&#039;s</a></div></li>
+<li class="level2"><div class="li"><a href="#strain_relief">Strain Relief</a></div></li>
+<li class="level2"><div class="li"><a href="#tip_list">Tip List</a></div></li>
+<li class="level2"><div class="li"><a href="#reusable_partscircuits">Reusable Parts/Circuits</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#test_points">Test Points</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#pcb_production">PCB Production</a></div></li>
+<li class="level2"><div class="li"><a href="#gadgetry_gadgets">Gadgetry Gadgets</a></div></li>
+<li class="level2"><div class="li"><a href="#gadget_one_vibrasound">Gadget One (VibraSound)</a></div></li>
+<li class="level2"><div class="li"><a href="#gadget_two">Gadget Two</a></div></li>
+<li class="level2"><div class="li"><a href="#file_descriptions_for_eagle">File Descriptions for Eagle</a></div></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.upverter.com" class="urlextern" title="http://www.upverter.com" rel="ugc nofollow">Upverter</a> great for editing and sharing schematics online. Includes git versioning! </div>
+</li>
+<li class="level1 node"><div class="li"> EasyEDA is another one. Linked to affordable PCB design house. Order DHL as it&#039;s way faster and about the same price?</div>
+<ul>
+<li class="level2"><div class="li"> Tutorial: <a href="https://easyeda.com/andyfierman/Welcome_to_EasyEDA-31e1288f882e49e582699b8eb7fe9b1f" class="urlextern" title="https://easyeda.com/andyfierman/Welcome_to_EasyEDA-31e1288f882e49e582699b8eb7fe9b1f" rel="ugc nofollow">https://easyeda.com/andyfierman/Welcome_to_EasyEDA-31e1288f882e49e582699b8eb7fe9b1f</a></div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> CircuitMaker is supporter by Altium. More professional tool, might go with that instead?</div>
+</li>
+<li class="level1"><div class="li"> Discussion on Horizon EDA, a new one. <a href="https://news.ycombinator.com/item?id=23062174" class="urlextern" title="https://news.ycombinator.com/item?id=23062174" rel="ugc nofollow">https://news.ycombinator.com/item?id=23062174</a></div>
+</li>
+</ul>
+
+<h2 class="sectionedit1" id="solder">Solder</h2>
+<div class="level2">
+
+<p>
+Lead free is recommended, even though it&#039;s really the lead dust that gets you. Also lead can&#039;t be washed out with soap?
+</p>
+
+<p>
+Nice hackaday article comparing the different lead-free solder types. <a href="https://hackaday.com/2020/01/28/lead-free-solder-alloys-their-properties-and-best-types-for-daily-use/" class="urlextern" title="https://hackaday.com/2020/01/28/lead-free-solder-alloys-their-properties-and-best-types-for-daily-use/" rel="ugc nofollow">https://hackaday.com/2020/01/28/lead-free-solder-alloys-their-properties-and-best-types-for-daily-use/</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> For my through-hole projects it&#039;s probably not an issue.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Solder&quot;,&quot;hid&quot;:&quot;solder&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;522-895&quot;} -->
+<h2 class="sectionedit2" id="fab_house">Fab House</h2>
+<div class="level2">
+
+<p>
+Comparison: <a href="https://pcbshopper.com/" class="urlextern" title="https://pcbshopper.com/" rel="ugc nofollow">https://pcbshopper.com/</a>
+</p>
+
+<p>
+China ones are basically 10X cheaper. I wonder why?
+</p>
+
+<p>
+Also OSH park ones for medium run (which includes fancy HASL coating) is 3X price of JLCPCB. <a href="https://docs.oshpark.com/services/two-layer-medium-run/" class="urlextern" title="https://docs.oshpark.com/services/two-layer-medium-run/" rel="ugc nofollow">https://docs.oshpark.com/services/two-layer-medium-run/</a>
+</p>
+
+<p>
+Or DIY quickly for $4k startup costs. I think they&#039;ll figure out how to get it working better: <a href="https://www.voltera.io/" class="urlextern" title="https://www.voltera.io/" rel="ugc nofollow">https://www.voltera.io/</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fab House&quot;,&quot;hid&quot;:&quot;fab_house&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;896-1277&quot;} -->
+<h2 class="sectionedit3" id="coating">Coating</h2>
+<div class="level2">
+
+<p>
+“Conformal Coating” is the key word. Plasti-dip sorta stuff
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Coating&quot;,&quot;hid&quot;:&quot;coating&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1278-1357&quot;} -->
+<h2 class="sectionedit4" id="connectors_and_cables">Connectors and Cables</h2>
+<div class="level2">
+
+<p>
+<a href="https://www.ifixit.com/Guide/Recognizing+%26+Disconnecting+Cable+Connectors/25629" class="urlextern" title="https://www.ifixit.com/Guide/Recognizing+%26+Disconnecting+Cable+Connectors/25629" rel="ugc nofollow">iFixit guide to different connectors</a>. 
+</p>
+
+<p>
+Typical one is <a href="http://www.google.com/search?q=flat%20flexible%20cable" class="interwiki iw_g" title="http://www.google.com/search?q=flat%20flexible%20cable">flat flexible cable</a>. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Connectors and Cables&quot;,&quot;hid&quot;:&quot;connectors_and_cables&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1358-1561&quot;} -->
+<h1 class="sectionedit5" id="eagle_stuff_for_pcb_s">Eagle Stuff for PCB&#039;s</h1>
+<div class="level1">
+<ul>
+<li class="level1"><div class="li"> Good tutorial: <a href="http://www.piclist.com/images/www/hobby_elec/e_eagle44.htm" class="urlextern" title="http://www.piclist.com/images/www/hobby_elec/e_eagle44.htm" rel="ugc nofollow">http://www.piclist.com/images/www/hobby_elec/e_eagle44.htm</a></div>
+</li>
+</ul>
+<pre class="code c"><span class="co2">#To remove an eagle package/symbol from a library, just use the remove command (clunky, but works)</span>
+<span class="st0">&quot;remove qfn16.pac&quot;</span> or <span class="st0">&quot;remove 7-SEG.sym&quot;</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Eagle Stuff for PCB&#039;s&quot;,&quot;hid&quot;:&quot;eagle_stuff_for_pcb_s&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1562-1836&quot;} -->
+<h2 class="sectionedit6" id="strain_relief">Strain Relief</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Hot glue gunning the cables</div>
+</li>
+<li class="level1"><div class="li"> Press connector makes a ribbon cable, but always NX2 (not a single layer wide)</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.google.com/search?q=pcb%20cable%20strain%20relief" class="interwiki iw_g" title="http://www.google.com/search?q=pcb%20cable%20strain%20relief">pcb cable strain relief</a> (zip tie, looping cord around inner posts, the bendy thingy)</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Strain Relief&quot;,&quot;hid&quot;:&quot;strain_relief&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:6,&quot;range&quot;:&quot;1837-2072&quot;} -->
+<h2 class="sectionedit7" id="tip_list">Tip List</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> To add ground plane, draw a polygon around board on bottom layer. Then name polygon GND.</div>
+</li>
+<li class="level1"><div class="li"> Set Copper/Dimension to 20mil…<em>don&#039;t remember why though!</em></div>
+</li>
+<li class="level1"><div class="li"> Having a power switch is always nice, just to switch between “on” and “off” or between two different power supplies.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Tip List&quot;,&quot;hid&quot;:&quot;tip_list&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:7,&quot;range&quot;:&quot;2073-2375&quot;} -->
+<h2 class="sectionedit8" id="reusable_partscircuits">Reusable Parts/Circuits</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Reusable Parts\/Circuits&quot;,&quot;hid&quot;:&quot;reusable_partscircuits&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:8,&quot;range&quot;:&quot;2376-2411&quot;} -->
+<h3 class="sectionedit9" id="test_points">Test Points</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> Great for debugging with a scope! A cheap through-hole way using component leads:</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/electronics/wire-loop-hook-test-points.jpg" class="media" title="electronics:wire-loop-hook-test-points.jpg"><img src="../_media/electronics/wire-loop-hook-test-points.jpg" class="media" alt="" width="200" /></a><a href="../_media/electronics/looped-wire-test-points-pcb-layout.gif" class="media" title="electronics:looped-wire-test-points-pcb-layout.gif"><img src="../_media/electronics/looped-wire-test-points-pcb-layout.gif" class="media" alt="" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> A more expensive but more elegant surface mount way: from <a href="http://www.keyelco.com/products/specs/spec130.asp#2" class="urlextern" title="http://www.keyelco.com/products/specs/spec130.asp#2" rel="ugc nofollow">Keystone Electronics</a> (they give you <em><strong>free samples</strong></em>)</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/electronics/smttest.gif" class="media" title="electronics:smttest.gif"><img src="../_media/electronics/smttest.gif" class="media" alt="" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Test Points&quot;,&quot;hid&quot;:&quot;test_points&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:9,&quot;range&quot;:&quot;2412-2835&quot;} -->
+<h2 class="sectionedit10" id="pcb_production">PCB Production</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> <a href="https://oshpark.com/" class="urlextern" title="https://oshpark.com/" rel="ugc nofollow">Dorkbot PDX</a> has a good deal: $5 a square inch for 3 boards w/ free shipping. Great for prototyping and one-offs.</div>
+</li>
+<li class="level1"><div class="li"> Apparently <a href="http://iteadstudio.com/store/index.php?main_page=index&amp;cPath=19_20" class="urlextern" title="http://iteadstudio.com/store/index.php?main_page=index&amp;cPath=19_20" rel="ugc nofollow">iTead Studio</a> does 10 for $12 of ~2“X2”max boards. Might be better for larger quantities.</div>
+</li>
+<li class="level1"><div class="li"> Oregon company that does PCB&#039;s and makes PCB123 as well: <a href="http://www.sunstone.com/" class="urlextern" title="http://www.sunstone.com/" rel="ugc nofollow">http://www.sunstone.com/</a></div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;PCB Production&quot;,&quot;hid&quot;:&quot;pcb_production&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:10,&quot;range&quot;:&quot;2836-3265&quot;} -->
+<h2 class="sectionedit11" id="gadgetry_gadgets">Gadgetry Gadgets</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Gadgetry Gadgets&quot;,&quot;hid&quot;:&quot;gadgetry_gadgets&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:11,&quot;range&quot;:&quot;3266-3295&quot;} -->
+<h2 class="sectionedit12" id="gadget_one_vibrasound">Gadget One (VibraSound)</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Probably could have put small and easily solderable components (resistors, caps) on underside of board to save board space and solder them by hand afterwards. Battery is just going on top of it!</div>
+</li>
+<li class="level1"><div class="li"> Dang…this is a tiny board!</div>
+</li>
+<li class="level1"><div class="li"> Made the mistake of hooking up the JST LiPo battery connector backwards! Sparkfun&#039;s diagram was ambiguous and I didn&#039;t double check on the layout and the battery &gt;.&lt;</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/electronics/vibrasound.sch.png" class="media" title="electronics:vibrasound.sch.png"><img src="../_media/electronics/vibrasound.sch.png" class="media" alt="" /></a> <a href="../_media/electronics/vibrasound2.png" class="media" title="electronics:vibrasound2.png"><img src="../_media/electronics/vibrasound2.png" class="media" alt="" /></a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Also, want to change input switch so that it doesn&#039;t depend on battery (but will always charge when plugged in).</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/electronics/gadgetonebefore.png" class="media" title="electronics:gadgetonebefore.png"><img src="../_media/electronics/gadgetonebefore.png" class="media" alt="" width="450" /></a><a href="../_media/electronics/gadgetoneafter.png" class="media" title="electronics:gadgetoneafter.png"><img src="../_media/electronics/gadgetoneafter.png" class="media" alt="" width="450" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Gadget One (VibraSound)&quot;,&quot;hid&quot;:&quot;gadget_one_vibrasound&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:12,&quot;range&quot;:&quot;3296-4006&quot;} -->
+<h2 class="sectionedit13" id="gadget_two">Gadget Two</h2>
+<div class="level2">
+<ul>
+<li class="level1"><div class="li"> Flipped up LM317 &gt;.&lt; Switched Vout and Vadj!</div>
+</li>
+</ul>
+
+<p>
+<a href="../_media/electronics/laserspirograph.sch.png" class="media" title="electronics:laserspirograph.sch.png"><img src="../_media/electronics/laserspirograph.sch.png" class="media" alt="" /></a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Gadget Two&quot;,&quot;hid&quot;:&quot;gadget_two&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:13,&quot;range&quot;:&quot;4007-4121&quot;} -->
+<h2 class="sectionedit14" id="file_descriptions_for_eagle">File Descriptions for Eagle</h2>
+<div class="level2">
+<div class="table sectionedit15"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0 centeralign">  File Extension  </th><th class="col1 centeralign">  Description  </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0">cmp</td><td class="col1">Top Copper</td>
+	</tr>
+	<tr class="row2">
+		<td class="col0">sol</td><td class="col1">Bottom Copper</td>
+	</tr>
+	<tr class="row3">
+		<td class="col0">stc</td><td class="col1">Top Soldermask</td>
+	</tr>
+	<tr class="row4">
+		<td class="col0">sts</td><td class="col1"> Bottom Soldermask</td>
+	</tr>
+	<tr class="row5">
+		<td class="col0">plc</td><td class="col1">Top Silkscreen</td>
+	</tr>
+	<tr class="row6">
+		<td class="col0">pls</td><td class="col1">Bottom Silkscreen</td>
+	</tr>
+	<tr class="row7">
+		<td class="col0">drd</td><td class="col1">NC Drill</td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:15,&quot;range&quot;:&quot;4162-4341&quot;} -->
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;File Descriptions for Eagle&quot;,&quot;hid&quot;:&quot;file_descriptions_for_eagle&quot;,&quot;codeblockOffset&quot;:1,&quot;secid&quot;:14,&quot;range&quot;:&quot;4122-&quot;} --></div></body>
+</html>

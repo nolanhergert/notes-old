@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>bodytrack:server</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#fluxtream">Fluxtream</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#connector">Connector</a></div></li>
+<li class="level3"><div class="li"><a href="#your_own_server_user">Your Own Server User</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h2 class="sectionedit1" id="fluxtream">Fluxtream</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fluxtream&quot;,&quot;hid&quot;:&quot;fluxtream&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-22&quot;} -->
+<h3 class="sectionedit2" id="connector">Connector</h3>
+<div class="level3">
+
+<p>
+A good connector to learn from would be <a href="http://www.google.com/search?q=SleepAsAndroidUpdater.java" class="interwiki iw_g" title="http://www.google.com/search?q=SleepAsAndroidUpdater.java">SleepAsAndroidUpdater.java</a>
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Connector&quot;,&quot;hid&quot;:&quot;connector&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;23-117&quot;} -->
+<h3 class="sectionedit3" id="your_own_server_user">Your Own Server User</h3>
+<div class="level3">
+<pre class="code c"><span class="co1">//Check out mysql table entries</span>
+mysql <span class="sy0">-</span>u root bodytrack<span class="sy0">-</span>nolan</pre>
+<pre class="code c"><span class="co1">//Start the server</span>
+ssh <span class="sy0">-</span>L3010<span class="sy0">:</span>127.0.0.1<span class="sy0">:</span><span class="nu0">3010</span> nhergert@bodytrack2
+ cd ~bodytrack<span class="sy0">/</span>projects<span class="sy0">/</span>bodytrack<span class="sy0">/</span>website<span class="sy0">/</span>
+ .<span class="sy0">/</span>script<span class="sy0">/</span>server <span class="sy0">-</span>p <span class="nu0">3010</span></pre>
+
+<p>
+<a href="https://sites.google.com/a/bodytrack.org/wiki/website/server-setup?pli=1" class="urlextern" title="https://sites.google.com/a/bodytrack.org/wiki/website/server-setup?pli=1" rel="ugc nofollow">https://sites.google.com/a/bodytrack.org/wiki/website/server-setup?pli=1</a>
+</p>
+<pre class="code c"><span class="co1">//View logs of the server</span>
+ssh bodytrack2
+tail <span class="sy0">-</span>f ~<span class="sy0">/</span>projects<span class="sy0">/</span>bodytrack<span class="sy0">/</span>website<span class="sy0">/</span><a href="http://www.opengroup.org/onlinepubs/009695399/functions/log.html"><span class="kw3">log</span></a><span class="sy0">/</span>development.<a href="http://www.opengroup.org/onlinepubs/009695399/functions/log.html"><span class="kw3">log</span></a></pre>
+
+<p>
+Browse to: <a href="http://localhost:3010" class="urlextern" title="http://localhost:3010" rel="ugc nofollow">http://localhost:3010</a> on browser
+</p>
+<pre class="code c"><span class="co1">//Download csv's</span>
+                             <span class="sy0">&lt;</span>src<span class="sy0">&gt;</span>                                          <span class="sy0">&lt;</span>dest<span class="sy0">&gt;</span>
+scp bodytrack2<span class="sy0">:</span>~<span class="sy0">/</span>projects<span class="sy0">/</span>bodytrack<span class="sy0">/</span>website<span class="sy0">/</span>data<span class="sy0">/</span><span class="nu0">10</span><span class="sy0">/</span>Logzeo<span class="coMULTI">/* ~/Dropbox/gitrepo/BodyTrack/zeo/</span></pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Your Own Server User&quot;,&quot;hid&quot;:&quot;your_own_server_user&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;118-&quot;} --></div></body>
+</html>

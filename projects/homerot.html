@@ -1,0 +1,559 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>projects:homerot</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level2"><div class="li"><a href="#loggingplotting">Logging / Plotting</a></div></li>
+<li class="level2"><div class="li"><a href="#teensy">Teensy</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#spark_board">Spark Board</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#sensors">Sensors</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#htu21d-f">HTU21D-F</a></div></li>
+<li class="level3"><div class="li"><a href="#still_don_t_understand">Still don&#039;t understand</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#simulators">Simulators</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#evaporation">Evaporation</a></div></li>
+<li class="level3"><div class="li"><a href="#fungi">Fungi</a></div></li>
+<li class="level3"><div class="li"><a href="#humidity">Humidity</a></div></li>
+<li class="level3"><div class="li"><a href="#temperature">Temperature</a></div></li>
+<li class="level3"><div class="li"><a href="#moisture">Moisture</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#datalogging">Datalogging</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#hardware">Hardware</a></div></li>
+<li class="level3"><div class="li"><a href="#software">Software</a></div></li>
+</ul>
+</li>
+<li class="level2"><div class="li"><a href="#domes_interstitial_condensation_dew_point_sensor">Domes Interstitial Condensation (Dew Point) Sensor</a></div>
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#the_basics">The Basics</a></div></li>
+<li class="level3"><div class="li"><a href="#proper_house_design">Proper House Design</a></div></li>
+<li class="level3"><div class="li"><a href="#sensor_design">Sensor Design</a></div></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<h2 class="sectionedit1" id="loggingplotting">Logging / Plotting</h2>
+<div class="level2">
+
+<p>
+I think I&#039;m going to go with local storage and plotting for now. Try out Google Charts for now and append data from serial port data using something cross-platform. Java/Python or something…
+</p>
+
+<p>
+<a href="http://data.sparkfun.com" class="urlextern" title="http://data.sparkfun.com" rel="ugc nofollow">http://data.sparkfun.com</a> doesn&#039;t let you upload past timestamps… and doesn&#039;t support timestamps.
+</p>
+
+<p>
+<a href="http://bodytrack.org/#timeline/views/293" class="urlextern" title="http://bodytrack.org/#timeline/views/293" rel="ugc nofollow">BodyTrack plotter</a> looks decent on <a href="https://fluxtream.atlassian.net/wiki/display/FLX/Installation%3A+Linux" class="urlextern" title="https://fluxtream.atlassian.net/wiki/display/FLX/Installation%3A+Linux" rel="ugc nofollow">Fluxtream</a>. Still need to make a connector though.
+</p>
+
+<p>
+<a href="http://www.google.com/search?q=Plot.ly" class="interwiki iw_g" title="http://www.google.com/search?q=Plot.ly">Plot.ly</a> doesn&#039;t let you go back in time, but does have good multi legend support. 
+</p>
+
+<p>
+I like BodyTrack the best. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Logging \/ Plotting&quot;,&quot;hid&quot;:&quot;loggingplotting&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;1-652&quot;} -->
+<h2 class="sectionedit2" id="teensy">Teensy</h2>
+<div class="level2">
+
+<p>
+<a href="../_media/projects/teensy30_front_pinout.png" class="media" title="projects:teensy30_front_pinout.png"><img src="../_media/projects/teensy30_front_pinout.png" class="media" alt="" /></a>
+</p>
+
+<p>
+3-4 uA of current during LLS or VLLS-3 sleep modes (which includes keeping up RAM and RTC). Good for &gt;100 years on 2 AA batteries. Weird! <a href="https://github.com/duff2013/Snooze" class="urlextern" title="https://github.com/duff2013/Snooze" rel="ugc nofollow">Teensy Sleep library</a>.
+</p>
+<ul>
+<li class="level1"><div class="li"> External power for Teensy 2.0, not 3.0?? <a href="https://www.pjrc.com/teensy/external_power.html" class="urlextern" title="https://www.pjrc.com/teensy/external_power.html" rel="ugc nofollow">here</a>. </div>
+</li>
+<li class="level1"><div class="li"> Some more tips on ARM&#039;s tools for doing this. <a href="https://forum.pjrc.com/threads/23660-Low-Power-quot-Green-quot-Battery-Operation-Solutions-For-The-Teensy-3?p=53836&amp;viewfull=1#post53836" class="urlextern" title="https://forum.pjrc.com/threads/23660-Low-Power-quot-Green-quot-Battery-Operation-Solutions-For-The-Teensy-3?p=53836&amp;viewfull=1#post53836" rel="ugc nofollow">here</a></div>
+</li>
+</ul>
+
+<p>
+151K of storage. 2 bytes per sensor, 9 sensors, 48 samples per day = 151 days of storage.
+</p>
+
+<p>
+Teensy has 151K of <strong>program</strong> (non-editable) flash, but there is 32K of FlexNVM flash apparently + 2K of RAM. Or just attach an SD card and be done with it…
+</p>
+
+</div>
+
+<h4 id="time">Time</h4>
+<div class="level4">
+
+<p>
+Need crystal: <a href="http://www.google.com/search?q=300-8303-ND" class="interwiki iw_g" title="http://www.google.com/search?q=300-8303-ND">300-8303-ND</a> from Digikey. <a href="http://www.pjrc.com/teensy/td_libs_Time.html#teensy3" class="urlextern" title="http://www.pjrc.com/teensy/td_libs_Time.html#teensy3" rel="ugc nofollow">Setting RTC time</a> (on teensy)
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Teensy&quot;,&quot;hid&quot;:&quot;teensy&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;653-1613&quot;} -->
+<h3 class="sectionedit3" id="spark_board">Spark Board</h3>
+<div class="level3">
+
+<p>
+Nice option to make the project wireless for <a href="https://store.spark.io/" class="urlextern" title="https://store.spark.io/" rel="ugc nofollow">$19</a>. <a href="http://docs.spark.io/hardware/" class="urlextern" title="http://docs.spark.io/hardware/" rel="ugc nofollow">Hardware details</a>. 2MB SPI flash module. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Spark Board&quot;,&quot;hid&quot;:&quot;spark_board&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:3,&quot;range&quot;:&quot;1614-1790&quot;} -->
+<h2 class="sectionedit4" id="sensors">Sensors</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sensors&quot;,&quot;hid&quot;:&quot;sensors&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:4,&quot;range&quot;:&quot;1791-1815&quot;} -->
+<h3 class="sectionedit5" id="htu21d-f">HTU21D-F</h3>
+<div class="level3">
+<ul>
+<li class="level1"><div class="li"> <a href="https://ghsi.de/CRC/index.php?Polynom=100110001&amp;Message=6124" class="urlextern" title="https://ghsi.de/CRC/index.php?Polynom=100110001&amp;Message=6124" rel="ugc nofollow">CRC Checksum Checker</a></div>
+</li>
+<li class="level1"><div class="li"> Took about 5 minutes for <strong>temperature</strong> sensor to warm up to mouth conditions, which was 36.5°C and 95% relative humidity. The humidity sensor seemed a lot faster</div>
+</li>
+</ul>
+
+<p>
+<a href="https://learn.adafruit.com/adafruit-htu21d-f-temperature-humidity-sensor/wiring-and-test" class="urlextern" title="https://learn.adafruit.com/adafruit-htu21d-f-temperature-humidity-sensor/wiring-and-test" rel="ugc nofollow">Adafruit Humidity Temperature Sensor HTU21D-F</a>
+</p>
+
+<p>
+Apparently there are combo temperature and humidity sensors…
+</p>
+
+<p>
+<a href="https://www.co.douglas.or.us/building/pdfs/2008ResidentialCodeAmendment.pdf" class="urlextern" title="https://www.co.douglas.or.us/building/pdfs/2008ResidentialCodeAmendment.pdf" rel="ugc nofollow">Addition to Oregon code</a> regarding rain drain spacing and drainage efficiency requirement of 75%. 
+</p>
+
+<p>
+Teensy app. 
+</p>
+
+<p>
+TMP36 is quite noisy compared to a potentiometer! Consider adding a .1uF capacitor to ground to smooth it out a bit? Read <a href="http://www.analog.com/static/imported-files/data_sheets/TMP35_36_37.pdf" class="urlextern" title="http://www.analog.com/static/imported-files/data_sheets/TMP35_36_37.pdf" rel="ugc nofollow">datasheet</a>
+</p>
+
+</div>
+
+<h5 id="plotting">Plotting</h5>
+<div class="level5">
+
+<p>
+On web, maybe use <a href="https://github.com/square/cubism" class="urlextern" title="https://github.com/square/cubism" rel="ugc nofollow">Square&#039;s Cubism</a> and log data using Graphite.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;HTU21D-F&quot;,&quot;hid&quot;:&quot;htu21d-f&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:5,&quot;range&quot;:&quot;1816-2814&quot;} -->
+<h3 class="sectionedit6" id="still_don_t_understand">Still don&#039;t understand</h3>
+<div class="level3">
+
+<p>
+dew point / when breathing on something stops condensing (&gt;150F, &gt;212F? in my tests on a heated pan)
+</p>
+<ul>
+<li class="level1"><div class="li"> <a href="http://www.sciencebits.com/exhalecondense" class="urlextern" title="http://www.sciencebits.com/exhalecondense" rel="ugc nofollow">When does breath condense?</a> –&gt; At what temperature does water vapor form visible tiny droplets? When do they get big enough to overcome gravity? </div>
+</li>
+</ul>
+
+<p>
+The main problems can be described simply:
+</p>
+<ul>
+<li class="level1 node"><div class="li"> <strong>Relative humidity</strong> is a <del>bad</del><strong>horrible</strong> metric. </div>
+<ul>
+<li class="level2"><div class="li"> <em>Dew point is better for comfort, but can hot air “hold” more water?</em></div>
+</li>
+<li class="level2"><div class="li"> Fun fact: Our <strong>lungs</strong> and their <a href="https://en.wikipedia.org/wiki/Alveoli" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Alveoli">Alveoli</a> nearly instantly heat and saturate inhaled air with water because of the huge total surface area…wait for it… <strong>70m<sup>2</sup></strong> (the area inside the 3 point line in basketball)! So the air we output is about 95°F and 95% RH, or a dew point of 93°F. <em>95% RH not because our alveoli aren&#039;t capable, but because there are a few salt ions dissolved in our “water” trap the water molecules, which lowers the saturation vapor pressure and prevents total saturation. <a href="http://www.sciencebits.com/exhalecondense" class="urlextern" title="http://www.sciencebits.com/exhalecondense" rel="ugc nofollow">Sciencebits</a>!</em></div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> Air Barrier</div>
+<ul>
+<li class="level2"><div class="li"> An inflated latex balloon is a good example. Untie the end, and air quickly flows out, that&#039;s a lack of an <strong>air</strong> barrier. However, if the end is tied, the inside air eventually seeps out through the latex through <strong>diffusion</strong>. One can wrap the outside of the balloon with a more molecularly dense material, and the diffusion will slow/stop accordingly. </div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> <strong>Vapor/Diffusion Barrier/Retarder</strong>: <em>The more molecularly dense a material is, the more difficult it is for molecules to diffuse through it</em>?? (intelligent guess). A high <strong>perm</strong> rating &gt;(means it is easy for <strong>water</strong> molecules to permeate.</div>
+<ul>
+<li class="level2"><div class="li"> Surprisingly, a cheap thin sheet of aluminum foil allows no <strong>H<sub>2</sub>O</strong> diffusion to occur but it has no structural “strength” because it is so thin. That is why it is often placed on the back of sheet rock or insulation to act as a vapor barrier.</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> <strong>Temperature Barrier</strong>: <strong>Gas &gt; Liquid &gt; Solid</strong> in terms of blocking energy transfer by pure <em>conductance??!?!</em>, which makes sense.</div>
+<ul>
+<li class="level2"><div class="li"> <strong>Bulk fluid flow is not diffusion!</strong></div>
+</li>
+<li class="level2 node"><div class="li"> What makes a good temperature barrier?</div>
+<ul>
+<li class="level3"><div class="li"> “Bulky materials resist conductive and – to a lesser degree – convective heat flow in a building cavity. Rigid foam boards trap air or another gas to resist conductive heat flow.” <a href="http://energy.gov/energysaver/articles/insulation-materials" class="urlextern" title="http://energy.gov/energysaver/articles/insulation-materials" rel="ugc nofollow">energy.gov</a></div>
+</li>
+<li class="level3"><div class="li"> Time constant is generally <a href="https://en.wikipedia.org/wiki/Fick's_Law" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Fick's_Law">Fick&#039;s_Law</a>, but when other particles are involved, you need things like <a href="https://en.wikipedia.org/wiki/Knudsen_Diffusion" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Knudsen_Diffusion">Knudsen_Diffusion</a>, as mentioned in a <a href="http://www.wseas.us/e-library/conferences/2008/corfu/wwai/wwai21.pdf" class="urlextern" title="http://www.wseas.us/e-library/conferences/2008/corfu/wwai/wwai21.pdf" rel="ugc nofollow">paper</a> measuring soil moisture content using a “Dusty Gas Model”</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>Radiant Barrier</strong>: sort of a subset of temperature barrier, but more “reflective” materials will bounce “light” better, even when it is visibly dark <img src="/lib/images/smileys/icon_smile.gif" class="icon" alt=":-)" />. <a href="https://en.wikipedia.org/wiki/Black_body_radiation" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Black_body_radiation">Black_body_radiation</a></div>
+</li>
+</ul>
+
+<p>
+You looked at Healthy House Building for the New Millenium, which referenced the <a href="http://www.google.com/search?q=Moisture%20Control%20Handbook" class="interwiki iw_g" title="http://www.google.com/search?q=Moisture%20Control%20Handbook">Moisture Control Handbook</a> for this section. Reference sources for density/porosity/specific heat capacity/thermal conductivity/water vapor diffusion resistance factor/reference water content/free water saturation/water absorption coefficient from WUFI derived from <a href="http://www.google.com/search?q=ASHRAE%201018-RP" class="interwiki iw_g" title="http://www.google.com/search?q=ASHRAE%201018-RP">ASHRAE 1018-RP</a>
+</p>
+
+</div>
+
+<h4 id="conclusions">Conclusions</h4>
+<div class="level4">
+<ul>
+<li class="level1"><div class="li"> Place vapor barrier on the typically warmest side of the building envelope, as that side will have <strong>more dissolved moisture?!?! <em>are we sure?</em></strong> and will condense the water “out” as it cools down. The cool side will have already condensed out the water it had, so there&#039;s no need to block out its moisture. it will <strong>“hold” more water?!?!</strong> and when it is cooled,</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Still don&#039;t understand&quot;,&quot;hid&quot;:&quot;still_don_t_understand&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:6,&quot;range&quot;:&quot;2815-6556&quot;} -->
+<h2 class="sectionedit7" id="simulators">Simulators</h2>
+<div class="level2">
+
+<p>
+A great list here: <a href="http://apps1.eere.energy.gov/buildings/tools_directory/subjects_sub.cfm" class="urlextern" title="http://apps1.eere.energy.gov/buildings/tools_directory/subjects_sub.cfm" rel="ugc nofollow">Building Energy Software Tools Directory</a>. <a href="../_media/projects/pub1_26.pdf" class="media mediafile mf_pdf" title="projects:pub1_26.pdf">Another doc</a>
+</p>
+
+<p>
+In the end it&#039;s just a bunch of partial differential equations….
+</p>
+
+<p>
+EnergyGauge USA, BEopt, and others rely on the DOE toolkit. Evidenced at Comparison of the ENERGYGAUGE USA and BEopt. I can&#039;t find the humidity plots over time…<a href="http://www.energygauge.com/DOWNLOADS/EgUSA3100.pdf" class="urlextern" title="http://www.energygauge.com/DOWNLOADS/EgUSA3100.pdf" rel="ugc nofollow">Manual</a> says you should be able to though…
+</p>
+
+</div>
+
+<h4 id="wufi">WUFI</h4>
+<div class="level4">
+
+<p>
+Maybe simulate with Modelica?? Or figure out the final equations for n layers for 1D and plot with Javascript solver. <a href="http://book.xogeny.com/behavior/arrays/oned/" class="urlextern" title="http://book.xogeny.com/behavior/arrays/oned/" rel="ugc nofollow">1D Heat Transfer example in Modelica</a>. The next example (however, the examples don&#039;t work / finish? More at <a href="../programming/simulation.html" class="wikilink1" title="programming:simulation">Simulating Stuff</a>
+</p>
+
+<p>
+<a href="../_media/projects/sourcesandsinks.pdf" class="media mediafile mf_pdf" title="projects:sourcesandsinks.pdf">Design presentation</a>}. Quite a few details, including the need to solve numerically probably based on HVAC system…
+</p>
+
+<p>
+Seems like they do bulk air transport based on illumination and etc. 
+</p>
+
+<p>
+Has really handy WUFI-bio based on <a href="../_media/projects/sedlbauer2001.pdf" class="media mediafile mf_pdf" title="projects:sedlbauer2001.pdf">sedlbauer2001.pdf</a> and <a href="../_media/projects/sedlbauer200n.pdf" class="media mediafile mf_pdf" title="projects:sedlbauer200n.pdf">sedlbauer200n.pdf</a> (which derives fungi growth at temperatures and humidities, leading to 28%-ish moisture content figure). However bio unit only does inner-most wall, which won&#039;t work for tracking fungi growth in interstitial cavities. 
+</p>
+
+<p>
+We bought 15 TMP36 sensors (voltage output!) and 4 of HTU21D-F Breakout Board (temperature and humidity, calibrated!, in one small sensor). 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Simulators&quot;,&quot;hid&quot;:&quot;simulators&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:7,&quot;range&quot;:&quot;6557-8136&quot;} -->
+<h3 class="sectionedit8" id="evaporation">Evaporation</h3>
+<div class="level3">
+
+<p>
+<a href="http://en.wikipedia.org/wiki/Evaporation#Factors_influencing_the_rate_of_evaporation" class="urlextern" title="http://en.wikipedia.org/wiki/Evaporation#Factors_influencing_the_rate_of_evaporation" rel="ugc nofollow">Wikipedia</a> Accelerated with surface area (felt), enthalpy of vaporization (trying to figure out why isopropyl alcohol is faster than water).
+</p>
+
+</div>
+
+<h4 id="contrail">Contrail</h4>
+<div class="level4">
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Contrail" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Contrail">Contrail</a>, the clouds that are produced from the tail end of a plane.
+</p>
+<ul>
+<li class="level1"><div class="li"> Generally it&#039;s from the <strong>hot water vapor</strong> exhaust from the gas engines, who generally output CO2 and water vapor. (<em>wow, didn&#039;t know that</em>). But sometimes it&#039;s from vortices…still don&#039;t get that one. </div>
+</li>
+</ul>
+
+<p>
+Decent implementation paper is Long-Term Performance Monitoring of Hardwood Timber Bridges in Pennsylvania. Doesn&#039;t go into theory, but it&#039;s one implementation.
+</p>
+
+<p>
+Look at Sensors Handbook instead.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Evaporation&quot;,&quot;hid&quot;:&quot;evaporation&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:8,&quot;range&quot;:&quot;8137-8898&quot;} -->
+<h3 class="sectionedit9" id="fungi">Fungi</h3>
+<div class="level3">
+
+<p>
+Not sure if we need this, but I am suspicious of the 28% figure and it&#039;s nice to know fungi growth without visible degredation. 
+</p>
+
+<p>
+<a href="../_media/projects/glogerm.jpg" class="media" title="projects:glogerm.jpg"><img src="../_media/projects/glogerm.jpg" class="media" alt="" width="300" /></a>
+One “washes off” Glo Germ and sees if it still remains after washing under UV light. Uses zinc sulfide / plastic particles??(from <a href="http://www.glogerm.com/msds.html" class="urlextern" title="http://www.glogerm.com/msds.html" rel="ugc nofollow">their MSDS</a>) that fluoresce when under UV light. 
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Fungi&quot;,&quot;hid&quot;:&quot;fungi&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:9,&quot;range&quot;:&quot;8899-9293&quot;} -->
+<h3 class="sectionedit10" id="humidity">Humidity</h3>
+<div class="level3">
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Hygrometer" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Hygrometer">Hygrometer</a>
+</p>
+
+</div>
+
+<h4 id="theory">Theory</h4>
+<div class="level4">
+
+<p>
+Sense water “dissolved”?? in air, not suspended. Also, condensation is weird too…more to come. 
+</p>
+
+</div>
+
+<h4 id="circuit">Circuit</h4>
+<div class="level4">
+
+</div>
+
+<h4 id="calibration">Calibration</h4>
+<div class="level4">
+
+<p>
+Go from 0 and 100+%RH and match up the curve?
+</p>
+<ul>
+<li class="level1"><div class="li"> What should the curve look like?</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="humidifier">Humidifier</h5>
+<div class="level5">
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Humidifier" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Humidifier">Humidifier</a>. Fast method is making small water particles that <strong>evaporate?!?</strong> quickly. Can use spray bottle but is imprecise/non-continuous, another option is a piezo transducer.
+</p>
+
+<p>
+Another option is passive evaporation without heating using a porous material (which I still don&#039;t get) and a fan to speed up distribution of air.
+</p>
+
+<p>
+<strong>Calibrated</strong> method is to use salt (Sodium Chloride, NaCl) which does some magic and produces a constant value in a reasonable temperature range (<a href="http://www.omega.com/temperature/z/pdf/z103.pdf" class="urlextern" title="http://www.omega.com/temperature/z/pdf/z103.pdf" rel="ugc nofollow">see pdf for table</a>. However, many food-grade salts add anti-caking agents and only guarantee &gt;97% NaCl (typical is between 97-99%, see <a href="https://en.wikipedia.org/wiki/Salt#Edible_salt" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Salt#Edible_salt">Salt#Edible_salt</a>).
+</p>
+<ul>
+<li class="level1"><div class="li"> Not sure how much that affects it yet…pure NaCl isn&#039;t that expensive.</div>
+</li>
+</ul>
+
+</div>
+
+<h5 id="dehumidifier">Dehumidifier</h5>
+<div class="level5">
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Dehumidifier" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Dehumidifier">Dehumidifier</a>
+</p>
+
+<p>
+<a href="https://www.sparkfun.com/products/10167" class="urlextern" title="https://www.sparkfun.com/products/10167" rel="ugc nofollow">DTH22</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> </div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Humidity&quot;,&quot;hid&quot;:&quot;humidity&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:10,&quot;range&quot;:&quot;9294-10451&quot;} -->
+<h3 class="sectionedit11" id="temperature">Temperature</h3>
+<div class="level3">
+
+<p>
+Mr. Zimmerman strongly suggested using <a href="https://en.wikipedia.org/wiki/Silicon_bandgap_temperature_sensor" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Silicon_bandgap_temperature_sensor">Silicon_bandgap_temperature_sensor</a> for sensing temperature due to accuracy and other stuff…
+</p>
+<ul>
+<li class="level1"><div class="li"> One option is the <a href="http://www.adafruit.com/products/165" class="urlextern" title="http://www.adafruit.com/products/165" rel="ugc nofollow">TMP36</a> (analog). I think digital might be better in the long run, so maybe <a href="http://www.adafruit.com/products/374" class="urlextern" title="http://www.adafruit.com/products/374" rel="ugc nofollow">this one</a>.</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Temperature&quot;,&quot;hid&quot;:&quot;temperature&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:11,&quot;range&quot;:&quot;10452-10802&quot;} -->
+<h3 class="sectionedit12" id="moisture">Moisture</h3>
+<div class="level3">
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Soil_Moisture_Sensor" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Soil_Moisture_Sensor">Soil_Moisture_Sensor</a>. Conductivity probes degrade over time due to electrolysis, but doing AC helps apparently. <a href="http://www.vegetronix.com/Products/VH400/" class="urlextern" title="http://www.vegetronix.com/Products/VH400/" rel="ugc nofollow">Vegetronix sensor</a> measures dieletric constant by “transmission line techniques”, but I wonder how much it varies with soil type and temperature. 
+</p>
+
+<p>
+How deep can a signal penetrate / measure moisture? Do we need long-term monitoring anyways? Microwave seems like an option.
+</p>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Moisture&quot;,&quot;hid&quot;:&quot;moisture&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:12,&quot;range&quot;:&quot;10803-11259&quot;} -->
+<h2 class="sectionedit13" id="datalogging">Datalogging</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Datalogging&quot;,&quot;hid&quot;:&quot;datalogging&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:13,&quot;range&quot;:&quot;11260-11283&quot;} -->
+<h3 class="sectionedit14" id="hardware">Hardware</h3>
+<div class="level3">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Hardware&quot;,&quot;hid&quot;:&quot;hardware&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:14,&quot;range&quot;:&quot;11284-11303&quot;} -->
+<h3 class="sectionedit15" id="software">Software</h3>
+<div class="level3">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Software&quot;,&quot;hid&quot;:&quot;software&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:15,&quot;range&quot;:&quot;11304-11327&quot;} -->
+<h2 class="sectionedit16" id="domes_interstitial_condensation_dew_point_sensor">Domes Interstitial Condensation (Dew Point) Sensor</h2>
+<div class="level2">
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Domes Interstitial Condensation (Dew Point) Sensor&quot;,&quot;hid&quot;:&quot;domes_interstitial_condensation_dew_point_sensor&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:16,&quot;range&quot;:&quot;11328-11394&quot;} -->
+<h3 class="sectionedit17" id="the_basics">The Basics</h3>
+<div class="level3">
+
+<p>
+We want to use techniques from <a href="https://en.wikipedia.org/wiki/Aquametry" class="interwiki iw_wp" title="https://en.wikipedia.org/wiki/Aquametry">Aquametry</a> to measure the moisture in building materials. Humidity (water in the air) causes wood to gain moisture, as well as water directly applied to the wood (but it diffuses into the air around it, so just measure humidity?)
+</p>
+<ul>
+<li class="level1"><div class="li"> Why doesn&#039;t wood grow fungus inside?</div>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> Knowing the <strong>Moisture Content (MC)</strong> of wood is important because it causes wood to change its size (perpendicular to the grain especially) and allows fungus that eat wood over time to grow.</div>
+</li>
+<li class="level1 node"><div class="li"> <a href="http://www.sbcindustry.com/images/publication_images/ttb%20mold%20on%20wood%20structural%20building%20components.pdf" class="urlextern" title="http://www.sbcindustry.com/images/publication_images/ttb%20mold%20on%20wood%20structural%20building%20components.pdf" rel="ugc nofollow">Facts Regarding Mold on Wood Structural Building Components</a>, and <a href="../_media/projects/osuwood.pdf" class="media mediafile mf_pdf" title="projects:osuwood.pdf">a great paper by Oregon State</a></div>
+<ul>
+<li class="level2"><div class="li"> <strong>Surface Mold Growth</strong> is <strong>not</strong> a problem for wood decay. It grows naturally when the MC levels of a piece of wood are between 20 and 28%. <strong>Enclosed</strong> mold was found to not affect the occupants any more than walking outside. When the mold is exposed, however, it quickly affects quality-of-life for the occupants. </div>
+</li>
+<li class="level2 node"><div class="li"> <strong>Wood decay fungi</strong> are the main cause of wood decay over time, and require a MC level of &gt;28% (&gt;= the wood fiber saturation point) for more than one week, an adequate supply of oxygen, and a temperature between 32 and 90 F. </div>
+<ul>
+<li class="level3"><div class="li"> “This corresponds to a relative humidity of &gt; 97%, unless a source of free water is present” (like a window leak or condensation), which provides a steady source of liquid water. </div>
+</li>
+<li class="level3 node"><div class="li"> <strong>Can coating the outside of wood with paint stop a supply of oxygen from getting into the wood? (thus eliminating the fungus problem) </strong> <em>Probably not, or else they would be doing that a ton. Also, it prevents the wood from breathing as quickly, keeping the MC high </em></div>
+<ul>
+<li class="level4"><div class="li"> Apparently one must use “pressure-treated wood approved for ground contact”</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> How do the outside temperature and RH passively affect the MC in a chunk of wood? </div>
+<ul>
+<li class="level2"><div class="li"> Formula at: <a href="http://en.wikipedia.org/wiki/Equilibrium_moisture_content" class="urlextern" title="http://en.wikipedia.org/wiki/Equilibrium_moisture_content" rel="ugc nofollow">Wikipedia: Equilibrium Moisture Content</a>. Only on cold, very humid weeks is there a chance of wood decay. Mmmm, sounds like the beach!</div>
+</li>
+</ul>
+</li>
+<li class="level1 node"><div class="li"> How long does it take a piece of water-soaked wood to dry out? Equivalent question is how long it takes “green” wood to dry out?</div>
+<ul>
+<li class="level2"><div class="li"> I smell a differential equation for diffusion.</div>
+</li>
+<li class="level2"><div class="li"> It takes green wood around a year to dry out <a href="http://woodgears.ca/lumber/moisture.html" class="urlextern" title="http://woodgears.ca/lumber/moisture.html" rel="ugc nofollow">Woodgears.ca</a>, another site says 60 days.</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.wufi.de/frame_en_webshop.html" class="urlextern" title="http://www.wufi.de/frame_en_webshop.html" rel="ugc nofollow">WUFI</a> is a simulation software for such things. Free for non-profit US citizens.</div>
+</li>
+<li class="level1"><div class="li"> <a href="http://www.fpl.fs.fed.us/documnts/fplrp/fpl_rp612.pdf" class="urlextern" title="http://www.fpl.fs.fed.us/documnts/fplrp/fpl_rp612.pdf" rel="ugc nofollow">Forestry study</a>, details what they used to measure humidity, temperature, strain (for bridges), and moisture content (some nails driven into the wood).</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;The Basics&quot;,&quot;hid&quot;:&quot;the_basics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:17,&quot;range&quot;:&quot;11395-14244&quot;} -->
+<h3 class="sectionedit18" id="proper_house_design">Proper House Design</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> Another good Google search would be finding a popular article on wood decay and green building / sealed house / blower test and understanding what methods they suggest to get around it.</div>
+<ul>
+<li class="level2 node"><div class="li"> <em>Tight houses are better than leaky houses — with a caveat: tight houses without a ventilation system are just as bad as leaky houses with no ventilation system; maybe worse.</em> from <a href="http://www.greenbuildingadvisor.com/air-leaks-waste-energy-and-rot-houses" class="urlextern" title="http://www.greenbuildingadvisor.com/air-leaks-waste-energy-and-rot-houses" rel="ugc nofollow">GBA article</a>  </div>
+<ul>
+<li class="level3"><div class="li"> <em>It doesn’t take much of a hole in the ceiling of a humid house for the condensation to accumulate as frost. Then, when the sun warms up the black shingle roof, the frost melts, the water falls, “and then you have a ‘roof leak,’ ” Straube says. “Then you call the roofer, and he puts on a new roof, and it doesn’t fix a damn thing because that wasn’t the problem.” It was an air leak.</em> </div>
+</li>
+<li class="level3"><div class="li"> Sorta good article. Takes a while to get to the point though.</div>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Proper House Design&quot;,&quot;hid&quot;:&quot;proper_house_design&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:18,&quot;range&quot;:&quot;14245-15232&quot;} -->
+<h3 class="sectionedit19" id="sensor_design">Sensor Design</h3>
+<div class="level3">
+<ul>
+<li class="level1 node"><div class="li"> <strong>Don&#039;t try and undertake understanding everything right now because you think you can come up with a whiz-bang fix. Just make the sensor!</strong></div>
+<ul>
+<li class="level2"><div class="li"> <a href="http://www.fpl.fs.fed.us/documnts/fplgtr/fplgtr06.pdf" class="urlextern" title="http://www.fpl.fs.fed.us/documnts/fplgtr/fplgtr06.pdf" rel="ugc nofollow">Electric Moisture Meters for Wood</a> (made in &#039;88 by the US Forestry Service!)</div>
+</li>
+<li class="level2"><div class="li"> <a href="http://c.ymcdn.com/sites/www.nibs.org/resource/resmgr/BEST/BEST1_004.pdf" class="urlextern" title="http://c.ymcdn.com/sites/www.nibs.org/resource/resmgr/BEST/BEST1_004.pdf" rel="ugc nofollow">Detailed verification study using resistance-based methods</a></div>
+</li>
+<li class="level2"><div class="li"> Probably need to calibrate with an existing MC sensor</div>
+</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="level1"><div class="li"> SD Card Adapter + Teensy = $25 per unit, not bad. However, probably don&#039;t need the all the space on the SD card. Makes transferring data *a lot* easier though. <a href="http://www.pjrc.com/store/sd_adaptor.html" class="urlextern" title="http://www.pjrc.com/store/sd_adaptor.html" rel="ugc nofollow">http://www.pjrc.com/store/sd_adaptor.html</a></div>
+</li>
+<li class="level1 node"><div class="li"> Interstitial condensation seems to be a non-issue?! <a href="http://www.greenbuildingadvisor.com/blogs/dept/musings/are-dew-point-calculations-really-necessary" class="urlextern" title="http://www.greenbuildingadvisor.com/blogs/dept/musings/are-dew-point-calculations-really-necessary" rel="ugc nofollow">http://www.greenbuildingadvisor.com/blogs/dept/musings/are-dew-point-calculations-really-necessary</a></div>
+<ul>
+<li class="level2"><div class="li"> Basically, the water never actually builds up in the middle of the wood, it always builds up on the surface of the material because of something to do with pressure.</div>
+</li>
+</ul>
+</li>
+<li class="level1"><div class="li"> <strong>On what side of the wall does it build up then?</strong></div>
+</li>
+<li class="level1"><div class="li"> Interstitial condensation occurs when a porous wall material accepts internal warm and humid air and encounters air on the outside that is cold (specifically below the dew point). Somewhere in that material the dew point is reached and water starts condensing. <a href="../_media/home/cc_8.jpg" class="media" title="home:cc_8.jpg"><img src="../_media/home/cc_8.jpg" class="mediaright" align="right" alt="" width="300" /></a></div>
+</li>
+<li class="level1"><div class="li"> <strong>If peak sheathing moisture content is above 20%, then you are at an increasing risk for mold</strong></div>
+</li>
+<li class="level1 node"><div class="li"> Interstitial condensation is caused by a temperature change?! I thought it was a specific “dew point” for the environment…</div>
+<ul>
+<li class="level2"><div class="li"> More to come…</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Sensor Design&quot;,&quot;hid&quot;:&quot;sensor_design&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:19,&quot;range&quot;:&quot;15233-&quot;} --></div></body>
+</html>

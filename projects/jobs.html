@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+ "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+ lang="en" dir="ltr">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>projects:jobs</title>
+  <link rel="stylesheet" media="all" type="text/css" href="../all.css" />
+  <link rel="stylesheet" media="screen" type="text/css" href="../screen.css" />
+  <link rel="stylesheet" media="print" type="text/css" href="../print.css" />
+  <link rel="stylesheet" media="all" type="text/css" href="../export.css" />
+</head>
+<body>
+<div class="dokuwiki export">
+<!-- TOC START -->
+<div id="dw__toc" class="dw__toc">
+<h3 class="toggle">Table of Contents</h3>
+<div>
+
+<ul class="toc">
+<li class="level1"><div class="li"><a href="#led_stuff">LED Stuff</a></div>
+<ul class="toc">
+<li class="clear">
+<ul class="toc">
+<li class="level3"><div class="li"><a href="#smooth_fade">Smooth fade</a></div></li>
+<li class="level3"><div class="li"><a href="#library">Library</a></div></li>
+<li class="level3"><div class="li"><a href="#strip">Strip</a></div></li>
+<li class="level3"><div class="li"><a href="#batteries">Batteries</a></div></li>
+</ul></li>
+</ul></li>
+</ul>
+</div>
+</div>
+<!-- TOC END -->
+
+<p>
+Great XLS from the Census. Occupation, amount, and median wages for men and women. <a href="http://www.census.gov/people/io/files/Median%20earnings%202016%20final.xlsx" class="urlextern" title="http://www.census.gov/people/io/files/Median%20earnings%202016%20final.xlsx" rel="ugc nofollow">http://www.census.gov/people/io/files/Median%20earnings%202016%20final.xlsx</a>
+</p>
+<ul>
+<li class="level1"><div class="li"> Approximately equal numbers of transportation workers and “computer and mathematical occupations” (not including engineers) in 2015, ~3.5 million </div>
+</li>
+<li class="level1"><div class="li"> Chinese wages are 1/5 American wages? Is it 1/5 as cheap over there? From Frontline special on Dayton, Ohio (<a href="https://www.pbs.org/wgbh/frontline/film/left-behind-america/" class="urlextern" title="https://www.pbs.org/wgbh/frontline/film/left-behind-america/" rel="ugc nofollow">https://www.pbs.org/wgbh/frontline/film/left-behind-america/</a>) and why the Chinese businessman is making stuff there.</div>
+</li>
+</ul>
+
+<h2 class="sectionedit1" id="occupation_visualization">Occupation Visualization</h2>
+<div class="level2">
+
+<p>
+<a href="https://www.qualityinfo.org/staff?staffid=turnerbp&amp;companyid=10155" class="urlextern" title="https://www.qualityinfo.org/staff?staffid=turnerbp&amp;companyid=10155" rel="ugc nofollow">Brenda Turner</a> is a contact at Oregon Employment.
+</p>
+<ul>
+<li class="level1"><div class="li"> BLS has occupational employment survey. 2016 Oregon: <a href="https://www.bls.gov/oes/2016/may/oes_or.htm" class="urlextern" title="https://www.bls.gov/oes/2016/may/oes_or.htm" rel="ugc nofollow">https://www.bls.gov/oes/2016/may/oes_or.htm</a></div>
+</li>
+<li class="level1"><div class="li"> Stephen Wolfram gave a really cool view of jobs over time in his <a href="http://blog.stephenwolfram.com/2013/03/talking-about-the-computational-future-at-sxsw-2013/" class="urlextern" title="http://blog.stephenwolfram.com/2013/03/talking-about-the-computational-future-at-sxsw-2013/" rel="ugc nofollow">talk at SXSW</a>. How to best match young people with occupations they&#039;d be interested in, over time?</div>
+</li>
+<li class="level1 node"><div class="li"> <a href="../_media/home/slide_0331.png" class="media" title="home:slide_0331.png"><img src="../_media/home/slide_0331.png" class="media" alt="" /></a></div>
+<ul>
+<li class="level2"><div class="li"> He probably got his data from the US Census Bureau, in particular the section on “Occupations in the &lt;1900&gt; Census” <a href="http://web.archive.org/web/20080213130056/http://www.census.gov/prod/www/abs/decennial/1900.htm" class="urlextern" title="http://web.archive.org/web/20080213130056/http://www.census.gov/prod/www/abs/decennial/1900.htm" rel="ugc nofollow">All in PDF</a>.</div>
+</li>
+</ul>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Occupation Visualization&quot;,&quot;hid&quot;:&quot;occupation_visualization&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;543-1329&quot;} -->
+<h3 class="sectionedit2" id="bureau_of_labor_statistics">Bureau of Labor Statistics</h3>
+<div class="level3">
+
+<p>
+<abbr title="Application Programming Interface">API</abbr> is <a href="http://beta.bls.gov/dataViewer/view/timeseries/LAUCN040010000000005" class="urlextern" title="http://beta.bls.gov/dataViewer/view/timeseries/LAUCN040010000000005" rel="ugc nofollow">http://beta.bls.gov/dataViewer/view/timeseries/LAUCN040010000000005</a>, sorta. Finding a code is hard, try <a href="http://beta.bls.gov/dataQuery/find" class="urlextern" title="http://beta.bls.gov/dataQuery/find" rel="ugc nofollow">DataQuery</a>?
+</p>
+<div class="table sectionedit3"><table class="inline">
+	<thead>
+	<tr class="row0">
+		<th class="col0"> ID </th><th class="col1"> Meaning </th>
+	</tr>
+	</thead>
+	<tr class="row1">
+		<td class="col0"> LAU </td><td class="col1"> Local Area Unemployment </td>
+	</tr>
+	<tr class="row2">
+		<td class="col0"> CN </td><td class="col1"> ??? </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:3,&quot;range&quot;:&quot;1529-1593&quot;} -->
+<p>
+Another source is the Bureau of Labor Statistics <a href="http://download.bls.gov/pub/time.series/" class="urlextern" title="http://download.bls.gov/pub/time.series/" rel="ugc nofollow">http://download.bls.gov/pub/time.series/</a>, <em>but it seems to not contain the long history like the census site does.</em> Search in Google and find the information you&#039;re looking for based on words contained within.
+</p>
+<ul>
+<li class="level1"><div class="li"> Descriptions of the different datasets. <a href="http://www.bls.gov/data/" class="urlextern" title="http://www.bls.gov/data/" rel="ugc nofollow">http://www.bls.gov/data/</a>. And it goes back to 1939 approximately. Good enough for most things today. Includes reporting from businesses directly (Occupational Employment &lt;OE&gt;), and other stuff. ASK A GOOD QUESTION FIRST! </div>
+</li>
+<li class="level3"><div class="li"> <a href="http://download.bls.gov/pub/time.series/ce/ce.supersector" class="urlextern" title="http://download.bls.gov/pub/time.series/ce/ce.supersector" rel="ugc nofollow">List of supersectors</a>, and <a href="http://download.bls.gov/pub/time.series/ce/ce.industry" class="urlextern" title="http://download.bls.gov/pub/time.series/ce/ce.industry" rel="ugc nofollow">industries</a></div>
+</li>
+<li class="level3"><div class="li"> Would be best to make a Makefile to download and clean up data to TSV, like <a href="http://bl.ocks.org/mbostock/8033015" class="urlextern" title="http://bl.ocks.org/mbostock/8033015" rel="ugc nofollow">here</a>, explained by <a href="http://bost.ocks.org/mike/make/" class="urlextern" title="http://bost.ocks.org/mike/make/" rel="ugc nofollow">Mike Bostocks</a></div>
+</li>
+<li class="level3"><div class="li"> You shouldn&#039;t judge jobs based on pay. More important is the difficulty you have in getting a job (market demand / labor supply) doing something that you like doing!</div>
+</li>
+<li class="level3"><div class="li"> <strong>Why</strong> is there such a big emphasis on STEM?</div>
+</li>
+</ul>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;Bureau of Labor Statistics&quot;,&quot;hid&quot;:&quot;bureau_of_labor_statistics&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:2,&quot;range&quot;:&quot;1330-&quot;} --></div></body>
+</html>
